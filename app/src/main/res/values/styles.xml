@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        
+    </style>
+    
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <!-- Change Button Text Color -->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Change Title and Message Color -->
+        <item name="android:textColorPrimary">@color/white_text</item>
+        <!-- Change Background Color -->
+        <item name="android:windowBackground">@drawable/alert_box</item>
+        <!-- Change Text Size -->
+        <item name="android:labelTextSize">@dimen/alert_extra_message_text</item>
+    </style>
+</resources>

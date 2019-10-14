@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">5&#8211;3&#8211;1 Tracker</string>
+
+    <string name="app_header">5/3/1 BBB Tracker</string>
+    <string name="no_lifts_found">No Lifts Found</string>
+    <string name="no_lifts_message">Oh no! We couldn\'t find any of your lifts saved. That\'s not a problem though; you can enter them now!</string>
+    <string name="no_lifts_set_lifts">We couldn\'t find any of your lifts saved, so we put some default starter values. Change them if you don\'t feel comfortable using those numbers.</string>
+    <string name="no_lifts_ok">OK</string>
+
+    <string name="bench">Bench Press</string>
+    <string name="overhand">Overhand Press</string>
+    <string name="deadlift">Deadlift</string>
+    <string name="squat">Back Squat</string>
+    <string name="upper_body_compounds">Upper Body 1-Rep-Max</string>
+    <string name="lower_body_compounds">Lower Body 1-Rep-Max</string>
+    <string name="set_max_info">Enter the values for your 1 Rep Maxes (1RM) below. Round to the nearest 0 or 5 for in-between values. If you do not know your 1RM values, test for them first. \n\nIf you already know your Training Max, check the box below before submitting your values.</string>
+    <string name="training_maxes_input">I already know my training maxes</string>
+
+    <string name="bench_placeholder">90</string>
+    <string name="overhand_placeholder">45</string>
+    <string name="deadlift_placeholder">135</string>
+    <string name="squat_placeholder">120</string>
+
+    <string name="workout_name">Workout</string>
+    <string name="workout_weight">Weight</string>
+    <string name="workout_reps">Sets &amp; Reps</string>
+
+    <string name="placeholder_reps">15x10</string>
+    <string name="placeholder_workout">Workout Name</string>
+    <string name="placeholder_weight">225</string>
+    <string name="placeholder_imperial">lb</string>
+    <string name="placeholder_metric">kg</string>
+
+    <string name="set_training_max_button">Set Training Maxes</string>
+    <string name="add_accessories_button">Add Accessories</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="return_text">Return</string>
+    <string name="submit_text">Submit</string>
+
+    <string name="amrap_submit">Submit AMRAP</string>
+    <string name="amrap_text">Reps complete on third Core set:</string>
+    <string name="amrap_placeholder_reps">1</string>
+    <string name="amrap_last_week">Last Week</string>
+    <string name="amrap_this_week">This Week</string>
+
+    <string name="amrap_error_title">AMRAP Lift Error</string>
+    <string name="amrap_error_message">You have not submitted lift numbers for all your AMRAP lifts. Please submit those numbers for the following before completing this cycle:\n\n</string>
+
+    <string name="cycle_placeholder">Cycle 0 Man</string>
+    <string name="cycle_update">Update Cycle</string>
+
+    <string name="core">Core Sets</string>
+    <string name="warmup">Warm-Ups Sets</string>
+    <string name="bbb">BBB Sets</string>
+
+    <string name="week_1">Week One</string>
+    <string name="week_2">Week Two</string>
+    <string name="week_3">Week Three</string>
+    <string name="week_4">Week Four</string>
+
+    <string name="Sunday">Sunday</string>
+    <string name="Monday">Monday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+
+    <string name="button_bench">View Bench Press</string>
+    <string name="button_deadlift">View Deadlift</string>
+    <string name="button_press">View Overhand Press</string>
+    <string name="button_squat">View Squat</string>
+    <string name="button_increase_tm">Increase Training Max</string>
+
+    <string name="bbb_40">40%</string>
+    <string name="bbb_45">45%</string>
+    <string name="bbb_50">50%</string>
+    <string name="bbb_55">55%</string>
+    <string name="bbb_60">60%</string>
+    <string name="bbb_65">65%</string>
+    <string name="bbb_70">70%</string>
+    <string name="bbb_75">75%</string>
+
+</resources>

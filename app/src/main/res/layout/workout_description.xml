@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/workout_description"
+    android:background="@color/colorPrimary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/workout_start"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/transparent_outline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <ImageView
+            android:id="@+id/workout_down"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="68dp"
+            android:layout_weight="1"
+            android:background="@drawable/transparent_outline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.215"
+            app:layout_constraintStart_toEndOf="@+id/workout_start"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/workout_name_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:text="@string/workout_name"
+            android:textColor="@color/white_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/workout_weight_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:text="@string/workout_weight"
+            android:textColor="@color/white_text"
+            app:layout_constraintStart_toEndOf="@+id/workout_name_text"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/workout_reps_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:text="@string/workout_reps"
+            android:textColor="@color/white_text"
+            app:layout_constraintStart_toEndOf="@+id/workout_weight_text"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/workout_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="@string/deadlift"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/workout_name_text" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="45dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/workout_weight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:text="@string/bench_placeholder"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintStart_toEndOf="@+id/workout_name"
+            app:layout_constraintTop_toBottomOf="@+id/workout_weight_text" />
+
+        <TextView
+            android:id="@+id/workout_reps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="75dp"
+            android:text="@string/placeholder_reps"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintStart_toEndOf="@+id/workout_weight"
+            app:layout_constraintTop_toBottomOf="@+id/workout_reps_text" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
