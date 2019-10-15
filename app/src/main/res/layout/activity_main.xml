@@ -77,105 +77,125 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/workout_frame_padding"
-        app:layout_constraintTop_toBottomOf="@+id/include" >
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/topDivider">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/include">
 
-            <Button
-                android:id="@+id/press_numbers"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="@dimen/workout_frame_start"
-                android:padding="@dimen/workout_frame_padding"
-                android:text="@string/button_press"
-                android:textSize="@dimen/workout_frame_exterior_text"
-                android:textColor="@drawable/view_lifts_buttons_text"
-                android:background="@drawable/view_lifts_buttons"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:elevation="16dp">
 
-            <Button
-                android:id="@+id/deadlift_numbers"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="@dimen/workout_frame_start"
-                android:padding="@dimen/workout_frame_padding"
-                android:text="@string/button_deadlift"
-                android:textSize="@dimen/workout_frame_exterior_text"
-                android:textColor="@drawable/view_lifts_buttons_text"
-                android:background="@drawable/view_lifts_buttons"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/press_numbers" />
+                    <Button
+                        android:id="@+id/press_numbers"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginStart="@dimen/workout_frame_8"
+                        android:layout_marginTop="@dimen/workout_frame_32"
+                        android:layout_marginEnd="@dimen/workout_frame_8"
+                        android:background="@drawable/view_lifts_buttons"
+                        android:padding="@dimen/workout_frame_padding"
+                        android:text="@string/button_press"
+                        android:textColor="@drawable/view_lifts_buttons_text"
+                        android:textSize="@dimen/text_18"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/bench_numbers"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="@dimen/workout_frame_start"
-                android:padding="@dimen/workout_frame_padding"
-                android:text="@string/button_bench"
-                android:textSize="@dimen/workout_frame_exterior_text"
-                android:textColor="@drawable/view_lifts_buttons_text"
-                android:background="@drawable/view_lifts_buttons"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/deadlift_numbers" />
+                    <Button
+                        android:id="@+id/deadlift_numbers"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginStart="@dimen/workout_frame_8"
+                        android:layout_marginTop="@dimen/workout_frame_32"
+                        android:layout_marginEnd="@dimen/workout_frame_8"
+                        android:background="@drawable/view_lifts_buttons"
+                        android:padding="@dimen/workout_frame_padding"
+                        android:text="@string/button_deadlift"
+                        android:textColor="@drawable/view_lifts_buttons_text"
+                        android:textSize="@dimen/text_18"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/press_numbers" />
 
-            <Button
-                android:id="@+id/squat_numbers"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="@dimen/workout_frame_start"
-                android:padding="@dimen/workout_frame_padding"
-                android:text="@string/button_squat"
-                android:textSize="@dimen/workout_frame_exterior_text"
-                android:textColor="@drawable/view_lifts_buttons_text"
-                android:background="@drawable/view_lifts_buttons"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bench_numbers" />
+                    <Button
+                        android:id="@+id/bench_numbers"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginStart="@dimen/workout_frame_8"
+                        android:layout_marginTop="@dimen/workout_frame_32"
+                        android:layout_marginEnd="@dimen/workout_frame_8"
+                        android:background="@drawable/view_lifts_buttons"
+                        android:padding="@dimen/workout_frame_padding"
+                        android:text="@string/button_bench"
+                        android:textColor="@drawable/view_lifts_buttons_text"
+                        android:textSize="@dimen/text_18"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/deadlift_numbers" />
 
-            <Button
-                android:id="@+id/increase_training_max"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="@dimen/workout_frame_start"
-                android:padding="@dimen/workout_frame_padding"
-                android:text="@string/cycle_update"
-                android:textSize="@dimen/workout_frame_exterior_text"
-                android:textColor="@drawable/view_lifts_buttons_text"
-                android:background="@drawable/view_lifts_buttons"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/squat_numbers" />
+                    <Button
+                        android:id="@+id/squat_numbers"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginStart="@dimen/workout_frame_8"
+                        android:layout_marginTop="@dimen/workout_frame_32"
+                        android:layout_marginEnd="@dimen/workout_frame_8"
+                        android:background="@drawable/view_lifts_buttons"
+                        android:padding="@dimen/workout_frame_padding"
+                        android:text="@string/button_squat"
+                        android:textColor="@drawable/view_lifts_buttons_text"
+                        android:textSize="@dimen/text_18"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bench_numbers" />
 
-            <Button
-                android:id="@+id/bbb_test"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:height="65dp"
-                android:layout_marginTop="@dimen/workout_frame_start"
-                android:padding="@dimen/workout_frame_padding"
-                android:text="BBB Test"
-                android:textSize="@dimen/workout_frame_exterior_text"
-                android:textColor="@drawable/view_lifts_buttons_text"
-                android:background="@drawable/view_lifts_buttons"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/increase_training_max"  />
+                    <Button
+                        android:id="@+id/increase_training_max"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginStart="@dimen/workout_frame_8"
+                        android:layout_marginTop="@dimen/workout_frame_32"
+                        android:layout_marginEnd="@dimen/workout_frame_8"
+                        android:background="@drawable/view_lifts_buttons"
+                        android:padding="@dimen/workout_frame_padding"
+                        android:text="@string/cycle_update"
+                        android:textColor="@drawable/view_lifts_buttons_text"
+                        android:textSize="@dimen/text_18"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/squat_numbers" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <Button
+                        android:id="@+id/bbb_test"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginStart="@dimen/workout_frame_8"
+                        android:layout_marginTop="@dimen/workout_frame_32"
+                        android:layout_marginEnd="@dimen/workout_frame_8"
+                        android:background="@drawable/view_lifts_buttons"
+                        android:padding="@dimen/workout_frame_padding"
+                        android:text="BBB Test"
+                        android:textColor="@drawable/view_lifts_buttons_text"
+                        android:textSize="@dimen/text_18"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/increase_training_max" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
 
     </FrameLayout>
 

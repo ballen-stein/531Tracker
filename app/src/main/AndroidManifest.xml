@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SetMaxes"></activity>
+        <activity android:name=".UpdateValues"></activity>
     </application>
 
 </manifest>

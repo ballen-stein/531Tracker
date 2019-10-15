@@ -8,13 +8,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TabHost;
 import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
@@ -196,7 +194,7 @@ public class Week extends Activity {
         FrameLayout frameLayout = new FrameLayout(getApplicationContext());
         layoutParams.height = 200;
         frameLayout.setLayoutParams(layoutParams);
-        frameLayout.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorBlack, null));
+        frameLayout.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
 
         TextView workoutName = createTextView(liftsArrayList.get(0).getCompound_movement(), new int[]{100,25});
         TextView workoutReps = createTextView(reps, new int[]{600, 25});
@@ -217,7 +215,7 @@ public class Week extends Activity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         tv.setText(value);
         tv.setTextSize(14);
-        tv.setTextColor(Color.parseColor("#FFD9A638"));
+        tv.setTextColor(Color.parseColor("#BB0000"));
         params.setMargins(marginValues[0], marginValues[1], 0, 0);
         tv.setLayoutParams(params);
         return tv;
@@ -227,7 +225,8 @@ public class Week extends Activity {
     private CheckBox createCheckBox(int[] marginValues){
         CheckBox checkBox = new CheckBox(this);
         params.setMargins(marginValues[0], marginValues[1], 0, 0 );
-        checkBox.setButtonTintList(ColorStateList.valueOf(0xFFD9A638));
+        //checkBox.setButtonTintList(ColorStateList.valueOf(0xFFD9A638));
+        checkBox.setButtonTintList(ColorStateList.valueOf(0xFFBB0000));
         checkBox.setLayoutParams(params);
         return checkBox;
     }
