@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDarkGrey">
+    android:background="@color/colorBlack">
 
     <include
         android:id="@+id/header"
@@ -14,14 +14,22 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
+    <View
+        android:id="@+id/divider_top"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="@dimen/workout_frame_32"
+        android:background="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
    <FrameLayout
        android:layout_width="wrap_content"
        android:layout_height="0dp"
-       android:background="@color/colorBlack"
+       android:background="@color/colorDarkGrey"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintBottom_toTopOf="@id/divider_bottom_buttons"
-       app:layout_constraintTop_toBottomOf="@id/header">
+       app:layout_constraintTop_toBottomOf="@id/divider_top">
 
        <ScrollView
            android:id="@+id/scrollView2"
@@ -34,7 +42,6 @@
            <LinearLayout
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:background="@color/colorBlack"
                android:layout_gravity="center"
                android:gravity="center"
                android:orientation="vertical"
@@ -43,7 +50,7 @@
                <androidx.constraintlayout.widget.ConstraintLayout
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:layout_marginBottom="@dimen/workout_frame_start"
+                   android:layout_marginBottom="@dimen/workout_frame_32"
                    android:padding="@dimen/workout_frame_padding">
 
                    <TextView
@@ -51,7 +58,7 @@
                        android:layout_height="wrap_content"
                        android:text="@string/set_max_info"
                        android:textColor="@color/white_text"
-                       android:textSize="@dimen/workout_frame_header_text"
+                       android:textSize="@dimen/text_16"
                        app:layout_constraintEnd_toEndOf="parent"
                        app:layout_constraintStart_toStartOf="parent"
                        app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +69,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center"
-                   android:layout_marginBottom="@dimen/workout_frame_start"
+                   android:layout_marginBottom="@dimen/workout_frame_32"
                    android:padding="@dimen/workout_frame_padding">
 
                    <TextView
@@ -70,7 +77,7 @@
                        android:layout_height="wrap_content"
                        android:text="@string/training_maxes_input"
                        android:textColor="@color/white_text"
-                       android:textSize="@dimen/workout_frame_header_text"
+                       android:textSize="@dimen/text_16"
                        app:layout_constraintBottom_toBottomOf="parent"
                        app:layout_constraintEnd_toStartOf="@id/training_maxes_used"
                        app:layout_constraintStart_toStartOf="parent"
@@ -269,7 +276,7 @@
                                android:layout_marginEnd="@dimen/bbb_percents_margin"
                                android:text="@string/bbb_40"
                                android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/workout_frame_interior_text" />
+                               android:textSize="@dimen/text_14" />
 
                            <TextView
                                android:layout_width="wrap_content"
@@ -277,7 +284,7 @@
                                android:layout_marginEnd="@dimen/bbb_percents_margin"
                                android:text="@string/bbb_45"
                                android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/workout_frame_interior_text" />
+                               android:textSize="@dimen/text_14" />
 
                            <TextView
                                android:layout_width="wrap_content"
@@ -285,7 +292,7 @@
                                android:layout_marginEnd="@dimen/bbb_percents_margin"
                                android:text="@string/bbb_50"
                                android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/workout_frame_interior_text" />
+                               android:textSize="@dimen/text_14" />
 
                            <TextView
                                android:layout_width="wrap_content"
@@ -293,7 +300,7 @@
                                android:layout_marginEnd="@dimen/bbb_percents_margin"
                                android:text="@string/bbb_55"
                                android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/workout_frame_interior_text" />
+                               android:textSize="@dimen/text_14" />
 
                            <TextView
                                android:layout_width="wrap_content"
@@ -301,7 +308,7 @@
                                android:layout_marginEnd="@dimen/bbb_percents_margin"
                                android:text="@string/bbb_60"
                                android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/workout_frame_interior_text" />
+                               android:textSize="@dimen/text_14" />
 
                            <TextView
                                android:layout_width="wrap_content"
@@ -309,7 +316,7 @@
                                android:layout_marginEnd="@dimen/bbb_percents_margin"
                                android:text="@string/bbb_65"
                                android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/workout_frame_interior_text" />
+                               android:textSize="@dimen/text_14" />
 
                            <TextView
                                android:layout_width="wrap_content"
@@ -317,7 +324,7 @@
                                android:layout_marginEnd="@dimen/bbb_percents_margin"
                                android:text="@string/bbb_70"
                                android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/workout_frame_interior_text" />
+                               android:textSize="@dimen/text_14" />
 
                            <TextView
                                android:layout_width="wrap_content"
@@ -325,7 +332,7 @@
                                android:layout_marginEnd="@dimen/bbb_percents_margin"
                                android:text="@string/bbb_75"
                                android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/workout_frame_interior_text" />
+                               android:textSize="@dimen/text_14" />
 
                        </LinearLayout>
 
@@ -333,7 +340,7 @@
                            android:id="@+id/radioGroupBBB"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
-                           android:layout_marginTop="@dimen/workout_frame_start"
+                           android:layout_marginTop="@dimen/workout_frame_32"
                            android:background="@color/transparent"
                            android:checkedButton="@id/radio_bbb_50"
                            android:orientation="horizontal"
@@ -423,7 +430,7 @@
         android:id="@+id/divider_bottom_buttons"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginBottom="@dimen/workout_frame_start"
+        android:layout_marginBottom="@dimen/workout_frame_32"
         android:background="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/submit_compounds"
         app:layout_constraintTop_toTopOf="@+id/cancel" />

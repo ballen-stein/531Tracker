@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorDarkGrey"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Week">
@@ -19,7 +18,7 @@
         android:gravity="center"
         android:text="@string/placeholder_reps"
         android:textColor="@color/white_text"
-        android:textSize="@dimen/workout_frame_header_text"
+        android:textSize="@dimen/text_16"
         android:background="@color/colorBlack"
         app:layout_constraintTop_toBottomOf="@id/week_header" />
 
@@ -35,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/colorDarkGrey"
         app:tabTextColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -70,9 +70,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="@dimen/workout_frame_padding"
-        android:layout_marginStart="@dimen/workout_frame_padding"
+        android:background="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/amrap_frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -97,12 +95,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|top"
-                    android:background="@drawable/view_lifts_buttons"
+                    android:background="@color/colorBlack"
                     android:gravity="center"
                     android:padding="@dimen/workout_frame_padding"
                     android:text="@string/warmup"
-                    android:textColor="@drawable/view_lifts_buttons_text"
-                    android:textSize="@dimen/workout_frame_exterior_text" />
+                    android:textColor="@drawable/week_buttons_text"
+                    android:textSize="@dimen/text_18" />
 
             </FrameLayout>
 
@@ -111,7 +109,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/workout_frame_view"
-                android:padding="@dimen/workout_frame_padding_half"
                 android:visibility="gone">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -153,12 +150,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|top"
-                    android:background="@drawable/view_lifts_buttons"
+                    android:background="@color/colorBlack"
                     android:gravity="center"
                     android:padding="@dimen/workout_frame_padding"
                     android:text="@string/core"
-                    android:textColor="@drawable/view_lifts_buttons_text"
-                    android:textSize="@dimen/workout_frame_exterior_text" />
+                    android:textColor="@drawable/week_buttons_text"
+                    android:textSize="@dimen/text_18" />
 
             </FrameLayout>
 
@@ -167,7 +164,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/workout_frame_view"
-                android:padding="@dimen/workout_frame_padding_half"
                 android:visibility="gone">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -209,11 +205,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|top"
-                    android:background="@drawable/view_lifts_buttons"
+                    android:background="@color/colorBlack"
                     android:gravity="center"
                     android:text="@string/bbb"
-                    android:textColor="@drawable/view_lifts_buttons_text"
-                    android:textSize="@dimen/workout_frame_exterior_text" />
+                    android:textColor="@drawable/week_buttons_text"
+                    android:textSize="@dimen/text_18" />
 
             </FrameLayout>
 
@@ -222,7 +218,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/workout_frame_view"
-                android:padding="@dimen/workout_frame_padding_half"
                 android:visibility="gone">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -255,7 +250,6 @@
 
     </ScrollView>
 
-
     <FrameLayout
         android:id="@+id/amrap_frame"
         android:layout_width="match_parent"
@@ -280,9 +274,9 @@
                 android:id="@+id/amrap_last_week"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/workout_frame_interior_text"
+                android:textSize="@dimen/text_14"
                 android:text="@string/amrap_last_week"
-                android:textColor="@color/white_text"
+                android:textColor="@color/colorAccent"
                 app:layout_constraintEnd_toStartOf="@+id/amrap_this_week"
                 app:layout_constraintTop_toBottomOf="@id/amrap_divider"
                 app:layout_constraintStart_toEndOf="@id/amrap_text" />
@@ -291,8 +285,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/amrap_this_week"
-                android:textColor="@color/white_text"
-                android:textSize="@dimen/workout_frame_interior_text"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/amrap_divider" />
 
@@ -301,10 +295,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/workout_frame_start"
+                android:layout_marginStart="@dimen/workout_frame_32"
                 android:text="@string/amrap_text"
                 android:textColor="@color/colorAccent"
-                android:textSize="@dimen/workout_frame_interior_text"
+                android:textSize="@dimen/text_14"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/amrap_divider"
                 app:layout_constraintBottom_toBottomOf="parent" />
@@ -316,7 +310,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/amrap_placeholder_reps"
                 android:textColor="@color/colorAccent"
-                android:textSize="@dimen/workout_frame_header_text"
+                android:textSize="@dimen/text_16"
                 app:layout_constraintEnd_toEndOf="@id/amrap_last_week"
                 app:layout_constraintStart_toStartOf="@id/amrap_last_week"
                 app:layout_constraintTop_toBottomOf="@id/amrap_divider"
@@ -328,32 +322,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:textSize="@dimen/workout_frame_header_text"
+                android:textSize="@dimen/text_16"
                 android:text="@string/amrap_placeholder_reps"
                 android:textColor="@color/colorRed"
                 app:layout_constraintEnd_toEndOf="@id/amrap_this_week"
                 app:layout_constraintTop_toBottomOf="@id/amrap_divider"
                 app:layout_constraintStart_toStartOf="@id/amrap_this_week"
                 app:layout_constraintBottom_toBottomOf="parent" />
-
-            <!--
-            <FrameLayout
-                android:id="@+id/amrap_info_frame"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/amrap_input">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@drawable/information_resource"
-                    android:layout_gravity="center" />
-
-            </FrameLayout>
-            -->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -387,7 +362,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:layout_marginStart="@dimen/workout_frame_start_double"
+                android:layout_marginStart="@dimen/workout_frame_64"
                 android:padding="@dimen/workout_frame_padding"
                 android:background="@drawable/main_buttons"
                 android:text="@string/return_text"

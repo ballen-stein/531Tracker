@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.a531tracker.Database.DatabaseHelper;
-import com.a531tracker.LiftBuilders.AsManyRepsAsPossible;
 import com.a531tracker.LiftBuilders.CompoundLifts;
 
 import java.util.ArrayList;
@@ -129,7 +128,7 @@ public class HomeScreen extends AppCompatActivity {
             tv.setGravity(Gravity.CENTER);
             tv.setTextColor(ContextCompat.getColor(mContext, R.color.colorRed));
             tv.setText(extraMessage);
-            tv.setTextSize(getResources().getDimension(R.dimen.alert_extra_message_text));
+            tv.setTextSize(getResources().getDimension(R.dimen.text_8));
             dialog.setView(tv);
         } else {
             dialog.setMessage(message);
@@ -285,7 +284,7 @@ public class HomeScreen extends AppCompatActivity {
 
 
     private void updateTrainingMax(){
-        tmUpdate.setOnClickListener(new View.OnClickListener() {
+        /*tmUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
@@ -319,6 +318,14 @@ public class HomeScreen extends AppCompatActivity {
                     String message = getResources().getString(R.string.amrap_error_message);
                     alertBuilder(getResources().getString(R.string.amrap_error_title), message, liftMissingAMRAP, true, false);
                 }
+            }
+        });
+         */
+        tmUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), UpdateValues.class);
+                startActivity(intent);
             }
         });
     }

@@ -46,8 +46,22 @@
     <string name="amrap_error_title">AMRAP Lift Error</string>
     <string name="amrap_error_message">You have not submitted lift numbers for all your AMRAP lifts. Please submit those numbers for the following before completing this cycle:\n\n</string>
 
-    <string name="cycle_placeholder">Cycle 0 Man</string>
+    <string name="cycle_title">Current Cycle</string>
+    <string name="cycle_placeholder">Cycle 0</string>
     <string name="cycle_update">Update Cycle</string>
+
+    <string name="current_tm">Current Training Maxes</string>
+    <string name="tm_current_placeholder">100</string>
+    <string name="tm_update_placeholder">115</string>
+
+    <string name="tm_bench_title">Bench</string>
+    <string name="tm_press_title">Press</string>
+    <string name="tm_deadlift_title">Deadlift</string>
+    <string name="tm_squat_title">Squat</string>
+    <string name="tm_compound_current">Current</string>
+    <string name="tm_compound_update">Updated</string>
+    <string name="tm_update">Update</string>
+    <string name="tm_update_all">Update All</string>
 
     <string name="core">Core Sets</string>
     <string name="warmup">Warm-Ups Sets</string>
@@ -77,5 +91,7 @@
     <string name="bbb_65">65%</string>
     <string name="bbb_70">70%</string>
     <string name="bbb_75">75%</string>
+
+
 
 </resources>
