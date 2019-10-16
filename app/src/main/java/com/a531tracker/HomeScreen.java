@@ -8,13 +8,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.a531tracker.Database.DatabaseHelper;
+import com.a531tracker.LiftBuilders.AsManyRepsAsPossible;
 import com.a531tracker.LiftBuilders.CompoundLifts;
 
 import java.util.ArrayList;
@@ -26,11 +30,11 @@ public class HomeScreen extends AppCompatActivity {
     public static String[] compoundLifts = new String[]{"Bench", "Overhand Press", "Squat", "Deadlift"};
     private List<CompoundLifts> liftsArray = new ArrayList<>();
     private List<Integer> liftValues = new ArrayList<>();
+    private String liftMissingAMRAP;
 
     private DatabaseHelper db;
     private Context mContext;
     private Integer cycleValue;
-    private String liftMissingAMRAP;
 
     private Button accessoryButton;
     private Button benchNumbers;
@@ -39,6 +43,11 @@ public class HomeScreen extends AppCompatActivity {
     private Button squatNumbers;
     private Button tmUpdate;
     private Button trainingMax;
+    private ImageButton homeButton;
+    private ImageButton backButton;
+    private ImageButton settingsButton;
+
+    final Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +57,13 @@ public class HomeScreen extends AppCompatActivity {
         db = new DatabaseHelper(this);
         mContext = this;
 
-        setUpButtons();
+        setButtons();
+        setListeners();
         startCycle();
         checkForLiftValues();
+        createNavigation();
     }
+
 
     // TODO Create listener/Change activity for set total maxes so lifts are reset
     @Override
@@ -73,29 +85,8 @@ public class HomeScreen extends AppCompatActivity {
         } catch (NullPointerException e){
             Log.d("Compound_lifts", "No lifts found, force user to make lifts");
         } catch (Exception e){
-            alertBuilder(getResources().getString(R.string.no_lifts_found), getResources().getString(R.string.no_lifts_message), "", false, true);
+            alertBuilder(getResources().getString(R.string.alert_no_lifts_found), getResources().getString(R.string.alert_no_lifts_message), "", false, true);
         }
-    }
-
-
-    public void setUpButtons(){
-        accessoryButton = findViewById(R.id.addAccessoriesButton);
-        benchNumbers = findViewById(R.id.bench_numbers);
-        deadliftNumbers = findViewById(R.id.deadlift_numbers);
-        pressNumbers = findViewById(R.id.press_numbers);
-        squatNumbers = findViewById(R.id.squat_numbers);
-        tmUpdate = findViewById(R.id.increase_training_max);
-        trainingMax = findViewById(R.id.setTrainingMaxButton);
-
-        benchButton();
-        deadliftButton();
-        pressButton();
-        squatButton();
-        updateTrainingMax();
-        trainingMaxButton();
-        //accessoriesButton();
-        accessoriesCheck();
-        testBBB();
     }
 
 
@@ -113,7 +104,7 @@ public class HomeScreen extends AppCompatActivity {
         dialog.setTitle(title)
                 .setMessage(message)
                 .setCancelable(cancelable)
-                .setPositiveButton(R.string.no_lifts_ok, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.ok_text, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if(noLiftsFound) {
@@ -223,6 +214,34 @@ public class HomeScreen extends AppCompatActivity {
         }
     }
 
+
+    private void setButtons(){
+        accessoryButton = findViewById(R.id.addAccessoriesButton);
+        benchNumbers = findViewById(R.id.bench_numbers);
+        deadliftNumbers = findViewById(R.id.deadlift_numbers);
+        pressNumbers = findViewById(R.id.press_numbers);
+        squatNumbers = findViewById(R.id.squat_numbers);
+        tmUpdate = findViewById(R.id.increase_training_max);
+        trainingMax = findViewById(R.id.setTrainingMaxButton);
+        homeButton = findViewById(R.id.nav_home);
+        backButton = findViewById(R.id.nav_return);
+        settingsButton = findViewById(R.id.nav_user_settings);
+    }
+
+
+    public void setListeners(){
+        benchButton();
+        deadliftButton();
+        pressButton();
+        squatButton();
+        updateTrainingMax();
+        trainingMaxButton();
+        //accessoriesButton();
+        accessoriesCheck();
+        testBBB();
+    }
+
+
     //Buttons
     private void benchButton() {
         benchNumbers.setOnClickListener(new View.OnClickListener() {
@@ -284,7 +303,7 @@ public class HomeScreen extends AppCompatActivity {
 
 
     private void updateTrainingMax(){
-        /*tmUpdate.setOnClickListener(new View.OnClickListener() {
+        tmUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
@@ -320,14 +339,67 @@ public class HomeScreen extends AppCompatActivity {
                 }
             }
         });
-         */
-        tmUpdate.setOnClickListener(new View.OnClickListener() {
+
+        /*tmUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), UpdateValues.class);
                 startActivity(intent);
             }
         });
+
+         */
+    }
+
+    private void createNavigation(){
+        navCheck();
+    }
+
+
+    private void navCheck(){
+        homeNav();
+        settingsNav();
+        backNav();
+    }
+
+    public void homeNav(){
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+    }
+
+
+    public void settingsNav(){
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navSettings();
+            }
+        });
+    }
+
+    public void navSettings(){
+        Toast.makeText(getApplicationContext(), "Settings pressed", Toast.LENGTH_LONG).show();
+    }
+
+
+    public void backNav(){
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navBack();
+            }
+        });
+    }
+
+
+    public void navBack(){
+        Toast.makeText(getApplicationContext(), "Back pressed", Toast.LENGTH_LONG).show();
     }
 
 

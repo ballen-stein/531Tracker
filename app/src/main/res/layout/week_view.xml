@@ -4,23 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
     tools:context=".Week">
 
     <include layout="@layout/header"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/week_header" />
+        android:id="@+id/week_header"
+        app:layout_constraintTop_toBottomOf="@id/bottom_view_homescreen"/>
+
+    <TextView
+        android:id="@+id/current_tm"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:gravity="left|center_vertical"
+        android:text="@string/placeholder_reps"
+        android:background="@color/colorBlack"
+        android:textSize="24sp"
+        android:textColor="@color/white_text"
+        app:layout_constraintEnd_toStartOf="@id/cycle_number"
+        app:layout_constraintStart_toEndOf="@id/week_header"
+        app:layout_constraintTop_toBottomOf="@id/bottom_view_homescreen" />
 
     <TextView
         android:id="@+id/cycle_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
         android:gravity="center"
+        android:layout_marginEnd="@dimen/workout_frame_16"
         android:text="@string/placeholder_reps"
         android:textColor="@color/white_text"
         android:textSize="@dimen/text_16"
         android:background="@color/colorBlack"
-        app:layout_constraintTop_toBottomOf="@id/week_header" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bottom_view_homescreen"/>
 
     <View
         android:id="@+id/topDivider"
@@ -34,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/colorDarkGrey"
+        android:background="@color/colorPrimary"
         app:tabTextColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -95,7 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|top"
-                    android:background="@color/colorBlack"
+                    android:background="@drawable/workout_frame_view"
                     android:gravity="center"
                     android:padding="@dimen/workout_frame_padding"
                     android:text="@string/warmup"
@@ -254,7 +271,8 @@
         android:id="@+id/amrap_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_view">
+        android:background="@color/colorBlack"
+        app:layout_constraintBottom_toBottomOf="parent" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -280,6 +298,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/amrap_this_week"
                 app:layout_constraintTop_toBottomOf="@id/amrap_divider"
                 app:layout_constraintStart_toEndOf="@id/amrap_text" />
+
             <TextView
                 android:id="@+id/amrap_this_week"
                 android:layout_width="wrap_content"
@@ -287,8 +306,9 @@
                 android:text="@string/amrap_this_week"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_14"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/amrap_divider" />
+                android:layout_marginEnd="@dimen/workout_frame_32"
+                app:layout_constraintTop_toBottomOf="@id/amrap_divider"
+                app:layout_constraintEnd_toStartOf="@id/submit_amrap" />
 
             <TextView
                 android:id="@+id/amrap_text"
@@ -303,7 +323,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/amrap_divider"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
-
             <TextView
                 android:id="@+id/amrap_last_week_number"
                 android:layout_width="wrap_content"
@@ -315,7 +334,6 @@
                 app:layout_constraintStart_toStartOf="@id/amrap_last_week"
                 app:layout_constraintTop_toBottomOf="@id/amrap_divider"
                 app:layout_constraintBottom_toBottomOf="parent" />
-
 
             <EditText
                 android:id="@+id/amrap_input"
@@ -330,60 +348,30 @@
                 app:layout_constraintStart_toStartOf="@id/amrap_this_week"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
+            <Button
+                android:id="@+id/submit_amrap"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@drawable/main_buttons"
+                android:text="@string/amrap_submit"
+                android:textColor="@drawable/main_buttons_text_colors"
+                android:textSize="@dimen/text_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/amrap_divider"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/bottom_view"
+        android:id="@+id/bottom_view_homescreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBlack"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center">
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginBottom="16dp"
-                android:background="@color/colorAccent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/submit_amrap"/>
-            
-            <Button
-                android:id="@+id/returnButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="@dimen/workout_frame_64"
-                android:padding="@dimen/workout_frame_padding"
-                android:background="@drawable/main_buttons"
-                android:text="@string/return_text"
-                android:textColor="@drawable/main_buttons_text_colors"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-            <Button
-                android:id="@+id/submit_amrap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:padding="@dimen/workout_frame_padding"
-                android:background="@drawable/main_buttons"
-                android:text="@string/amrap_submit"
-                android:textColor="@drawable/main_buttons_text_colors"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/returnButton"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <include layout="@layout/bot_navigation" />
 
     </FrameLayout>
 
