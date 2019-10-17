@@ -34,7 +34,6 @@
     <string name="return_text">Return</string>
     <string name="submit_text">Submit</string>
 
-    <string name="amrap_submit">Submit</string>
     <string name="amrap_text">AMRAP Reps:</string>
     <string name="amrap_placeholder_reps">1</string>
     <string name="amrap_last_week">Last Week</string>
@@ -47,7 +46,6 @@
     <string name="alert_amrap_title">AMRAP Submission</string>
     <string name="alert_amrap_successful_message">Your AMRAP value has been logged! Good job!</string>
     <string name="alert_amrap_unsuccessful_message">We\'ve encountered an error and cannot submit your value at this time.</string>
-
 
     <string name="amrap_error_title">AMRAP Lift Error</string>
     <string name="amrap_error_message">You have not submitted lift numbers for all your AMRAP lifts. Please submit those numbers for the following before completing this cycle:\n\n</string>
@@ -69,14 +67,15 @@
     <string name="tm_update">Update</string>
     <string name="tm_update_all">Update All</string>
 
-    <string name="core">Core Sets</string>
-    <string name="warmup">Warm-Ups Sets</string>
-    <string name="bbb">BBB Sets</string>
+    <string name="core_set">Core Sets</string>
+    <string name="warmup_set">Warm-Ups Sets</string>
+    <string name="bbb_set">BBB Sets</string>
+    <string name="deload_set">Deload Set</string>
 
-    <string name="week_1">Week One</string>
-    <string name="week_2">Week Two</string>
-    <string name="week_3">Week Three</string>
-    <string name="week_4">Week Four</string>
+    <string name="week_1">5/5/5</string>
+    <string name="week_2">3/3/3</string>
+    <string name="week_3">5/3/1</string>
+    <string name="week_4">DELOAD</string>
 
     <string name="button_bench">View Bench Press</string>
     <string name="button_deadlift">View Deadlift</string>

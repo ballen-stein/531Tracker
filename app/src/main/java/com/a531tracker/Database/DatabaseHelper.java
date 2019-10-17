@@ -13,7 +13,7 @@ import com.a531tracker.LiftBuilders.CompoundLifts;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "531.db";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
 
     //  Compounds
     private static final String WORKOUT_COMPOUND_TABLE_NAME = "compound_exercise_list";
@@ -146,10 +146,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("Upgrade", "Upgrading SQL database");
             db.execSQL("drop table if exists " + WORKOUT_COMPOUND_TABLE_NAME);
             db.execSQL("drop table if exists " + WORKOUT_ACCESSORY_TABLE_NAME);
-            //db.execSQL("drop table if exists " + WORKOUT_COMPOUND_SQUAT);
-            //db.execSQL("drop table if exists " + WORKOUT_COMPOUND_BENCH);
-            //db.execSQL("drop table if exists " + WORKOUT_COMPOUND_DEADLIFT);
-            //db.execSQL("drop table if exists " + WORKOUT_COMPOUND_PRESS);
+            db.execSQL("drop table if exists " + WORKOUT_COMPOUND_SQUAT);
+            db.execSQL("drop table if exists " + WORKOUT_COMPOUND_BENCH);
+            db.execSQL("drop table if exists " + WORKOUT_COMPOUND_DEADLIFT);
+            db.execSQL("drop table if exists " + WORKOUT_COMPOUND_PRESS);
             onCreate(db);
         }
     }

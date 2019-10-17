@@ -29,7 +29,7 @@
         android:background="@color/colorBlack"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include layout="@layout/bot_navigation" />
+        <include layout="@layout/navigation" />
 
     </FrameLayout>
 

@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,9 +43,10 @@ public class HomeScreen extends AppCompatActivity {
     private Button squatNumbers;
     private Button tmUpdate;
     private Button trainingMax;
-    private ImageButton homeButton;
-    private ImageButton backButton;
-    private ImageButton settingsButton;
+
+    private FrameLayout homeButton;
+    private FrameLayout uploadLifts;
+    private FrameLayout settingsButton;
 
     final Handler handler = new Handler();
 
@@ -223,9 +224,9 @@ public class HomeScreen extends AppCompatActivity {
         squatNumbers = findViewById(R.id.squat_numbers);
         tmUpdate = findViewById(R.id.increase_training_max);
         trainingMax = findViewById(R.id.setTrainingMaxButton);
-        homeButton = findViewById(R.id.nav_home);
-        backButton = findViewById(R.id.nav_return);
-        settingsButton = findViewById(R.id.nav_user_settings);
+        homeButton = findViewById(R.id.home_frame);
+        settingsButton = findViewById(R.id.settings_frame);
+        uploadLifts = findViewById(R.id.upload_frame);
     }
 
 
@@ -389,17 +390,17 @@ public class HomeScreen extends AppCompatActivity {
 
 
     public void backNav(){
-        backButton.setOnClickListener(new View.OnClickListener() {
+        uploadLifts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navBack();
+                navUpload();
             }
         });
     }
 
 
-    public void navBack(){
-        Toast.makeText(getApplicationContext(), "Back pressed", Toast.LENGTH_LONG).show();
+    public void navUpload(){
+        Toast.makeText(getApplicationContext(), "Upload pressed", Toast.LENGTH_LONG).show();
     }
 
 
