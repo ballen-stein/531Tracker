@@ -4,42 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
     tools:context=".Week">
 
     <include layout="@layout/header"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/week_header" />
+        android:id="@+id/week_header"
+        app:layout_constraintEnd_toStartOf="@id/current_tm"
+        app:layout_constraintTop_toBottomOf="@id/bottom_view_homescreen"/>
 
     <TextView
-        android:id="@+id/cycle_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:id="@+id/current_tm"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:gravity="start|center_vertical"
+        android:layout_marginEnd="@dimen/workout_frame_64"
         android:text="@string/placeholder_reps"
-        android:textColor="@color/white_text"
-        android:textSize="@dimen/text_16"
         android:background="@color/colorBlack"
-        app:layout_constraintTop_toBottomOf="@id/week_header" />
+        android:textSize="24sp"
+        android:textColor="@color/white_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bottom_view_homescreen" />
 
     <View
         android:id="@+id/topDivider"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="@color/colorAccent"
-        app:layout_constraintTop_toBottomOf="@id/cycle_number" />
+        app:layout_constraintTop_toBottomOf="@id/current_tm" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_view_days"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/colorDarkGrey"
+        android:background="@color/colorPrimary"
         app:tabTextColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cycle_number">
+        app:layout_constraintTop_toBottomOf="@+id/current_tm">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/week_one_tab"
@@ -79,46 +84,37 @@
         app:layout_constraintVertical_bias="0">
 
         <LinearLayout
-            android:id="@+id/warmup_title"
+            android:id="@+id/all_sets_display"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <FrameLayout
-                android:id="@+id/warmup_button_frame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-                <Button
-                    android:id="@+id/warmup_sets_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|top"
-                    android:background="@color/colorBlack"
-                    android:gravity="center"
-                    android:padding="@dimen/workout_frame_padding"
-                    android:text="@string/warmup"
-                    android:textColor="@drawable/week_buttons_text"
-                    android:textSize="@dimen/text_18" />
-
-            </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/warmup_sets_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/workout_frame_view"
-                android:visibility="gone">
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/warmup_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/warmup_set"
+                    android:textColor="@color/colorRed"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/text_20"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/colorRed"
+                    android:layout_marginTop="30sp"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <include
-                        android:id="@+id/warmup_sets_header"
-                        layout="@layout/workout_header"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp">
 
                     <LinearLayout
                         android:id="@+id/warmup_sets_display"
@@ -128,52 +124,41 @@
                         android:visibility="visible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/warmup_sets_header">
+                        app:layout_constraintTop_toTopOf="parent">
 
                     </LinearLayout>
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/core_button_frame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@color/transparent">
-
-                <Button
-                    android:id="@+id/core_sets_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|top"
-                    android:background="@color/colorBlack"
-                    android:gravity="center"
-                    android:padding="@dimen/workout_frame_padding"
-                    android:text="@string/core"
-                    android:textColor="@drawable/week_buttons_text"
-                    android:textSize="@dimen/text_18" />
-
-            </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/core_sets_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/workout_frame_view"
-                android:visibility="gone">
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/core_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/core_set"
+                    android:textColor="@color/colorRed"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/text_20"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/colorRed"
+                    android:layout_marginTop="30sp"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <include
-                        android:id="@+id/core_sets_header"
-                        layout="@layout/workout_header"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp" >
 
                     <LinearLayout
                         android:id="@+id/core_sets_display"
@@ -184,7 +169,7 @@
                         android:visibility="visible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/core_sets_header">
+                        app:layout_constraintTop_toTopOf="parent">
 
                     </LinearLayout>
 
@@ -192,42 +177,33 @@
 
             </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/bbb_button_frame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@color/transparent">
-
-                <Button
-                    android:id="@+id/bbb_sets_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|top"
-                    android:background="@color/colorBlack"
-                    android:gravity="center"
-                    android:text="@string/bbb"
-                    android:textColor="@drawable/week_buttons_text"
-                    android:textSize="@dimen/text_18" />
-
-            </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/bbb_sets_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/workout_frame_view"
-                android:visibility="gone">
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/bbb_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bbb_set"
+                    android:textColor="@color/colorRed"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/text_20"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/colorRed"
+                    android:layout_marginTop="30sp"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <include
-                        android:id="@+id/bbb_sets_header"
-                        layout="@layout/workout_header"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp">
 
                     <LinearLayout
                         android:id="@+id/bbb_sets_display"
@@ -238,7 +214,7 @@
                         android:visibility="visible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/bbb_sets_header">
+                        app:layout_constraintTop_toTopOf="parent">
 
                     </LinearLayout>
 
@@ -254,7 +230,8 @@
         android:id="@+id/amrap_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_view">
+        android:background="@color/colorBlack"
+        app:layout_constraintBottom_toBottomOf="parent" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -280,6 +257,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/amrap_this_week"
                 app:layout_constraintTop_toBottomOf="@id/amrap_divider"
                 app:layout_constraintStart_toEndOf="@id/amrap_text" />
+
             <TextView
                 android:id="@+id/amrap_this_week"
                 android:layout_width="wrap_content"
@@ -287,8 +265,9 @@
                 android:text="@string/amrap_this_week"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_14"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/amrap_divider" />
+                android:layout_marginEnd="@dimen/workout_frame_32"
+                app:layout_constraintTop_toBottomOf="@id/amrap_divider"
+                app:layout_constraintEnd_toStartOf="@id/submit_amrap" />
 
             <TextView
                 android:id="@+id/amrap_text"
@@ -303,7 +282,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/amrap_divider"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
-
             <TextView
                 android:id="@+id/amrap_last_week_number"
                 android:layout_width="wrap_content"
@@ -315,7 +293,6 @@
                 app:layout_constraintStart_toStartOf="@id/amrap_last_week"
                 app:layout_constraintTop_toBottomOf="@id/amrap_divider"
                 app:layout_constraintBottom_toBottomOf="parent" />
-
 
             <EditText
                 android:id="@+id/amrap_input"
@@ -330,60 +307,30 @@
                 app:layout_constraintStart_toStartOf="@id/amrap_this_week"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
+            <Button
+                android:id="@+id/submit_amrap"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@drawable/main_buttons"
+                android:text="@string/submit_text"
+                android:textColor="@drawable/main_buttons_text_colors"
+                android:textSize="@dimen/text_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/amrap_divider"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/bottom_view"
+        android:id="@+id/bottom_view_homescreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBlack"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center">
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginBottom="16dp"
-                android:background="@color/colorAccent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/submit_amrap"/>
-            
-            <Button
-                android:id="@+id/returnButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="@dimen/workout_frame_64"
-                android:padding="@dimen/workout_frame_padding"
-                android:background="@drawable/main_buttons"
-                android:text="@string/return_text"
-                android:textColor="@drawable/main_buttons_text_colors"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-            <Button
-                android:id="@+id/submit_amrap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:padding="@dimen/workout_frame_padding"
-                android:background="@drawable/main_buttons"
-                android:text="@string/amrap_submit"
-                android:textColor="@drawable/main_buttons_text_colors"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/returnButton"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <include layout="@layout/navigation" />
 
     </FrameLayout>
 

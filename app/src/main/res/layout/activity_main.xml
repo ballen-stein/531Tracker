@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDarkGrey"
+    android:background="@drawable/background_gradient"
     tools:context=".HomeScreen">
-
+<!--
     <include
         android:id="@+id/include"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/bottom_view_homescreen"
         layout="@layout/header" />
 
     <View
@@ -20,77 +21,22 @@
         android:layout_height="5dp"
         android:background="@color/colorAccent"
         app:layout_constraintTop_toBottomOf="@id/include" />
-
+-->
     <FrameLayout
-        android:id="@+id/bottom_view"
+        android:id="@+id/bottom_view_homescreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBlack"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center" >
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginBottom="16dp"
-                android:background="@color/colorAccent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/setTrainingMaxButton"/>
-
-            <Button
-                android:id="@+id/setTrainingMaxButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/main_buttons"
-                android:padding="15dp"
-                android:text="@string/set_training_max_button"
-                android:textColor="@drawable/main_buttons_text_colors"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/addAccessoriesButton"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/addAccessoriesButton"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="28dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/main_buttons"
-                android:padding="15dp"
-                android:text="@string/add_accessories_button"
-                android:textColor="@drawable/main_buttons_text_colors"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <include layout="@layout/navigation" />
 
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/topDivider">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:elevation="4dp"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintTop_toBottomOf="@id/bottom_view_homescreen">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -104,7 +50,7 @@
                         android:layout_marginStart="@dimen/workout_frame_8"
                         android:layout_marginTop="@dimen/workout_frame_32"
                         android:layout_marginEnd="@dimen/workout_frame_8"
-                        android:background="@drawable/view_lifts_buttons"
+                        android:background="@drawable/grey_black_ripple"
                         android:padding="@dimen/workout_frame_padding"
                         android:text="@string/button_press"
                         android:textColor="@drawable/view_lifts_buttons_text"
@@ -120,7 +66,7 @@
                         android:layout_marginStart="@dimen/workout_frame_8"
                         android:layout_marginTop="@dimen/workout_frame_32"
                         android:layout_marginEnd="@dimen/workout_frame_8"
-                        android:background="@drawable/view_lifts_buttons"
+                        android:background="@drawable/grey_black_ripple"
                         android:padding="@dimen/workout_frame_padding"
                         android:text="@string/button_deadlift"
                         android:textColor="@drawable/view_lifts_buttons_text"
@@ -136,7 +82,7 @@
                         android:layout_marginStart="@dimen/workout_frame_8"
                         android:layout_marginTop="@dimen/workout_frame_32"
                         android:layout_marginEnd="@dimen/workout_frame_8"
-                        android:background="@drawable/view_lifts_buttons"
+                        android:background="@drawable/grey_black_ripple"
                         android:padding="@dimen/workout_frame_padding"
                         android:text="@string/button_bench"
                         android:textColor="@drawable/view_lifts_buttons_text"
@@ -152,7 +98,7 @@
                         android:layout_marginStart="@dimen/workout_frame_8"
                         android:layout_marginTop="@dimen/workout_frame_32"
                         android:layout_marginEnd="@dimen/workout_frame_8"
-                        android:background="@drawable/view_lifts_buttons"
+                        android:background="@drawable/grey_black_ripple"
                         android:padding="@dimen/workout_frame_padding"
                         android:text="@string/button_squat"
                         android:textColor="@drawable/view_lifts_buttons_text"
@@ -168,7 +114,7 @@
                         android:layout_marginStart="@dimen/workout_frame_8"
                         android:layout_marginTop="@dimen/workout_frame_32"
                         android:layout_marginEnd="@dimen/workout_frame_8"
-                        android:background="@drawable/view_lifts_buttons"
+                        android:background="@drawable/grey_black_ripple"
                         android:padding="@dimen/workout_frame_padding"
                         android:text="@string/cycle_update"
                         android:textColor="@drawable/view_lifts_buttons_text"
@@ -184,7 +130,7 @@
                         android:layout_marginStart="@dimen/workout_frame_8"
                         android:layout_marginTop="@dimen/workout_frame_32"
                         android:layout_marginEnd="@dimen/workout_frame_8"
-                        android:background="@drawable/view_lifts_buttons"
+                        android:background="@drawable/grey_black_ripple"
                         android:padding="@dimen/workout_frame_padding"
                         android:text="BBB Test"
                         android:textColor="@drawable/view_lifts_buttons_text"
@@ -193,9 +139,38 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/increase_training_max" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    <Button
+                        android:id="@+id/setTrainingMaxButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginEnd="28dp"
+                        android:layout_marginTop="@dimen/workout_frame_32"
+                        android:background="@drawable/main_buttons"
+                        android:padding="15dp"
+                        android:text="@string/set_training_max_button"
+                        android:textColor="@drawable/main_buttons_text_colors"
+                        app:layout_constraintTop_toBottomOf="@id/bbb_test"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/addAccessoriesButton"
+                        app:layout_constraintHorizontal_bias="0.497"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-        </LinearLayout>
+                    <Button
+                        android:id="@+id/addAccessoriesButton"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="28dp"
+                        android:layout_marginTop="@dimen/workout_frame_32"
+                        android:background="@drawable/main_buttons"
+                        android:padding="15dp"
+                        android:text="@string/add_accessories_button"
+                        android:textColor="@drawable/main_buttons_text_colors"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
 

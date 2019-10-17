@@ -238,7 +238,7 @@
                        android:layout_height="wrap_content"
                        android:layout_gravity="center"
                        android:layout_marginTop="@dimen/workout_frame_padding"
-                       android:text="@string/bbb"
+                       android:text="@string/bbb_set"
                        android:textColor="@color/colorAccent"
                        android:textSize="20sp"
                        android:textStyle="bold"
