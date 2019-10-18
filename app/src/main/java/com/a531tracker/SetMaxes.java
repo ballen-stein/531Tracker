@@ -187,7 +187,7 @@ public class SetMaxes extends Activity {
         findViewById(R.id.submit_compounds).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.onUpgrade(db.getReadableDatabase(), 0, 1);
+                db.onNewUser(db.getReadableDatabase());
                 setLifts();
                 inputLifts();
                 startCycle();
