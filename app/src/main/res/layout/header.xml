@@ -21,7 +21,7 @@
             android:layout_marginTop="@dimen/workout_frame_padding_half"
             android:layout_marginBottom="@dimen/workout_frame_padding_half"
             android:textSize="24sp"
-            android:textColor="@color/white_text"
+            android:textColor="@color/colorWhite"
             android:layout_gravity="center|bottom"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintLeft_toLeftOf="parent"

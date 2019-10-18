@@ -11,28 +11,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/week_header"
-        app:layout_constraintEnd_toStartOf="@id/current_tm"
-        app:layout_constraintTop_toBottomOf="@id/bottom_view_homescreen"/>
-
-    <TextView
-        android:id="@+id/current_tm"
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:gravity="start|center_vertical"
-        android:layout_marginEnd="@dimen/workout_frame_64"
-        android:text="@string/placeholder_reps"
-        android:background="@color/colorBlack"
-        android:textSize="24sp"
-        android:textColor="@color/white_text"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bottom_view_homescreen" />
+        app:layout_constraintTop_toBottomOf="@id/top_frame_home"/>
 
     <View
         android:id="@+id/topDivider"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="@color/colorAccent"
-        app:layout_constraintTop_toBottomOf="@id/current_tm" />
+        app:layout_constraintTop_toBottomOf="@id/week_header" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_view_days"
@@ -44,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_tm">
+        app:layout_constraintTop_toBottomOf="@+id/week_header">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/week_one_tab"
@@ -324,7 +312,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/bottom_view_homescreen"
+        android:id="@+id/top_frame_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBlack"

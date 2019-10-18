@@ -146,15 +146,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("Upgrade", "Upgrading SQL database");
             db.execSQL("drop table if exists " + WORKOUT_COMPOUND_TABLE_NAME);
             db.execSQL("drop table if exists " + WORKOUT_ACCESSORY_TABLE_NAME);
-            db.execSQL("drop table if exists " + WORKOUT_COMPOUND_SQUAT);
-            db.execSQL("drop table if exists " + WORKOUT_COMPOUND_BENCH);
-            db.execSQL("drop table if exists " + WORKOUT_COMPOUND_DEADLIFT);
-            db.execSQL("drop table if exists " + WORKOUT_COMPOUND_PRESS);
             onCreate(db);
         }
     }
 
 
+    public void onNewUser(SQLiteDatabase db){
+        db.execSQL("drop table if exists " + WORKOUT_COMPOUND_TABLE_NAME);
+        db.execSQL("drop table if exists " + WORKOUT_ACCESSORY_TABLE_NAME);
+        db.execSQL("drop table if exists " + WORKOUT_COMPOUND_SQUAT);
+        db.execSQL("drop table if exists " + WORKOUT_COMPOUND_BENCH);
+        db.execSQL("drop table if exists " + WORKOUT_COMPOUND_DEADLIFT);
+        db.execSQL("drop table if exists " + WORKOUT_COMPOUND_PRESS);
+        onCreate(db);
+
+    }
     // -------- Compound SQL --------
 
 
@@ -195,13 +201,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void updateCompoundStats(CompoundLifts lifts){
+    public int updateCompoundStats(CompoundLifts lifts){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(WORKOUT_COMPOUND_MAX, lifts.getTraining_max());
+        contentValues.put(WORKOUT_COMPOUND_85_REPS, lifts.getEight_five_reps());
+        contentValues.put(WORKOUT_COMPOUND_90_REPS, lifts.getNinety_reps());
+        contentValues.put(WORKOUT_COMPOUND_95_REPS, lifts.getNinety_five_reps());
         int i = db.update(WORKOUT_COMPOUND_TABLE_NAME, contentValues, WORKOUT_COMPOUND_MOVEMENT + " = '" + lifts.getCompound_movement() + "'", null);
         Log.d("Did_it_Work", ""+i);
         db.close();
+        return i;
     }
 
 

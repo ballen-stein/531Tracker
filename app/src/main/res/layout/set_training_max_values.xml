@@ -57,7 +57,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/set_max_info"
-                       android:textColor="@color/white_text"
+                       android:textColor="@color/colorWhite"
                        android:textSize="@dimen/text_16"
                        app:layout_constraintEnd_toEndOf="parent"
                        app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/training_maxes_input"
-                       android:textColor="@color/white_text"
+                       android:textColor="@color/colorWhite"
                        android:textSize="@dimen/text_16"
                        app:layout_constraintBottom_toBottomOf="parent"
                        app:layout_constraintEnd_toStartOf="@id/training_maxes_used"
@@ -87,7 +87,7 @@
                        android:id="@+id/training_maxes_used"
                        android:layout_width="25dp"
                        android:layout_height="25dp"
-                       android:buttonTint="@color/white_text"
+                       android:buttonTint="@color/colorWhite"
                        app:layout_constraintBottom_toBottomOf="parent"
                        app:layout_constraintEnd_toEndOf="parent"
                        app:layout_constraintTop_toTopOf="parent" />
@@ -120,7 +120,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/bench"
-                       android:textColor="@color/white_text"
+                       android:textColor="@color/colorWhite"
                        android:textSize="18sp"
                        tools:layout_editor_absoluteX="71dp"
                        tools:layout_editor_absoluteY="77dp" />
@@ -148,7 +148,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/overhand"
-                       android:textColor="@color/white_text"
+                       android:textColor="@color/colorWhite"
                        android:textSize="18sp" />
 
                    <EditText
@@ -189,7 +189,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/squat"
-                       android:textColor="@color/white_text"
+                       android:textColor="@color/colorWhite"
                        android:textSize="18sp" />
 
                    <EditText
@@ -213,7 +213,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/deadlift"
-                       android:textColor="@color/white_text"
+                       android:textColor="@color/colorWhite"
                        android:textSize="18sp" />
 
                    <EditText

@@ -13,10 +13,11 @@
     <color name="colorDarkGrey">#3D3D3D</color>
     <color name="colorBlack">#000000</color>
     <color name="colorRed">#FF1919</color>
-    <color name="colorDarkRed">#BB0000</color>
+    <color name="colorRedOpac">#BFFF1919</color>
+    <color name="colorDarkRed">#BC0000</color>
 
     <color name="colorAccent">@color/colorWhite</color>
 
-    <color name="white_text">#ffffff</color>
+    <color name="colorWhiteDark">#BFffffff</color>
     <color name="transparent">#00000000</color>
 </resources>

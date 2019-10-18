@@ -29,6 +29,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Week extends Activity {
     private FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
@@ -47,7 +48,6 @@ public class Week extends Activity {
     private DatabaseHelper db = new DatabaseHelper(this);
 
     private FrameLayout warmupFrame;
-    private FrameLayout coreFrame;
     private FrameLayout bbbFrame;
     private FrameLayout amrapFrame;
 
@@ -58,9 +58,9 @@ public class Week extends Activity {
     private LinearLayout bbbDisplay;
 
     private Button amrapButton;
-    private ImageButton homeButton;
-    private ImageButton settingsButton;
-    private ImageButton backButton;
+    private Button homeButton;
+    private Button settingsButton;
+    private Button uploadButton;
 
     private Integer cycleValue;
 
@@ -85,32 +85,27 @@ public class Week extends Activity {
         setListeners();
         getDatabaseLifts();
         weekSelected("5/5/5");
-        createNavigation();
+        navCheck();
         setHeaderText(compound, amrapWeight);
     }
 
 
     private void setHeaderText(String headerCompound, int headerWeight){
         TextView headerText = findViewById(R.id.header_text);
-        headerText.setText(headerCompound);
-
-        Log.d("Weight", headerWeight + "");
-        TextView currentTM = findViewById(R.id.current_tm);
-        String displayWeight = headerWeight + "lbs";
-        currentTM.setText(displayWeight);
+        String displayInfo = headerCompound + " " + headerWeight + "lbs";
+        headerText.setText(displayInfo);
     }
 
 
     private void setButtons(){
         amrapButton = findViewById(R.id.submit_amrap);
-        homeButton = findViewById(R.id.nav_home);
-        settingsButton = findViewById(R.id.nav_settings);
-        backButton = findViewById(R.id.nav_return);
+        homeButton = findViewById(R.id.home_button);
+        settingsButton = findViewById(R.id.settings_button);
+        uploadButton = findViewById(R.id.upload_button);
     }
 
     private void setViews(){
         warmupFrame = findViewById(R.id.warmup_sets_frame);
-        coreFrame = findViewById(R.id.core_sets_frame);
         bbbFrame = findViewById(R.id.bbb_sets_frame);
         amrapFrame = findViewById(R.id.amrap_frame);
 
@@ -123,7 +118,6 @@ public class Week extends Activity {
 
 
     public void weekSelected(String day){
-        //resetAllViews();
         removeDisplayViews();
         switch(day) {
             default:
@@ -227,13 +221,6 @@ public class Week extends Activity {
     }
 
 
-    private void resetAllViews(){
-        warmupFrame.setVisibility(View.GONE);
-        coreFrame.setVisibility(View.GONE);
-        bbbFrame.setVisibility(View.GONE);
-    }
-
-
     private void removeDisplayViews(){
         warmupDisplay.removeAllViews();
         coreDisplay.removeAllViews();
@@ -254,8 +241,7 @@ public class Week extends Activity {
         int amrapValue = Integer.parseInt(String.valueOf(amrapInput.getText()));
         String repPercent = String.valueOf(corePercents[2]);
         Log.d("AMRAP_WEIGHT", String.valueOf(amrapWeight));
-        int response = db.updateAMRAPTable(compound, cycleValue, repPercent, amrapValue, amrapWeight);
-        return response;
+        return db.updateAMRAPTable(compound, cycleValue, repPercent, amrapValue, amrapWeight);
     }
 
 
@@ -347,11 +333,6 @@ public class Week extends Activity {
     }
 
 
-    private void createNavigation(){
-        navCheck();
-    }
-
-
     private void navCheck(){
         homeNav();
         settingsNav();
@@ -385,7 +366,7 @@ public class Week extends Activity {
 
 
     public void backNav(){
-        backButton.setOnClickListener(new View.OnClickListener() {
+        uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 navBack();
@@ -395,17 +376,16 @@ public class Week extends Activity {
 
 
     public void navBack(){
-        Toast.makeText(getApplicationContext(), "Back pressed", Toast.LENGTH_LONG).show();
-        onBackPressed();
-        finish();
+        Toast.makeText(getApplicationContext(), "Upload pressed", Toast.LENGTH_LONG).show();
     }
 
 
     private void tabOnClicks(){
         TabLayout tabSelected = findViewById(R.id.tab_view_days);
-        /*if(cycleValue%2==-0){
-            tabSelected.addTab(tabSelected.newTab().setText("Week Four"));
-        }*/
+        // Remove Deload week if it's a 7 week cycle vs. 4 week cycle
+        if(cycleValue%2!=0){
+            tabSelected.removeTab((Objects.requireNonNull(tabSelected.getTabAt(3))));
+        }
         tabSelected.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

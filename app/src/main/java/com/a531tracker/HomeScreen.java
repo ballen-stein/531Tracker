@@ -25,12 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeScreen extends AppCompatActivity {
-    static final int TRAINING_MAX_CODE = 42534;
+    static final int TRAINING_MAX_CODE = 1;
 
     public static String[] compoundLifts = new String[]{"Bench", "Overhand Press", "Squat", "Deadlift"};
     private List<CompoundLifts> liftsArray = new ArrayList<>();
     private List<Integer> liftValues = new ArrayList<>();
-    private String liftMissingAMRAP;
 
     private DatabaseHelper db;
     private Context mContext;
@@ -44,9 +43,9 @@ public class HomeScreen extends AppCompatActivity {
     private Button tmUpdate;
     private Button trainingMax;
 
-    private FrameLayout homeButton;
-    private FrameLayout uploadLifts;
-    private FrameLayout settingsButton;
+    private Button homeButton;
+    private Button uploadLifts;
+    private Button settingsButton;
 
     final Handler handler = new Handler();
 
@@ -111,7 +110,7 @@ public class HomeScreen extends AppCompatActivity {
                         if(noLiftsFound) {
                             Intent intent = new Intent(mContext, SetMaxes.class);
                             intent.putExtra("Has_Lifts", true);
-                            startActivityForResult(intent, 1);
+                            startActivityForResult(intent, TRAINING_MAX_CODE);
                         }
                     }
                 });
@@ -224,9 +223,9 @@ public class HomeScreen extends AppCompatActivity {
         squatNumbers = findViewById(R.id.squat_numbers);
         tmUpdate = findViewById(R.id.increase_training_max);
         trainingMax = findViewById(R.id.setTrainingMaxButton);
-        homeButton = findViewById(R.id.home_frame);
-        settingsButton = findViewById(R.id.settings_frame);
-        uploadLifts = findViewById(R.id.upload_frame);
+        homeButton = findViewById(R.id.home_button);
+        settingsButton = findViewById(R.id.settings_button);
+        uploadLifts = findViewById(R.id.upload_button);
     }
 
 
@@ -304,7 +303,7 @@ public class HomeScreen extends AppCompatActivity {
 
 
     private void updateTrainingMax(){
-        tmUpdate.setOnClickListener(new View.OnClickListener() {
+/*        tmUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
@@ -341,15 +340,15 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
-        /*tmUpdate.setOnClickListener(new View.OnClickListener() {
+ */
+
+        tmUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), UpdateValues.class);
                 startActivity(intent);
             }
         });
-
-         */
     }
 
     private void createNavigation(){
