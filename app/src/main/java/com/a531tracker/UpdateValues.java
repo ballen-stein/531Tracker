@@ -26,13 +26,7 @@ import java.util.Objects;
 import static com.a531tracker.HomeScreen.compoundLifts;
 
 public class UpdateValues extends AppCompatActivity {
-    private Button cycleBtn;
-    private Button benchBtn;
-    private Button pressBtn;
-    private Button squatBtn;
-    private Button deadliftBtn;
     private Button updateAll;
-
     private Button homeButton;
     private Button settingsButton;
     private Button uploadButton;
@@ -155,7 +149,7 @@ public class UpdateValues extends AppCompatActivity {
     }
 
 
-    private void checkValues(){
+    private boolean checkValues(){
         String errorLift = "";
         try{
             ArrayList<AsManyRepsAsPossible> newAmrapLifts = new ArrayList<>();
@@ -172,11 +166,10 @@ public class UpdateValues extends AppCompatActivity {
                         db.createAMRAPTable(cycleValue, lifts);
                         addToTotalMax(lifts);
                     }
-
-                        //buttonDisables();
-
+                    return true;
                 } catch (Exception e) {
                     e.printStackTrace();
+                    return false;
                 }
             } else {
                 Log.d("Error_For_Cycle", "From else");
@@ -185,6 +178,7 @@ public class UpdateValues extends AppCompatActivity {
                 String title = getString(R.string.amrap_error_title);
                 errorAlerts.setErrorAlertsValues(false, true, "Error from Else", message, errorLift, true);
                 errorAlerts.createDialogAlert(this).show();
+                return false;
             }
         } catch (Exception e){
             String message = getResources().getString(R.string.amrap_error_message);
@@ -192,6 +186,7 @@ public class UpdateValues extends AppCompatActivity {
             ErrorAlerts errorAlerts = new ErrorAlerts(this);
             errorAlerts.setErrorAlertsValues(false, true, title, message, errorLift, true);
             errorAlerts.createDialogAlert(this).show();
+            return false;
         }
     }
 
@@ -243,81 +238,16 @@ public class UpdateValues extends AppCompatActivity {
 
     // Buttons and Listeners
     private void setListeners(){
-        submitCycle();
-        submitBench();
-        submitPress();
-        submitSquat();
-        submitDeadlift();
         submitAll();
     }
 
 
     private void setButtons(){
-        cycleBtn = findViewById(R.id.tm_cycle_update_button);
-        benchBtn = findViewById(R.id.tm_bench_update_button);
-        pressBtn = findViewById(R.id.tm_press_update_button);
-        squatBtn = findViewById(R.id.tm_squat_update_button);
-        deadliftBtn = findViewById(R.id.tm_deadlift_update_button);
         updateAll = findViewById(R.id.tm_update_all_button);
 
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
         uploadButton = findViewById(R.id.upload_button);
-
-        disableButtons.put("Bench", benchBtn);
-        disableButtons.put("Overhand Press", pressBtn);
-        disableButtons.put("Squat", squatBtn);
-        disableButtons.put("Deadlift", deadliftBtn);
-    }
-
-
-    private void submitCycle(){
-        cycleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //cycleCheck();
-            }
-        });
-    }
-
-
-    private void submitBench(){
-        benchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //checkValues("Bench");
-            }
-        });
-    }
-
-
-    private void submitPress(){
-        pressBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //checkValues("Overhand Press");
-            }
-        });
-    }
-
-
-    private void submitSquat(){
-        squatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //checkValues("Squat");
-            }
-        });
-    }
-
-
-    private void submitDeadlift(){
-        deadliftBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //checkValues("Deadlift");
-            }
-        });
     }
 
 
@@ -325,7 +255,11 @@ public class UpdateValues extends AppCompatActivity {
         updateAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkValues();
+                if(checkValues()){
+                    Intent returnIntent = getIntent();
+                    setResult(RESULT_OK);
+                    finish();
+                }
                 //for(String lifts : compoundLifts)
                 //    checkValues(lifts);
 

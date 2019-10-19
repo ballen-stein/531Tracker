@@ -8,12 +8,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeScreen extends AppCompatActivity {
-    static final int TRAINING_MAX_CODE = 1;
+    static final int SET_TRAINING_MAX_CODE = 1;
+    static final int UPDATE_TRAINING_MAX_CODE = 2;
 
     public static String[] compoundLifts = new String[]{"Bench", "Overhand Press", "Squat", "Deadlift"};
     private List<CompoundLifts> liftsArray = new ArrayList<>();
@@ -47,7 +46,7 @@ public class HomeScreen extends AppCompatActivity {
     private Button uploadLifts;
     private Button settingsButton;
 
-    final Handler handler = new Handler();
+    private TextView cycleDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +55,8 @@ public class HomeScreen extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
         mContext = this;
+
+        cycleDisplay = findViewById(R.id.cycle_display);
 
         setButtons();
         setListeners();
@@ -68,13 +69,18 @@ public class HomeScreen extends AppCompatActivity {
     // TODO Create listener/Change activity for set total maxes so lifts are reset
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Got_result", "OK!");
-        if(requestCode == 1 && resultCode == RESULT_OK){
-            Log.d("Got_result", "OK doing work!");
+        if(requestCode == SET_TRAINING_MAX_CODE && resultCode == RESULT_OK){
+            super.onActivityResult(requestCode, resultCode, data);
+            Log.d("Got_result", "OK!");
             String i = data.getStringExtra("Submitted");
-            Log.d("Submitted value", i);
             checkForLiftValues();
+        } else if (requestCode == UPDATE_TRAINING_MAX_CODE && resultCode == RESULT_OK){
+            resetLifValuesArray();
+            checkForLiftValues();
+            startCycle();
+            Log.d("RESULT_ACT", "ok");
+        } else if(resultCode == RESULT_CANCELED){
+            Log.d("RESULT_ACT", "CANCELED");
         }
     }
 
@@ -110,7 +116,7 @@ public class HomeScreen extends AppCompatActivity {
                         if(noLiftsFound) {
                             Intent intent = new Intent(mContext, SetMaxes.class);
                             intent.putExtra("Has_Lifts", true);
-                            startActivityForResult(intent, TRAINING_MAX_CODE);
+                            startActivityForResult(intent, SET_TRAINING_MAX_CODE);
                         }
                     }
                 });
@@ -151,28 +157,8 @@ public class HomeScreen extends AppCompatActivity {
             Log.d("Cycle_Value", "Default from catch");
             e.printStackTrace();
         }
-    }
-
-
-    private void addToTotalMax(){
-        ArrayList<CompoundLifts> newLifts = new ArrayList<>();
-        for(String lifts: compoundLifts)
-            newLifts.add(db.getLifts(lifts));
-
-        for(int i =0; i < compoundLifts.length; i++) {
-            CompoundLifts lifts = new CompoundLifts();
-            lifts.setCompound_movement(compoundLifts[i]);
-
-            int addedValue;
-            if(lifts.getCompound_movement().equals("Deadlift") || lifts.getCompound_movement().equals("Squat"))
-                addedValue = 10;
-            else
-                addedValue = 5;
-
-            lifts.setTraining_max(newLifts.get(i).getTraining_max()+addedValue);
-            Log.d("Training_max", lifts.getTraining_max()+"");
-            db.updateCompoundStats(lifts);
-        }
+        String cycleText = "You are currently on Cycle #" + cycleValue;
+        cycleDisplay.setText(cycleText);
     }
 
 
@@ -288,7 +274,7 @@ public class HomeScreen extends AppCompatActivity {
         testBBB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for(String lifts : compoundLifts){
+                /*for(String lifts : compoundLifts){
                     CompoundLifts newLifts = new CompoundLifts();
                     newLifts.setBig_but_boring_weight(0.65f);
                     newLifts.setCompound_movement(lifts);
@@ -296,57 +282,51 @@ public class HomeScreen extends AppCompatActivity {
                     if(i == 1){
                         Log.d("BBB Update", "Successfully updated BBB weights!");
                     }
-                }
+                }*/
+                testCheck();
             }
         });
     }
 
 
+    private void testCheck(){
+        AsManyRepsAsPossible amrap = db.checkForMissing("Squat", cycleValue, liftValues.get(2));
+        //Bench - 190 | Press - 145 | Squat - 120 | Deadlift - 135
+
+        Log.d("AMRAP_Values", "Weight: " + amrap.getTotalMaxWeight()
+                + "\nCycle: " + amrap.getCycle() + "\nCompound: " + amrap.getCompound()
+                + "\n85: " + amrap.getEighty_five_reps() + "\n90: " + amrap.getNinety_reps()
+                + "\n95: " + amrap.getNinety_five_reps());
+
+        amrap = db.checkForMissing("Deadlift", cycleValue, liftValues.get(3));
+
+        Log.d("AMRAP_Values", "Weight: " + amrap.getTotalMaxWeight()
+                + "\nCycle: " + amrap.getCycle() + "\nCompound: " + amrap.getCompound()
+                + "\n85: " + amrap.getEighty_five_reps() + "\n90: " + amrap.getNinety_reps()
+                + "\n95: " + amrap.getNinety_five_reps());
+
+        amrap = db.checkForMissing("Overhand Press", cycleValue, liftValues.get(1));
+
+        Log.d("AMRAP_Values", "Weight: " + amrap.getTotalMaxWeight()
+                + "\nCycle: " + amrap.getCycle() + "\nCompound: " + amrap.getCompound()
+                + "\n85: " + amrap.getEighty_five_reps() + "\n90: " + amrap.getNinety_reps()
+                + "\n95: " + amrap.getNinety_five_reps());
+
+        amrap = db.checkForMissing("Bench", cycleValue, liftValues.get(0));
+
+        Log.d("AMRAP_Values", "Weight: " + amrap.getTotalMaxWeight()
+                + "\nCycle: " + amrap.getCycle() + "\nCompound: " + amrap.getCompound()
+                + "\n85: " + amrap.getEighty_five_reps() + "\n90: " + amrap.getNinety_reps()
+                + "\n95: " + amrap.getNinety_five_reps());
+    }
+
     private void updateTrainingMax(){
-/*        tmUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try{
-                    ArrayList<AsManyRepsAsPossible> newAmrapLifts = new ArrayList<>();
-                    //This loop will fail if there's a missing AMRAP value and therefore use the catch
-                    for(String liftName : compoundLifts){
-                        liftMissingAMRAP = liftName;
-                        Log.d("liftMissingAMRAP", liftMissingAMRAP);
-                        newAmrapLifts.add(db.getAMRAPValues(liftName, cycleValue));
-                    }
-                    if(newAmrapLifts.size() == 4) {
-                        try {
-                            db.updateCycle(cycleValue);
-                            cycleValue = db.getCycle();
-                            for (String lifts : compoundLifts) {
-                                db.createAMRAPTable(cycleValue, lifts);
-                            }
-                            addToTotalMax();
-                            resetLifValuesArray();
-                            addLiftsToArray();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        Log.d("Error_For_Cycle", "From else");
-                        String message = getResources().getString(R.string.amrap_error_message);
-                        alertBuilder(getResources().getString(R.string.amrap_error_title), message, liftMissingAMRAP, true, false);
-                    }
-                } catch (Exception e){
-                    Log.d("Error_For_Cycle", "From catch");
-                    String message = getResources().getString(R.string.amrap_error_message);
-                    alertBuilder(getResources().getString(R.string.amrap_error_title), message, liftMissingAMRAP, true, false);
-                }
-            }
-        });
-
- */
-
         tmUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), UpdateValues.class);
-                startActivity(intent);
+                //startActivity(intent);
+                startActivityForResult(intent, UPDATE_TRAINING_MAX_CODE);
             }
         });
     }

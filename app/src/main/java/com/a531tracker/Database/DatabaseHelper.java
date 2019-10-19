@@ -346,6 +346,57 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public AsManyRepsAsPossible checkForMissing(String compound, int cycle, int weight){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String compoundTable = findAMRAPTable(compound);
+        //String specificRow = repCheck(repCheck);
+        Cursor cursor = db.rawQuery("select * from " + compoundTable + " where cycle = '" + cycle + "' and " + WORKOUT_AS_MANY_REPS_AS_POSSIBLE_WEIGHT + " = " + weight, null);
+        cursor.moveToFirst();
+        AsManyRepsAsPossible amrap = createCheckAMRAP(cursor, compound, cycle, weight);
+        //Log.d("ValueOfCheck", "i is " + i);
+        cursor.close();
+        db.close();
+        return amrap;
+    }
+
+
+    private AsManyRepsAsPossible createCheckAMRAP(Cursor cursor, String lift, int cycle, int weight){
+        AsManyRepsAsPossible amrap = new AsManyRepsAsPossible();
+        amrap.setCycle(cycle);
+        amrap.setCompound(lift);
+        amrap.setTotalMaxWeight(weight);
+        try{
+            amrap.setEighty_five_reps(Integer.parseInt(cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_85))));
+        } catch (Exception e){
+            amrap.setEighty_five_reps(-1);
+        }
+
+        try{
+            amrap.setNinety_reps(Integer.parseInt(cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_90))));
+        } catch (Exception e){
+            amrap.setNinety_reps(-1);
+        }
+        try{
+            amrap.setNinety_five_reps(Integer.parseInt(cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_95))));
+        } catch (Exception e){
+            amrap.setNinety_five_reps(-1);
+        }
+
+        return amrap;
+    }
+
+    private String repCheck(int repCheck){
+        switch(repCheck){
+            default:
+            case 1:
+                return WORKOUT_AS_MANY_REPS_AS_POSSIBLE_85;
+            case 2:
+                return WORKOUT_AS_MANY_REPS_AS_POSSIBLE_90;
+            case 3:
+                return WORKOUT_AS_MANY_REPS_AS_POSSIBLE_95;
+        }
+    }
+
     // -------- Cycle SQL --------
 
 
