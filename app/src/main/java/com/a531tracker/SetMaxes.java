@@ -16,6 +16,7 @@ import com.a531tracker.LiftBuilders.CompoundLifts;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.a531tracker.HomeScreen.compoundLifts;
 
@@ -28,6 +29,7 @@ public class SetMaxes extends Activity {
 
     private float bbbPercent;
     private boolean firstLaunch;
+    private boolean revision;
 
 
     @Override
@@ -60,10 +62,11 @@ public class SetMaxes extends Activity {
 
          */
         try {
-            firstLaunch = intent.getExtras().getBoolean("Has_Lifts", false);
+            firstLaunch = Objects.requireNonNull(intent.getExtras()).getBoolean("Has_Lifts", false);
             if(!firstLaunch) {
                 try {
                     liftValues = intent.getIntegerArrayListExtra("LIFT_VALUES");
+                    revision = Objects.requireNonNull(intent.getExtras()).getBoolean("Revision", false);
                     setEditTextViews();
                 } catch (Exception e) {
                     e.getMessage();
@@ -94,7 +97,7 @@ public class SetMaxes extends Activity {
 
     private void inputLifts() {
         for(int i = 0; i < mappedLifts.size(); i++)
-            db.insertCompoundStats(mappedLifts.get(compoundLifts[i]));
+            db.insertCompoundStats(Objects.requireNonNull(mappedLifts.get(compoundLifts[i])));
     }
 
 
@@ -196,7 +199,13 @@ public class SetMaxes extends Activity {
                 if(firstLaunch){
                     Intent returnIntent = getIntent();
                     returnIntent.putExtra("Submitted", "Values were submitted");
+                    returnIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     setResult(RESULT_OK, returnIntent);
+                    finish();
+                } else if(revision){
+                    Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
                 } else {
                     finish();

@@ -56,8 +56,33 @@
                         android:text="@string/cycle_placeholder"
                         android:textColor="@color/colorDarkRed"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginStart="@dimen/workout_frame_32"
+                        android:layout_marginStart="@dimen/workout_frame_96"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/cycle_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_forward_arrow_orange"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/update_cycle_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/workout_frame_padding_half"
+                        android:layout_gravity="center"
+                        android:text="@string/cycle_placeholder"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_18"
+                        android:layout_marginEnd="@dimen/workout_frame_96"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
 

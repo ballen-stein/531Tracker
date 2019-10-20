@@ -26,7 +26,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:elevation="16dp">
 
             <TextView
@@ -41,25 +41,64 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/press_numbers"
+                android:id="@+id/increase_training_max"
                 android:layout_width="175dp"
                 android:layout_height="175dp"
                 android:layout_marginStart="@dimen/workout_frame_32"
                 android:layout_marginTop="@dimen/workout_frame_32"
                 android:background="@drawable/grey_black_ripple"
                 android:padding="@dimen/workout_frame_padding"
-                android:text="@string/button_press"
+                android:text="@string/cycle_update"
                 android:textColor="@drawable/view_lifts_buttons_text"
                 android:textSize="@dimen/text_18"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cycle_display" />
 
             <Button
+                android:id="@+id/bbb_test"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginEnd="@dimen/workout_frame_32"
+                android:layout_marginTop="@dimen/workout_frame_32"
+                android:background="@drawable/grey_black_ripple"
+                android:padding="@dimen/workout_frame_padding"
+                android:text="BBB Test"
+                android:textColor="@drawable/view_lifts_buttons_text"
+                android:textSize="@dimen/text_18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cycle_display" />
+
+            <Button
+                android:id="@+id/addAccessoriesButton"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="28dp"
+                android:layout_marginTop="@dimen/workout_frame_32"
+                android:background="@drawable/main_buttons"
+                android:padding="15dp"
+                android:text="@string/add_accessories_button"
+                android:textColor="@drawable/main_buttons_text_colors"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/press_numbers"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="@dimen/workout_frame_32"
+                android:background="@drawable/grey_black_ripple"
+                android:padding="@dimen/workout_frame_padding"
+                android:text="@string/button_press"
+                android:textColor="@drawable/view_lifts_buttons_text"
+                android:textSize="@dimen/text_18"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bbb_test" />
+
+            <Button
                 android:id="@+id/deadlift_numbers"
                 android:layout_width="175dp"
                 android:layout_height="175dp"
-                android:layout_marginStart="@dimen/workout_frame_8"
-                android:layout_marginTop="@dimen/workout_frame_32"
                 android:layout_marginEnd="@dimen/workout_frame_32"
                 android:background="@drawable/grey_black_ripple"
                 android:padding="@dimen/workout_frame_padding"
@@ -67,7 +106,7 @@
                 android:textColor="@drawable/view_lifts_buttons_text"
                 android:textSize="@dimen/text_18"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cycle_display" />
+                app:layout_constraintTop_toBottomOf="@id/bbb_test" />
 
             <Button
                 android:id="@+id/bench_numbers"
@@ -94,69 +133,6 @@
                 android:textSize="@dimen/text_18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/deadlift_numbers" />
-
-            <Button
-                android:id="@+id/increase_training_max"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="@dimen/workout_frame_8"
-                android:layout_marginTop="@dimen/workout_frame_32"
-                android:layout_marginEnd="@dimen/workout_frame_8"
-                android:background="@drawable/grey_black_ripple"
-                android:padding="@dimen/workout_frame_padding"
-                android:text="@string/cycle_update"
-                android:textColor="@drawable/view_lifts_buttons_text"
-                android:textSize="@dimen/text_18"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/squat_numbers" />
-
-            <Button
-                android:id="@+id/bbb_test"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="@dimen/workout_frame_8"
-                android:layout_marginTop="@dimen/workout_frame_32"
-                android:layout_marginEnd="@dimen/workout_frame_8"
-                android:background="@drawable/grey_black_ripple"
-                android:padding="@dimen/workout_frame_padding"
-                android:text="BBB Test"
-                android:textColor="@drawable/view_lifts_buttons_text"
-                android:textSize="@dimen/text_18"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/increase_training_max" />
-
-            <Button
-                android:id="@+id/setTrainingMaxButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginTop="@dimen/workout_frame_32"
-                android:background="@drawable/main_buttons"
-                android:padding="15dp"
-                android:text="@string/set_training_max_button"
-                android:textColor="@drawable/main_buttons_text_colors"
-                app:layout_constraintTop_toBottomOf="@id/bbb_test"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/addAccessoriesButton"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/addAccessoriesButton"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="28dp"
-                android:layout_marginTop="@dimen/workout_frame_32"
-                android:background="@drawable/main_buttons"
-                android:padding="15dp"
-                android:text="@string/add_accessories_button"
-                android:textColor="@drawable/main_buttons_text_colors"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
