@@ -1,5 +1,6 @@
 package com.a531tracker;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,10 +19,8 @@ import com.a531tracker.LiftBuilders.AsManyRepsAsPossible;
 import com.a531tracker.LiftBuilders.CompoundLifts;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import static com.a531tracker.HomeScreen.compoundLifts;
 
@@ -31,16 +30,13 @@ public class UpdateValues extends AppCompatActivity {
     private Button settingsButton;
     private Button uploadButton;
 
-    private TextView benchCurrent;
-    private TextView squatCurrent;
-    private TextView deadliftCurrent;
-    private TextView pressCurrent;
-
+    private TextView currentCycle;
+    private TextView updateCycle;
+    private Context mContext;
 
     private DatabaseHelper db;
 
     private ArrayList<CompoundLifts> liftValues = new ArrayList<>();
-    private Map<String, Button> disableButtons = new HashMap<>();
     private TextView[] currentViews;
     private Spinner[] spinnerArray;
 
@@ -52,8 +48,8 @@ public class UpdateValues extends AppCompatActivity {
         setContentView(R.layout.update_cycle);
 
         db = new DatabaseHelper(this);
-
         cycleValue = db.getCycle();
+        mContext = this;
 
         startupFunctions();
     }
@@ -64,16 +60,20 @@ public class UpdateValues extends AppCompatActivity {
         setListeners();
         setTextViews();
         getCurrentLiftValues();
+        displayCycleValues();
         displayLiftViews();
         navCheck();
-        //buttonDisables();
     }
 
+
     private void setTextViews(){
-        benchCurrent = findViewById(R.id.bench_tm_current_value);
-        squatCurrent = findViewById(R.id.squat_tm_current_value);
-        deadliftCurrent = findViewById(R.id.deadlift_tm_current_value);
-        pressCurrent = findViewById(R.id.press_tm_current_value);
+        TextView benchCurrent = findViewById(R.id.bench_tm_current_value);
+        TextView squatCurrent = findViewById(R.id.squat_tm_current_value);
+        TextView deadliftCurrent = findViewById(R.id.deadlift_tm_current_value);
+        TextView pressCurrent = findViewById(R.id.press_tm_current_value);
+
+        currentCycle = findViewById(R.id.current_cycle_number);
+        updateCycle = findViewById(R.id.update_cycle_number);
 
         Spinner benchUpdateSpinner = findViewById(R.id.tm_bench_update_spinner);
         Spinner pressUpdateSpinner = findViewById(R.id.tm_press_update_spinner);
@@ -95,6 +95,16 @@ public class UpdateValues extends AppCompatActivity {
             System.out.println(liftValues.get(i).getTraining_max());
         }
     }
+
+
+    private void displayCycleValues(){
+        String text = "Cycle ";
+        String currentText = text + cycleValue;
+        String updateText = text + (cycleValue+1);
+        currentCycle.setText(currentText);
+        updateCycle.setText(updateText);
+    }
+
 
     private void displayLiftViews() {
         int updateVal = 5;
@@ -127,28 +137,6 @@ public class UpdateValues extends AppCompatActivity {
     }
 
 
-    private void buttonDisables(){
-        for(int i=0; i < compoundLifts.length; i++){
-            if(checkAMRAP(compoundLifts[i], i)){
-                Button tempBtn = disableButtons.get(compoundLifts[i]);
-                Objects.requireNonNull(tempBtn).setEnabled(false);
-                tempBtn.setAlpha(0.5f);
-            }
-        }
-
-    }
-
-    private boolean checkAMRAP(String lift, final int i){
-        try{
-            int amrapVal = db.getAMRAPValues(lift, cycleValue).getTotalMaxWeight();
-                return!(amrapVal == liftValues.get(i).getTraining_max());
-        } catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-
     private boolean checkValues(){
         String errorLift = "";
         try{
@@ -172,11 +160,10 @@ public class UpdateValues extends AppCompatActivity {
                     return false;
                 }
             } else {
-                Log.d("Error_For_Cycle", "From else");
                 String message = getResources().getString(R.string.amrap_error_message);
                 ErrorAlerts errorAlerts = new ErrorAlerts(this);
                 String title = getString(R.string.amrap_error_title);
-                errorAlerts.setErrorAlertsValues(false, true, "Error from Else", message, errorLift, true);
+                errorAlerts.setErrorAlertsValues(false, true, title, message, errorLift, true);
                 errorAlerts.createDialogAlert(this).show();
                 return false;
             }
@@ -220,22 +207,6 @@ public class UpdateValues extends AppCompatActivity {
     }
 
 
-    private void cycleCheck(){
-        ArrayList<AsManyRepsAsPossible> newAmrapLifts = new ArrayList<>();
-        try {
-            for(String compoundName: compoundLifts)
-                newAmrapLifts.add(db.getAMRAPValues(compoundName, cycleValue));
-
-            if(newAmrapLifts.size() == 4){
-                db.updateCycle(cycleValue);
-            }
-        } catch (Exception e){
-            Log.d("CycleCheckFailed", e.getMessage() + "\n Failed due to missing reps");
-            Log.d("CycleCheckFailed", "Current cycle: " + cycleValue);
-        }
-
-    }
-
     // Buttons and Listeners
     private void setListeners(){
         submitAll();
@@ -248,6 +219,7 @@ public class UpdateValues extends AppCompatActivity {
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
         uploadButton = findViewById(R.id.upload_button);
+        uploadButton.setText(R.string.nav_upload_home);
     }
 
 
@@ -279,7 +251,7 @@ public class UpdateValues extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                Intent intent = new Intent(mContext, HomeScreen.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
@@ -305,13 +277,19 @@ public class UpdateValues extends AppCompatActivity {
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navBack();
+                Intent intent = new Intent(mContext, SetMaxes.class);
+                intent.putIntegerArrayListExtra("LIFT_VALUES", createLiftValues());
+                intent.putExtra("Revision", true);
+                startActivity(intent);
             }
         });
     }
 
 
-    public void navBack(){
-        Toast.makeText(getApplicationContext(), "Upload pressed", Toast.LENGTH_LONG).show();
+    private ArrayList<Integer> createLiftValues(){
+        ArrayList<Integer> tempList = new ArrayList<>();
+        for(int i=0; i < liftValues.size(); i++)
+            tempList.add(liftValues.get(i).getTraining_max());
+        return tempList;
     }
 }

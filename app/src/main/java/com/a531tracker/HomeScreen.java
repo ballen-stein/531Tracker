@@ -40,7 +40,6 @@ public class HomeScreen extends AppCompatActivity {
     private Button pressNumbers;
     private Button squatNumbers;
     private Button tmUpdate;
-    private Button trainingMax;
 
     private Button homeButton;
     private Button uploadLifts;
@@ -66,6 +65,13 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
+    protected void onStart(){
+        super.onStart();
+        resetLifValuesArray();
+        checkForLiftValues();
+        startCycle();
+    }
+
     // TODO Create listener/Change activity for set total maxes so lifts are reset
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -75,9 +81,7 @@ public class HomeScreen extends AppCompatActivity {
             String i = data.getStringExtra("Submitted");
             checkForLiftValues();
         } else if (requestCode == UPDATE_TRAINING_MAX_CODE && resultCode == RESULT_OK){
-            resetLifValuesArray();
-            checkForLiftValues();
-            startCycle();
+            onStart();
             Log.d("RESULT_ACT", "ok");
         } else if(resultCode == RESULT_CANCELED){
             Log.d("RESULT_ACT", "CANCELED");
@@ -176,23 +180,6 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
-    public void trainingMaxButton(){
-        trainingMax.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                if(new emptyCheck().emptyChecker(liftsArray.isEmpty())){
-                    Intent intent = new Intent(getApplicationContext(), SetMaxes.class);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(getApplicationContext(), SetMaxes.class);
-                    intent.putIntegerArrayListExtra("LIFT_VALUES", (ArrayList<Integer>) liftValues);
-                    startActivity(intent);
-                }
-            }
-        });
-    }
-
-
     public void accessoriesCheck(){
         if(getResources().getBoolean(R.bool.have_accessories)) {
             accessoriesButton();
@@ -208,10 +195,11 @@ public class HomeScreen extends AppCompatActivity {
         pressNumbers = findViewById(R.id.press_numbers);
         squatNumbers = findViewById(R.id.squat_numbers);
         tmUpdate = findViewById(R.id.increase_training_max);
-        trainingMax = findViewById(R.id.setTrainingMaxButton);
+
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
         uploadLifts = findViewById(R.id.upload_button);
+        uploadLifts.setText(R.string.nav_upload_home);
     }
 
 
@@ -221,7 +209,6 @@ public class HomeScreen extends AppCompatActivity {
         pressButton();
         squatButton();
         updateTrainingMax();
-        trainingMaxButton();
         //accessoriesButton();
         accessoriesCheck();
         testBBB();
@@ -324,7 +311,7 @@ public class HomeScreen extends AppCompatActivity {
         tmUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), UpdateValues.class);
+                Intent intent = new Intent(mContext, UpdateValues.class);
                 //startActivity(intent);
                 startActivityForResult(intent, UPDATE_TRAINING_MAX_CODE);
             }
@@ -339,14 +326,15 @@ public class HomeScreen extends AppCompatActivity {
     private void navCheck(){
         homeNav();
         settingsNav();
-        backNav();
+        setTrainingMax();
     }
+
 
     public void homeNav(){
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                Intent intent = new Intent(mContext, HomeScreen.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
@@ -364,22 +352,24 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     public void navSettings(){
-        Toast.makeText(getApplicationContext(), "Settings pressed", Toast.LENGTH_LONG).show();
+        Toast.makeText(mContext, "Settings pressed", Toast.LENGTH_LONG).show();
     }
 
 
-    public void backNav(){
+    public void setTrainingMax(){
         uploadLifts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navUpload();
+                if(new emptyCheck().emptyChecker(liftsArray.isEmpty())){
+                    Intent intent = new Intent(mContext, SetMaxes.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(mContext, SetMaxes.class);
+                    intent.putIntegerArrayListExtra("LIFT_VALUES", (ArrayList<Integer>) liftValues);
+                    startActivity(intent);
+                }
             }
         });
-    }
-
-
-    public void navUpload(){
-        Toast.makeText(getApplicationContext(), "Upload pressed", Toast.LENGTH_LONG).show();
     }
 
 
