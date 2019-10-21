@@ -86,7 +86,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -439,11 +438,11 @@
             android:background="?attr/selectableItemBackground"
             android:foreground="@drawable/cancel_icon"
             android:foregroundGravity="left|center_vertical"
+            android:gravity="end|center_vertical"
             android:padding="@dimen/workout_frame_16"
             android:text="@string/cancel_text"
-            android:textSize="@dimen/text_18"
             android:textColor="@drawable/main_buttons_text_colors"
-            android:gravity="end|center_vertical"
+            android:textSize="@dimen/text_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -458,7 +457,7 @@
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/workout_frame_16"
             android:text="@string/submit_text"
-            android:textSize="@dimen/text_18"
+            android:textSize="@dimen/text_14"
             android:textColor="@drawable/main_buttons_text_colors"
             android:gravity="start|center_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
