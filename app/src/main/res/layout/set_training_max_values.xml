@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBlack">
+    android:background="@drawable/background_gradient">
 
     <include
         android:id="@+id/header"
         layout="@layout/header"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <View
         android:id="@+id/divider_top"
@@ -22,447 +22,448 @@
         android:background="@color/colorAccent"
         app:layout_constraintTop_toBottomOf="@id/header" />
 
-   <FrameLayout
-       android:layout_width="wrap_content"
-       android:layout_height="0dp"
-       android:background="@color/colorDarkGrey"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintBottom_toTopOf="@id/divider_bottom_buttons"
-       app:layout_constraintTop_toBottomOf="@id/divider_top">
-
-       <ScrollView
-           android:id="@+id/scrollView2"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="vertical"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="parent">
-
-           <LinearLayout
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_gravity="center"
-               android:gravity="center"
-               android:orientation="vertical"
-               android:padding="15dp" >
-
-               <androidx.constraintlayout.widget.ConstraintLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginBottom="@dimen/workout_frame_32"
-                   android:padding="@dimen/workout_frame_padding">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/set_max_info"
-                       android:textColor="@color/colorWhite"
-                       android:textSize="@dimen/text_16"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toTopOf="parent" />
-
-               </androidx.constraintlayout.widget.ConstraintLayout>
-
-               <androidx.constraintlayout.widget.ConstraintLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_gravity="center"
-                   android:layout_marginBottom="@dimen/workout_frame_32"
-                   android:padding="@dimen/workout_frame_padding">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/training_maxes_input"
-                       android:textColor="@color/colorWhite"
-                       android:textSize="@dimen/text_16"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintEnd_toStartOf="@id/training_maxes_used"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toTopOf="parent" />
-
-                   <CheckBox
-                       android:id="@+id/training_maxes_used"
-                       android:layout_width="25dp"
-                       android:layout_height="25dp"
-                       android:buttonTint="@color/colorWhite"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintTop_toTopOf="parent" />
-
-               </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-               <androidx.appcompat.widget.AppCompatTextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_gravity="center"
-                   android:text="@string/upper_body_compounds"
-                   android:textColor="@color/colorAccent"
-                   android:textSize="20sp"
-                   android:textStyle="bold" />
-
-               <View
-                   android:id="@+id/divider_upper"
-                   android:layout_width="match_parent"
-                   android:layout_height="2dp"
-                   android:background="@color/colorAccent" />
-
-               <FrameLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="5dp">
-
-                   <TextView
-                       android:id="@+id/bench_view"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/bench"
-                       android:textColor="@color/colorWhite"
-                       android:textSize="18sp"
-                       tools:layout_editor_absoluteX="71dp"
-                       tools:layout_editor_absoluteY="77dp" />
-
-                   <EditText
-                       android:id="@+id/bench_input"
-                       android:layout_width="50dp"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="end"
-                       android:layout_marginStart="200dp"
-                       android:ems="10"
-                       android:gravity="end"
-                       android:inputType="numberDecimal"
-                       android:text="@string/bench_placeholder"
-                       android:textColor="@color/colorRed" />
-
-               </FrameLayout>
-
-               <FrameLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
-
-                   <TextView
-                       android:id="@+id/press_view"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/overhand"
-                       android:textColor="@color/colorWhite"
-                       android:textSize="18sp" />
-
-                   <EditText
-                       android:id="@+id/press_input"
-                       android:layout_width="50dp"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="end"
-                       android:ems="10"
-                       android:gravity="end"
-                       android:inputType="numberDecimal"
-                       android:text="@string/overhand_placeholder"
-                       android:textColor="@color/colorRed" />
-
-               </FrameLayout>
-
-               <androidx.appcompat.widget.AppCompatTextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_gravity="center"
-                   android:text="@string/lower_body_compounds"
-                   android:textColor="@color/colorAccent"
-                   android:textSize="20sp"
-                   android:textStyle="bold" />
-
-               <View
-                   android:id="@+id/divider_lower"
-                   android:layout_width="match_parent"
-                   android:layout_height="2dp"
-                   android:background="@color/colorAccent" />
-
-               <FrameLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="5dp">
-
-                   <TextView
-                       android:id="@+id/squat_view"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/squat"
-                       android:textColor="@color/colorWhite"
-                       android:textSize="18sp" />
-
-                   <EditText
-                       android:id="@+id/squat_input"
-                       android:layout_width="50dp"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="end"
-                       android:ems="10"
-                       android:gravity="end"
-                       android:inputType="numberDecimal"
-                       android:text="@string/squat_placeholder"
-                       android:textColor="@color/colorRed" />
-               </FrameLayout>
-
-               <FrameLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
-
-                   <TextView
-                       android:id="@+id/deadlift_view"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/deadlift"
-                       android:textColor="@color/colorWhite"
-                       android:textSize="18sp" />
-
-                   <EditText
-                       android:id="@+id/deadlift_input"
-                       android:layout_width="50dp"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="end"
-                       android:ems="10"
-                       android:gravity="end"
-                       android:inputType="numberDecimal"
-                       android:text="@string/deadlift_placeholder"
-                       android:textColor="@color/colorRed" />
-               </FrameLayout>
-
-               <androidx.constraintlayout.widget.ConstraintLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
-
-                   <TextView
-                       android:id="@+id/bbb_title"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:layout_marginTop="@dimen/workout_frame_padding"
-                       android:text="@string/bbb_set"
-                       android:textColor="@color/colorAccent"
-                       android:textSize="20sp"
-                       android:textStyle="bold"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toTopOf="parent" />
-
-                   <View
-                       android:id="@+id/divider_bbb"
-                       android:layout_width="match_parent"
-                       android:layout_height="2dp"
-                       android:background="@color/colorAccent"
-                       app:layout_constraintTop_toBottomOf="@id/bbb_title" />
-
-                   <FrameLayout
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginTop="@dimen/workout_frame_padding"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toBottomOf="@id/divider_bbb">
-
-                       <LinearLayout
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center|top"
-                           android:layout_marginStart="@dimen/workout_frame_padding"
-                           android:layout_marginEnd="@dimen/workout_frame_padding_half"
-                           android:layout_marginBottom="@dimen/workout_frame_padding_half"
-                           android:orientation="horizontal">
-
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginEnd="@dimen/bbb_percents_margin"
-                               android:text="@string/bbb_40"
-                               android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/text_14" />
-
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginEnd="@dimen/bbb_percents_margin"
-                               android:text="@string/bbb_45"
-                               android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/text_14" />
-
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginEnd="@dimen/bbb_percents_margin"
-                               android:text="@string/bbb_50"
-                               android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/text_14" />
-
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginEnd="@dimen/bbb_percents_margin"
-                               android:text="@string/bbb_55"
-                               android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/text_14" />
-
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginEnd="@dimen/bbb_percents_margin"
-                               android:text="@string/bbb_60"
-                               android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/text_14" />
-
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginEnd="@dimen/bbb_percents_margin"
-                               android:text="@string/bbb_65"
-                               android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/text_14" />
-
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginEnd="@dimen/bbb_percents_margin"
-                               android:text="@string/bbb_70"
-                               android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/text_14" />
-
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginEnd="@dimen/bbb_percents_margin"
-                               android:text="@string/bbb_75"
-                               android:textColor="@color/colorAccent"
-                               android:textSize="@dimen/text_14" />
-
-                       </LinearLayout>
-
-                       <RadioGroup
-                           android:id="@+id/radioGroupBBB"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginTop="@dimen/workout_frame_32"
-                           android:background="@color/transparent"
-                           android:checkedButton="@id/radio_bbb_50"
-                           android:orientation="horizontal"
-                           android:paddingStart="10dp"
-                           android:paddingEnd="10dp"
-                           android:paddingBottom="@dimen/workout_frame_padding">
-
-                           <RadioButton
-                               android:id="@+id/radio_bbb_40"
-                               android:layout_width="wrap_content"
-                               android:layout_height="25dp"
-                               android:layout_marginStart="@dimen/radio_button_margin"
-                               android:layout_marginEnd="@dimen/radio_button_margin"
-                               android:buttonTint="@color/colorRed" />
-
-                           <RadioButton
-                               android:id="@+id/radio_bbb_45"
-                               android:layout_width="wrap_content"
-                               android:layout_height="25dp"
-                               android:layout_marginStart="@dimen/radio_button_margin"
-                               android:layout_marginEnd="@dimen/radio_button_margin"
-                               android:buttonTint="@color/colorRed" />
-
-                           <RadioButton
-                               android:id="@+id/radio_bbb_50"
-                               android:layout_width="wrap_content"
-                               android:layout_height="25dp"
-                               android:layout_marginStart="@dimen/radio_button_margin"
-                               android:layout_marginEnd="@dimen/radio_button_margin"
-                               android:buttonTint="@color/colorRed" />
-
-                           <RadioButton
-                               android:id="@+id/radio_bbb_55"
-                               android:layout_width="wrap_content"
-                               android:layout_height="25dp"
-                               android:layout_marginStart="@dimen/radio_button_margin"
-                               android:layout_marginEnd="@dimen/radio_button_margin"
-                               android:buttonTint="@color/colorRed" />
-
-                           <RadioButton
-                               android:id="@+id/radio_bbb_60"
-                               android:layout_width="wrap_content"
-                               android:layout_height="25dp"
-                               android:layout_marginStart="@dimen/radio_button_margin"
-                               android:layout_marginEnd="@dimen/radio_button_margin"
-                               android:buttonTint="@color/colorRed" />
-
-                           <RadioButton
-                               android:id="@+id/radio_bbb_65"
-                               android:layout_width="wrap_content"
-                               android:layout_height="25dp"
-                               android:layout_marginStart="@dimen/radio_button_margin"
-                               android:layout_marginEnd="@dimen/radio_button_margin"
-                               android:buttonTint="@color/colorRed" />
-
-                           <RadioButton
-
-                               android:id="@+id/radio_bbb_70"
-                               android:layout_width="wrap_content"
-                               android:layout_height="25dp"
-                               android:layout_marginStart="@dimen/radio_button_margin"
-                               android:layout_marginEnd="@dimen/radio_button_margin"
-                               android:buttonTint="@color/colorRed" />
-
-                           <RadioButton
-                               android:id="@+id/radio_bbb_75"
-                               android:layout_width="wrap_content"
-                               android:layout_height="25dp"
-                               android:layout_marginStart="@dimen/radio_button_margin"
-                               android:layout_marginEnd="@dimen/radio_button_margin"
-                               android:buttonTint="@color/colorRed" />
-
-                       </RadioGroup>
-
-                   </FrameLayout>
-
-               </androidx.constraintlayout.widget.ConstraintLayout>
-
-           </LinearLayout>
-
-       </ScrollView>
-
-
-   </FrameLayout>
-
-    <View
-        android:id="@+id/divider_bottom_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginBottom="@dimen/workout_frame_32"
-        android:background="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@+id/submit_compounds"
-        app:layout_constraintTop_toTopOf="@+id/cancel" />
-
-    <Button
-        android:id="@+id/cancel"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/main_buttons"
-        android:padding="15dp"
-        android:text="@string/cancel_text"
-        android:textColor="@drawable/main_buttons_text_colors"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/submit_compounds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/main_buttons"
-        android:padding="15dp"
-        android:text="@string/submit_text"
-        android:textColor="@drawable/main_buttons_text_colors"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/cancel" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_frame"
+        app:layout_constraintTop_toBottomOf="@id/divider_top">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="15dp" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/workout_frame_padding">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_max_info"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/workout_frame_32"
+                android:padding="@dimen/workout_frame_padding">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/training_maxes_input"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/training_maxes_used"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/training_maxes_used"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:buttonTint="@color/colorRed"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/upper_body_compounds"
+                android:textColor="@color/colorDarkRed"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider_upper"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorDarkRed" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/bench_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bench"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="71dp"
+                    tools:layout_editor_absoluteY="77dp" />
+
+                <EditText
+                    android:id="@+id/bench_input"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="200dp"
+                    android:ems="10"
+                    android:gravity="end"
+                    android:inputType="numberDecimal"
+                    android:text="@string/bench_placeholder"
+                    android:textColor="@color/colorRed" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/press_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/overhand"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/press_input"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:ems="10"
+                    android:gravity="end"
+                    android:inputType="numberDecimal"
+                    android:text="@string/overhand_placeholder"
+                    android:textColor="@color/colorRed" />
+
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/lower_body_compounds"
+                android:textColor="@color/colorDarkRed"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider_lower"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorDarkRed" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/squat_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/squat"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/squat_input"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:ems="10"
+                    android:gravity="end"
+                    android:inputType="numberDecimal"
+                    android:text="@string/squat_placeholder"
+                    android:textColor="@color/colorRed" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/deadlift_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/deadlift"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/deadlift_input"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:ems="10"
+                    android:gravity="end"
+                    android:inputType="numberDecimal"
+                    android:text="@string/deadlift_placeholder"
+                    android:textColor="@color/colorRed" />
+            </FrameLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/bbb_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/workout_frame_padding"
+                    android:text="@string/bbb_set"
+                    android:textColor="@color/colorDarkRed"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/divider_bbb"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorDarkRed"
+                    app:layout_constraintTop_toBottomOf="@id/bbb_title" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/workout_frame_padding"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_bbb">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginStart="@dimen/workout_frame_padding"
+                        android:layout_marginEnd="@dimen/workout_frame_padding_half"
+                        android:layout_marginBottom="@dimen/workout_frame_padding_half"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/bbb_percents_margin"
+                            android:text="@string/bbb_40"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/text_14" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/bbb_percents_margin"
+                            android:text="@string/bbb_45"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/text_14" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/bbb_percents_margin"
+                            android:text="@string/bbb_50"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/text_14" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/bbb_percents_margin"
+                            android:text="@string/bbb_55"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/text_14" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/bbb_percents_margin"
+                            android:text="@string/bbb_60"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/text_14" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/bbb_percents_margin"
+                            android:text="@string/bbb_65"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/text_14" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/bbb_percents_margin"
+                            android:text="@string/bbb_70"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/text_14" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/bbb_percents_margin"
+                            android:text="@string/bbb_75"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/text_14" />
+
+                    </LinearLayout>
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupBBB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/workout_frame_32"
+                        android:background="@color/transparent"
+                        android:checkedButton="@id/radio_bbb_50"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="@dimen/workout_frame_padding">
+
+                        <RadioButton
+                            android:id="@+id/radio_bbb_40"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="@dimen/radio_button_margin"
+                            android:layout_marginEnd="@dimen/radio_button_margin"
+                            android:buttonTint="@color/colorRed" />
+
+                        <RadioButton
+                            android:id="@+id/radio_bbb_45"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="@dimen/radio_button_margin"
+                            android:layout_marginEnd="@dimen/radio_button_margin"
+                            android:buttonTint="@color/colorRed" />
+
+                        <RadioButton
+                            android:id="@+id/radio_bbb_50"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="@dimen/radio_button_margin"
+                            android:layout_marginEnd="@dimen/radio_button_margin"
+                            android:buttonTint="@color/colorRed" />
+
+                        <RadioButton
+                            android:id="@+id/radio_bbb_55"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="@dimen/radio_button_margin"
+                            android:layout_marginEnd="@dimen/radio_button_margin"
+                            android:buttonTint="@color/colorRed" />
+
+                        <RadioButton
+                            android:id="@+id/radio_bbb_60"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="@dimen/radio_button_margin"
+                            android:layout_marginEnd="@dimen/radio_button_margin"
+                            android:buttonTint="@color/colorRed" />
+
+                        <RadioButton
+                            android:id="@+id/radio_bbb_65"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="@dimen/radio_button_margin"
+                            android:layout_marginEnd="@dimen/radio_button_margin"
+                            android:buttonTint="@color/colorRed" />
+
+                        <RadioButton
+
+                            android:id="@+id/radio_bbb_70"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="@dimen/radio_button_margin"
+                            android:layout_marginEnd="@dimen/radio_button_margin"
+                            android:buttonTint="@color/colorRed" />
+
+                        <RadioButton
+                            android:id="@+id/radio_bbb_75"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="@dimen/radio_button_margin"
+                            android:layout_marginEnd="@dimen/radio_button_margin"
+                            android:buttonTint="@color/colorRed" />
+
+                    </RadioGroup>
+
+                </FrameLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlack"
+        app:layout_constraintBottom_toBottomOf="parent" >
+
+        <View
+            android:id="@+id/divider_bottom_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="@dimen/workout_frame_16"
+            android:background="@color/colorDarkRed"
+            app:layout_constraintBottom_toTopOf="@+id/submit_compounds" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/workout_frame_64"
+            android:layout_marginBottom="12dp"
+            android:background="?attr/selectableItemBackground"
+            android:foreground="@drawable/cancel_icon"
+            android:foregroundGravity="left|center_vertical"
+            android:padding="@dimen/workout_frame_16"
+            android:text="@string/cancel_text"
+            android:textSize="@dimen/text_18"
+            android:textColor="@drawable/main_buttons_text_colors"
+            android:gravity="end|center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/submit_compounds"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/workout_frame_64"
+            android:layout_marginBottom="12dp"
+            android:foreground="@drawable/upload_icon"
+            android:foregroundGravity="center|right"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/workout_frame_16"
+            android:text="@string/submit_text"
+            android:textSize="@dimen/text_18"
+            android:textColor="@drawable/main_buttons_text_colors"
+            android:gravity="start|center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

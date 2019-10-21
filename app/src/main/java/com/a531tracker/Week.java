@@ -182,7 +182,7 @@ public class Week extends Activity {
         FrameLayout frameLayout = new FrameLayout(getApplicationContext());
         layoutParams.height = 200;
         frameLayout.setLayoutParams(layoutParams);
-        frameLayout.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
+        frameLayout.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.transparent, null));
 
         //TextView workoutName = createTextView("Placeholder Breakdown", new int[]{100,25});
         String workoutWeightText = String.valueOf(5*(Math.ceil((liftsArrayList.get(0).getTraining_max()*liftPercent)/5))) + " lbs";
@@ -383,9 +383,9 @@ public class Week extends Activity {
     private void tabOnClicks(){
         TabLayout tabSelected = findViewById(R.id.tab_view_days);
         // Remove Deload week if it's a 7 week cycle vs. 4 week cycle
-        if(cycleValue%2!=0){
-            tabSelected.removeTab((Objects.requireNonNull(tabSelected.getTabAt(3))));
-        }
+        //if(cycleValue%2!=0){
+        //    tabSelected.removeTab((Objects.requireNonNull(tabSelected.getTabAt(3))));
+        //}
         tabSelected.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

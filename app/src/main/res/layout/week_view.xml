@@ -15,20 +15,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_frame_home"/>
 
-    <View
-        android:id="@+id/topDivider"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@color/colorAccent"
-        app:layout_constraintTop_toBottomOf="@id/week_header" />
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_view_days"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/colorPrimary"
-        app:tabTextColor="@color/colorAccent"
+        android:background="@color/transparent"
+        app:tabTextColor="@drawable/tab_selected"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +56,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/transparent"
         app:layout_constraintBottom_toTopOf="@+id/amrap_frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -81,7 +74,7 @@
                 android:id="@+id/warmup_sets_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/workout_frame_view"
+                android:background="@color/transparent"
                 android:visibility="visible">
 
                 <TextView
@@ -125,7 +118,7 @@
                 android:id="@+id/core_sets_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/workout_frame_view"
+                android:background="@color/transparent"
                 android:visibility="visible">
 
                 <TextView
@@ -170,7 +163,7 @@
                 android:id="@+id/bbb_sets_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/workout_frame_view"
+                android:background="@color/transparent"
                 android:visibility="visible">
 
                 <TextView
@@ -218,7 +211,7 @@
         android:id="@+id/amrap_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBlack"
+        android:background="@color/transparent"
         app:layout_constraintBottom_toBottomOf="parent" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -315,7 +308,7 @@
         android:id="@+id/top_frame_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBlack"
+        android:background="@color/transparent"
         app:layout_constraintTop_toTopOf="parent">
 
         <include layout="@layout/navigation" />
