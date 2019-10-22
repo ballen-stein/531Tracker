@@ -1,12 +1,11 @@
 package com.a531tracker;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -27,6 +26,8 @@ public class SetMaxes extends Activity {
 
     private DatabaseHelper db = new DatabaseHelper(this);
 
+    private Button cancelBtn;
+
     private float bbbPercent;
     private boolean firstLaunch;
     private boolean revision;
@@ -35,7 +36,7 @@ public class SetMaxes extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.set_training_max_values);
+        setContentView(R.layout.training_maxes_view);
 
         setButtons();
         Intent intent = getIntent();
@@ -63,7 +64,9 @@ public class SetMaxes extends Activity {
          */
         try {
             firstLaunch = Objects.requireNonNull(intent.getExtras()).getBoolean("Has_Lifts", false);
-            if(!firstLaunch) {
+            if(firstLaunch) {
+                cancelBtn.setVisibility(View.GONE);
+            } else {
                 try {
                     liftValues = intent.getIntegerArrayListExtra("LIFT_VALUES");
                     revision = Objects.requireNonNull(intent.getExtras()).getBoolean("Revision", false);
@@ -90,6 +93,7 @@ public class SetMaxes extends Activity {
 
 
     private void setButtons(){
+        cancelBtn = findViewById(R.id.cancel);
         returnHome();
         submitLiftsButton();
     }
@@ -178,7 +182,7 @@ public class SetMaxes extends Activity {
 
     // ---- Buttons ----
     private void returnHome(){
-        findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();

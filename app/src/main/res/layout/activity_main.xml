@@ -52,7 +52,8 @@
                 android:textColor="@drawable/view_lifts_buttons_text"
                 android:textSize="@dimen/text_18"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cycle_display" />
+                app:layout_constraintTop_toBottomOf="@id/cycle_display"
+                app:layout_constraintEnd_toStartOf="@id/bbb_test"/>
 
             <Button
                 android:id="@+id/bbb_test"
@@ -66,7 +67,8 @@
                 android:textColor="@drawable/view_lifts_buttons_text"
                 android:textSize="@dimen/text_18"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cycle_display" />
+                app:layout_constraintTop_toBottomOf="@id/cycle_display"
+                app:layout_constraintStart_toEndOf="@id/increase_training_max"/>
 
             <Button
                 android:id="@+id/addAccessoriesButton"
@@ -93,7 +95,8 @@
                 android:textColor="@drawable/view_lifts_buttons_text"
                 android:textSize="@dimen/text_18"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bbb_test" />
+                app:layout_constraintTop_toBottomOf="@id/bbb_test"
+                app:layout_constraintEnd_toStartOf="@id/deadlift_numbers"/>
 
             <Button
                 android:id="@+id/deadlift_numbers"
@@ -106,7 +109,8 @@
                 android:textColor="@drawable/view_lifts_buttons_text"
                 android:textSize="@dimen/text_18"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bbb_test" />
+                app:layout_constraintTop_toBottomOf="@id/bbb_test"
+                app:layout_constraintStart_toEndOf="@id/press_numbers"/>
 
             <Button
                 android:id="@+id/bench_numbers"
@@ -119,7 +123,8 @@
                 android:textColor="@drawable/view_lifts_buttons_text"
                 android:textSize="@dimen/text_18"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/press_numbers" />
+                app:layout_constraintTop_toBottomOf="@+id/press_numbers"
+                app:layout_constraintEnd_toStartOf="@id/squat_numbers"/>
 
             <Button
                 android:id="@+id/squat_numbers"
@@ -132,7 +137,8 @@
                 android:textColor="@drawable/view_lifts_buttons_text"
                 android:textSize="@dimen/text_18"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/deadlift_numbers" />
+                app:layout_constraintTop_toBottomOf="@id/deadlift_numbers"
+                app:layout_constraintStart_toEndOf="@id/bench_numbers"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

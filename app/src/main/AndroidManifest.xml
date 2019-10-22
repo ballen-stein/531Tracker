@@ -9,17 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Week"></activity>
-        <activity android:name=".Navigation"></activity>
-        <activity android:name=".HomeScreen">
+        <activity android:name=".Settings"></activity>
+        <activity
+            android:name=".Week"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".HomeScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SetMaxes"></activity>
-        <activity android:name=".UpdateValues"></activity>
+        <activity
+            android:name=".SetMaxes"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".UpdateValues"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
     </application>
 
 </manifest>

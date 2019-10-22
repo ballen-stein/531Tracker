@@ -15,11 +15,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.a531tracker.Database.DatabaseHelper;
@@ -29,7 +29,6 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Week extends Activity {
     private FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
@@ -102,6 +101,8 @@ public class Week extends Activity {
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
         uploadButton = findViewById(R.id.upload_button);
+        uploadButton.setForeground(ContextCompat.getDrawable(mContext, R.drawable.icon_upload));
+        uploadButton.setText(R.string.nav_upload_week);
     }
 
     private void setViews(){
@@ -182,7 +183,7 @@ public class Week extends Activity {
         FrameLayout frameLayout = new FrameLayout(getApplicationContext());
         layoutParams.height = 200;
         frameLayout.setLayoutParams(layoutParams);
-        frameLayout.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
+        frameLayout.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.transparent, null));
 
         //TextView workoutName = createTextView("Placeholder Breakdown", new int[]{100,25});
         String workoutWeightText = String.valueOf(5*(Math.ceil((liftsArrayList.get(0).getTraining_max()*liftPercent)/5))) + " lbs";
@@ -355,13 +356,10 @@ public class Week extends Activity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navSettings();
+                Intent intent = new Intent(mContext, Settings.class);
+                startActivity(intent);
             }
         });
-    }
-
-    public void navSettings(){
-        Toast.makeText(getApplicationContext(), "Settings pressed", Toast.LENGTH_LONG).show();
     }
 
 
@@ -383,9 +381,9 @@ public class Week extends Activity {
     private void tabOnClicks(){
         TabLayout tabSelected = findViewById(R.id.tab_view_days);
         // Remove Deload week if it's a 7 week cycle vs. 4 week cycle
-        if(cycleValue%2!=0){
-            tabSelected.removeTab((Objects.requireNonNull(tabSelected.getTabAt(3))));
-        }
+        //if(cycleValue%2!=0){
+        //    tabSelected.removeTab((Objects.requireNonNull(tabSelected.getTabAt(3))));
+        //}
         tabSelected.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

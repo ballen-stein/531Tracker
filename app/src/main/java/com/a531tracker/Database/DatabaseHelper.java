@@ -51,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String WORKOUT_BBB_SWAPS = "bbb_swap";
 
     private static final String WORKOUT_SETTINGS_TABLE = "settings";
-    private static final String WORKOUT_BBB_SEVEN_DAY = "seven_dau";
+    private static final String WORKOUT_BBB_SEVEN_DAY = "seven_day";
     private static final String WORKOUT_FORMAT_CHOSEN = "chosen_format";
 
     //  ----    Accessories Tables  ----

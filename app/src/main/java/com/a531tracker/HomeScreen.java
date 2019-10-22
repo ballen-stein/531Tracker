@@ -59,33 +59,32 @@ public class HomeScreen extends AppCompatActivity {
 
         setButtons();
         setListeners();
-        startCycle();
-        checkForLiftValues();
+        //checkForLiftValues();
         createNavigation();
     }
 
 
     protected void onStart(){
         super.onStart();
-        resetLifValuesArray();
-        checkForLiftValues();
+        Log.d("OnStartCalled", "OnStartFired");
         startCycle();
+        checkForLiftValues();
     }
 
     // TODO Create listener/Change activity for set total maxes so lifts are reset
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == SET_TRAINING_MAX_CODE && resultCode == RESULT_OK){
-            super.onActivityResult(requestCode, resultCode, data);
-            Log.d("Got_result", "OK!");
-            String i = data.getStringExtra("Submitted");
-            checkForLiftValues();
+            Log.d("OnStartCalled", "ActivityResultFired1");
+            resetLifValuesArray();
         } else if (requestCode == UPDATE_TRAINING_MAX_CODE && resultCode == RESULT_OK){
-            onStart();
-            Log.d("RESULT_ACT", "ok");
+            Log.d("OnStartCalled", "ActivityResultFired2");
+            resetLifValuesArray();
+            //onStart();
         } else if(resultCode == RESULT_CANCELED){
             Log.d("RESULT_ACT", "CANCELED");
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 
@@ -199,7 +198,6 @@ public class HomeScreen extends AppCompatActivity {
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
         uploadLifts = findViewById(R.id.upload_button);
-        uploadLifts.setText(R.string.nav_upload_home);
     }
 
 
@@ -261,7 +259,7 @@ public class HomeScreen extends AppCompatActivity {
         testBBB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*for(String lifts : compoundLifts){
+                for(String lifts : compoundLifts){
                     CompoundLifts newLifts = new CompoundLifts();
                     newLifts.setBig_but_boring_weight(0.65f);
                     newLifts.setCompound_movement(lifts);
@@ -269,7 +267,7 @@ public class HomeScreen extends AppCompatActivity {
                     if(i == 1){
                         Log.d("BBB Update", "Successfully updated BBB weights!");
                     }
-                }*/
+                }
                 testCheck();
             }
         });
@@ -307,23 +305,19 @@ public class HomeScreen extends AppCompatActivity {
                 + "\n95: " + amrap.getNinety_five_reps());
     }
 
+
     private void updateTrainingMax(){
         tmUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, UpdateValues.class);
-                //startActivity(intent);
                 startActivityForResult(intent, UPDATE_TRAINING_MAX_CODE);
             }
         });
     }
 
+
     private void createNavigation(){
-        navCheck();
-    }
-
-
-    private void navCheck(){
         homeNav();
         settingsNav();
         setTrainingMax();
@@ -346,13 +340,10 @@ public class HomeScreen extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navSettings();
+                Intent intent = new Intent(mContext, Settings.class);
+                startActivity(intent);
             }
         });
-    }
-
-    public void navSettings(){
-        Toast.makeText(mContext, "Settings pressed", Toast.LENGTH_LONG).show();
     }
 
 
@@ -364,8 +355,10 @@ public class HomeScreen extends AppCompatActivity {
                     Intent intent = new Intent(mContext, SetMaxes.class);
                     startActivity(intent);
                 } else {
+                    Log.d("IntentStarted", "Correct intent!");
                     Intent intent = new Intent(mContext, SetMaxes.class);
                     intent.putIntegerArrayListExtra("LIFT_VALUES", (ArrayList<Integer>) liftValues);
+                    intent.putExtra("Revision", true);
                     startActivity(intent);
                 }
             }
