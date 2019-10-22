@@ -1,8 +1,6 @@
 package com.a531tracker;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +36,7 @@ public class SetMaxes extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.set_training_max_values);
+        setContentView(R.layout.training_maxes_view);
 
         setButtons();
         Intent intent = getIntent();

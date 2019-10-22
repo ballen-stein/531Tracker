@@ -198,7 +198,6 @@ public class HomeScreen extends AppCompatActivity {
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
         uploadLifts = findViewById(R.id.upload_button);
-        uploadLifts.setText(R.string.nav_upload_home);
     }
 
 
@@ -260,7 +259,7 @@ public class HomeScreen extends AppCompatActivity {
         testBBB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*for(String lifts : compoundLifts){
+                for(String lifts : compoundLifts){
                     CompoundLifts newLifts = new CompoundLifts();
                     newLifts.setBig_but_boring_weight(0.65f);
                     newLifts.setCompound_movement(lifts);
@@ -268,7 +267,7 @@ public class HomeScreen extends AppCompatActivity {
                     if(i == 1){
                         Log.d("BBB Update", "Successfully updated BBB weights!");
                     }
-                }*/
+                }
                 testCheck();
             }
         });
@@ -306,6 +305,7 @@ public class HomeScreen extends AppCompatActivity {
                 + "\n95: " + amrap.getNinety_five_reps());
     }
 
+
     private void updateTrainingMax(){
         tmUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -316,12 +316,8 @@ public class HomeScreen extends AppCompatActivity {
         });
     }
 
+
     private void createNavigation(){
-        navCheck();
-    }
-
-
-    private void navCheck(){
         homeNav();
         settingsNav();
         setTrainingMax();
@@ -344,13 +340,10 @@ public class HomeScreen extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navSettings();
+                Intent intent = new Intent(mContext, Settings.class);
+                startActivity(intent);
             }
         });
-    }
-
-    public void navSettings(){
-        Toast.makeText(mContext, "Settings pressed", Toast.LENGTH_LONG).show();
     }
 
 

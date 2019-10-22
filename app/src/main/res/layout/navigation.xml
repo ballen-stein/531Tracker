@@ -10,22 +10,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/header_box" >
 
-        <FrameLayout
-            android:id="@+id/return_frame"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <ImageButton
-                android:id="@+id/nav_return"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:background="@drawable/back_icon" />
-
-        </FrameLayout>
-
         <Button
             android:id="@+id/home_button"
             android:layout_width="135dp"
@@ -34,8 +18,9 @@
             android:background="@color/transparent"
             android:text="@string/nav_home"
             android:textColor="@drawable/update_text"
-            android:foreground="@drawable/home_icon"
+            android:foreground="@drawable/icon_home"
             android:foregroundGravity="center"
+            android:contentDescription="Home by alex setyawan from the Noun Project"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -47,8 +32,9 @@
             android:background="@color/transparent"
             android:text="@string/nav_settings"
             android:textColor="@drawable/update_text"
-            android:foreground="@drawable/settings_icon"
+            android:foreground="@drawable/icon_settings"
             android:foregroundGravity="center"
+            android:contentDescription="User Settings by AomAm from the Noun Project"
             app:layout_constraintStart_toEndOf="@id/home_button"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/upload_button"/>
@@ -59,10 +45,11 @@
             android:layout_height="67dp"
             android:gravity="center|bottom"
             android:background="@color/transparent"
-            android:text="@string/nav_upload"
+            android:text="@string/nav_upload_home"
             android:textColor="@drawable/update_text"
-            android:foreground="@drawable/upload_icon"
+            android:foreground="@drawable/icon_redo"
             android:foregroundGravity="center"
+            android:contentDescription="Upload by MRFA from the Noun Project/reset by Fatahillah from the Noun Project"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 

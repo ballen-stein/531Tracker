@@ -59,6 +59,12 @@
     <string name="cycle_placeholder">Cycle 0</string>
     <string name="cycle_update">Update Cycle</string>
 
+    <string name="settings_update_bbb">Update BBB Format</string>
+    <string name="settings_update_cycle">Update Cycle Format</string>
+    <string name="settings_update_percents">Update BBB Percent</string>
+    <string name="settings_bbb_percents">BBB Percent Options</string>
+
+
     <string name="current_tm">Current Training Maxes</string>
     <string name="tm_current_placeholder">100</string>
     <string name="tm_update_placeholder">115</string>
