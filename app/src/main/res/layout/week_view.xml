@@ -4,16 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient"
+    android:background="@color/navyBlue"
     tools:context=".Week">
 
-    <include layout="@layout/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@drawable/background_gradient"
+        android:paddingStart="@dimen/workout_frame_16"
+        android:paddingEnd="@dimen/workout_frame_16"
+        android:layout_gravity="center"
         android:id="@+id/week_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_frame_home"/>
+        app:layout_constraintTop_toBottomOf="@id/top_frame_home">
+
+        <TextView
+            android:id="@+id/header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_header"
+            android:layout_marginTop="@dimen/workout_frame_padding_half"
+            android:layout_marginBottom="@dimen/workout_frame_padding_half"
+            android:textSize="24sp"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center|bottom"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </FrameLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_view_days"
@@ -21,6 +42,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/transparent"
+        app:tabIndicatorColor="@color/colorRed"
         app:tabTextColor="@drawable/tab_selected"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -56,7 +78,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/transparent"
+        android:elevation="0dp"
+        android:background="@color/colorWhiteDark"
         app:layout_constraintBottom_toTopOf="@+id/amrap_frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -68,6 +91,9 @@
             android:id="@+id/all_sets_display"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorWhiteDark"
+            android:layout_margin="@dimen/workout_frame_padding"
+            android:elevation="10dp"
             android:orientation="vertical">
 
             <FrameLayout
@@ -82,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/warmup_set"
-                    android:textColor="@color/colorRed"
+                    android:textColor="@color/colorDarkGrey"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20"/>
 
@@ -126,7 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/core_set"
-                    android:textColor="@color/colorRed"
+                    android:textColor="@color/colorDarkGrey"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20"/>
 
@@ -171,7 +197,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/bbb_set"
-                    android:textColor="@color/colorRed"
+                    android:textColor="@color/colorDarkGrey"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20"/>
 
@@ -223,7 +249,7 @@
                 android:id="@+id/amrap_divider"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
-                android:background="@color/colorAccent"
+                android:background="@color/colorRed"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
@@ -234,7 +260,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_14"
                 android:text="@string/amrap_last_week"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorWhite"
                 app:layout_constraintEnd_toStartOf="@+id/amrap_this_week"
                 app:layout_constraintTop_toBottomOf="@id/amrap_divider"
                 app:layout_constraintStart_toEndOf="@id/amrap_text" />
@@ -244,7 +270,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/amrap_this_week"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_14"
                 android:layout_marginEnd="@dimen/workout_frame_32"
                 app:layout_constraintTop_toBottomOf="@id/amrap_divider"
@@ -257,7 +283,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/workout_frame_32"
                 android:text="@string/amrap_text"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_14"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/amrap_divider"
@@ -268,7 +294,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/amrap_placeholder_reps"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_16"
                 app:layout_constraintEnd_toEndOf="@id/amrap_last_week"
                 app:layout_constraintStart_toStartOf="@id/amrap_last_week"

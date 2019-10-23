@@ -205,7 +205,7 @@ public class Week extends Activity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         tv.setText(value);
         tv.setTextSize(25);
-        tv.setTextColor(Color.parseColor("#BB0000"));
+        tv.setTextColor(Color.parseColor("#002886"));
         params.setMargins(marginValues[0], marginValues[1], 0, 0);
         tv.setLayoutParams(params);
         return tv;
@@ -216,7 +216,7 @@ public class Week extends Activity {
         CheckBox checkBox = new CheckBox(this);
         params.setMargins(marginValues[0], marginValues[1], 0, 0 );
         //checkBox.setButtonTintList(ColorStateList.valueOf(0xFFD9A638));
-        checkBox.setButtonTintList(ColorStateList.valueOf(0xFFBB0000));
+        checkBox.setButtonTintList(ColorStateList.valueOf(0xFFD9A638));
         checkBox.setLayoutParams(params);
         return checkBox;
     }

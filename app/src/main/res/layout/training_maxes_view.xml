@@ -4,41 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient">
-
-    <include
-        android:id="@+id/header"
-        layout="@layout/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <View
-        android:id="@+id/divider_top"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginBottom="@dimen/workout_frame_32"
-        android:background="@color/colorAccent"
-        app:layout_constraintTop_toBottomOf="@id/header" />
+    android:background="@color/navyBlue">
 
     <ScrollView
         android:id="@+id/scrollView2"
+        android:elevation="0dp"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:background="@color/colorWhiteDark"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottom_frame"
-        app:layout_constraintTop_toBottomOf="@id/divider_top">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/rectangle_outline"
             android:gravity="center"
+            android:elevation="10dp"
+            android:padding="@dimen/workout_frame_padding"
             android:orientation="vertical"
-            android:padding="15dp" >
+            android:layout_margin="@dimen/workout_frame_padding_half" >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
@@ -49,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/set_max_info"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
                     android:textSize="@dimen/text_16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/training_maxes_input"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
                     android:textSize="@dimen/text_16"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/training_maxes_used"
@@ -111,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/bench"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="71dp"
                     tools:layout_editor_absoluteY="77dp" />
@@ -126,6 +115,7 @@
                     android:gravity="end"
                     android:inputType="numberDecimal"
                     android:text="@string/bench_placeholder"
+                    android:backgroundTint="@color/colorBlack"
                     android:textColor="@color/colorRed" />
 
             </FrameLayout>
@@ -139,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/overhand"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
                     android:textSize="18sp" />
 
                 <EditText
@@ -151,6 +141,7 @@
                     android:gravity="end"
                     android:inputType="numberDecimal"
                     android:text="@string/overhand_placeholder"
+                    android:backgroundTint="@color/colorBlack"
                     android:textColor="@color/colorRed" />
 
             </FrameLayout>
@@ -180,7 +171,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/squat"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
                     android:textSize="18sp" />
 
                 <EditText
@@ -192,6 +183,7 @@
                     android:gravity="end"
                     android:inputType="numberDecimal"
                     android:text="@string/squat_placeholder"
+                    android:backgroundTint="@color/colorBlack"
                     android:textColor="@color/colorRed" />
             </FrameLayout>
 
@@ -204,7 +196,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/deadlift"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
                     android:textSize="18sp" />
 
                 <EditText
@@ -216,6 +208,7 @@
                     android:gravity="end"
                     android:inputType="numberDecimal"
                     android:text="@string/deadlift_placeholder"
+                    android:backgroundTint="@color/colorBlack"
                     android:textColor="@color/colorRed" />
             </FrameLayout>
 
@@ -414,6 +407,7 @@
 
     </ScrollView>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_frame"
         android:layout_width="match_parent"
@@ -441,7 +435,7 @@
             android:foregroundGravity="top|center_horizontal"
             android:gravity="bottom|center_horizontal"
             android:text="@string/return_text"
-            android:textColor="@drawable/main_buttons_text_colors"
+            android:textColor="@drawable/update_text"
             android:textSize="@dimen/text_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -458,7 +452,7 @@
             android:background="?attr/selectableItemBackground"
             android:text="@string/submit_text"
             android:textSize="@dimen/text_14"
-            android:textColor="@drawable/main_buttons_text_colors"
+            android:textColor="@drawable/update_text"
             android:gravity="bottom|center_horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
