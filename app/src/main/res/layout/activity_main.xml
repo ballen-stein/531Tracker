@@ -158,12 +158,6 @@
 
             <!-- Fourth Row of 3 -->
 
-            <FrameLayout
-                android:id="@+id/press_numbers_frame"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="-22dp"
-                android:layout_marginTop="320dp" >
 
                 <Button
                     android:id="@+id/press_numbers"
@@ -171,25 +165,18 @@
                     android:layout_height="175dp"
                     android:padding="@dimen/workout_frame_padding"
                     android:text="@string/button_press"
-                    android:background="@drawable/hexagon_button" />
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/deadlift_numbers_frame"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="145dp"
-                android:layout_marginTop="320dp">
+                    android:background="@drawable/hexagon_button"
+                    android:layout_marginStart="-22dp"
+                    android:layout_marginTop="320dp" />
 
                 <Button
                     android:id="@+id/deadlift_numbers"
                     android:layout_width="175dp"
                     android:layout_height="175dp"
                     android:text="@string/button_deadlift"
-                    android:background="@drawable/hexagon_button" />
-
-            </FrameLayout>
+                    android:background="@drawable/hexagon_button"
+                    android:layout_marginStart="145dp"
+                    android:layout_marginTop="320dp" />
 
             <!-- Fifth Row of 3 -->
 
