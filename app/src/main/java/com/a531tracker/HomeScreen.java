@@ -255,7 +255,7 @@ public class HomeScreen extends AppCompatActivity {
 
 
     private void testBBB(){
-        Button testBBB = findViewById(R.id.bbb_test);
+        /*Button testBBB = findViewById(R.id.bbb_test);
         testBBB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -270,7 +270,7 @@ public class HomeScreen extends AppCompatActivity {
                 }
                 testCheck();
             }
-        });
+        });*/
     }
 
 
