@@ -8,15 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        
-    </style>
-    
     <style name="AlertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <!-- Change Button Text Color -->
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorRed</item>
         <!-- Change Title and Message Color -->
-        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
         <!-- Change Background Color -->
         <item name="android:windowBackground">@drawable/alert_box</item>
         <!-- Change Text Size -->

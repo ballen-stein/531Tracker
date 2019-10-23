@@ -4,41 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient">
+    android:background="@color/navyBlue">
 
-    <include
-        android:id="@+id/header"
-        layout="@layout/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <View
-        android:id="@+id/divider_top"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginBottom="@dimen/workout_frame_32"
-        android:background="@color/colorAccent"
-        app:layout_constraintTop_toBottomOf="@id/header" />
+    <include layout="@layout/hexagon_background" />
 
     <ScrollView
         android:id="@+id/scrollView2"
+        android:elevation="0dp"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:background="@color/colorWhiteDarker"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottom_frame"
-        app:layout_constraintTop_toBottomOf="@id/divider_top">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/rectangle_outline"
             android:gravity="center"
+            android:elevation="10dp"
+            android:padding="@dimen/workout_frame_padding"
             android:orientation="vertical"
-            android:padding="15dp" >
+            android:layout_margin="@dimen/workout_frame_padding_half" >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
@@ -91,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/upper_body_compounds"
-                android:textColor="@color/colorDarkRed"
+                android:textColor="@color/colorWhite"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -99,7 +90,7 @@
                 android:id="@+id/divider_upper"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/colorDarkRed" />
+                android:background="@color/colorDarkGrey" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -126,6 +117,7 @@
                     android:gravity="end"
                     android:inputType="numberDecimal"
                     android:text="@string/bench_placeholder"
+                    android:backgroundTint="@color/colorWhite"
                     android:textColor="@color/colorRed" />
 
             </FrameLayout>
@@ -151,6 +143,7 @@
                     android:gravity="end"
                     android:inputType="numberDecimal"
                     android:text="@string/overhand_placeholder"
+                    android:backgroundTint="@color/colorWhite"
                     android:textColor="@color/colorRed" />
 
             </FrameLayout>
@@ -160,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/lower_body_compounds"
-                android:textColor="@color/colorDarkRed"
+                android:textColor="@color/colorWhite"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -168,7 +161,7 @@
                 android:id="@+id/divider_lower"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/colorDarkRed" />
+                android:background="@color/colorDarkGrey" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -192,6 +185,7 @@
                     android:gravity="end"
                     android:inputType="numberDecimal"
                     android:text="@string/squat_placeholder"
+                    android:backgroundTint="@color/colorWhite"
                     android:textColor="@color/colorRed" />
             </FrameLayout>
 
@@ -216,6 +210,7 @@
                     android:gravity="end"
                     android:inputType="numberDecimal"
                     android:text="@string/deadlift_placeholder"
+                    android:backgroundTint="@color/colorWhite"
                     android:textColor="@color/colorRed" />
             </FrameLayout>
 
@@ -230,7 +225,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/workout_frame_padding"
                     android:text="@string/bbb_set"
-                    android:textColor="@color/colorDarkRed"
+                    android:textColor="@color/colorWhite"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -241,7 +236,7 @@
                     android:id="@+id/divider_bbb"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/colorDarkRed"
+                    android:background="@color/colorDarkGrey"
                     app:layout_constraintTop_toBottomOf="@id/bbb_title" />
 
                 <FrameLayout
@@ -266,7 +261,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/bbb_percents_margin"
                             android:text="@string/bbb_40"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorWhite"
                             android:textSize="@dimen/text_14" />
 
                         <TextView
@@ -274,7 +269,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/bbb_percents_margin"
                             android:text="@string/bbb_45"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorWhite"
                             android:textSize="@dimen/text_14" />
 
                         <TextView
@@ -282,7 +277,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/bbb_percents_margin"
                             android:text="@string/bbb_50"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorWhite"
                             android:textSize="@dimen/text_14" />
 
                         <TextView
@@ -290,7 +285,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/bbb_percents_margin"
                             android:text="@string/bbb_55"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorWhite"
                             android:textSize="@dimen/text_14" />
 
                         <TextView
@@ -298,7 +293,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/bbb_percents_margin"
                             android:text="@string/bbb_60"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorWhite"
                             android:textSize="@dimen/text_14" />
 
                         <TextView
@@ -306,7 +301,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/bbb_percents_margin"
                             android:text="@string/bbb_65"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorWhite"
                             android:textSize="@dimen/text_14" />
 
                         <TextView
@@ -314,7 +309,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/bbb_percents_margin"
                             android:text="@string/bbb_70"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorWhite"
                             android:textSize="@dimen/text_14" />
 
                         <TextView
@@ -322,7 +317,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/bbb_percents_margin"
                             android:text="@string/bbb_75"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorWhite"
                             android:textSize="@dimen/text_14" />
 
                     </LinearLayout>
@@ -414,6 +409,7 @@
 
     </ScrollView>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_frame"
         android:layout_width="match_parent"
@@ -441,7 +437,7 @@
             android:foregroundGravity="top|center_horizontal"
             android:gravity="bottom|center_horizontal"
             android:text="@string/return_text"
-            android:textColor="@drawable/main_buttons_text_colors"
+            android:textColor="@drawable/update_text"
             android:textSize="@dimen/text_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -458,7 +454,7 @@
             android:background="?attr/selectableItemBackground"
             android:text="@string/submit_text"
             android:textSize="@dimen/text_14"
-            android:textColor="@drawable/main_buttons_text_colors"
+            android:textColor="@drawable/update_text"
             android:gravity="bottom|center_horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

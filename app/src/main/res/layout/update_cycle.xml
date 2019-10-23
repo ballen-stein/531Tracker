@@ -2,30 +2,37 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:elevation="0dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background_gradient">
+    android:background="@color/navyBlue">
+
+    <include layout="@layout/hexagon_background" />
 
     <include layout="@layout/navigation"
+        android:elevation="16dp"
         android:id="@+id/top_navigation"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/workout_frame_16"
+        android:background="@color/colorWhiteDarker"
+        android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@+id/top_navigation"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:clipToPadding="false">
 
             <LinearLayout
                 android:id="@+id/tm_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:elevation="4dp"
+                android:elevation="0dp"
                 android:orientation="vertical"
                 app:layout_constraintTop_toTopOf="parent" >
 
@@ -33,29 +40,28 @@
                     android:id="@+id/cycle_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/workout_frame_padding_half"
                     android:layout_gravity="center"
                     android:text="@string/cycle_title"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
                     android:textSize="@dimen/text_18" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
                     android:background="@drawable/rectangle_outline"
                     android:layout_marginTop="@dimen/workout_frame_8"
+                    android:layout_marginEnd="@dimen/workout_frame_16"
+                    android:layout_marginStart="@dimen/workout_frame_16"
                     android:padding="@dimen/workout_frame_padding"
-                    android:elevation="8dp" >
+                    android:elevation="4dp" >
 
                     <TextView
                         android:id="@+id/current_cycle_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/workout_frame_padding_half"
                         android:layout_gravity="center"
                         android:text="@string/cycle_placeholder"
-                        android:textColor="@color/colorDarkRed"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
                         android:layout_marginStart="@dimen/workout_frame_96"
                         app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +83,6 @@
                         android:id="@+id/update_cycle_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/workout_frame_padding_half"
                         android:layout_gravity="center"
                         android:text="@string/cycle_placeholder"
                         android:textColor="@color/colorRed"
@@ -97,7 +102,7 @@
                     android:padding="@dimen/workout_frame_padding"
                     android:layout_gravity="center"
                     android:text="@string/current_tm"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
                     android:textSize="@dimen/text_18" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,9 +110,10 @@
                     android:background="@drawable/rectangle_outline"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="6dp"
+                    android:layout_marginEnd="@dimen/workout_frame_16"
+                    android:layout_marginStart="@dimen/workout_frame_16"
                     android:layout_marginTop="@dimen/workout_frame_8"
-                    android:elevation="16dp">
+                    android:elevation="4dp">
 
                     <TextView
                         android:id="@+id/bench_tm_title"
@@ -116,7 +122,7 @@
                         android:gravity="center"
                         android:padding="@dimen/workout_frame_padding_half"
                         android:text="@string/tm_bench_title"
-                        android:textColor="@color/colorDarkRed"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
                         android:layout_marginStart="@dimen/workout_frame_32"
                         android:layout_marginBottom="10dp"
@@ -155,7 +161,7 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/workout_frame_padding_half"
                         android:text="@string/tm_current_placeholder"
-                        android:textColor="@color/colorDarkRed"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
                         android:layout_marginEnd="@dimen/workout_frame_16"
                         app:layout_constraintTop_toBottomOf="@id/bench_tm_update"
@@ -191,9 +197,10 @@
                     android:background="@drawable/rectangle_outline"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="6dp"
+                    android:layout_marginEnd="@dimen/workout_frame_16"
+                    android:layout_marginStart="@dimen/workout_frame_16"
                     android:layout_marginTop="@dimen/workout_frame_8"
-                    android:elevation="16dp" >
+                    android:elevation="4dp" >
 
                     <TextView
                         android:id="@+id/press_tm_title"
@@ -202,7 +209,7 @@
                         android:gravity="center"
                         android:padding="@dimen/workout_frame_padding_half"
                         android:text="@string/tm_press_title"
-                        android:textColor="@color/colorDarkRed"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
                         android:layout_marginStart="@dimen/workout_frame_32"
                         android:layout_marginBottom="10dp"
@@ -241,7 +248,7 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/workout_frame_padding_half"
                         android:text="@string/tm_current_placeholder"
-                        android:textColor="@color/colorDarkRed"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
                         android:layout_marginEnd="@dimen/workout_frame_16"
                         app:layout_constraintTop_toBottomOf="@id/press_tm_update"
@@ -277,9 +284,10 @@
                     android:background="@drawable/rectangle_outline"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="6dp"
+                    android:layout_marginEnd="@dimen/workout_frame_16"
+                    android:layout_marginStart="@dimen/workout_frame_16"
                     android:layout_marginTop="@dimen/workout_frame_8"
-                    android:elevation="16dp" >
+                    android:elevation="4dp" >
 
                     <TextView
                         android:id="@+id/squat_tm_title"
@@ -288,7 +296,7 @@
                         android:gravity="center"
                         android:padding="@dimen/workout_frame_padding_half"
                         android:text="@string/tm_squat_title"
-                        android:textColor="@color/colorDarkRed"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
                         android:layout_marginStart="@dimen/workout_frame_32"
                         android:layout_marginBottom="10dp"
@@ -327,7 +335,7 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/workout_frame_padding_half"
                         android:text="@string/tm_current_placeholder"
-                        android:textColor="@color/colorDarkRed"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
                         android:layout_marginEnd="@dimen/workout_frame_16"
                         app:layout_constraintTop_toBottomOf="@id/squat_tm_update"
@@ -364,9 +372,11 @@
                     android:background="@drawable/rectangle_outline"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_margin="6dp"
+                    android:layout_marginEnd="@dimen/workout_frame_16"
+                    android:layout_marginBottom="@dimen/workout_frame_16"
+                    android:layout_marginStart="@dimen/workout_frame_16"
                     android:layout_marginTop="@dimen/workout_frame_8"
-                    android:elevation="16dp" >
+                    android:elevation="4dp" >
 
                     <TextView
                         android:id="@+id/deadlift_tm_title"
@@ -375,7 +385,7 @@
                         android:padding="@dimen/workout_frame_padding_half"
                         android:gravity="center"
                         android:text="@string/tm_deadlift_title"
-                        android:textColor="@color/colorDarkRed"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
                         android:layout_marginStart="@dimen/workout_frame_32"
                         android:layout_marginBottom="10dp"
@@ -414,7 +424,7 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/workout_frame_padding_half"
                         android:text="@string/tm_current_placeholder"
-                        android:textColor="@color/colorDarkRed"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
                         android:layout_marginEnd="@dimen/workout_frame_16"
                         app:layout_constraintTop_toBottomOf="@id/deadlift_tm_update"
@@ -445,30 +455,24 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:background="@color/transparent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:layout_marginTop="@dimen/workout_frame_8"
-                    android:elevation="8dp" >
-
-                    <Button
-                        android:id="@+id/tm_update_all_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:text="@string/tm_update_all"
-                        android:textColor="@color/colorAccent"
-                        android:background="@drawable/update_button"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
+    <Button
+        android:id="@+id/tm_update_all_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/tm_update_all"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/update_button"
+        android:layout_marginEnd="@dimen/workout_frame_16"
+        android:layout_marginStart="@dimen/workout_frame_16"
+        android:layout_marginBottom="@dimen/workout_frame_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
