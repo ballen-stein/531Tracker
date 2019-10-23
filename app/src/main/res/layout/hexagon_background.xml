@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorRed"
+    android:background="@color/transparent"
     tools:context=".HomeScreen">
 
 
@@ -78,14 +78,14 @@
         android:layout_height="175dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="215dp"
-        android:background="@drawable/hexagon_button" />
+        android:background="@drawable/hexagon_shape" />
 
     <ImageView
         android:layout_width="175dp"
         android:layout_height="175dp"
         android:layout_marginStart="169dp"
         android:layout_marginTop="215dp"
-        android:background="@drawable/hexagon_button" />
+        android:background="@drawable/hexagon_shape" />
 
     <ImageView
         android:layout_width="175dp"
@@ -102,14 +102,14 @@
         android:layout_height="175dp"
         android:layout_marginStart="-82dp"
         android:layout_marginTop="350dp"
-        android:background="@drawable/hexagon_button" />
+        android:background="@drawable/hexagon_shape" />
 
     <ImageView
         android:layout_width="175dp"
         android:layout_height="175dp"
         android:layout_marginStart="85dp"
         android:layout_marginTop="350dp"
-        android:background="@drawable/hexagon_button" />
+        android:background="@drawable/hexagon_shape" />
 
     <ImageView
         android:layout_width="175dp"
@@ -133,14 +133,14 @@
         android:layout_height="175dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="485dp"
-        android:background="@drawable/hexagon_button" />
+        android:background="@drawable/hexagon_shape" />
 
     <ImageView
         android:layout_width="175dp"
         android:layout_height="175dp"
         android:layout_marginStart="169dp"
         android:layout_marginTop="485dp"
-        android:background="@drawable/hexagon_button" />
+        android:background="@drawable/hexagon_shape" />
 
     <ImageView
         android:layout_width="175dp"
@@ -158,7 +158,7 @@
         android:layout_marginStart="-82dp"
         android:layout_marginTop="620dp"
         android:layout_marginBottom="500dp"
-        android:background="@drawable/hexagon_button" />
+        android:background="@drawable/hexagon_shape" />
 
     <ImageView
         android:layout_width="175dp"
@@ -166,7 +166,7 @@
         android:layout_marginStart="85dp"
         android:layout_marginTop="620dp"
         android:layout_marginBottom="500dp"
-        android:background="@drawable/hexagon_button" />
+        android:background="@drawable/hexagon_shape" />
 
     <ImageView
         android:layout_width="175dp"
@@ -193,7 +193,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="755dp"
         android:layout_marginBottom="300dp"
-        android:background="@drawable/hexagon_button" />
+        android:background="@drawable/hexagon_shape" />
 
     <ImageView
         android:layout_width="175dp"
@@ -201,7 +201,7 @@
         android:layout_marginStart="169dp"
         android:layout_marginTop="755dp"
         android:layout_marginBottom="600dp"
-        android:background="@drawable/hexagon_button" />
+        android:background="@drawable/hexagon_shape" />
 
     <ImageView
         android:layout_width="175dp"

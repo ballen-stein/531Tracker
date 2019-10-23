@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/navyBlue"
+    tools:ignore="ContentDescription"
     tools:context=".HomeScreen">
 
     <FrameLayout
@@ -21,7 +22,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/colorWhiteDark"
+        android:background="@color/colorWhiteDarker"
         app:layout_constraintTop_toBottomOf="@id/top_frame_home"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -94,44 +95,101 @@
                 android:layout_marginTop="185dp"
                 android:background="@drawable/hexagon_shape" />
 
+
             <Button
                 android:id="@+id/increase_training_max"
                 android:layout_width="175dp"
                 android:layout_height="175dp"
                 android:layout_marginStart="62dp"
                 android:layout_marginTop="185dp"
+                android:clickable="false"
                 android:text="@string/cycle_update"
                 android:background="@drawable/hexagon_button" />
+            <!--
+            <FrameLayout
+                android:id="@+id/update_hit_one"
+                android:layout_marginTop="215dp"
+                android:layout_marginStart="95dp"
+                android:background="@color/colorBlue"
+                android:layout_width="110dp"
+                android:layout_height="110dp" />
 
-            <Button
-                android:id="@+id/addAccessoriesButton"
-                android:layout_width="175dp"
-                android:layout_height="175dp"
-                android:layout_marginStart="229dp"
-                android:layout_marginTop="185dp"
-                android:text="@string/add_accessories_button"
-                android:background="@drawable/hexagon_button" />
+            <FrameLayout
+                android:id="@+id/update_hit_two"
+                android:layout_marginTop="205dp"
+                android:layout_marginStart="115dp"
+                android:background="@color/colorBlue"
+                android:layout_width="80dp"
+                android:layout_height="130dp" />
+
+            <FrameLayout
+                android:id="@+id/update_hit_three"
+                android:layout_marginTop="225dp"
+                android:layout_marginStart="115dp"
+                android:background="@color/colorBlue"
+                android:layout_width="110dp"
+                android:layout_height="90dp" />
+
+            <FrameLayout
+                android:id="@+id/update_hit_four"
+                android:layout_marginTop="225dp"
+                android:layout_marginStart="75dp"
+                android:background="@color/colorBlue"
+                android:layout_width="110dp"
+                android:layout_height="90dp" />
+
+            <FrameLayout
+                android:id="@+id/update_hit_five"
+                android:layout_marginTop="225dp"
+                android:layout_marginStart="75dp"
+                android:background="@color/colorBlue"
+                android:layout_width="110dp"
+                android:layout_height="90dp" />
+-->
+                <Button
+                    android:id="@+id/addAccessoriesButton"
+                    android:clickable="false"
+                    android:layout_width="175dp"
+                    android:layout_height="175dp"
+                    android:layout_marginStart="229dp"
+                    android:layout_marginTop="185dp"
+                    android:text="@string/add_accessories_button"
+                    android:background="@drawable/hexagon_button" />
 
             <!-- Fourth Row of 3 -->
 
-            <Button
-                android:id="@+id/press_numbers"
-                android:layout_width="175dp"
-                android:layout_height="175dp"
+            <FrameLayout
+                android:id="@+id/press_numbers_frame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="-22dp"
-                android:layout_marginTop="320dp"
-                android:padding="@dimen/workout_frame_padding"
-                android:text="@string/button_press"
-                android:background="@drawable/hexagon_button" />
+                android:layout_marginTop="320dp" >
 
-            <Button
-                android:id="@+id/deadlift_numbers"
-                android:layout_width="175dp"
-                android:layout_height="175dp"
+                <Button
+                    android:id="@+id/press_numbers"
+                    android:layout_width="175dp"
+                    android:layout_height="175dp"
+                    android:padding="@dimen/workout_frame_padding"
+                    android:text="@string/button_press"
+                    android:background="@drawable/hexagon_button" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/deadlift_numbers_frame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="145dp"
-                android:layout_marginTop="320dp"
-                android:text="@string/button_deadlift"
-                android:background="@drawable/hexagon_button" />
+                android:layout_marginTop="320dp">
+
+                <Button
+                    android:id="@+id/deadlift_numbers"
+                    android:layout_width="175dp"
+                    android:layout_height="175dp"
+                    android:text="@string/button_deadlift"
+                    android:background="@drawable/hexagon_button" />
+
+            </FrameLayout>
 
             <!-- Fifth Row of 3 -->
 

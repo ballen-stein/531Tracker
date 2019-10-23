@@ -11,6 +11,8 @@
     <color name="colorDarkBlue">#0099CC</color>
 
     <color name="colorDarkGrey">#3D3D3D</color>
+    <color name="colorOpacBlack">#BF000000</color>
+
     <color name="colorBlack">#000000</color>
     <color name="colorRed">#FFD9A638</color>
     <color name="colorRedOpac">#BCD9A638</color>
@@ -19,5 +21,7 @@
     <color name="colorRealR">#BB0000</color>
 
     <color name="colorWhiteDark">#BFffffff</color>
+
+    <color name="colorWhiteDarker">#99ffffff</color>
     <color name="transparent">#00000000</color>
 </resources>

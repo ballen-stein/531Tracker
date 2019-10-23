@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhiteDark"
+    android:background="@color/colorRealR"
     tools:context=".Settings">
+
+    <include layout="@layout/hexagon_background" />
 
     <FrameLayout
         android:id="@+id/top_frame_home"
@@ -20,9 +22,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:background="@color/colorWhiteDarker"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/top_frame_home" >
+        app:layout_constraintTop_toBottomOf="@id/top_frame_home"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -35,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Week Options"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_16"
                 android:padding="@dimen/workout_frame_padding_half"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Standard"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_14" />
 
                 <RadioButton
@@ -69,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="7 Day Cycle"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_14" />
 
                 <RadioButton
@@ -98,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/settings_update_cycle"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_14"
             android:layout_marginTop="@dimen/workout_frame_16"
             android:layout_marginEnd="@dimen/workout_frame_32"
@@ -115,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Boring But Big Options"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_16"
                 android:padding="@dimen/workout_frame_padding_half"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -134,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/workout_frame_padding_half"
                     android:text="8/6/3 Split"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -142,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/workout_frame_padding_half"
                     android:text="FSL"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -150,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/workout_frame_padding_half"
                     android:text="Joker Sets"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -199,7 +203,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/settings_update_bbb"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_14"
             android:layout_marginTop="@dimen/workout_frame_16"
             android:layout_marginEnd="@dimen/workout_frame_32"
@@ -216,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/settings_bbb_percents"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_16"
                 android:padding="@dimen/workout_frame_padding_half"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -230,42 +234,42 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/bbb_percents_margin"
                     android:text="@string/bbb_40" />
 
                 <TextView
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/bbb_percents_margin"
                     android:text="@string/bbb_45" />
 
                 <TextView
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/bbb_percents_margin"
                     android:text="@string/bbb_50" />
 
                 <TextView
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/bbb_percents_margin"
                     android:text="@string/bbb_55" />
 
                 <TextView
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/bbb_percents_margin"
                     android:text="@string/bbb_60" />
 
                 <TextView
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/bbb_percents_margin"
@@ -273,14 +277,14 @@
 
 
                 <TextView
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/bbb_percents_margin"
                     android:text="@string/bbb_70" />
 
                 <TextView
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/bbb_75" />
@@ -379,7 +383,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/settings_update_percents"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_14"
             android:layout_marginTop="@dimen/workout_frame_16"
             android:layout_marginEnd="@dimen/workout_frame_32"

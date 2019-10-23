@@ -205,7 +205,7 @@ public class Week extends Activity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         tv.setText(value);
         tv.setTextSize(25);
-        tv.setTextColor(Color.parseColor("#002886"));
+        tv.setTextColor(Color.parseColor("#FFFFFF"));
         params.setMargins(marginValues[0], marginValues[1], 0, 0);
         tv.setLayoutParams(params);
         return tv;

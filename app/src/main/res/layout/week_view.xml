@@ -7,10 +7,13 @@
     android:background="@color/navyBlue"
     tools:context=".Week">
 
+
+    <include layout="@layout/hexagon_background" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:background="@drawable/background_gradient"
+        android:background="@color/colorBlack"
         android:paddingStart="@dimen/workout_frame_16"
         android:paddingEnd="@dimen/workout_frame_16"
         android:layout_gravity="center"
@@ -41,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/transparent"
+        android:background="@drawable/background_gradient"
         app:tabIndicatorColor="@color/colorRed"
         app:tabTextColor="@drawable/tab_selected"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:elevation="0dp"
-        android:background="@color/colorWhiteDark"
+        android:background="@color/colorWhiteDarker"
         app:layout_constraintBottom_toTopOf="@+id/amrap_frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -91,7 +94,7 @@
             android:id="@+id/all_sets_display"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhiteDark"
+            android:background="@color/colorBlack"
             android:layout_margin="@dimen/workout_frame_padding"
             android:elevation="10dp"
             android:orientation="vertical">
@@ -108,7 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/warmup_set"
-                    android:textColor="@color/colorDarkGrey"
+                    android:textColor="@color/colorRed"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20"/>
 
@@ -152,7 +155,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/core_set"
-                    android:textColor="@color/colorDarkGrey"
+                    android:textColor="@color/colorRed"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20"/>
 
@@ -197,7 +200,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/bbb_set"
-                    android:textColor="@color/colorDarkGrey"
+                    android:textColor="@color/colorRed"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20"/>
 
@@ -237,7 +240,7 @@
         android:id="@+id/amrap_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
+        android:background="@color/colorBlack"
         app:layout_constraintBottom_toBottomOf="parent" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -334,7 +337,7 @@
         android:id="@+id/top_frame_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
+        android:background="@color/colorBlack"
         app:layout_constraintTop_toTopOf="parent">
 
         <include layout="@layout/navigation" />
