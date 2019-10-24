@@ -3,6 +3,7 @@ package com.a531tracker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,10 +11,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.a531tracker.Database.DatabaseHelper;
 import com.a531tracker.LiftBuilders.AsManyRepsAsPossible;
@@ -34,18 +36,25 @@ public class HomeScreen extends AppCompatActivity {
     private Context mContext;
     private Integer cycleValue;
 
-    private Button accessoryButton;
-    private Button benchNumbers;
-    private Button deadliftNumbers;
-    private Button pressNumbers;
-    private Button squatNumbers;
-    private Button tmUpdate;
+    private ImageView accessoryView;
+    private ImageView benchView;
+    private ImageView deadliftView;
+    private ImageView pressView;
+    private ImageView squatView;
+    private ImageView cycleView;
 
     private Button homeButton;
     private Button uploadLifts;
     private Button settingsButton;
 
     private TextView cycleDisplay;
+
+    private TextView accessoryText;
+    private TextView benchText;
+    private TextView deadliftText;
+    private TextView pressText;
+    private TextView squatText;
+    private TextView updateCycleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +66,8 @@ public class HomeScreen extends AppCompatActivity {
 
         cycleDisplay = findViewById(R.id.cycle_display);
 
-        setButtons();
+        setViews();
+        setText();
         setListeners();
         //checkForLiftValues();
         createNavigation();
@@ -71,7 +81,7 @@ public class HomeScreen extends AppCompatActivity {
         checkForLiftValues();
     }
 
-    // TODO Create listener/Change activity for set total maxes so lifts are reset
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == SET_TRAINING_MAX_CODE && resultCode == RESULT_OK){
@@ -126,7 +136,7 @@ public class HomeScreen extends AppCompatActivity {
         if(!noLiftsFound){
             TextView tv = new TextView(this);
             tv.setGravity(Gravity.CENTER);
-            tv.setTextColor(ContextCompat.getColor(mContext, R.color.colorRed));
+            tv.setTextColor(ContextCompat.getColor(mContext, R.color.colorOrange));
             tv.setText(extraMessage);
             tv.setTextSize(getResources().getDimension(R.dimen.text_8));
             dialog.setView(tv);
@@ -182,22 +192,33 @@ public class HomeScreen extends AppCompatActivity {
     public void accessoriesCheck(){
         if(getResources().getBoolean(R.bool.have_accessories)) {
             accessoriesButton();
-            accessoryButton.setVisibility(View.VISIBLE);
+            accessoryView.setVisibility(View.VISIBLE);
+            accessoryText.setVisibility(View.VISIBLE);
         }
     }
 
 
-    private void setButtons(){
-        accessoryButton = findViewById(R.id.addAccessoriesButton);
-        benchNumbers = findViewById(R.id.bench_numbers);
-        deadliftNumbers = findViewById(R.id.deadlift_numbers);
-        pressNumbers = findViewById(R.id.press_numbers);
-        squatNumbers = findViewById(R.id.squat_numbers);
-        tmUpdate = findViewById(R.id.increase_training_max);
+    private void setViews(){
+        accessoryView = findViewById(R.id.accessories_hex);
+        benchView = findViewById(R.id.bench_numbers);
+        deadliftView = findViewById(R.id.deadlift_hex);
+        pressView = findViewById(R.id.press_hex);
+        squatView = findViewById(R.id.squat_hex);
+        cycleView = findViewById(R.id.update_cycle_hex);
 
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
         uploadLifts = findViewById(R.id.upload_button);
+    }
+
+
+    private void setText(){
+        accessoryText = findViewById(R.id.accessories_text);
+        updateCycleText = findViewById(R.id.update_cycle_text);
+        pressText = findViewById(R.id.press_text);
+        deadliftText = findViewById(R.id.deadlift_text);
+        benchText = findViewById(R.id.bench_text);
+        squatText = findViewById(R.id.squat_text);
     }
 
 
@@ -206,49 +227,116 @@ public class HomeScreen extends AppCompatActivity {
         deadliftButton();
         pressButton();
         squatButton();
-        updateTrainingMax();
-        //accessoriesButton();
+        updateCycleButton();
         accessoriesCheck();
         testBBB();
     }
 
 
     //Buttons
+    @SuppressLint("ClickableViewAccessibility")
     private void benchButton() {
-        benchNumbers.setOnClickListener(new View.OnClickListener() {
+        benchText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("WasClicked", "Bench Text");
                 openCompoundWeek("Bench");
             }
         });
+        benchText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        benchView.setPressed(true);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        benchView.setPressed(false);
+                        break;
+                }
+                return false;
+            }
+        });
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     private void deadliftButton(){
-        deadliftNumbers.setOnClickListener(new View.OnClickListener() {
+        deadliftText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("WasClicked", "Deadlift Text");
                 openCompoundWeek("Deadlift");
             }
         });
-    }
-
-
-    private void pressButton(){
-        pressNumbers.setOnClickListener(new View.OnClickListener() {
+        deadliftText.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                openCompoundWeek("Overhand Press");
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        deadliftView.setPressed(true);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        deadliftView.setPressed(false);
+                        break;
+                }
+                return false;
             }
         });
     }
 
 
-    private void squatButton(){
-        squatNumbers.setOnClickListener(new View.OnClickListener() {
+    @SuppressLint("ClickableViewAccessibility")
+    private void pressButton(){
+        pressText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("WasClicked", "Press Text");
+                openCompoundWeek("Overhand Press");
+            }
+        });
+        pressText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        pressView.setPressed(true);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        pressView.setPressed(false);
+                        break;
+                }
+                return false;
+            }
+        });
+    }
+
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void squatButton(){
+        squatText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("WasClicked", "Squat Text");
                 openCompoundWeek("Squat");
+            }
+        });
+        squatText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch(motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        squatView.setPressed(true);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        squatView.setPressed(false);
+                        break;
+                }
+                return false;
             }
         });
     }
@@ -306,12 +394,28 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
-    private void updateTrainingMax(){
-        tmUpdate.setOnClickListener(new View.OnClickListener() {
+    @SuppressLint("ClickableViewAccessibility")
+    private void updateCycleButton(){
+        updateCycleText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, UpdateValues.class);
                 startActivityForResult(intent, UPDATE_TRAINING_MAX_CODE);
+            }
+        });
+        updateCycleText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch(motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        cycleView.setPressed(true);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        cycleView.setPressed(false);
+                        break;
+                }
+                return false;
             }
         });
     }
@@ -367,7 +471,7 @@ public class HomeScreen extends AppCompatActivity {
 
 
     public void accessoriesButton (){
-        accessoryButton.setOnClickListener(new View.OnClickListener() {
+        accessoryView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

@@ -45,7 +45,7 @@ public class ErrorAlerts extends AlertDialog {
 
         if(failedLift){
             TextView tv = new TextView(context);
-            tv.setTextColor(ContextCompat.getColor(context, R.color.colorRed));
+            tv.setTextColor(ContextCompat.getColor(context, R.color.colorOrange));
             tv.setText(getExtraMessageValue());
             tv.setGravity(Gravity.CENTER);
             tv.setTextSize(20f);

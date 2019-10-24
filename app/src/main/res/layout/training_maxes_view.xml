@@ -70,7 +70,7 @@
                     android:id="@+id/training_maxes_used"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:buttonTint="@color/colorRed"
+                    android:buttonTint="@color/colorOrange"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -118,7 +118,7 @@
                     android:inputType="numberDecimal"
                     android:text="@string/bench_placeholder"
                     android:backgroundTint="@color/colorWhite"
-                    android:textColor="@color/colorRed" />
+                    android:textColor="@color/colorOrange" />
 
             </FrameLayout>
 
@@ -144,7 +144,7 @@
                     android:inputType="numberDecimal"
                     android:text="@string/overhand_placeholder"
                     android:backgroundTint="@color/colorWhite"
-                    android:textColor="@color/colorRed" />
+                    android:textColor="@color/colorOrange" />
 
             </FrameLayout>
 
@@ -186,7 +186,7 @@
                     android:inputType="numberDecimal"
                     android:text="@string/squat_placeholder"
                     android:backgroundTint="@color/colorWhite"
-                    android:textColor="@color/colorRed" />
+                    android:textColor="@color/colorOrange" />
             </FrameLayout>
 
             <FrameLayout
@@ -211,7 +211,7 @@
                     android:inputType="numberDecimal"
                     android:text="@string/deadlift_placeholder"
                     android:backgroundTint="@color/colorWhite"
-                    android:textColor="@color/colorRed" />
+                    android:textColor="@color/colorOrange" />
             </FrameLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -340,7 +340,7 @@
                             android:layout_height="25dp"
                             android:layout_marginStart="@dimen/radio_button_margin"
                             android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorRed" />
+                            android:buttonTint="@color/colorOrange" />
 
                         <RadioButton
                             android:id="@+id/radio_bbb_45"
@@ -348,7 +348,7 @@
                             android:layout_height="25dp"
                             android:layout_marginStart="@dimen/radio_button_margin"
                             android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorRed" />
+                            android:buttonTint="@color/colorOrange" />
 
                         <RadioButton
                             android:id="@+id/radio_bbb_50"
@@ -356,7 +356,7 @@
                             android:layout_height="25dp"
                             android:layout_marginStart="@dimen/radio_button_margin"
                             android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorRed" />
+                            android:buttonTint="@color/colorOrange" />
 
                         <RadioButton
                             android:id="@+id/radio_bbb_55"
@@ -364,7 +364,7 @@
                             android:layout_height="25dp"
                             android:layout_marginStart="@dimen/radio_button_margin"
                             android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorRed" />
+                            android:buttonTint="@color/colorOrange" />
 
                         <RadioButton
                             android:id="@+id/radio_bbb_60"
@@ -372,7 +372,7 @@
                             android:layout_height="25dp"
                             android:layout_marginStart="@dimen/radio_button_margin"
                             android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorRed" />
+                            android:buttonTint="@color/colorOrange" />
 
                         <RadioButton
                             android:id="@+id/radio_bbb_65"
@@ -380,7 +380,7 @@
                             android:layout_height="25dp"
                             android:layout_marginStart="@dimen/radio_button_margin"
                             android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorRed" />
+                            android:buttonTint="@color/colorOrange" />
 
                         <RadioButton
 
@@ -389,7 +389,7 @@
                             android:layout_height="25dp"
                             android:layout_marginStart="@dimen/radio_button_margin"
                             android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorRed" />
+                            android:buttonTint="@color/colorOrange" />
 
                         <RadioButton
                             android:id="@+id/radio_bbb_75"
@@ -397,7 +397,7 @@
                             android:layout_height="25dp"
                             android:layout_marginStart="@dimen/radio_button_margin"
                             android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorRed" />
+                            android:buttonTint="@color/colorOrange" />
 
                     </RadioGroup>
 

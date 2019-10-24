@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/navyBlue"
+    android:background="@color/colorDarkGrey"
     tools:ignore="ContentDescription"
     tools:context=".HomeScreen">
 
@@ -22,7 +22,9 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/colorWhiteDarker"
+        android:background="@color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_frame_home"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -95,109 +97,263 @@
                 android:layout_marginTop="185dp"
                 android:background="@drawable/hexagon_shape" />
 
-
-            <Button
-                android:id="@+id/increase_training_max"
+            <FrameLayout
                 android:layout_width="175dp"
                 android:layout_height="175dp"
                 android:layout_marginStart="62dp"
-                android:layout_marginTop="185dp"
-                android:clickable="false"
-                android:text="@string/cycle_update"
-                android:background="@drawable/hexagon_button" />
-            <!--
-            <FrameLayout
-                android:id="@+id/update_hit_one"
-                android:layout_marginTop="215dp"
-                android:layout_marginStart="95dp"
-                android:background="@color/colorBlue"
-                android:layout_width="110dp"
-                android:layout_height="110dp" />
+                android:layout_marginTop="185dp" >
 
-            <FrameLayout
-                android:id="@+id/update_hit_two"
-                android:layout_marginTop="205dp"
-                android:layout_marginStart="115dp"
-                android:background="@color/colorBlue"
-                android:layout_width="80dp"
-                android:layout_height="130dp" />
-
-            <FrameLayout
-                android:id="@+id/update_hit_three"
-                android:layout_marginTop="225dp"
-                android:layout_marginStart="115dp"
-                android:background="@color/colorBlue"
-                android:layout_width="110dp"
-                android:layout_height="90dp" />
-
-            <FrameLayout
-                android:id="@+id/update_hit_four"
-                android:layout_marginTop="225dp"
-                android:layout_marginStart="75dp"
-                android:background="@color/colorBlue"
-                android:layout_width="110dp"
-                android:layout_height="90dp" />
-
-            <FrameLayout
-                android:id="@+id/update_hit_five"
-                android:layout_marginTop="225dp"
-                android:layout_marginStart="75dp"
-                android:background="@color/colorBlue"
-                android:layout_width="110dp"
-                android:layout_height="90dp" />
--->
-                <Button
-                    android:id="@+id/addAccessoriesButton"
-                    android:clickable="false"
+                <ImageView
+                    android:id="@+id/update_cycle_hex"
                     android:layout_width="175dp"
                     android:layout_height="175dp"
-                    android:layout_marginStart="229dp"
-                    android:layout_marginTop="185dp"
-                    android:text="@string/add_accessories_button"
+                    android:clickable="false"
                     android:background="@drawable/hexagon_button" />
 
-            <!-- Fourth Row of 3 -->
+                <TextView
+                    android:id="@+id/update_cycle_text"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:text="@string/cycle_update"
+                    android:textSize="@dimen/text_20"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:clickable="true" />
 
+            </FrameLayout>
 
-                <Button
-                    android:id="@+id/press_numbers"
-                    android:layout_width="175dp"
-                    android:layout_height="175dp"
-                    android:padding="@dimen/workout_frame_padding"
-                    android:text="@string/button_press"
-                    android:background="@drawable/hexagon_button"
-                    android:layout_marginStart="-22dp"
-                    android:layout_marginTop="320dp" />
-
-                <Button
-                    android:id="@+id/deadlift_numbers"
-                    android:layout_width="175dp"
-                    android:layout_height="175dp"
-                    android:text="@string/button_deadlift"
-                    android:background="@drawable/hexagon_button"
-                    android:layout_marginStart="145dp"
-                    android:layout_marginTop="320dp" />
-
-            <!-- Fifth Row of 3 -->
-
-            <Button
-                android:id="@+id/bench_numbers"
-                android:layout_width="175dp"
-                android:layout_height="175dp"
-                android:layout_marginStart="62dp"
-                android:layout_marginTop="455dp"
-                android:padding="@dimen/workout_frame_padding"
-                android:text="@string/button_bench"
-                android:background="@drawable/hexagon_button" />
-
-            <Button
-                android:id="@+id/squat_numbers"
+            <FrameLayout
                 android:layout_width="175dp"
                 android:layout_height="175dp"
                 android:layout_marginStart="229dp"
+                android:layout_marginTop="185dp" >
+
+                <ImageView
+                    android:id="@+id/accessories_hex"
+                    android:clickable="false"
+                    android:layout_width="175dp"
+                    android:layout_height="175dp"
+                    android:background="@drawable/hexagon_button" />
+
+                <TextView
+                    android:id="@+id/accessories_text"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:text="@string/add_accessories_button"
+                    android:textSize="19sp"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:clickable="true" />
+
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginTop="185dp"
+                android:layout_marginStart="396dp"
+                android:layout_marginEnd="400dp"
+                android:background="@drawable/hexagon_shape" />
+
+            <!-- Fourth Row of 3 -->
+
+            <FrameLayout
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="-22dp"
+                android:layout_marginTop="320dp" >
+
+                <ImageView
+                    android:id="@+id/press_hex"
+                    android:clickable="false"
+                    android:layout_width="175dp"
+                    android:layout_height="175dp"
+                    android:background="@drawable/hexagon_button" />
+
+                <TextView
+                    android:id="@+id/press_text"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:text="@string/button_press"
+                    android:textSize="@dimen/text_20"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:clickable="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="145dp"
+                android:layout_marginTop="320dp" >
+
+                <ImageView
+                    android:id="@+id/deadlift_hex"
+                    android:clickable="false"
+                    android:layout_width="175dp"
+                    android:layout_height="175dp"
+                    android:background="@drawable/hexagon_button" />
+
+                <TextView
+                    android:id="@+id/deadlift_text"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:text="@string/button_deadlift"
+                    android:textSize="@dimen/text_20"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:clickable="true" />
+
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="312dp"
+                android:layout_marginTop="320dp"
+                android:layout_marginEnd="-300dp"
+                android:background="@drawable/hexagon_shape" />
+
+            <!-- Fifth Row of 4 -->
+
+            <ImageView
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="-105dp"
                 android:layout_marginTop="455dp"
-                android:text="@string/button_squat"
-                android:background="@drawable/hexagon_button" />
+                android:background="@drawable/hexagon_shape" />
+
+            <FrameLayout
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="455dp" >
+
+                <ImageView
+                    android:id="@+id/bench_numbers"
+                    android:clickable="false"
+                    android:layout_width="175dp"
+                    android:layout_height="175dp"
+                    android:background="@drawable/hexagon_button" />
+
+                <TextView
+                    android:id="@+id/bench_text"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:text="@string/button_bench"
+                    android:textSize="@dimen/text_20"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:clickable="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="229dp"
+                android:layout_marginTop="455dp">
+
+                <ImageView
+                    android:id="@+id/squat_hex"
+                    android:clickable="false"
+                    android:layout_width="175dp"
+                    android:layout_height="175dp"
+                    android:background="@drawable/hexagon_button" />
+
+                <TextView
+                    android:id="@+id/squat_text"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:text="@string/button_squat"
+                    android:textSize="@dimen/text_20"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:clickable="true" />
+
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginTop="455dp"
+                android:layout_marginStart="396dp"
+                android:layout_marginEnd="400dp"
+                android:background="@drawable/hexagon_shape" />
+
+            <!-- Sixth Row of 3 -->
+
+
+            <ImageView
+                android:clickable="false"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="-22dp"
+                android:layout_marginBottom="400dp"
+                android:layout_marginTop="590dp"
+                android:background="@drawable/hexagon_shape" />
+
+            <ImageView
+                android:clickable="false"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:background="@drawable/hexagon_shape"
+                android:layout_marginTop="590dp"
+                android:layout_marginStart="145dp"
+                android:layout_marginBottom="400dp" />
+
+            <ImageView
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="312dp"
+                android:layout_marginTop="590dp"
+                android:layout_marginBottom="400dp"
+                android:layout_marginEnd="-300dp"
+                android:background="@drawable/hexagon_shape" />
+
+            <!-- Seventh Row of 3 -->
+
+            <ImageView
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="-105dp"
+                android:layout_marginBottom="500dp"
+                android:layout_marginTop="725dp"
+                android:background="@drawable/hexagon_shape" />
+
+
+            <ImageView
+                android:clickable="false"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="62dp"
+                android:layout_marginBottom="500dp"
+                android:layout_marginTop="725dp"
+                android:background="@drawable/hexagon_shape" />
+
+
+            <ImageView
+                android:clickable="false"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="229dp"
+                android:layout_marginBottom="500dp"
+                android:layout_marginTop="725dp"
+                android:background="@drawable/hexagon_shape" />
+
 
         </RelativeLayout>
 
@@ -210,7 +366,7 @@
             android:gravity="center"
             android:text="@string/cycle_placeholder"
             android:textSize="@dimen/text_20"
-            android:textColor="@color/colorRed" />
+            android:textColor="@color/colorOrange" />
 
     </FrameLayout>
 

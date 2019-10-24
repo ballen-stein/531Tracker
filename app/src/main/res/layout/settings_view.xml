@@ -63,7 +63,7 @@
 
                 <RadioButton
                     android:id="@+id/radio_standard"
-                    android:buttonTint="@color/colorRed"
+                    android:buttonTint="@color/colorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/workout_frame_16"/>
@@ -78,7 +78,7 @@
 
                 <RadioButton
                     android:id="@+id/radio_seven_day"
-                    android:buttonTint="@color/colorRed"
+                    android:buttonTint="@color/colorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/workout_frame_16"/>
@@ -302,7 +302,7 @@
 
                 <RadioButton
                     android:id="@+id/radio_bbb_40"
-                    android:buttonTint="@color/colorRed"
+                    android:buttonTint="@color/colorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/radio_button_margin"
@@ -310,7 +310,7 @@
 
                 <RadioButton
                     android:id="@+id/radio_bbb_45"
-                    android:buttonTint="@color/colorRed"
+                    android:buttonTint="@color/colorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/radio_button_margin"
@@ -318,7 +318,7 @@
 
                 <RadioButton
                     android:id="@+id/radio_bbb_50"
-                    android:buttonTint="@color/colorRed"
+                    android:buttonTint="@color/colorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/radio_button_margin"
@@ -326,7 +326,7 @@
 
                 <RadioButton
                     android:id="@+id/radio_bbb_55"
-                    android:buttonTint="@color/colorRed"
+                    android:buttonTint="@color/colorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/radio_button_margin"
@@ -334,7 +334,7 @@
 
                 <RadioButton
                     android:id="@+id/radio_bbb_60"
-                    android:buttonTint="@color/colorRed"
+                    android:buttonTint="@color/colorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/radio_button_margin"
@@ -342,7 +342,7 @@
 
                 <RadioButton
                     android:id="@+id/radio_bbb_65"
-                    android:buttonTint="@color/colorRed"
+                    android:buttonTint="@color/colorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/radio_button_margin"
@@ -350,7 +350,7 @@
 
                 <RadioButton
                     android:id="@+id/radio_bbb_70"
-                    android:buttonTint="@color/colorRed"
+                    android:buttonTint="@color/colorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/radio_button_margin"
@@ -358,7 +358,7 @@
 
                 <RadioButton
                     android:id="@+id/radio_bbb_75"
-                    android:buttonTint="@color/colorRed"
+                    android:buttonTint="@color/colorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/radio_button_margin"

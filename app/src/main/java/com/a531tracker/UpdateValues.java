@@ -19,8 +19,6 @@ import com.a531tracker.LiftBuilders.AsManyRepsAsPossible;
 import com.a531tracker.LiftBuilders.CompoundLifts;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.a531tracker.HomeScreen.compoundLifts;
 
@@ -127,7 +125,7 @@ public class UpdateValues extends AppCompatActivity {
         currentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                ((TextView) view).setTextColor(getColor(R.color.colorRed));
+                ((TextView) view).setTextColor(getColor(R.color.colorOrange));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
