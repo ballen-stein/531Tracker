@@ -14,14 +14,14 @@
     <color name="colorOpacBlack">#BF000000</color>
 
     <color name="colorBlack">#000000</color>
-    <color name="colorRed">#FFD9A638</color>
-    <color name="colorRedOpac">#BCD9A638</color>
+    <color name="colorOrange">#FFD9A638</color>
+    <color name="colorOrangeOpac">#BCD9A638</color>
     <color name="colorDarkRed">#000000</color>
 
     <color name="colorRealR">#BB0000</color>
 
     <color name="colorWhiteDark">#BFffffff</color>
-
     <color name="colorWhiteDarker">#99ffffff</color>
+    <color name="colorDarkOpac">#99000000</color>
     <color name="transparent">#00000000</color>
 </resources>

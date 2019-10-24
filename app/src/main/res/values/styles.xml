@@ -10,7 +10,7 @@
 
     <style name="AlertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <!-- Change Button Text Color -->
-        <item name="colorAccent">@color/colorRed</item>
+        <item name="colorAccent">@color/colorOrange</item>
         <!-- Change Title and Message Color -->
         <item name="android:textColorPrimary">@color/colorAccent</item>
         <!-- Change Background Color -->
