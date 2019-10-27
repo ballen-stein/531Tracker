@@ -356,7 +356,7 @@ public class Week extends Activity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, Settings.class);
+                Intent intent = new Intent(mContext, BBBSettings.class);
                 startActivity(intent);
             }
         });

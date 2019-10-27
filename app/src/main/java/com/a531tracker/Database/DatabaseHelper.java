@@ -456,7 +456,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    // -------- User Settings SQL --------
+    // -------- User BBBSettings SQL --------
 
 
     public void swapBBBWorkouts(int oldVal, int newVal){

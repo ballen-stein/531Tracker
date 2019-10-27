@@ -63,7 +63,11 @@
     <string name="settings_update_cycle">Update Cycle Format</string>
     <string name="settings_update_percents">Update BBB Percent</string>
     <string name="settings_bbb_percents">BBB Percent Options</string>
-
+    
+    <string name="settings_reset_all">Reset ALL Lift Values</string>
+    <string name="settings_delete_data">Delete ALL Data</string>
+    <string name="settings_view_bbb_options">Big But Boring Settings</string>
+    <string name="settings_amrap_stats">View AMRAP Numbers</string>
 
     <string name="current_tm">Current Training Maxes</string>
     <string name="tm_current_placeholder">100</string>

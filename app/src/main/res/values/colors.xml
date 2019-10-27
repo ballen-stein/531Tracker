@@ -15,6 +15,8 @@
 
     <color name="colorBlack">#000000</color>
     <color name="colorOrange">#FFD9A638</color>
+    <color name="testColor">#FFD9A638</color>
+    <color name="colorOrangeLightOpac">#D9D9A638</color>
     <color name="colorOrangeOpac">#BCD9A638</color>
     <color name="colorDarkRed">#000000</color>
 
