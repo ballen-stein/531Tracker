@@ -23,9 +23,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:background="@drawable/rectangle_outline"
-            android:gravity="center"
             android:elevation="10dp"
             android:padding="@dimen/workout_frame_padding"
             android:orientation="vertical"
@@ -53,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/workout_frame_32"
-                android:padding="@dimen/workout_frame_padding">
+                android:padding="@dimen/workout_frame_padding_half">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -240,7 +238,7 @@
                     app:layout_constraintTop_toBottomOf="@id/bbb_title" />
 
                 <FrameLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/workout_frame_padding"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -251,8 +249,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
-                        android:layout_marginStart="@dimen/workout_frame_padding"
-                        android:layout_marginEnd="@dimen/workout_frame_padding_half"
                         android:layout_marginBottom="@dimen/workout_frame_padding_half"
                         android:orientation="horizontal">
 
@@ -315,7 +311,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/bbb_percents_margin"
                             android:text="@string/bbb_75"
                             android:textColor="@color/colorWhite"
                             android:textSize="@dimen/text_14" />
@@ -326,12 +321,11 @@
                         android:id="@+id/radioGroupBBB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
                         android:layout_marginTop="@dimen/workout_frame_32"
                         android:background="@color/transparent"
                         android:checkedButton="@id/radio_bbb_50"
                         android:orientation="horizontal"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
                         android:paddingBottom="@dimen/workout_frame_padding">
 
                         <RadioButton
@@ -421,8 +415,9 @@
             android:id="@+id/divider_bottom_buttons"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginBottom="@dimen/workout_frame_16"
-            android:background="@color/colorDarkRed"
+            android:layout_marginBottom="@dimen/workout_frame_8"
+            android:background="@color/colorOrange"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/submit_compounds" />
 
         <Button
