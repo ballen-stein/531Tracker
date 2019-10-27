@@ -267,7 +267,7 @@ public class UpdateValues extends AppCompatActivity {
     }
 
     public void navSettings(){
-        Toast.makeText(getApplicationContext(), "Settings pressed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "BBBSettings pressed", Toast.LENGTH_LONG).show();
     }
 
 
