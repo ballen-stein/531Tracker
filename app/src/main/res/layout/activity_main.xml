@@ -54,6 +54,7 @@
                 android:layout_height="175dp"
                 android:layout_marginTop="-85dp"
                 android:layout_marginStart="229dp"
+                android:layout_marginEnd="500dp"
                 android:background="@drawable/hexagon_shape" />
 
             <ImageView
@@ -230,6 +231,7 @@
                 android:layout_height="175dp"
                 android:layout_marginStart="-105dp"
                 android:layout_marginTop="455dp"
+                android:layout_marginBottom="500dp"
                 android:background="@drawable/hexagon_shape" />
 
             <FrameLayout

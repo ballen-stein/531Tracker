@@ -10,10 +10,11 @@ import android.util.Log;
 
 import com.a531tracker.LiftBuilders.AsManyRepsAsPossible;
 import com.a531tracker.LiftBuilders.CompoundLifts;
+import com.a531tracker.UserSettings;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "531.db";
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 14;
 
     //  Compounds
     private static final String WORKOUT_COMPOUND_TABLE_NAME = "compound_exercise_list";
@@ -120,14 +121,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Track Cycle Table
         db.execSQL("create table if not exists " + WORKOUT_CYCLE_TABLE + " (" +
-                WORKOUT_CYCLE_NUMBER + " integer, " +
-                WORKOUT_BBB_SWAPS + " integer)"
+                WORKOUT_CYCLE_NUMBER + " integer)"
         );
 
         db.execSQL("create table if not exists " +  WORKOUT_SETTINGS_TABLE + " (" +
-                WORKOUT_BBB_SWAPS + " integer, " +
-                WORKOUT_FORMAT_CHOSEN + " integer, "+
-                WORKOUT_BBB_SEVEN_DAY + " integer)"
+                WORKOUT_BBB_SWAPS + " integer default 0, " +
+                WORKOUT_FORMAT_CHOSEN + " integer default 0, "+
+                WORKOUT_BBB_SEVEN_DAY + " integer default 0)"
         );
 
         // Accessory Table
@@ -143,11 +143,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVer, int newVer) {
         if(DATABASE_VERSION > db.getVersion()) {
-            Log.d("Upgrade", "Upgrading SQL database");
             db.execSQL("drop table if exists " + WORKOUT_COMPOUND_TABLE_NAME);
             db.execSQL("drop table if exists " + WORKOUT_ACCESSORY_TABLE_NAME);
             onCreate(db);
         }
+    }
+
+
+    public void deleteAllData(SQLiteDatabase db){
+        db.execSQL("drop table " + WORKOUT_CYCLE_TABLE);
+        db.execSQL("create table " + WORKOUT_CYCLE_TABLE + " (" +
+                WORKOUT_CYCLE_NUMBER + " integer)"
+        );
     }
 
 
@@ -159,8 +166,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists " + WORKOUT_COMPOUND_DEADLIFT);
         db.execSQL("drop table if exists " + WORKOUT_COMPOUND_PRESS);
         onCreate(db);
-
     }
+
+
     // -------- Compound SQL --------
 
 
@@ -181,7 +189,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 e.printStackTrace();
             }
         } else {
-            Log.e("SQL_DB_ERROR", lifts.getCompound_movement() + " was found");
+            Log.e("SQL_DB_ERROR", lifts.getCompound_movement() + " does not exist");
         }
     }
 
@@ -219,6 +227,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from " + WORKOUT_COMPOUND_TABLE_NAME + " where " +WORKOUT_COMPOUND_MOVEMENT + " = '" + lift + "'", null);
         cursor.moveToFirst();
+        int result = cursor.getCount();
+        Log.d("CursorValues", result + " Lift size");
         CompoundLifts newLifts = buildLift(cursor);
         cursor.close();
         db.close();
@@ -385,17 +395,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return amrap;
     }
 
-    private String repCheck(int repCheck){
-        switch(repCheck){
-            default:
-            case 1:
-                return WORKOUT_AS_MANY_REPS_AS_POSSIBLE_85;
-            case 2:
-                return WORKOUT_AS_MANY_REPS_AS_POSSIBLE_90;
-            case 3:
-                return WORKOUT_AS_MANY_REPS_AS_POSSIBLE_95;
-        }
-    }
 
     // -------- Cycle SQL --------
 
@@ -427,6 +426,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int result = cursor.getCount();
             cursor.close();
             db.close();
+            Log.d("CursorValues", result + " ");
             return result >= 0;
         } catch (Exception e){
             return false;
@@ -459,15 +459,103 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // -------- User BBBSettings SQL --------
 
 
-    public void swapBBBWorkouts(int oldVal, int newVal){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(WORKOUT_BBB_SWAPS, newVal);
-        db.update(WORKOUT_CYCLE_TABLE, contentValues, WORKOUT_BBB_SWAPS + " = '" + oldVal + "'", null);
+    public boolean createUserSettings(){
+        if(!checkForSettings()){
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(WORKOUT_FORMAT_CHOSEN, 901000);
+            contentValues.put(WORKOUT_BBB_SEVEN_DAY, 0);
+            contentValues.put(WORKOUT_BBB_SWAPS, 0);
+            try{
+                db.insert(WORKOUT_SETTINGS_TABLE, null, contentValues);
+                Log.d("UserSettings", "Fresh settings input!");
+                return false;
+            } catch (Exception e){
+                e.printStackTrace();
+                Log.d("UserSettings", "Input failed");
+                return false;
+            }
+        } else {
+            Log.d("UserSettings", "No settings input!");
+            return true;
+        }
     }
 
 
-    public int updateBBBWeight(CompoundLifts lifts){
+    private boolean checkForSettings(){
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery("select * from " + WORKOUT_SETTINGS_TABLE, null);
+            cursor.moveToFirst();
+            int result = cursor.getCount();
+            cursor.close();
+            db.close();
+            return result > 0;
+        } catch (Exception e){
+            return false;
+        }
+    }
+
+
+    public int swapBBBWorkouts(int oldVal, int newVal){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WORKOUT_BBB_SWAPS, newVal);
+        int i = db.update(WORKOUT_SETTINGS_TABLE, contentValues, WORKOUT_BBB_SWAPS + " = '" + oldVal + "'", null);
+        db.close();
+        return i;
+    }
+
+
+    public UserSettings getUserSettings(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + WORKOUT_SETTINGS_TABLE, null);
+        cursor.moveToFirst();
+        UserSettings userSettings = new UserSettings();
+        Log.d("CursorValues", "Chosen: " + cursor.getInt(cursor.getColumnIndex(WORKOUT_FORMAT_CHOSEN)));
+        Log.d("CursorValues", "Days: " + cursor.getInt(cursor.getColumnIndex(WORKOUT_BBB_SEVEN_DAY)));
+        Log.d("CursorValues", "Swaps: " + cursor.getInt(cursor.getColumnIndex(WORKOUT_BBB_SWAPS)));
+        userSettings.setChosenBBBFormat(cursor.getInt(cursor.getColumnIndex(WORKOUT_FORMAT_CHOSEN)));
+        userSettings.setWeekFormat(cursor.getInt(cursor.getColumnIndex(WORKOUT_BBB_SEVEN_DAY)));
+        userSettings.setSwapBBBFormat(cursor.getInt(cursor.getColumnIndex(WORKOUT_BBB_SWAPS)));
+        cursor.close();
+        db.close();
+        userSettings.setChosenBBBPercent(getBBBPercent());
+        return userSettings;
+    }
+
+
+    private float getBBBPercent(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select " + WORKOUT_COMPOUND_BBB_WEIGHT + " from " + WORKOUT_COMPOUND_TABLE_NAME, null);
+        cursor.moveToFirst();
+        float bbbVal = cursor.getFloat(cursor.getColumnIndex(WORKOUT_COMPOUND_BBB_WEIGHT));
+        cursor.close();
+        db.close();
+        return bbbVal;
+    }
+
+
+    public int updateWeekSettings(UserSettings userSettings, int oldVal){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WORKOUT_BBB_SEVEN_DAY, userSettings.getWeekFormat());
+        int i = db.update(WORKOUT_SETTINGS_TABLE, contentValues, WORKOUT_BBB_SEVEN_DAY + " = " + oldVal, null);
+        db.close();
+        return i;
+    }
+
+
+    public int updateBbbFormat(UserSettings userSettings, int oldVal){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WORKOUT_FORMAT_CHOSEN, userSettings.getChosenBBBFormat());
+        int i = db.update(WORKOUT_SETTINGS_TABLE, contentValues, WORKOUT_FORMAT_CHOSEN + " = " + oldVal, null);
+        return i;
+    }
+
+
+    public int updateBBBPercent(CompoundLifts lifts){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(WORKOUT_COMPOUND_BBB_WEIGHT, lifts.getBig_but_boring_weight());
@@ -476,10 +564,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return i;
     }
-
-
-    public void updateWorkoutFormat(){
-
-    }
-
 }
+
+
+

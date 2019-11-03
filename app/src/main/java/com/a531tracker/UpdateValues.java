@@ -162,7 +162,7 @@ public class UpdateValues extends AppCompatActivity {
                 ErrorAlerts errorAlerts = new ErrorAlerts(this);
                 String title = getString(R.string.amrap_error_title);
                 errorAlerts.setErrorAlertsValues(false, true, title, message, errorLift, true);
-                errorAlerts.createDialogAlert(this).show();
+                errorAlerts.preformattedAlert(this).show();
                 return false;
             }
         } catch (Exception e){
@@ -170,7 +170,7 @@ public class UpdateValues extends AppCompatActivity {
             String title = getString(R.string.amrap_error_title);
             ErrorAlerts errorAlerts = new ErrorAlerts(this);
             errorAlerts.setErrorAlertsValues(false, true, title, message, errorLift, true);
-            errorAlerts.createDialogAlert(this).show();
+            errorAlerts.preformattedAlert(this).show();
             return false;
         }
     }

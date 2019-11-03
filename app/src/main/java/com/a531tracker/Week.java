@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -29,6 +28,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Week extends Activity {
     private FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
@@ -59,13 +59,15 @@ public class Week extends Activity {
     private Button amrapButton;
     private Button homeButton;
     private Button settingsButton;
-    private Button uploadButton;
+    private Button returnButton;
 
     private Integer cycleValue;
 
     private int amrapWeight;
     private AsManyRepsAsPossible lastWeeksReps;
     private String currentWeek;
+
+    private UserSettings userSettings;
 
 
     @Override
@@ -80,41 +82,24 @@ public class Week extends Activity {
         cycleValue = intent.getIntExtra("Cycle", 1);
 
         setViews();
+        onStart();
         setButtons();
         setListeners();
         getDatabaseLifts();
         weekSelected("5/5/5");
-        navCheck();
         setHeaderText(compound, amrapWeight);
     }
 
 
-    private void setHeaderText(String headerCompound, int headerWeight){
-        TextView headerText = findViewById(R.id.header_text);
-        String displayInfo = headerCompound + " " + headerWeight + "lbs";
-        headerText.setText(displayInfo);
+    @Override
+    protected void onStart(){
+        super.onStart();
+        checkSettings();
     }
 
 
-    private void setButtons(){
-        amrapButton = findViewById(R.id.submit_amrap);
-        homeButton = findViewById(R.id.home_button);
-        settingsButton = findViewById(R.id.settings_button);
-        uploadButton = findViewById(R.id.upload_button);
-        uploadButton.setForeground(ContextCompat.getDrawable(mContext, R.drawable.icon_upload));
-        uploadButton.setText(R.string.nav_upload_week);
-    }
-
-    private void setViews(){
-        warmupFrame = findViewById(R.id.warmup_sets_frame);
-        bbbFrame = findViewById(R.id.bbb_sets_frame);
-        amrapFrame = findViewById(R.id.amrap_frame);
-
-        warmupDisplay = findViewById(R.id.warmup_sets_display);
-        coreDisplay = findViewById(R.id.core_sets_display);
-        bbbDisplay = findViewById(R.id.bbb_sets_display);
-
-        coreTitle = findViewById(R.id.core_title);
+    private void checkSettings(){
+        userSettings = db.getUserSettings();
     }
 
 
@@ -166,27 +151,21 @@ public class Week extends Activity {
     }
 
 
-    public void setListeners(){
-        tabOnClicks();
-        amrapButton();
-    }
-
-
     private void createWeeklyLiftsDisplays(LinearLayout layout, float[] liftPercent, String[] reps){
         for(int i = 0; i < liftPercent.length; i++){
-            layout.addView(setWeekLifts(0, liftPercent[i], reps[i]));
+            layout.addView(setWeekLifts(liftPercent[i], reps[i]));
         }
     }
 
 
-    private FrameLayout setWeekLifts(int i, float liftPercent, String reps) {
+    private FrameLayout setWeekLifts(float liftPercent, String reps) {
         FrameLayout frameLayout = new FrameLayout(getApplicationContext());
         layoutParams.height = 200;
         frameLayout.setLayoutParams(layoutParams);
         frameLayout.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.transparent, null));
 
         //TextView workoutName = createTextView("Placeholder Breakdown", new int[]{100,25});
-        String workoutWeightText = String.valueOf(5*(Math.ceil((liftsArrayList.get(0).getTraining_max()*liftPercent)/5))) + " lbs";
+        String workoutWeightText = (5*(Math.ceil((liftsArrayList.get(0).getTraining_max()*liftPercent)/5))) + " lbs";
         TextView workoutWeight = createTextView(workoutWeightText, new int[]{125, 25});
         TextView workoutReps = createTextView(reps, new int[]{700, 25});
         CheckBox checkbox = createCheckBox(new int[]{1100, 35});
@@ -247,7 +226,7 @@ public class Week extends Activity {
 
 
     private void startRepSubmission(){
-        final int[] i = new int[1];
+        //final int[] i = new int[1];
         Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
@@ -324,6 +303,45 @@ public class Week extends Activity {
 
 
     // ---- Buttons & onClicks
+
+    private void setHeaderText(String headerCompound, int headerWeight){
+        TextView headerText = findViewById(R.id.header_text);
+        String displayInfo = headerCompound + " " + headerWeight + "lbs";
+        headerText.setText(displayInfo);
+    }
+
+
+    private void setButtons(){
+        amrapButton = findViewById(R.id.submit_amrap);
+        homeButton = findViewById(R.id.home_button);
+        settingsButton = findViewById(R.id.settings_button);
+        returnButton = findViewById(R.id.upload_button);
+        returnButton.setForeground(ContextCompat.getDrawable(mContext, R.drawable.icon_upload));
+        returnButton.setText(R.string.nav_upload_week);
+        navButtons();
+    }
+
+
+    private void setViews(){
+        warmupFrame = findViewById(R.id.warmup_sets_frame);
+        bbbFrame = findViewById(R.id.bbb_sets_frame);
+        amrapFrame = findViewById(R.id.amrap_frame);
+
+        warmupDisplay = findViewById(R.id.warmup_sets_display);
+        coreDisplay = findViewById(R.id.core_sets_display);
+        bbbDisplay = findViewById(R.id.bbb_sets_display);
+
+        coreTitle = findViewById(R.id.core_title);
+    }
+
+
+    public void setListeners(){
+        tabOnClicks();
+        amrapButton();
+        setNav();
+    }
+
+
     private void amrapButton() {
         amrapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -334,17 +352,25 @@ public class Week extends Activity {
     }
 
 
-    private void navCheck(){
-        homeNav();
-        settingsNav();
-        backNav();
+    private void navButtons(){
+        homeButton = findViewById(R.id.home_button);
+        settingsButton = findViewById(R.id.settings_button);
+        returnButton = findViewById(R.id.upload_button);
     }
 
-    public void homeNav(){
+
+    private void setNav(){
+        navHome();
+        navSettings();
+        navReturn();
+    }
+
+
+    private void navHome(){
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                Intent intent = new Intent(mContext, HomeScreen.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
@@ -352,38 +378,29 @@ public class Week extends Activity {
     }
 
 
-    public void settingsNav(){
+    private void navSettings(){
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, BBBSettings.class);
+                Intent intent = new Intent(mContext, Settings.class);
                 startActivity(intent);
             }
         });
     }
 
 
-    public void backNav(){
-        uploadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navBack();
-            }
-        });
-    }
+    private void navReturn(){
 
-
-    public void navBack(){
-        Toast.makeText(getApplicationContext(), "Upload pressed", Toast.LENGTH_LONG).show();
     }
 
 
     private void tabOnClicks(){
         TabLayout tabSelected = findViewById(R.id.tab_view_days);
+        if(userSettings.getWeekFormat() != 1){
+            if(cycleValue%2!=0)
+                tabSelected.removeTab((Objects.requireNonNull(tabSelected.getTabAt(3))));
+        }
         // Remove Deload week if it's a 7 week cycle vs. 4 week cycle
-        //if(cycleValue%2!=0){
-        //    tabSelected.removeTab((Objects.requireNonNull(tabSelected.getTabAt(3))));
-        //}
         tabSelected.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

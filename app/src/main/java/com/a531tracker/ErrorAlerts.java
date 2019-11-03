@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-public class ErrorAlerts extends AlertDialog {
+public class ErrorAlerts extends AlertDialog.Builder {
 
     private String message;
     private String title;
@@ -18,7 +18,7 @@ public class ErrorAlerts extends AlertDialog {
     private String extraMessageValue;
     private boolean failedLift;
 
-    protected ErrorAlerts(Context context) {
+    public ErrorAlerts(Context context) {
         super(context);
     }
 
@@ -31,12 +31,12 @@ public class ErrorAlerts extends AlertDialog {
         setFailedLift(failedLift);
     }
 
-    public AlertDialog createDialogAlert(Context context){
+    public AlertDialog.Builder preformattedAlert(Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogTheme);
         builder.setMessage(getMessage())
                 .setTitle(getTitle())
                 .setCancelable(isCancelable())
-                .setPositiveButton(R.string.ok_text, new OnClickListener() {
+                .setPositiveButton(R.string.ok_text, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -54,7 +54,7 @@ public class ErrorAlerts extends AlertDialog {
         }
 
         if(isNegButton()) {
-            builder.setNegativeButton(R.string.cancel_text, new OnClickListener() {
+            builder.setNegativeButton(R.string.cancel_text, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -62,8 +62,27 @@ public class ErrorAlerts extends AlertDialog {
             });
         }
 
-        return builder.create();
+        return builder;
     }
+
+    public AlertDialog.Builder blankAlert(Context context){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogTheme);
+        builder.setMessage(getMessage())
+                .setTitle(getTitle())
+                .setCancelable(isCancelable());
+
+        if(isNegButton()) {
+            builder.setNeutralButton(R.string.cancel_text, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+        }
+
+        return builder;
+    }
+
 
     private void setMessage(String message){
         this.message = message;
@@ -81,10 +100,10 @@ public class ErrorAlerts extends AlertDialog {
         return title;
     }
 
-    @Override
+    /*@Override
     public void setCancelable(boolean cancelable) {
         this.cancelable = cancelable;
-    }
+    }*/
 
     private boolean isCancelable() {
         return cancelable;

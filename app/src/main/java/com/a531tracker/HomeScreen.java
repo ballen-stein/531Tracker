@@ -69,8 +69,6 @@ public class HomeScreen extends AppCompatActivity {
         setViews();
         setText();
         setListeners();
-        //checkForLiftValues();
-        createNavigation();
     }
 
 
@@ -209,6 +207,14 @@ public class HomeScreen extends AppCompatActivity {
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
         uploadLifts = findViewById(R.id.upload_button);
+        setNav();
+    }
+
+
+    private void setNav(){
+        navHome();
+        navSettings();
+        navReturn();
     }
 
 
@@ -222,6 +228,8 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
+    //Buttons
+
     public void setListeners(){
         benchButton();
         deadliftButton();
@@ -229,11 +237,9 @@ public class HomeScreen extends AppCompatActivity {
         squatButton();
         updateCycleButton();
         accessoriesCheck();
-        testBBB();
     }
 
 
-    //Buttons
     @SuppressLint("ClickableViewAccessibility")
     private void benchButton() {
         benchText.setOnClickListener(new View.OnClickListener() {
@@ -342,58 +348,6 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
-    private void testBBB(){
-        /*Button testBBB = findViewById(R.id.bbb_test);
-        testBBB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for(String lifts : compoundLifts){
-                    CompoundLifts newLifts = new CompoundLifts();
-                    newLifts.setBig_but_boring_weight(0.65f);
-                    newLifts.setCompound_movement(lifts);
-                    int i = db.updateBBBWeight(newLifts);
-                    if(i == 1){
-                        Log.d("BBB Update", "Successfully updated BBB weights!");
-                    }
-                }
-                testCheck();
-            }
-        });*/
-    }
-
-
-    private void testCheck(){
-        AsManyRepsAsPossible amrap = db.checkForMissing("Squat", cycleValue, liftValues.get(2));
-        //Bench - 190 | Press - 145 | Squat - 120 | Deadlift - 135
-
-        Log.d("AMRAP_Values", "Weight: " + amrap.getTotalMaxWeight()
-                + "\nCycle: " + amrap.getCycle() + "\nCompound: " + amrap.getCompound()
-                + "\n85: " + amrap.getEighty_five_reps() + "\n90: " + amrap.getNinety_reps()
-                + "\n95: " + amrap.getNinety_five_reps());
-
-        amrap = db.checkForMissing("Deadlift", cycleValue, liftValues.get(3));
-
-        Log.d("AMRAP_Values", "Weight: " + amrap.getTotalMaxWeight()
-                + "\nCycle: " + amrap.getCycle() + "\nCompound: " + amrap.getCompound()
-                + "\n85: " + amrap.getEighty_five_reps() + "\n90: " + amrap.getNinety_reps()
-                + "\n95: " + amrap.getNinety_five_reps());
-
-        amrap = db.checkForMissing("Overhand Press", cycleValue, liftValues.get(1));
-
-        Log.d("AMRAP_Values", "Weight: " + amrap.getTotalMaxWeight()
-                + "\nCycle: " + amrap.getCycle() + "\nCompound: " + amrap.getCompound()
-                + "\n85: " + amrap.getEighty_five_reps() + "\n90: " + amrap.getNinety_reps()
-                + "\n95: " + amrap.getNinety_five_reps());
-
-        amrap = db.checkForMissing("Bench", cycleValue, liftValues.get(0));
-
-        Log.d("AMRAP_Values", "Weight: " + amrap.getTotalMaxWeight()
-                + "\nCycle: " + amrap.getCycle() + "\nCompound: " + amrap.getCompound()
-                + "\n85: " + amrap.getEighty_five_reps() + "\n90: " + amrap.getNinety_reps()
-                + "\n95: " + amrap.getNinety_five_reps());
-    }
-
-
     @SuppressLint("ClickableViewAccessibility")
     private void updateCycleButton(){
         updateCycleText.setOnClickListener(new View.OnClickListener() {
@@ -421,33 +375,24 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
-    private void createNavigation(){
-        homeNav();
-        settingsNav();
-        setTrainingMax();
+    private void navHome(){
+        homeButton.setEnabled(false);
     }
 
 
-    public void homeNav(){
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, HomeScreen.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
-    }
-
-
-    public void settingsNav(){
+    private void navSettings(){
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, BBBSettings.class);
+                Intent intent = new Intent(mContext, Settings.class);
                 startActivity(intent);
             }
         });
+    }
+
+
+    private void navReturn(){
+        setTrainingMax();
     }
 
 
@@ -459,7 +404,6 @@ public class HomeScreen extends AppCompatActivity {
                     Intent intent = new Intent(mContext, SetMaxes.class);
                     startActivity(intent);
                 } else {
-                    Log.d("IntentStarted", "Correct intent!");
                     Intent intent = new Intent(mContext, SetMaxes.class);
                     intent.putIntegerArrayListExtra("LIFT_VALUES", (ArrayList<Integer>) liftValues);
                     intent.putExtra("Revision", true);

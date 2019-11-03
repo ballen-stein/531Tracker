@@ -5,7 +5,7 @@
     android:elevation="0dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorOrange">
+    android:background="@color/colorWhite">
 
     <include layout="@layout/hexagon_background" />
 
@@ -41,15 +41,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/workout_frame_8"
+                    android:background="@drawable/header_box"
+                    android:padding="@dimen/workout_frame_padding_half"
                     android:text="@string/cycle_title"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_18" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rectangle_outline"
-                    android:layout_marginTop="@dimen/workout_frame_8"
                     android:layout_marginEnd="@dimen/workout_frame_16"
                     android:layout_marginStart="@dimen/workout_frame_16"
                     android:padding="@dimen/workout_frame_padding"
@@ -96,13 +98,14 @@
 
                 <TextView
                     android:id="@+id/current_training_maxes"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:layout_marginTop="@dimen/workout_frame_8"
+                    android:background="@drawable/header_box"
                     android:padding="@dimen/workout_frame_padding"
                     android:layout_gravity="center"
                     android:text="@string/current_tm"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_18" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,7 +115,6 @@
                     android:layout_height="100dp"
                     android:layout_marginEnd="@dimen/workout_frame_16"
                     android:layout_marginStart="@dimen/workout_frame_16"
-                    android:layout_marginTop="@dimen/workout_frame_8"
                     android:elevation="4dp">
 
                     <TextView
