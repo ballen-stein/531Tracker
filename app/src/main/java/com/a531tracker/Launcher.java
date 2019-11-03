@@ -32,9 +32,11 @@ public class Launcher extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         DatabaseHelper db = new DatabaseHelper(this);
+        //If user settings doesn't exist...
         if(!db.createUserSettings()){
             Log.d("UserSettings", "Input default user settings");
             continueToLaunch();
+        //If user settings do exist...
         } else {
             Log.d("UserSettings", "Found user settings, continuing to launch...");
             continueToLaunch();
