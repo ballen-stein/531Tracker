@@ -396,11 +396,11 @@ public class Week extends Activity {
 
     private void tabOnClicks(){
         TabLayout tabSelected = findViewById(R.id.tab_view_days);
+        // Remove Deload week if it's a 7 week cycle vs. 4 week cycle
         if(userSettings.getWeekFormat() != 1){
             if(cycleValue%2!=0)
                 tabSelected.removeTab((Objects.requireNonNull(tabSelected.getTabAt(3))));
         }
-        // Remove Deload week if it's a 7 week cycle vs. 4 week cycle
         tabSelected.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

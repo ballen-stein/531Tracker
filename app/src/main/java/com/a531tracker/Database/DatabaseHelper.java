@@ -404,7 +404,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
             contentValues.put(WORKOUT_CYCLE_NUMBER, 1);
-            contentValues.put(WORKOUT_BBB_SWAPS, 1);
             try{
                 db.insert(WORKOUT_CYCLE_TABLE, null, contentValues);
                 return true;
