@@ -426,7 +426,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.close();
             db.close();
             Log.d("CursorValues", result + " ");
-            return result >= 0;
+            return result > 0;
         } catch (Exception e){
             return false;
         }
