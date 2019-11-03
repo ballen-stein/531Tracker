@@ -64,11 +64,34 @@
     <string name="settings_update_percents">Update BBB Percent</string>
     <string name="settings_bbb_percents">BBB Percent Options</string>
 
-    <string name="settings_cycle_view">View Current Cycle Information</string>
-    <string name="settings_reset_all">Reset ALL Lift Values</string>
+    <string name="settings_success_title">Success!</string>
+    <string name="settings_fail_title">Error</string>
+    <string name="settings_fail_message">Failed to update the cycle format; try again later.\n\nIf this issue persists, please contact the developer at 531developer@gmail.com.</string>
+
+    <string name="settings_cycle_view">Current Cycle Information</string>
+    <string name="settings_reset_all">Reset Lift Values</string>
     <string name="settings_delete_data">Delete ALL Data</string>
-    <string name="settings_view_bbb_options">Big But Boring Settings</string>
-    <string name="settings_amrap_stats">View AMRAP Numbers</string>
+    <string name="settings_view_lift_options">ALL Lift Settings</string>
+    <string name="settings_amrap_stats">AMRAP Numbers</string>
+
+    <string name="settings_cycle_header">Week/Cycle Options</string>
+    <string name="settings_cycle_four">4 Week Cycle</string>
+    <string name="settings_cycle_seven">7 Week Cycle</string>
+
+    <string name="settings_bbb_options">Boring But Big Options</string>
+    <string name="settings_bbb_fsl">First Set Last</string>
+    <string name="settings_bbb_joker">Joker Sets</string>
+    <string name="settings_bbb_eight_split">8/6/3 Split</string>
+    <string name="settings_bbb_deload_week">Deload Week</string>
+    <string name="settings_bbb_swap">Swap BBBs</string>
+
+    <string name="settings_delete_title">Delete All Data</string>
+    <string name="settings_delete_message">Warning: If you continue, all of your data will be deleted. Your lift values and Cycle will be reset to 0 and you will be prompted to put in your starting lift values again.\n\nAre you sure you wish to continue?</string>
+    <string name="settings_delete_ok">I Understand</string>
+
+    <string name="table_lift">Lift Name</string>
+    <string name="table_completed">Submitted</string>
+    <string name="table_missing">Missing</string>
 
     <string name="current_tm">Current Training Maxes</string>
     <string name="tm_current_placeholder">100</string>
@@ -107,5 +130,17 @@
     <string name="bbb_65">65%</string>
     <string name="bbb_70">70%</string>
     <string name="bbb_75">75%</string>
+    
+    <string-array name="lift_rep_values_863">
+        <item>8</item>
+        <item>6</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="lift_rep_values_531">
+        <item>5</item>
+        <item>3</item>
+        <item>1</item>
+    </string-array>
 
 </resources>

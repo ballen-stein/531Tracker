@@ -106,13 +106,16 @@ public class SetMaxes extends Activity {
 
 
     private void startCycle(){
-        db.startCycle();
+        if(db.startCycle())
+            Log.d("CycleValue", "Fresh Cycle Started");
+        else
+            Log.d("CycleValue", "Old Cycle Started");
     }
 
 
     private void startAMRAP(){
         int cycle = db.getCycle();
-        Log.d("cycle", cycle+"");
+        Log.d("CycleValue", cycle+"");
         for(String lift : compoundLifts) {
             db.createAMRAPTable(cycle, lift);
             db.createAMRAPTable(cycle - 1, lift);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorOrange"
+    android:background="@color/colorWhite"
     tools:context=".Week">
 
 
@@ -321,7 +321,6 @@
                 android:id="@+id/submit_amrap"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:background="@drawable/main_buttons"
                 android:text="@string/submit_text"
                 android:textColor="@drawable/main_buttons_text_colors"
                 android:textSize="@dimen/text_14"
