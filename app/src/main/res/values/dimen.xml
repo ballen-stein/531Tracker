@@ -3,6 +3,8 @@
     <dimen name="workout_frame_128">128dp</dimen>
     <dimen name="workout_frame_96">96dp</dimen>
     <dimen name="workout_frame_64">64dp</dimen>
+    <dimen name="workout_frame_56">56dp</dimen>
+    <dimen name="workout_frame_48">48dp</dimen>
     <dimen name="workout_frame_32">32dp</dimen>
     <dimen name="workout_frame_16">16dp</dimen>
     <dimen name="workout_frame_8">8dp</dimen>

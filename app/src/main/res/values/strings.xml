@@ -15,6 +15,7 @@
     <string name="squat">Back Squat</string>
     <string name="upper_body_compounds">Upper Body 1-Rep-Max</string>
     <string name="lower_body_compounds">Lower Body 1-Rep-Max</string>
+    <string name="bbb_set_maxes">Boring But Big Values</string>
     <string name="set_max_info">Enter the values for your 1 Rep Maxes (1RM) below. Round to the nearest 0 or 5 for in-between values. If you do not know your 1RM values, test for them first. \n\nIf you already know your Training Max, check the box below before submitting your values.</string>
     <string name="training_maxes_input">I already know my training maxes</string>
 
@@ -109,7 +110,7 @@
     <string name="core_set">Core Sets</string>
     <string name="warmup_set">Warm-Ups Sets</string>
     <string name="bbb_set">BBB Sets</string>
-    <string name="deload_set">Deload Set</string>
+    <string name="deload_set">Deload Sets</string>
 
     <string name="week_1">5/5/5</string>
     <string name="week_2">3/3/3</string>
@@ -130,17 +131,61 @@
     <string name="bbb_65">65%</string>
     <string name="bbb_70">70%</string>
     <string name="bbb_75">75%</string>
-    
-    <string-array name="lift_rep_values_863">
-        <item>8</item>
-        <item>6</item>
-        <item>3</item>
+
+    <string-array name="format_863_core_week_one">
+        <item>1x8</item>
+        <item>1x8</item>
+        <item>1x8+</item>
     </string-array>
 
-    <string-array name="lift_rep_values_531">
-        <item>5</item>
-        <item>3</item>
-        <item>1</item>
+    <string-array name="format_863_core_week_two">
+        <item>1x6</item>
+        <item>1x6</item>
+        <item>1x6+</item>
+    </string-array>
+
+    <string-array name="format_863_warmup">
+        <item>1x8&#8211;10</item>
+        <item>1x8&#8211;10</item>
+        <item>1x8&#8211;10</item>
+    </string-array>
+
+    <string-array name="format_863_core_week_three">
+        <item>1x8</item>
+        <item>1x6</item>
+        <item>1x3+</item>
+    </string-array>
+
+    <string-array name="format_531_warmup">
+        <item>1x5</item>
+        <item>1x5</item>
+        <item>1x3</item>
+    </string-array>
+
+    <string-array name="format_531_core_week_one">
+        <item>1x5</item>
+        <item>1x5</item>
+        <item>1x5+</item>
+    </string-array>
+
+    <string-array name="format_531_core_week_two">
+        <item>1x3</item>
+        <item>1x3</item>
+        <item>1x3+</item>
+    </string-array>
+
+    <string-array name="format_531_core_week_three">
+        <item>1x5</item>
+        <item>1x3</item>
+        <item>1x1+</item>
+    </string-array>
+
+    <string-array name="format_531_bbb">
+        <item>1x10</item>
+        <item>1x10</item>
+        <item>1x10</item>
+        <item>1x10</item>
+        <item>1x10</item>
     </string-array>
 
 </resources>

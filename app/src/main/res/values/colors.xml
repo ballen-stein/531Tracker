@@ -3,27 +3,27 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#000000</color>
-    <!--<color name="colorAccent">#ff8800</color>-->
-    <!--<color name="colorAccent">#FF1919</color>-->
     <color name="colorWhite">#ffffff</color>
-    <color name="navyBlue">#002886</color>
-    <color name="colorBlue">#0099CC</color>
-    <color name="colorDarkBlue">#0099CC</color>
+    <color name="colorSurface">#121212</color>
 
     <color name="colorDarkGrey">#3D3D3D</color>
     <color name="colorOpacBlack">#BF000000</color>
 
     <color name="colorBlack">#000000</color>
     <color name="colorOrange">#FFD9A638</color>
-    <color name="testColor">#FFD9A638</color>
     <color name="colorOrangeLightOpac">#D9D9A638</color>
     <color name="colorOrangeOpac">#BCD9A638</color>
-    <color name="colorDarkRed">#000000</color>
+
+    <color name="colorBlueDark">#18242B</color>
+    <color name="colorBlueDarker">#2D3A41</color>
+    <color name="colorBlue">#84C9FB</color>
 
     <color name="colorRealR">#BB0000</color>
 
+    <color name="colorWhiteOpac">#1AFFFFFF</color>
+
     <color name="colorWhiteDark">#BFffffff</color>
-    <color name="colorWhiteDarker">#99ffffff</color>
+    <color name="colorWhiteDarker">#DEffffff</color>
     <color name="colorDarkOpac">#99000000</color>
     <color name="transparent">#00000000</color>
 </resources>

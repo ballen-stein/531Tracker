@@ -63,7 +63,7 @@ public class SetMaxes extends Activity {
 
          */
         try {
-            firstLaunch = Objects.requireNonNull(intent.getExtras()).getBoolean("Has_Lifts", false);
+            firstLaunch = Objects.requireNonNull(intent.getExtras()).getBoolean("NewLifts", false);
             if(firstLaunch) {
                 cancelBtn.setVisibility(View.GONE);
             } else {
@@ -204,11 +204,13 @@ public class SetMaxes extends Activity {
                 startAMRAP();
 
                 if(firstLaunch){
-                    Intent returnIntent = getIntent();
+                    /*Intent returnIntent = getIntent();
                     returnIntent.putExtra("Submitted", "Values were submitted");
                     returnIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     setResult(RESULT_OK, returnIntent);
-                    finish();
+                    finish();*/
+                    Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                    startActivity(intent);
                 } else if(revision){
                     Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -125,7 +125,7 @@ public class UpdateValues extends AppCompatActivity {
         currentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                ((TextView) view).setTextColor(getColor(R.color.colorOrange));
+                ((TextView) view).setTextColor(getColor(R.color.colorBlue));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {

@@ -5,18 +5,17 @@
     android:elevation="0dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorWhite">
+    android:background="@color/colorDarkGrey">
 
     <include layout="@layout/hexagon_background" />
 
     <include layout="@layout/navigation"
-        android:elevation="16dp"
+        android:elevation="1dp"
         android:id="@+id/top_navigation"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/colorWhiteDarker"
         android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@+id/top_navigation"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -42,8 +41,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/workout_frame_8"
+                    android:layout_marginBottom="-3dp"
                     android:background="@drawable/header_box"
-                    android:padding="@dimen/workout_frame_padding_half"
+                    android:paddingTop="@dimen/workout_frame_padding_half"
+                    android:paddingBottom="@dimen/workout_frame_padding_half"
+                    android:paddingStart="@dimen/workout_frame_padding"
+                    android:paddingEnd="@dimen/workout_frame_padding"
                     android:text="@string/cycle_title"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_18" />
@@ -65,7 +68,7 @@
                         android:text="@string/cycle_placeholder"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginStart="@dimen/workout_frame_96"
+                        android:layout_marginStart="@dimen/workout_frame_56"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -87,9 +90,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/cycle_placeholder"
-                        android:textColor="@color/colorOrange"
+                        android:textColor="@color/colorBlue"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginEnd="@dimen/workout_frame_96"
+                        android:layout_marginEnd="@dimen/workout_frame_56"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -101,6 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/workout_frame_8"
+                    android:layout_marginBottom="-3dp"
                     android:background="@drawable/header_box"
                     android:padding="@dimen/workout_frame_padding"
                     android:layout_gravity="center"
@@ -126,7 +130,7 @@
                         android:text="@string/tm_bench_title"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginStart="@dimen/workout_frame_32"
+                        android:layout_marginStart="@dimen/workout_frame_8"
                         android:layout_marginBottom="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -140,9 +144,10 @@
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
                         android:layout_marginTop="@dimen/workout_frame_16"
-                        android:layout_marginStart="@dimen/workout_frame_8"
+                        android:layout_marginEnd="@dimen/workout_frame_64"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/bench_tm_title"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/bench_tm_update"
@@ -165,8 +170,8 @@
                         android:text="@string/tm_current_placeholder"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginEnd="@dimen/workout_frame_16"
-                        app:layout_constraintTop_toBottomOf="@id/bench_tm_update"
+                        android:layout_marginEnd="@dimen/workout_frame_8"
+                        app:layout_constraintTop_toBottomOf="@id/bench_tm_current"
                         app:layout_constraintEnd_toStartOf="@id/bench_arrow" />
 
                     <ImageView
@@ -189,7 +194,7 @@
                         android:padding="@dimen/workout_frame_padding_half"
                         android:autofillHints="no"
                         android:layout_marginStart="@dimen/workout_frame_8"
-                        app:layout_constraintTop_toBottomOf="@id/bench_tm_current"
+                        app:layout_constraintTop_toBottomOf="@id/bench_tm_update"
                         app:layout_constraintStart_toEndOf="@id/bench_arrow" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -213,7 +218,7 @@
                         android:text="@string/tm_press_title"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginStart="@dimen/workout_frame_32"
+                        android:layout_marginStart="@dimen/workout_frame_8"
                         android:layout_marginBottom="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"/>
@@ -222,14 +227,15 @@
                         android:id="@+id/press_tm_current"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/workout_frame_8"
-                        android:layout_marginTop="@dimen/workout_frame_16"
                         android:padding="@dimen/workout_frame_padding_half"
                         android:text="@string/tm_compound_current"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        app:layout_constraintStart_toEndOf="@id/press_tm_title"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_marginTop="@dimen/workout_frame_16"
+                        android:layout_marginEnd="@dimen/workout_frame_64"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/press_tm_update"
@@ -252,8 +258,8 @@
                         android:text="@string/tm_current_placeholder"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginEnd="@dimen/workout_frame_16"
-                        app:layout_constraintTop_toBottomOf="@id/press_tm_update"
+                        android:layout_marginEnd="@dimen/workout_frame_8"
+                        app:layout_constraintTop_toBottomOf="@id/press_tm_current"
                         app:layout_constraintEnd_toStartOf="@id/press_arrow" />
 
                     <ImageView
@@ -276,7 +282,7 @@
                         android:padding="@dimen/workout_frame_padding_half"
                         android:autofillHints="no"
                         android:layout_marginStart="@dimen/workout_frame_8"
-                        app:layout_constraintTop_toBottomOf="@id/press_tm_current"
+                        app:layout_constraintTop_toBottomOf="@id/press_tm_update"
                         app:layout_constraintStart_toEndOf="@id/press_arrow" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -300,7 +306,7 @@
                         android:text="@string/tm_squat_title"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginStart="@dimen/workout_frame_32"
+                        android:layout_marginStart="@dimen/workout_frame_8"
                         android:layout_marginBottom="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -313,10 +319,11 @@
                         android:text="@string/tm_compound_current"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginStart="@dimen/workout_frame_8"
                         android:layout_marginTop="@dimen/workout_frame_16"
+                        android:layout_marginEnd="@dimen/workout_frame_64"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/squat_tm_title" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/squat_tm_update"
@@ -339,8 +346,8 @@
                         android:text="@string/tm_current_placeholder"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginEnd="@dimen/workout_frame_16"
-                        app:layout_constraintTop_toBottomOf="@id/squat_tm_update"
+                        android:layout_marginEnd="@dimen/workout_frame_8"
+                        app:layout_constraintTop_toBottomOf="@id/squat_tm_current"
                         app:layout_constraintEnd_toStartOf="@id/squat_arrow"/>
 
                     <ImageView
@@ -363,9 +370,8 @@
                         android:padding="@dimen/workout_frame_padding_half"
                         android:autofillHints="no"
                         android:layout_marginStart="@dimen/workout_frame_8"
-                        app:layout_constraintTop_toBottomOf="@id/squat_tm_current"
+                        app:layout_constraintTop_toBottomOf="@id/squat_tm_update"
                         app:layout_constraintStart_toEndOf="@id/squat_arrow" />
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -389,7 +395,7 @@
                         android:text="@string/tm_deadlift_title"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginStart="@dimen/workout_frame_32"
+                        android:layout_marginStart="@dimen/workout_frame_8"
                         android:layout_marginBottom="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -402,10 +408,11 @@
                         android:text="@string/tm_compound_current"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginStart="@dimen/workout_frame_8"
                         android:layout_marginTop="@dimen/workout_frame_16"
+                        android:layout_marginEnd="@dimen/workout_frame_64"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/deadlift_tm_title" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/deadlift_tm_update"
@@ -428,9 +435,9 @@
                         android:text="@string/tm_current_placeholder"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginEnd="@dimen/workout_frame_16"
-                        app:layout_constraintTop_toBottomOf="@id/deadlift_tm_update"
-                        app:layout_constraintEnd_toStartOf="@id/deadlift_arrow" />
+                        android:layout_marginEnd="@dimen/workout_frame_8"
+                        app:layout_constraintEnd_toStartOf="@id/deadlift_arrow"
+                        app:layout_constraintTop_toBottomOf="@id/deadlift_tm_current" />
 
                     <ImageView
                         android:id="@+id/deadlift_arrow"
@@ -452,29 +459,31 @@
                         android:padding="@dimen/workout_frame_padding_half"
                         android:autofillHints="no"
                         android:layout_marginStart="@dimen/workout_frame_8"
-                        app:layout_constraintTop_toBottomOf="@id/deadlift_tm_current"
+                        app:layout_constraintTop_toBottomOf="@id/deadlift_tm_update"
                         app:layout_constraintStart_toEndOf="@id/deadlift_arrow" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/tm_update_all_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/tm_update_all"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/button_surface_border"
+                android:layout_marginEnd="@dimen/workout_frame_16"
+                android:layout_marginStart="@dimen/workout_frame_16"
+                android:layout_marginBottom="@dimen/workout_frame_16"
+                android:elevation="1dp"
+                app:layout_constraintTop_toBottomOf="@id/tm_layout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <Button
-        android:id="@+id/tm_update_all_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="@string/tm_update_all"
-        android:textColor="@color/colorWhite"
-        android:background="@drawable/update_button"
-        android:layout_marginEnd="@dimen/workout_frame_16"
-        android:layout_marginStart="@dimen/workout_frame_16"
-        android:layout_marginBottom="@dimen/workout_frame_16"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

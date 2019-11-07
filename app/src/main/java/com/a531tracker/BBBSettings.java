@@ -307,10 +307,10 @@ public class BBBSettings extends AppCompatActivity {
                 if(bbbDeload.isChecked())
                     createText += "BBB During Deload, ";
                 if(bbbSwaps.isChecked())
-                    createText += "Swapped BBBs";
+                    createText += "Swapped BBBs, ";
                 clearSettings();
                 getCurrentSettings();
-                message = "You've changed your Boring But Big format to include the following: " + createText + ".";
+                message = "You've changed your Boring But Big format to include the following: " + createText.substring(0, createText.length()-2) + ".";
                 newAlert(true, message);
             } else {
                 newAlert(false, message);

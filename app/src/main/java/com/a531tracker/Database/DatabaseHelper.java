@@ -227,8 +227,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from " + WORKOUT_COMPOUND_TABLE_NAME + " where " +WORKOUT_COMPOUND_MOVEMENT + " = '" + lift + "'", null);
         cursor.moveToFirst();
-        int result = cursor.getCount();
-        Log.d("CursorValues", result + " Lift size");
         CompoundLifts newLifts = buildLift(cursor);
         cursor.close();
         db.close();
