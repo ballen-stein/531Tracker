@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.a531tracker.Database.DatabaseHelper;
 import com.a531tracker.LiftBuilders.AsManyRepsAsPossible;
+import com.a531tracker.LiftBuilders.CompoundLifts;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,6 +42,11 @@ public class Settings extends AppCompatActivity {
 
     private TableLayout liftTable;
 
+    private TextView benchNums;
+    private TextView pressNums;
+    private TextView deadliftNums;
+    private TextView squatNums;
+
     private Button homeButton;
     private Button settingsButton;
     private Button returnButton;
@@ -48,7 +54,9 @@ public class Settings extends AppCompatActivity {
     private DatabaseHelper db  = new DatabaseHelper(this);
     TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.3333f);
     private int cycleValue;
+
     private List<Integer> liftValues = new ArrayList<>();
+    private List<CompoundLifts> currentValues = new ArrayList<>();
     private Map<String, Integer> liftMap = new HashMap<>();
 
     @Override
@@ -61,6 +69,7 @@ public class Settings extends AppCompatActivity {
         setButtons();
         setListeners();
         setViews();
+
     }
 
 
@@ -73,7 +82,7 @@ public class Settings extends AppCompatActivity {
         clearTable();
         getLiftValues();
         setTableRow(liftMap);
-
+        setCurrentValues();
     }
 
 
@@ -90,10 +99,13 @@ public class Settings extends AppCompatActivity {
     }
 
     private void getLiftValues() {
+        int i = 0;
         for(String lift : compoundLifts){
-            int trainingMax = db.getLifts(lift).getTraining_max();
+            currentValues.add(db.getLifts(lift));
+            int trainingMax = currentValues.get(i).getTraining_max();
             liftMap.put(lift, trainingMax);
             liftValues.add(trainingMax);
+            i++;
         }
     }
 
@@ -144,7 +156,7 @@ public class Settings extends AppCompatActivity {
     private TextView createView(String text){
         TextView tv = new TextView(mContext);
         tv.setText(text);
-        tv.setTextColor(ContextCompat.getColor(mContext, R.color.colorWhite));
+        tv.setTextColor(ContextCompat.getColor(mContext, R.color.colorBlue));
         tv.setBackground(ResourcesCompat.getDrawable(getResources(), (R.drawable.table_boxes), null));
         int paddingVal = (int) mContext.getResources().getDimension(R.dimen.workout_frame_padding_half);
         tv.setPadding(paddingVal, paddingVal, paddingVal, paddingVal);
@@ -163,6 +175,19 @@ public class Settings extends AppCompatActivity {
 
     private void setViews(){
         liftTable = findViewById(R.id.lifts_table);
+
+        benchNums = findViewById(R.id.bench_value);
+        pressNums = findViewById(R.id.press_value);
+        deadliftNums = findViewById(R.id.deadlift_value);
+        squatNums = findViewById(R.id.squat_value);
+    }
+
+
+    private void setCurrentValues() {
+        benchNums.setText(String.valueOf(currentValues.get(0).getTraining_max()));
+        pressNums.setText(String.valueOf(currentValues.get(1).getTraining_max()));
+        deadliftNums.setText(String.valueOf(currentValues.get(2).getTraining_max()));
+        squatNums.setText(String.valueOf(currentValues.get(3).getTraining_max()));
     }
 
 
@@ -170,6 +195,9 @@ public class Settings extends AppCompatActivity {
         resetLiftsSettings = findViewById(R.id.reset_settings_frame);
         bbbSettings = findViewById(R.id.lift_settings_frame);
         amrapSettings = findViewById(R.id.amrap_settings_frame);
+        //Hide AMRAP Button until graphing is implemented
+        if(!getResources().getBoolean(R.bool.show_amrap_numbers))
+            //amrapSettings.setVisibility(View.GONE);
         deleteAllData = findViewById(R.id.delete_settings_frame);
         navButtons();
     }

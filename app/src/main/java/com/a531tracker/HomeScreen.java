@@ -107,9 +107,10 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
-    public void openCompoundWeek(String compound){
+    public void openCompoundWeek(String compound, String swap){
         Intent intent = new Intent(getApplicationContext(), Week.class);
         intent.putExtra("Compound", compound);
+        intent.putExtra("Swap", swap);
         intent.putExtra("Cycle", cycleValue);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
@@ -126,7 +127,7 @@ public class HomeScreen extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if(noLiftsFound) {
                             Intent intent = new Intent(mContext, SetMaxes.class);
-                            intent.putExtra("Has_Lifts", true);
+                            intent.putExtra("NewLifts", true);
                             startActivityForResult(intent, SET_TRAINING_MAX_CODE);
                         }
                     }
@@ -190,7 +191,7 @@ public class HomeScreen extends AppCompatActivity {
     public void accessoriesCheck(){
         if(getResources().getBoolean(R.bool.have_accessories)) {
             accessoriesButton();
-            accessoryView.setVisibility(View.VISIBLE);
+            //accessoryView.setBackgroundTintMode();
             accessoryText.setVisibility(View.VISIBLE);
         }
     }
@@ -246,7 +247,7 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("WasClicked", "Bench Text");
-                openCompoundWeek("Bench");
+                openCompoundWeek("Bench", "Overhand Press");
             }
         });
         benchText.setOnTouchListener(new View.OnTouchListener() {
@@ -273,7 +274,7 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("WasClicked", "Deadlift Text");
-                openCompoundWeek("Deadlift");
+                openCompoundWeek("Deadlift", "Squat");
             }
         });
         deadliftText.setOnTouchListener(new View.OnTouchListener() {
@@ -300,7 +301,7 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("WasClicked", "Press Text");
-                openCompoundWeek("Overhand Press");
+                openCompoundWeek("Overhand Press", "Bench");
             }
         });
         pressText.setOnTouchListener(new View.OnTouchListener() {
@@ -327,7 +328,7 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("WasClicked", "Squat Text");
-                openCompoundWeek("Squat");
+                openCompoundWeek("Squat", "Deadlift");
             }
         });
         squatText.setOnTouchListener(new View.OnTouchListener() {

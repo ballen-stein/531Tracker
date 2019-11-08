@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@color/colorDarkGrey"
     tools:context=".BBBSettings">
 
     <include layout="@layout/hexagon_background" />
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="@dimen/workout_frame_padding"
-        android:background="@drawable/box"
+        android:background="@drawable/rectangle_outline"
         app:layout_constraintTop_toBottomOf="@id/top_frame_home"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/settings_cycle_header"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorBlue"
                     android:textSize="@dimen/text_16"
                     android:padding="@dimen/workout_frame_padding_half"
                     app:layout_constraintTop_toTopOf="parent"
@@ -79,12 +79,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/settings_cycle_four"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:textSize="@dimen/text_14" />
 
                     <RadioButton
                         android:id="@+id/radio_standard"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/workout_frame_16"/>
@@ -94,12 +94,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/settings_cycle_seven"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:textSize="@dimen/text_14" />
 
                     <RadioButton
                         android:id="@+id/radio_seven"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/workout_frame_16"/>
@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/settings_bbb_options"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorBlue"
                     android:textSize="@dimen/text_16"
                     android:padding="@dimen/workout_frame_padding_half"
                     app:layout_constraintTop_toTopOf="parent"
@@ -164,7 +164,7 @@
                         android:padding="@dimen/workout_frame_padding_half"
                         android:layout_gravity="center"
                         android:text="@string/settings_bbb_eight_split"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:textSize="@dimen/text_14" />
 
                     <TextView
@@ -173,7 +173,7 @@
                         android:padding="@dimen/workout_frame_padding_half"
                         android:layout_gravity="center"
                         android:text="@string/settings_bbb_fsl"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:textSize="@dimen/text_14" />
 
                     <TextView
@@ -182,7 +182,7 @@
                         android:padding="@dimen/workout_frame_padding_half"
                         android:layout_gravity="center"
                         android:text="@string/settings_bbb_joker"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:textSize="@dimen/text_14" />
 
                     <TextView
@@ -191,7 +191,7 @@
                         android:padding="@dimen/workout_frame_padding_half"
                         android:layout_gravity="center"
                         android:text="@string/settings_bbb_deload_week"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:textSize="@dimen/text_14" />
 
                     <TextView
@@ -200,7 +200,7 @@
                         android:padding="@dimen/workout_frame_padding_half"
                         android:layout_gravity="center"
                         android:text="@string/settings_bbb_swap"
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:textSize="@dimen/text_14" />
 
                 </LinearLayout>
@@ -219,31 +219,31 @@
 
                     <CheckBox
                         android:id="@+id/bbb_eight_split"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <CheckBox
                         android:id="@+id/bbb_fsl"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <CheckBox
                         android:id="@+id/bbb_joker"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <CheckBox
                         android:id="@+id/bbb_deload"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <CheckBox
                         android:id="@+id/bbb_swaps"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -274,7 +274,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/settings_bbb_percents"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorBlue"
                     android:textSize="@dimen/text_16"
                     android:padding="@dimen/workout_frame_padding_half"
                     app:layout_constraintStart_toStartOf="parent"
@@ -301,42 +301,42 @@
                     app:layout_constraintEnd_toEndOf="parent">
 
                     <TextView
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/bbb_percents_margin"
                         android:text="@string/bbb_40" />
 
                     <TextView
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/bbb_percents_margin"
                         android:text="@string/bbb_45" />
 
                     <TextView
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/bbb_percents_margin"
                         android:text="@string/bbb_50" />
 
                     <TextView
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/bbb_percents_margin"
                         android:text="@string/bbb_55" />
 
                     <TextView
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/bbb_percents_margin"
                         android:text="@string/bbb_60" />
 
                     <TextView
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/bbb_percents_margin"
@@ -344,14 +344,14 @@
 
 
                     <TextView
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/bbb_percents_margin"
                         android:text="@string/bbb_70" />
 
                     <TextView
-                        android:textColor="@color/colorWhite"
+                        android:textColor="@color/colorBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/bbb_75" />
@@ -369,7 +369,7 @@
 
                     <RadioButton
                         android:id="@+id/radio_bbb_40"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/radio_button_margin"
@@ -377,7 +377,7 @@
 
                     <RadioButton
                         android:id="@+id/radio_bbb_45"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/radio_button_margin"
@@ -385,7 +385,7 @@
 
                     <RadioButton
                         android:id="@+id/radio_bbb_50"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/radio_button_margin"
@@ -393,7 +393,7 @@
 
                     <RadioButton
                         android:id="@+id/radio_bbb_55"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/radio_button_margin"
@@ -401,7 +401,7 @@
 
                     <RadioButton
                         android:id="@+id/radio_bbb_60"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/radio_button_margin"
@@ -409,7 +409,7 @@
 
                     <RadioButton
                         android:id="@+id/radio_bbb_65"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/radio_button_margin"
@@ -417,7 +417,7 @@
 
                     <RadioButton
                         android:id="@+id/radio_bbb_70"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/radio_button_margin"
@@ -425,7 +425,7 @@
 
                     <RadioButton
                         android:id="@+id/radio_bbb_75"
-                        android:buttonTint="@color/colorOrange"
+                        android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/radio_button_margin"

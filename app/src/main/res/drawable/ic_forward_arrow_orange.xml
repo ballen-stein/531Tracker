@@ -10,22 +10,22 @@
         android:scaleX="-1">
 
         <path
-            android:fillColor="@color/colorOrange"
+            android:fillColor="@color/colorBlue"
             android:pathData="M18,6H2A1,1 0,0 0,2 8H18a1,1 0,0 0,0 -2Z"/>
         <group>
             <clip-path android:pathData="M18,6H2A1,1 0,0 0,2 8H18a1,1 0,0 0,0 -2Z M 0,0"/>
             <path
-                android:fillColor="@color/colorOrange"
+                android:fillColor="@color/colorBlue"
                 android:pathData="M-2,-5h24v24h-24z"/>
             <group>
                 <clip-path android:pathData="M-2,-5h24v24h-24z M 0,0"/>
                 <path
-                    android:fillColor="@color/colorOrange"
+                    android:fillColor="@color/colorBlue"
                     android:pathData="M18,6H2A1,1 0,0 0,2 8H18a1,1 0,0 0,0 -2Z"/>
             </group>
         </group>
         <path
-            android:fillColor="@color/colorOrange"
+            android:fillColor="@color/colorBlue"
             android:pathData="M8,14a1,1 0,0 1,-0.71 -0.29L0.59,7 7.29,0.29A1,1 0,0 1,8.71 1.71L3.41,7l5.3,5.29a1,1 0,0 1,0 1.42A1,1 0,0 1,8 14Z"/>
     </group>
 </vector>
