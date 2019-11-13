@@ -8,10 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
 import com.a531tracker.Database.DatabaseHelper;
-import com.a531tracker.LiftBuilders.CompoundLifts;
+import com.a531tracker.ObjectBuilders.CompoundLifts;
+import com.a531tracker.ObjectBuilders.UserSettings;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,14 +22,19 @@ import java.util.List;
 
 import static com.a531tracker.HomeScreen.compoundLifts;
 
-public class BBBSettings extends AppCompatActivity {
+public class BBBSettings extends AppCompatActivity implements InformationFragment.InformationFragmentListener{
+
+    private InformationFragment informationFragment;
 
     private Button submitWeek;
     private Button submitOptions;
     private Button submitPercents;
     private Button homeButton;
     private Button settingsButton;
-    private Button returnButton;
+
+    private LinearLayout bbbWeekInfoButton;
+    private LinearLayout bbbPercentInfoButton;
+    private LinearLayout bbbFormatInfoButton;
 
     private RadioGroup weekGroup;
     private RadioGroup bbbGroup;
@@ -184,6 +191,10 @@ public class BBBSettings extends AppCompatActivity {
         submitWeek = findViewById(R.id.submit_week_options);
         submitOptions = findViewById(R.id.submit_bbb_options);
         submitPercents = findViewById(R.id.submit_bbb_percent);
+
+        bbbWeekInfoButton = findViewById(R.id.week_options_information);
+        bbbFormatInfoButton = findViewById(R.id.bbb_options_information);
+        bbbPercentInfoButton = findViewById(R.id.bbb_percent_information);
         navButtons();
     }
 
@@ -191,54 +202,6 @@ public class BBBSettings extends AppCompatActivity {
     private void navButtons(){
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
-        returnButton = findViewById(R.id.upload_button);
-    }
-
-
-    private void setListeners(){
-        submitWeekOptions();
-        submitOptionsBBB();
-        submitPercentsBBB();
-        setNav();
-    }
-
-
-    private void setNav(){
-        navHome();
-        navSettings();
-        navReturn();
-    }
-
-
-    private void navHome(){
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
-    }
-
-
-    private void navSettings(){
-        settingsButton.setEnabled(false);
-    }
-
-
-    private void navReturn(){
-
-    }
-
-
-    private void submitWeekOptions(){
-        submitWeek.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateCycleFormat();
-            }
-        });
     }
 
 
@@ -281,15 +244,6 @@ public class BBBSettings extends AppCompatActivity {
         }
     }
 
-    private void submitOptionsBBB(){
-        submitOptions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateBBBOptions();
-            }
-        });
-    }
-
 
     private void updateBBBOptions(){
         newSettings.setSwapBBBFormat(swapCheck());
@@ -310,7 +264,10 @@ public class BBBSettings extends AppCompatActivity {
                     createText += "Swapped BBBs, ";
                 clearSettings();
                 getCurrentSettings();
-                message = "You've changed your Boring But Big format to include the following: " + createText.substring(0, createText.length()-2) + ".";
+                if(createText.length() > 0)
+                    message = "You've changed your Boring But Big format to include the following: " + createText.substring(0, createText.length()-2) + ".";
+                else
+                    message = "You've removed all Boring But Big options.";
                 newAlert(true, message);
             } else {
                 newAlert(false, message);
@@ -355,16 +312,6 @@ public class BBBSettings extends AppCompatActivity {
     }
 
 
-    private void submitPercentsBBB(){
-        submitPercents.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateBBBPercents(checkBBBPercent(bbbGroup.getCheckedRadioButtonId()));
-            }
-        });
-    }
-
-
     private float checkBBBPercent(int id){
         float bbbVal = 0.40f;
         for(int i = 0; i < radioBbbChoices.size(); i++){
@@ -403,6 +350,139 @@ public class BBBSettings extends AppCompatActivity {
         }
     }
 
+
+    // ---------- Fragment Values ----------
+
+    private void displayInformation(String header, String desc){
+        if(informationFragment != null){
+            closeInformation();
+        }
+        informationFragment = InformationFragment.newInstance(header, desc);
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.enter_bottom, R.anim.exit_bottom, R.anim.enter_bottom, R.anim.exit_bottom)
+                .addToBackStack("@null")
+                .replace(R.id.fragment_holder, informationFragment)
+                .commit();
+    }
+
+    @Override
+    public void closeInformation(){
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.enter_bottom, R.anim.exit_bottom, R.anim.enter_bottom, R.anim.exit_bottom)
+                .remove(informationFragment)
+                .commit();
+        informationFragment = null;
+    }
+
+
+    // ---------- Buttons and Listeners ----------
+
+    private void setListeners(){
+        submitWeekOptions();
+        submitOptionsBBB();
+        submitPercentsBBB();
+        viewInformation();
+        setNav();
+    }
+
+
+    private void viewInformation(){
+        weekInformation();
+        percentInformation();
+        formatInformation();
+    }
+
+
+    private void setNav(){
+        navHome();
+        navSettings();
+    }
+
+
+    private void navHome(){
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+    }
+
+
+    private void navSettings(){
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+                finish();
+            }
+        });
+    }
+
+
+    private void submitWeekOptions(){
+        submitWeek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateCycleFormat();
+            }
+        });
+    }
+
+
+    private void submitPercentsBBB(){
+        submitPercents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateBBBPercents(checkBBBPercent(bbbGroup.getCheckedRadioButtonId()));
+            }
+        });
+    }
+
+
+    private void submitOptionsBBB(){
+        submitOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateBBBOptions();
+            }
+        });
+    }
+
+
+    private void weekInformation(){
+        bbbWeekInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                displayInformation(getString(R.string.settings_cycle_header), getString(R.string.settings_week_info));
+            }
+        });
+    }
+
+
+    private void formatInformation(){
+        bbbFormatInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                displayInformation(getResources().getString(R.string.settings_bbb_options), getString(R.string.settings_option_info));
+            }
+        });
+    }
+
+
+    private void percentInformation(){
+        bbbPercentInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                displayInformation(getString(R.string.settings_bbb_percents), getString(R.string.settings_percent_info));
+            }
+        });
+    }
+
+
+    // ---------- Misc. ----------
 
     private void clearSettings(){
         userSettings = new UserSettings();

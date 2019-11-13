@@ -4,15 +4,17 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#000000</color>
     <color name="colorWhite">#ffffff</color>
+
     <color name="colorSurface">#121212</color>
+    <color name="colorSurfaceLighter">#181818</color>
+    <color name="color_5">#272727</color>
 
     <color name="colorDarkGrey">#3D3D3D</color>
     <color name="colorOpacBlack">#BF000000</color>
 
     <color name="colorBlack">#000000</color>
-    <color name="colorOrange">#FFD9A638</color>
-    <color name="colorOrangeLightOpac">#D9D9A638</color>
-    <color name="colorOrangeOpac">#BCD9A638</color>
+    <color name="colorOrange">#f17800</color>
+    <color name="colorOrangeLighter">#FF932A</color>
 
     <color name="colorBlueDark">#18242B</color>
     <color name="colorBlueDarker">#2D3A41</color>
@@ -24,6 +26,11 @@
 
     <color name="colorWhiteDark">#BFffffff</color>
     <color name="colorWhiteDarker">#DEffffff</color>
+
+    <color name="overlay_5">#0DFFFFFF</color>
+    <color name="overlay_9">#17FFFFFF</color>
+    <color name="overlay_16">#29FFFFFF</color>
+
     <color name="colorDarkOpac">#99000000</color>
     <color name="transparent">#00000000</color>
 </resources>

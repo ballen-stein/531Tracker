@@ -3,8 +3,8 @@ package com.a531tracker;
 import android.content.Context;
 
 import com.a531tracker.Database.DatabaseHelper;
-import com.a531tracker.LiftBuilders.AccessoryLifts;
-import com.a531tracker.LiftBuilders.CompoundLifts;
+import com.a531tracker.ObjectBuilders.AccessoryLifts;
+import com.a531tracker.ObjectBuilders.CompoundLifts;
 
 import org.junit.After;
 import org.junit.Test;

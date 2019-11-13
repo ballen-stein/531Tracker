@@ -54,15 +54,22 @@
                     app:layout_constraintEnd_toEndOf="parent"/>
 
 
-                <ImageButton
+                <LinearLayout
                     android:id="@+id/week_options_information"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/icon_info"
-                    android:layout_marginEnd="@dimen/workout_frame_16"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:orientation="vertical"
                     app:layout_constraintStart_toEndOf="@+id/week_options_header"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/icon_info"/>
+
+                </LinearLayout>
 
                 <RadioGroup
                     android:id="@+id/radio_cycle_type"
@@ -112,9 +119,9 @@
                 android:id="@+id/submit_week_options"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/main_buttons"
+                android:background="@drawable/update_button"
+                android:textColor="@color/colorBlack"
                 android:text="@string/settings_update_cycle"
-                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_14"
                 android:layout_marginTop="@dimen/workout_frame_16"
                 android:layout_marginEnd="@dimen/workout_frame_32"
@@ -138,15 +145,22 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
 
-                <ImageButton
+                <LinearLayout
                     android:id="@+id/bbb_options_information"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/workout_frame_16"
-                    android:background="@drawable/icon_info"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/bbb_header" />
+                    app:layout_constraintStart_toEndOf="@id/bbb_header">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/icon_info"/>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/bbb_options_text"
@@ -255,9 +269,9 @@
                 android:id="@+id/submit_bbb_options"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/main_buttons"
+                android:background="@drawable/update_button"
+                android:textColor="@color/colorBlack"
                 android:text="@string/settings_update_bbb"
-                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_14"
                 android:layout_marginTop="@dimen/workout_frame_16"
                 android:layout_marginEnd="@dimen/workout_frame_32"
@@ -281,15 +295,22 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageButton
-                    android:id="@+id/bbb_percent_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/icon_info"
-                    android:layout_marginEnd="@dimen/workout_frame_16"
+                <LinearLayout
+                    android:id="@+id/bbb_percent_information"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/bbb_percent_header" />
+                    app:layout_constraintStart_toEndOf="@id/bbb_percent_header">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/icon_info" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/bbb_percent_text"
@@ -439,9 +460,9 @@
                 android:id="@+id/submit_bbb_percent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/main_buttons"
+                android:background="@drawable/update_button"
+                android:textColor="@color/colorBlack"
                 android:text="@string/settings_update_percents"
-                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_14"
                 android:layout_marginTop="@dimen/workout_frame_16"
                 android:layout_marginBottom="@dimen/workout_frame_16"
@@ -451,5 +472,23 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/workout_frame_32"
+        android:layout_marginEnd="@dimen/workout_frame_32"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/fragment_holder"
+            android:layout_width="match_parent"
+            android:layout_height="800dp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:orientation="vertical" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

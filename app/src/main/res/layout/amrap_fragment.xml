@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/workout_description"
+    android:elevation="0dp" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:background="@drawable/fragment_box"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/fragment_amrap_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/workout_frame_8"
+            android:padding="@dimen/workout_frame_padding_half"
+            android:text="@string/amrap_submit"
+            android:textSize="@dimen/text_18"
+            android:textColor="@color/colorBlue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <LinearLayout
+            android:id="@+id/fragment_settings_description_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:elevation="16dp"
+            android:background="@drawable/fragmet_inner_box"
+            app:layout_constraintTop_toBottomOf="@id/fragment_amrap_header"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/amrap_last_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/workout_frame_16"
+                    android:layout_marginEnd="@dimen/workout_frame_16"
+                    android:textSize="@dimen/text_14"
+                    android:text="@string/amrap_last_week"
+                    android:textColor="@color/colorWhite"
+                    app:layout_constraintEnd_toStartOf="@+id/amrap_this_week"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/amrap_text" />
+
+                <TextView
+                    android:id="@+id/amrap_this_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/workout_frame_16"
+                    android:text="@string/amrap_this_week"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_14"
+                    android:layout_marginEnd="@dimen/workout_frame_32"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/amrap_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/workout_frame_16"
+                    android:layout_marginBottom="@dimen/workout_frame_32"
+                    android:text="@string/amrap_text"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_14"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <TextView
+                    android:id="@+id/fragment_amrap_last_week_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/workout_frame_32"
+                    android:text="@string/amrap_placeholder_reps"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_16"
+                    app:layout_constraintEnd_toEndOf="@id/amrap_last_week"
+                    app:layout_constraintStart_toStartOf="@id/amrap_last_week"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <EditText
+                    android:id="@+id/fragment_amrap_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/workout_frame_32"
+                    android:inputType="number"
+                    android:textSize="@dimen/text_16"
+                    android:text="@string/amrap_placeholder_reps"
+                    android:textColor="@color/colorBlue"
+                    android:backgroundTint="@color/colorBlue"
+                    android:textCursorDrawable="@drawable/cursor_drawable"
+                    android:paddingStart="@dimen/workout_frame_padding"
+                    android:paddingEnd="@dimen/workout_frame_padding"
+                    app:layout_constraintEnd_toEndOf="@id/amrap_this_week"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/amrap_this_week"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <Button
+                    android:id="@+id/fragment_amrap_cancel_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="@dimen/workout_frame_16"
+                    android:background="@drawable/update_button"
+                    android:text="@string/cancel_text"
+                    android:textSize="@dimen/text_14"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/fragment_amrap_submit_button"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                    android:id="@+id/fragment_amrap_submit_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="@dimen/workout_frame_16"
+                    android:background="@drawable/update_button"
+                    android:text="@string/submit_text"
+                    android:textSize="@dimen/text_14"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/fragment_amrap_cancel_button"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.a531tracker.LiftBuilders;
+package com.a531tracker.ObjectBuilders;
 
 public class AccessoryLifts {
     private String accessory_name;

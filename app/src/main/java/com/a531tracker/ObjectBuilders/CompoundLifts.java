@@ -1,4 +1,4 @@
-package com.a531tracker.LiftBuilders;
+package com.a531tracker.ObjectBuilders;
 
 public class CompoundLifts {
     private String compound_movement;

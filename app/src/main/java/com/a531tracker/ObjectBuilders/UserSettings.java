@@ -1,4 +1,4 @@
-package com.a531tracker;
+package com.a531tracker.ObjectBuilders;
 
 public class UserSettings {
     private int weekFormat;

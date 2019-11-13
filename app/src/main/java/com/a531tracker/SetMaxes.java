@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import com.a531tracker.Database.DatabaseHelper;
-import com.a531tracker.LiftBuilders.CompoundLifts;
+import com.a531tracker.ObjectBuilders.CompoundLifts;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -217,6 +217,8 @@ public class SetMaxes extends Activity {
                     startActivity(intent);
                     finish();
                 } else {
+                    Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                    startActivity(intent);
                     finish();
                 }
             }

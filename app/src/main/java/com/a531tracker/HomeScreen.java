@@ -18,8 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a531tracker.Database.DatabaseHelper;
-import com.a531tracker.LiftBuilders.AsManyRepsAsPossible;
-import com.a531tracker.LiftBuilders.CompoundLifts;
+import com.a531tracker.ObjectBuilders.CompoundLifts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +43,6 @@ public class HomeScreen extends AppCompatActivity {
     private ImageView cycleView;
 
     private Button homeButton;
-    private Button uploadLifts;
     private Button settingsButton;
 
     private TextView cycleDisplay;
@@ -76,6 +74,7 @@ public class HomeScreen extends AppCompatActivity {
         super.onStart();
         Log.d("OnStartCalled", "OnStartFired");
         startCycle();
+        resetLifValuesArray();
         checkForLiftValues();
     }
 
@@ -191,7 +190,6 @@ public class HomeScreen extends AppCompatActivity {
     public void accessoriesCheck(){
         if(getResources().getBoolean(R.bool.have_accessories)) {
             accessoriesButton();
-            //accessoryView.setBackgroundTintMode();
             accessoryText.setVisibility(View.VISIBLE);
         }
     }
@@ -207,7 +205,6 @@ public class HomeScreen extends AppCompatActivity {
 
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
-        uploadLifts = findViewById(R.id.upload_button);
         setNav();
     }
 
@@ -215,7 +212,6 @@ public class HomeScreen extends AppCompatActivity {
     private void setNav(){
         navHome();
         navSettings();
-        navReturn();
     }
 
 
@@ -387,29 +383,6 @@ public class HomeScreen extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, Settings.class);
                 startActivity(intent);
-            }
-        });
-    }
-
-
-    private void navReturn(){
-        setTrainingMax();
-    }
-
-
-    public void setTrainingMax(){
-        uploadLifts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(new emptyCheck().emptyChecker(liftsArray.isEmpty())){
-                    Intent intent = new Intent(mContext, SetMaxes.class);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(mContext, SetMaxes.class);
-                    intent.putIntegerArrayListExtra("LIFT_VALUES", (ArrayList<Integer>) liftValues);
-                    intent.putExtra("Revision", true);
-                    startActivity(intent);
-                }
             }
         });
     }

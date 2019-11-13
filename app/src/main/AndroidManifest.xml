@@ -10,10 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Launcher"
-            android:screenOrientation="portrait" >
+        <activity
+            android:name=".Launcher"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,7 +31,7 @@
         <activity
             android:name=".Week"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
             android:name=".HomeScreen"
@@ -37,13 +39,13 @@
 
         <activity
             android:name=".SetMaxes"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <activity
             android:name=".UpdateValues"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

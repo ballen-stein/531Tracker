@@ -3,6 +3,7 @@ package com.a531tracker;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.text.Layout;
 import android.view.Gravity;
 import android.widget.TextView;
@@ -49,7 +50,9 @@ public class ErrorAlerts extends AlertDialog.Builder {
             tv.setText(getExtraMessageValue());
             tv.setGravity(Gravity.CENTER);
             tv.setTextSize(20f);
-            tv.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                tv.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
+            }
             builder.setView(tv);
         }
 

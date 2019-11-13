@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.a531tracker.LiftBuilders.AsManyRepsAsPossible;
-import com.a531tracker.LiftBuilders.CompoundLifts;
-import com.a531tracker.UserSettings;
+import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible;
+import com.a531tracker.ObjectBuilders.CompoundLifts;
+import com.a531tracker.ObjectBuilders.UserSettings;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "531.db";

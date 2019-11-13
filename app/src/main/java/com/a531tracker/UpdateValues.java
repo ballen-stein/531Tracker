@@ -10,13 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.a531tracker.Database.DatabaseHelper;
-import com.a531tracker.LiftBuilders.AsManyRepsAsPossible;
-import com.a531tracker.LiftBuilders.CompoundLifts;
+import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible;
+import com.a531tracker.ObjectBuilders.CompoundLifts;
 
 import java.util.ArrayList;
 
@@ -26,7 +25,6 @@ public class UpdateValues extends AppCompatActivity {
     private Button updateAll;
     private Button homeButton;
     private Button settingsButton;
-    private Button uploadButton;
 
     private TextView currentCycle;
     private TextView updateCycle;
@@ -216,8 +214,6 @@ public class UpdateValues extends AppCompatActivity {
 
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
-        uploadButton = findViewById(R.id.upload_button);
-        uploadButton.setText(R.string.nav_upload_home);
     }
 
 
@@ -230,10 +226,6 @@ public class UpdateValues extends AppCompatActivity {
                     setResult(RESULT_OK);
                     finish();
                 }
-                //for(String lifts : compoundLifts)
-                //    checkValues(lifts);
-
-                //db.updateCycle(cycleValue);
             }
         });
     }
@@ -242,7 +234,6 @@ public class UpdateValues extends AppCompatActivity {
     private void navCheck(){
         homeNav();
         settingsNav();
-        backNav();
     }
 
     public void homeNav(){
@@ -267,27 +258,7 @@ public class UpdateValues extends AppCompatActivity {
     }
 
     public void navSettings(){
-        Toast.makeText(getApplicationContext(), "BBBSettings pressed", Toast.LENGTH_LONG).show();
-    }
-
-
-    public void backNav(){
-        uploadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, SetMaxes.class);
-                intent.putIntegerArrayListExtra("LIFT_VALUES", createLiftValues());
-                intent.putExtra("Revision", true);
-                startActivity(intent);
-            }
-        });
-    }
-
-
-    private ArrayList<Integer> createLiftValues(){
-        ArrayList<Integer> tempList = new ArrayList<>();
-        for(int i=0; i < liftValues.size(); i++)
-            tempList.add(liftValues.get(i).getTraining_max());
-        return tempList;
+        Intent intent = new Intent(mContext, Settings.class);
+        startActivity(intent);
     }
 }

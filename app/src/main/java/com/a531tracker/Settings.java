@@ -1,7 +1,6 @@
 package com.a531tracker;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -12,17 +11,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.a531tracker.Database.DatabaseHelper;
-import com.a531tracker.LiftBuilders.AsManyRepsAsPossible;
-import com.a531tracker.LiftBuilders.CompoundLifts;
+import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible;
+import com.a531tracker.ObjectBuilders.CompoundLifts;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,7 +46,6 @@ public class Settings extends AppCompatActivity {
 
     private Button homeButton;
     private Button settingsButton;
-    private Button returnButton;
 
     private DatabaseHelper db  = new DatabaseHelper(this);
     TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.3333f);
@@ -186,8 +182,8 @@ public class Settings extends AppCompatActivity {
     private void setCurrentValues() {
         benchNums.setText(String.valueOf(currentValues.get(0).getTraining_max()));
         pressNums.setText(String.valueOf(currentValues.get(1).getTraining_max()));
-        deadliftNums.setText(String.valueOf(currentValues.get(2).getTraining_max()));
-        squatNums.setText(String.valueOf(currentValues.get(3).getTraining_max()));
+        squatNums.setText(String.valueOf(currentValues.get(2).getTraining_max()));
+        deadliftNums.setText(String.valueOf(currentValues.get(3).getTraining_max()));
     }
 
 
@@ -206,7 +202,6 @@ public class Settings extends AppCompatActivity {
     private void navButtons(){
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
-        returnButton = findViewById(R.id.upload_button);
     }
 
 
@@ -222,7 +217,6 @@ public class Settings extends AppCompatActivity {
     private void setNav(){
         navHome();
         navSettings();
-        navReturn();
     }
 
 
@@ -243,11 +237,6 @@ public class Settings extends AppCompatActivity {
     }
 
 
-    private void navReturn(){
-
-    }
-
-
     private void openResetSettings() {
         resetLiftsSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -265,6 +254,7 @@ public class Settings extends AppCompatActivity {
         bbbSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("LiftSettingsClicked", "Go to BBB settings");
                 Intent intent = new Intent(mContext, BBBSettings.class);
                 startActivity(intent);
             }
@@ -311,6 +301,10 @@ public class Settings extends AppCompatActivity {
         intent.putExtra("Deletion", "true");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-        //Toast.makeText(mContext, "Data Deleted", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onBackPressed(){
+        super.onBackPressed();
+        finish();
     }
 }

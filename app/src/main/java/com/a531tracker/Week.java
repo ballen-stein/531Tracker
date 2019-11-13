@@ -1,45 +1,45 @@
 package com.a531tracker;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.a531tracker.Database.DatabaseHelper;
-import com.a531tracker.LiftBuilders.AsManyRepsAsPossible;
-import com.a531tracker.LiftBuilders.CompoundLifts;
+import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible;
+import com.a531tracker.ObjectBuilders.CompoundLifts;
+import com.a531tracker.ObjectBuilders.UserSettings;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class Week extends Activity {
+public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     private FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
     private LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+    private SubmitAmrap submitAmrap;
 
     private final float[] warmupPercents = new float[]{0.40f, 0.50f, 0.60f};
     private float[] corePercents = new float[]{};
 
-    private final ArrayList<String> warmupReps = new ArrayList<>();
+    private ArrayList<String> warmupReps;
     private ArrayList<String> coreReps;
     private final ArrayList<String> bbbReps = new ArrayList<>();
 
@@ -52,6 +52,7 @@ public class Week extends Activity {
     private FrameLayout amrapFrame;
 
     private TextView warmupTitle;
+    private TextView amrapLastWeek;
 
     private LinearLayout warmupDisplay;
     private LinearLayout coreDisplay;
@@ -60,7 +61,9 @@ public class Week extends Activity {
     private Button amrapButton;
     private Button homeButton;
     private Button settingsButton;
-    private Button returnButton;
+    private Button jokerButton;
+
+    private TabLayout tabSelected;
 
     private Integer cycleValue;
 
@@ -74,10 +77,15 @@ public class Week extends Activity {
     private int amrapWeight;
     private int currentWeek;
 
+    private int jokerStartWeight;
+    private float jokerStartPercent;
+
     private boolean swapCheckVal;
 
     private String compound;
     private String swapLift;
+    private String repsDone;
+
     private Context mContext;
 
     private AsManyRepsAsPossible lastWeeksReps;
@@ -98,7 +106,6 @@ public class Week extends Activity {
 
         setViews();
         setButtons();
-        setListeners();
         getDatabaseLifts();
         setHeaderText(compound, amrapWeight);
     }
@@ -110,14 +117,11 @@ public class Week extends Activity {
         getSettings();
         setSettingValues(userSettings);
         swapCheckVal = checkForSwaps(userSettings);
-        setTabViews(userSettings);
+        setTabText();
         weekSelected(1);
-    }
-
-    @Override
-    protected void onResume(){
-        super.onResume();
-        onStart();
+        setTabViews(userSettings);
+        setListeners();
+        setJokerButton(jokerSettingVal == 1);
     }
 
 
@@ -139,52 +143,58 @@ public class Week extends Activity {
         eightFormatSettingVal = settingsArray[4];
     }
 
+
     private boolean checkForSwaps(UserSettings userSettings){
         return (userSettings.getSwapBBBFormat() == 1);
     }
 
 
     private void setTabViews(UserSettings userSettings) {
-        TabLayout tabSelected = findViewById(R.id.tab_view_days);
-        // Remove Deload week if it's a 7 week cycle vs. 4 week cycle
-        if(userSettings.getWeekFormat() != 1){
-            if(cycleValue%2!=0)
+        if(tabSelected.getTabCount() < 4)
+            tabSelected.addTab(tabSelected.newTab().setText("DELOAD"));
+        
+        if(userSettings.getWeekFormat() != 1) {
+            if (cycleValue % 2 != 0)
                 tabSelected.removeTab((Objects.requireNonNull(tabSelected.getTabAt(3))));
         }
     }
 
+
+    private void setTabText(){
+        if(eightFormatSettingVal == 1){
+            Objects.requireNonNull(tabSelected.getTabAt(0)).setText(R.string.format_863_week_1);
+            Objects.requireNonNull(tabSelected.getTabAt(1)).setText(R.string.format_863_week_2);
+            Objects.requireNonNull(tabSelected.getTabAt(2)).setText(R.string.format_863_week_3);
+        } else {
+            Objects.requireNonNull(tabSelected.getTabAt(0)).setText(R.string.format_531_week_1);
+            Objects.requireNonNull(tabSelected.getTabAt(1)).setText(R.string.format_531_week_2);
+            Objects.requireNonNull(tabSelected.getTabAt(2)).setText(R.string.format_531_week_3);
+        }
+    }
 
     public void weekSelected(int day){
         removeDisplayViews();
         switch(day) {
             default:
             case 1:
-                //coreReps = new String[]{"1x5", "1x5", "1x5+"};
-                //corePercents = new float[]{0.65f, 0.75f, 0.85f};
                 setLiftValues(1);
                 setWeeklyLifts(false);
                 setAMRAPDetails();
                 setAmrapFrameVisibility(true);
                 break;
             case 2:
-                //coreReps = new String[]{"1x3", "1x3", "1x3+"};
-                //corePercents = new float[]{0.70f, 0.80f, 0.90f};
                 setLiftValues(2);
                 setWeeklyLifts(false);
                 setAMRAPDetails();
                 setAmrapFrameVisibility(true);
                 break;
             case 3:
-                //coreReps = new String[]{"1x5", "1x3", "1x1+"};
-                //corePercents = new float[]{0.75f, 0.85f, 0.95f};
                 setLiftValues(3);
                 setWeeklyLifts(false);
                 setAMRAPDetails();
                 setAmrapFrameVisibility(true);
                 break;
             case 4:
-                //coreReps = new String[]{"1x5", "1x5", "1x5"};
-                //corePercents = new float[]{0.40f, 0.50f, 0.60f};
                 setWeeklyLifts(true);
                 setAmrapFrameVisibility(false);
                 break;
@@ -194,21 +204,20 @@ public class Week extends Activity {
 
     private void setLiftValues(int weekNumber){
         Collections.addAll(bbbReps, getResources().getStringArray(R.array.format_531_bbb));
+        warmupReps = new ArrayList<>();
+        coreReps = new ArrayList<>();
         if(eightFormatSettingVal == 1){
             Collections.addAll(warmupReps, getResources().getStringArray(R.array.format_863_warmup));
             switch (weekNumber){
                 case 1:
-                    coreReps = new ArrayList<>();
                     Collections.addAll(coreReps, getResources().getStringArray(R.array.format_863_core_week_one));
                     corePercents = new float[]{0.65f, 0.75f, 0.80f};
                     break;
                 case 2:
-                    coreReps = new ArrayList<>();
                     Collections.addAll(coreReps, getResources().getStringArray(R.array.format_863_core_week_two));
                     corePercents = new float[]{0.70f, 0.80f, 0.85f};
                     break;
                 case 3:
-                    coreReps = new ArrayList<>();
                     Collections.addAll(coreReps, getResources().getStringArray(R.array.format_863_core_week_three));
                     corePercents = new float[]{0.75f, 0.85f, 0.90f};
                     break;
@@ -218,17 +227,14 @@ public class Week extends Activity {
             switch (weekNumber){
                 default:
                 case 1:
-                    coreReps = new ArrayList<>();
                     Collections.addAll(coreReps, getResources().getStringArray(R.array.format_531_core_week_one));
                     corePercents = new float[]{0.65f, 0.75f, 0.85f};
                     break;
                 case 2:
-                    coreReps = new ArrayList<>();
                     Collections.addAll(coreReps, getResources().getStringArray(R.array.format_531_core_week_two));
                     corePercents = new float[]{0.70f, 0.80f, 0.90f};
                     break;
                 case 3:
-                    coreReps = new ArrayList<>();
                     Collections.addAll(coreReps, getResources().getStringArray(R.array.format_531_core_week_three));
                     corePercents = new float[]{0.75f, 0.85f, 0.95f};
                     break;
@@ -248,6 +254,8 @@ public class Week extends Activity {
         if(swapCheckVal){
             String text =  swapLift + " " + getResources().getString(R.string.bbb_set);
             bbbTitle.setText(text);
+        } else {
+            bbbTitle.setText(getResources().getString(R.string.bbb_set));
         }
         createWeeklyLiftsDisplays(bbbDisplay, bbbPercents, bbbReps);
     }
@@ -266,6 +274,10 @@ public class Week extends Activity {
                 layout.addView(setWeekLifts(liftPercent[i], reps.get(i), liftsArrayList.get(0).getTraining_max()));
             }
         }
+        if(layout == coreDisplay && jokerSettingVal == 1){
+            jokerStartWeight = liftsArrayList.get(0).getTraining_max();
+            jokerStartPercent = liftPercent[2] + 0.05f;
+        }
     }
 
 
@@ -275,13 +287,11 @@ public class Week extends Activity {
         frameLayout.setLayoutParams(layoutParams);
         frameLayout.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.transparent, null));
 
-        //TextView workoutName = createTextView("Placeholder Breakdown", new int[]{100,25});
         String workoutWeightText = (5*(Math.ceil((trainingValue*liftPercent)/5))) + " lbs";
         TextView workoutWeight = createTextView(workoutWeightText, new int[]{125, 25});
         TextView workoutReps = createTextView(reps, new int[]{700, 25});
         CheckBox checkbox = createCheckBox(new int[]{1100, 35});
 
-        //frameLayout.addView(workoutName);
         frameLayout.addView(workoutReps);
         frameLayout.addView(workoutWeight);
         frameLayout.addView(checkbox);
@@ -296,7 +306,6 @@ public class Week extends Activity {
         tv.setText(value);
         tv.setTextSize(25);
         tv.setTextColor(ContextCompat.getColor(mContext, R.color.colorBlue));
-        //tv.setTextColor(Color.parseColor("#FFFFFF"));
         params.setMargins(marginValues[0], marginValues[1], 0, 0);
         tv.setLayoutParams(params);
         return tv;
@@ -306,7 +315,6 @@ public class Week extends Activity {
     private CheckBox createCheckBox(int[] marginValues){
         CheckBox checkBox = new CheckBox(this);
         params.setMargins(marginValues[0], marginValues[1], 0, 0 );
-        //checkBox.setButtonTintList(ColorStateList.valueOf(0xFFD9A638));
         checkBox.setButtonTintList(ColorStateList.valueOf(0xFF84C9FB));
         checkBox.setLayoutParams(params);
         return checkBox;
@@ -328,23 +336,37 @@ public class Week extends Activity {
     }
 
 
-    private int submitAMRAP(){
-        EditText amrapInput = findViewById(R.id.amrap_input);
-        int amrapValue = Integer.parseInt(String.valueOf(amrapInput.getText()));
-        String repPercent = String.valueOf(corePercents[2]);
+    private void setJokerButton(boolean bool){
+        if(!bool)
+            jokerButton.setVisibility(View.GONE);
+        else
+            jokerButton.setVisibility(View.VISIBLE);
+    }
+
+
+    private int submitAMRAP(int amrapValue){
+        String repPercent;
+        if(eightFormatSettingVal == 1) {
+            repPercent = (String.valueOf(corePercents[2] + 0.05f)).substring(0, 4);
+            if(repPercent.equals("0.90"))
+                repPercent = "0.9";
+        }
+        else
+            repPercent = String.valueOf(corePercents[2]);
         Log.d("AMRAP_WEIGHT", String.valueOf(amrapWeight));
         return db.updateAMRAPTable(compound, cycleValue, repPercent, amrapValue, amrapWeight);
     }
 
 
-    private void startRepSubmission(){
+    private void startRepSubmission(final int value){
         //final int[] i = new int[1];
         Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if(submitAMRAP() == 1){
+                if(submitAMRAP(value) == 1){
                     newDialog(1);
+                    closeAmrapFragment();
                 } else {
                     newDialog(0);
                 }
@@ -385,10 +407,13 @@ public class Week extends Activity {
 
 
     private void setAMRAPDetails(){
-        TextView amrapLastWeek = findViewById(R.id.amrap_last_week_number);
         try{
             lastWeeksReps = db.getAMRAPValues(compound, (cycleValue-1));
-            String repsDone = String.valueOf(findAMRAPPercent(String.valueOf(corePercents[2])));
+            if(eightFormatSettingVal == 1) {
+                repsDone = String.valueOf(findAMRAPPercent((String.valueOf(corePercents[2] + 0.05f)).substring(0, 4)));
+            } else {
+                repsDone = String.valueOf(findAMRAPPercent(String.valueOf(corePercents[2])));
+            }
             amrapLastWeek.setText(repsDone);
         } catch (Exception e){
             amrapLastWeek.setText("5");
@@ -398,10 +423,11 @@ public class Week extends Activity {
 
     private int findAMRAPPercent(String floatVal){
         switch(floatVal){
-            case "0.9":
-                return lastWeeksReps.getNinety_reps();
             case "0.85":
                 return lastWeeksReps.getEighty_five_reps();
+            case "0.90":
+            case "0.9":
+                return lastWeeksReps.getNinety_reps();
             default:
             case "0.95":
                 return lastWeeksReps.getNinety_five_reps();
@@ -409,7 +435,49 @@ public class Week extends Activity {
     }
 
 
-    // ---- Buttons & onClicks
+    private void addJokerSet(){
+        coreFrame.addView(setWeekLifts(jokerStartPercent, "1x5", jokerStartWeight));
+        jokerStartWeight *= jokerStartPercent;
+        jokerStartPercent += 0.05f;
+        //setWeekLifts(float liftPercent, String reps, int trainingValue);
+    }
+
+    // ---------- Fragments ----------
+
+    private void createAmrapFragment(String lastWeeksReps){
+        checkForFragment();
+        submitAmrap = SubmitAmrap.newInstance(lastWeeksReps);
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.enter_bottom, R.anim.exit_bottom, R.anim.enter_bottom, R.anim.exit_bottom)
+                .addToBackStack("@null")
+                .replace(R.id.fragment_holder, submitAmrap)
+                .commit();
+    }
+
+
+    @Override
+    public void closeAmrapFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.enter_bottom, R.anim.exit_bottom, R.anim.enter_bottom, R.anim.exit_bottom)
+                .remove(submitAmrap)
+                .commit();
+        submitAmrap = null;
+    }
+
+
+    @Override
+    public void submitAmrapButton() {
+        int amrapValue = submitAmrap.getAmrapNumber();
+        startRepSubmission(amrapValue);
+    }
+
+
+    private void checkForFragment(){
+        if(submitAmrap != null)
+            closeAmrapFragment();
+    }
+
+    // ---- Buttons, onClicks, & Misc. ----
 
     private void setHeaderText(String headerCompound, int headerWeight){
         TextView headerText = findViewById(R.id.header_text);
@@ -422,9 +490,8 @@ public class Week extends Activity {
         amrapButton = findViewById(R.id.submit_amrap);
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
-        returnButton = findViewById(R.id.upload_button);
-        returnButton.setForeground(ContextCompat.getDrawable(mContext, R.drawable.icon_upload));
-        returnButton.setText(R.string.nav_upload_week);
+        jokerButton = findViewById(R.id.add_joker);
+
         navButtons();
     }
 
@@ -435,17 +502,22 @@ public class Week extends Activity {
         bbbFrame = findViewById(R.id.bbb_sets_frame);
         amrapFrame = findViewById(R.id.amrap_frame);
 
+        tabSelected = findViewById(R.id.tab_view_days);
+
         warmupDisplay = findViewById(R.id.warmup_sets_display);
         coreDisplay = findViewById(R.id.core_sets_display);
         bbbDisplay = findViewById(R.id.bbb_sets_display);
 
         warmupTitle = findViewById(R.id.warmup_title);
+
+        amrapLastWeek = findViewById(R.id.amrap_last_week_number);
     }
 
 
     public void setListeners(){
         tabOnClicks();
         amrapButton();
+        setJokerButton();
         setNav();
     }
 
@@ -454,7 +526,16 @@ public class Week extends Activity {
         amrapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startRepSubmission();
+                createAmrapFragment(repsDone);
+            }
+        });
+    }
+
+    private void setJokerButton(){
+        jokerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addJokerSet();
             }
         });
     }
@@ -463,14 +544,12 @@ public class Week extends Activity {
     private void navButtons(){
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
-        returnButton = findViewById(R.id.upload_button);
     }
 
 
     private void setNav(){
         navHome();
         navSettings();
-        navReturn();
     }
 
 
@@ -497,18 +576,12 @@ public class Week extends Activity {
     }
 
 
-    private void navReturn(){
-
-    }
-
-
     private void tabOnClicks(){
-        TabLayout tabSelected = findViewById(R.id.tab_view_days);
-        // Remove Deload week if it's a 7 week cycle vs. 4 week cycle
         tabSelected.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 currentWeek = setWeekValue(String.valueOf(tab.getText()));
+                checkForFragment();
 
                 if(String.valueOf(tab.getText()).equals("DELOAD")){
                     amrapButton.setEnabled(false);
@@ -560,4 +633,5 @@ public class Week extends Activity {
         liftsArrayList.add(db.getLifts(compound));
         amrapWeight = liftsArrayList.get(0).getTraining_max();
     }
+
 }
