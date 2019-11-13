@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.a531tracker.Database.DatabaseHelper;
+import com.a531tracker.DetailFragments.SubmitAmrap;
 import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible;
 import com.a531tracker.ObjectBuilders.CompoundLifts;
 import com.a531tracker.ObjectBuilders.UserSettings;
@@ -74,11 +75,12 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     private int jokerSettingVal;
     private int fslSettingVal;
     private int eightFormatSettingVal;
+    private int removeSettingVal;
+
     private int amrapWeight;
     private int currentWeek;
 
     private int jokerStartWeight;
-    private float jokerStartPercent;
 
     private boolean swapCheckVal;
 
@@ -98,7 +100,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         setContentView(R.layout.week_view);
 
         Intent intent = getIntent();
-        mContext = getApplicationContext();
+        mContext = this;
 
         compound = intent.getStringExtra("Compound");
         swapLift = intent.getStringExtra("Swap");
@@ -132,11 +134,12 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     private void setSettingValues(UserSettings userSettings) {
         String str = String.valueOf(userSettings.getChosenBBBFormat());
+        Log.d("StringVal", str);
         char[] strArray = str.toCharArray();
         for(int i = 1; i < strArray.length; i++){
             settingsArray[i-1] = Integer.parseInt(String.valueOf(strArray[i]));
         }
-        kgSettingVal = settingsArray[0];
+        removeSettingVal = settingsArray[0];
         deloadSettingVal = settingsArray[1];
         jokerSettingVal = settingsArray[2];
         fslSettingVal = settingsArray[3];
@@ -243,28 +246,50 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     }
 
 
-    private void setWeeklyLifts(boolean deloadWeek){
+    private void setWeeklyLifts(boolean deloadWeek) {
         createWeeklyLiftsDisplays(warmupDisplay, warmupPercents, warmupReps);
-        if(!deloadWeek) {
+        if (!deloadWeek) {
             createWeeklyLiftsDisplays(coreDisplay, corePercents, coreReps);
         }
-        float bbbValue = liftsArrayList.get(0).getBig_but_boring_weight();
-        float[] bbbPercents = new float[]{bbbValue,bbbValue,bbbValue,bbbValue,bbbValue};
-        TextView bbbTitle = findViewById(R.id.bbb_title);
-        if(swapCheckVal){
-            String text =  swapLift + " " + getResources().getString(R.string.bbb_set);
-            bbbTitle.setText(text);
+        if (removeSettingVal == 1 && fslSettingVal != 1) {
+            bbbFrame.setVisibility(View.GONE);
         } else {
-            bbbTitle.setText(getResources().getString(R.string.bbb_set));
-        }
-        createWeeklyLiftsDisplays(bbbDisplay, bbbPercents, bbbReps);
-    }
+            if(fslSettingVal == 1){
+                float[] fslValue = new float[]{corePercents[0]};
+                ArrayList<String> fslList = new ArrayList<>();
 
+                fslList.add(getString(R.string.fsl_reps_option_one));
+                createWeeklyLiftsDisplays(bbbDisplay, fslValue, fslList);
+                bbbDisplay.addView(createTextView(getString(R.string.fsl_or), new int[]{600, 25}));
+
+                fslList.clear();
+                fslList.add(getString(R.string.fsl_reps_option_two));
+                createWeeklyLiftsDisplays(bbbDisplay, fslValue, fslList);
+            } else {
+                float bbbValue = liftsArrayList.get(0).getBig_but_boring_weight();
+                float[] bbbPercents;
+
+                if (deloadWeek)
+                    bbbPercents = new float[]{bbbValue * .90f, bbbValue * .90f, bbbValue * .90f};
+                else
+                    bbbPercents = new float[]{bbbValue, bbbValue, bbbValue, bbbValue, bbbValue};
+
+                TextView bbbTitle = findViewById(R.id.bbb_title);
+                if (swapCheckVal) {
+                    String text = swapLift + " " + getResources().getString(R.string.bbb_set);
+                    bbbTitle.setText(text);
+                } else {
+                    bbbTitle.setText(getResources().getString(R.string.bbb_set));
+                }
+                createWeeklyLiftsDisplays(bbbDisplay, bbbPercents, bbbReps);
+            }
+        }
+    }
 
     private void createWeeklyLiftsDisplays(LinearLayout layout, float[] liftPercent, ArrayList<String> reps){
         for(int i = 0; i < liftPercent.length; i++){
             if(layout == bbbDisplay){
-                if(swapCheckVal){
+                if(swapCheckVal && fslSettingVal != 1){
                     CompoundLifts swapLiftValue = db.getLifts(swapLift);
                     layout.addView(setWeekLifts(swapLiftValue.getBig_but_boring_weight(), reps.get(i), swapLiftValue.getTraining_max()));
                 } else {
@@ -275,8 +300,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
             }
         }
         if(layout == coreDisplay && jokerSettingVal == 1){
-            jokerStartWeight = liftsArrayList.get(0).getTraining_max();
-            jokerStartPercent = liftPercent[2] + 0.05f;
+            jokerStartWeight = (int) (5 * (Math.ceil((liftsArrayList.get(0).getTraining_max() * liftPercent[2])/5)));
         }
     }
 
@@ -301,7 +325,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
 
     private TextView createTextView(String value, int[] marginValues){
-        TextView tv = new TextView(this);
+        TextView tv = new TextView(mContext);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         tv.setText(value);
         tv.setTextSize(25);
@@ -313,7 +337,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
 
     private CheckBox createCheckBox(int[] marginValues){
-        CheckBox checkBox = new CheckBox(this);
+        CheckBox checkBox = new CheckBox(mContext);
         params.setMargins(marginValues[0], marginValues[1], 0, 0 );
         checkBox.setButtonTintList(ColorStateList.valueOf(0xFF84C9FB));
         checkBox.setLayoutParams(params);
@@ -435,11 +459,31 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     }
 
 
-    private void addJokerSet(){
-        coreFrame.addView(setWeekLifts(jokerStartPercent, "1x5", jokerStartWeight));
-        jokerStartWeight *= jokerStartPercent;
-        jokerStartPercent += 0.05f;
-        //setWeekLifts(float liftPercent, String reps, int trainingValue);
+    private void jokerChoose(){
+        ErrorAlerts jokerAlert = new ErrorAlerts(mContext);
+        jokerAlert.setErrorAlertsValues(true, true, getString(R.string.joker_create), getString(R.string.joker_message), "OK", false);
+        jokerAlert.blankAlert(mContext).setPositiveButton("1x5", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                addJokerSet("1x5");
+            }
+        }).setNeutralButton("1x1", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                addJokerSet("1x1");
+            }
+        }).setNegativeButton("1x3", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                addJokerSet("1x3");
+            }
+        }).show();
+    }
+
+
+    private void addJokerSet(String reps){
+        coreDisplay.addView(setWeekLifts(1.05f, reps, jokerStartWeight));
+        jokerStartWeight *= 1.05f;
     }
 
     // ---------- Fragments ----------
@@ -535,7 +579,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         jokerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addJokerSet();
+                jokerChoose();
             }
         });
     }

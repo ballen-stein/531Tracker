@@ -217,6 +217,15 @@
                         android:textColor="@color/colorBlue"
                         android:textSize="@dimen/text_14" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/workout_frame_padding_half"
+                        android:layout_gravity="center"
+                        android:text="@string/settings_remove_bbb"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="@dimen/text_14" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -257,6 +266,12 @@
 
                     <CheckBox
                         android:id="@+id/bbb_swaps"
+                        android:buttonTint="@color/colorWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <CheckBox
+                        android:id="@+id/bbb_remove"
                         android:buttonTint="@color/colorWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

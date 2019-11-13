@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
 import com.a531tracker.Database.DatabaseHelper;
+import com.a531tracker.DetailFragments.InformationFragment;
 import com.a531tracker.ObjectBuilders.CompoundLifts;
 import com.a531tracker.ObjectBuilders.UserSettings;
 
@@ -44,6 +45,7 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
     private CheckBox bbbJoker;
     private CheckBox bbbDeload;
     private CheckBox bbbSwaps;
+    private CheckBox bbbRemove;
 
     private List<Integer> radioBbbChoices;
 
@@ -104,6 +106,9 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
         Log.d("PercentVal", bbbPercent);
         int bbbVal;
         switch (bbbPercent){
+            case "0.30":
+            case "0.3":
+            case "0.35":
             case "0.4":
             case "0.40":
                 bbbVal = radioBbbChoices.get(0);
@@ -132,6 +137,11 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
             case "0.75":
                 bbbVal = radioBbbChoices.get(7);
                 break;
+            case "0.80":
+            case "0.8":
+            case "0.85":
+            case "0.90":
+            case "0.9":
             default:
                 bbbVal = 0;
                 break;
@@ -143,35 +153,40 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
     private void setOptions(int chosenBBBFormat) {
         String bbbLength = String.valueOf(chosenBBBFormat);
         for(int i = 1; i < bbbLength.length(); i++){
-            checkBoxes(bbbLength.substring(i));
+            checkSettings(bbbLength.charAt(i), i);
         }
     }
 
-    private void checkBoxes(String s) {
-        Log.d("StringVal", s);
-        switch(s){
-            case "1111":
-            case "1101":
-            case "1011":
-            case "1001":
-            case "1000":
-                bbbDeload.setChecked(true);
-                break;
-            case "111":
-            case "101":
-            case "100":
-                bbbJoker.setChecked(true);
-                break;
-            case "11":
-            case "10":
-                bbbFSL.setChecked(true);
-                break;
-            case "1":
-                bbbEight.setChecked(true);
-                break;
-            default:
-                break;
+
+    private void checkSettings(char c, int i){
+        switch(i){
+            case 1:
+                if(c == '1') {
+                    bbbRemove.setChecked(true);
+                    break;
+                }
+            case 2:
+                if(c == '1') {
+                    bbbDeload.setChecked(true);
+                    break;
+                }
+            case 3:
+                if(c == '1') {
+                    bbbJoker.setChecked(true);
+                    break;
+                }
+            case 4:
+                if(c == '1') {
+                    bbbFSL.setChecked(true);
+                    break;
+                }
+            case 5:
+                if(c == '1') {
+                    bbbEight.setChecked(true);
+                    break;
+                }
         }
+
     }
 
 
@@ -184,6 +199,7 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
         bbbJoker = findViewById(R.id.bbb_joker);
         bbbDeload = findViewById(R.id.bbb_deload);
         bbbSwaps = findViewById(R.id.bbb_swaps);
+        bbbRemove = findViewById(R.id.bbb_remove);
     }
 
 
@@ -268,6 +284,8 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
                     message = "You've changed your Boring But Big format to include the following: " + createText.substring(0, createText.length()-2) + ".";
                 else
                     message = "You've removed all Boring But Big options.";
+                if(bbbRemove.isChecked())
+                    message += "\n\nYou've selected to remove the Boring But Big option. All prior BBB settings will be ignored.";
                 newAlert(true, message);
             } else {
                 newAlert(false, message);
@@ -297,7 +315,8 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
             i+=100;
         if(bbbDeload.isChecked())
             i+=1000;
-
+        if(bbbRemove.isChecked())
+            i+=10000;
         return i;
     }
 

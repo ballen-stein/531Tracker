@@ -47,6 +47,7 @@
     <string name="amrap_this_week">This Week</string>
 
     <string name="joker_create">Add Joker Set</string>
+    <string name="joker_message">How many reps? (Note: Start with 5 and work down to 3, then 1, when you cannot complete the 5 or 3 reps. Stop when you can\'t do or barely do the 1x1)\n\nTouch anywhere else on the screen to exit.</string>
 
     <string name="alert_no_lifts_found">No Lifts Found</string>
     <string name="alert_no_lifts_message">Oh no! We couldn\'t find any of your lifts saved. That\'s not a problem though; you can enter them now!</string>
@@ -67,6 +68,7 @@
     <string name="settings_update_cycle">Update Cycle Format</string>
     <string name="settings_update_percents">Update BBB Percent</string>
     <string name="settings_bbb_percents">BBB Percent Options</string>
+    <string name="settings_remove_bbb">Remove BBB</string>
 
     <string name="settings_success_title">Success!</string>
     <string name="settings_fail_title">Error</string>
@@ -82,9 +84,11 @@
     <string name="settings_week_info">There are two major formats for 5/3/1: 4 week and 7 week. \n\n4 Week: Jim Wendler\'s original 5/3/1 format. A deload week occurs every 4th week of a 4 week cycle. \n\n7 Week: Jim Wendler\'s revised 5/3/1 format. Two 3 week cycles are combined with a deload week every 7th week.</string>
     <string name="settings_option_info">There are a few options to customize the 5/3/1 program and the Boring But Big exercises.
         \n\n8/6/3: Changes the 5/3/1 format to 8/6/3, dropping the weight by 5% and effectively doubles the volume of minimum sets.
+        \n\nFSL: Swaps First Set Last for BBB sets. As the name implies, you will do the first set of your workout last for either 3-4 sets at 5-8 reps or for one set with as many reps as possible.
         \n\nJoker Sets: An extra set mainly done on days you struggle to complete the 5/3/1 sets or want a little extra. Joker sets are 5 reps and start after the last Core set with 5% more weight than the last completed set.
-        \n\nDeload Week: Enabled by default. Adds a deloaded version of the BBB sets to the Deload week.
-        \n\nSwap BBBS: Popular with the Boring But Big 3&#8211;Month Challenge. Swaps the BBB sets with a complementary compound to work muscles twice a week. Squat week will have Deadlift BBB and Bench week will have Overhand Press.</string>
+        \n\nDeload Week: Enabled by default. Adds BBB 3 sets at 90% of the selected BBB value to the Deload week.
+        \n\nSwap BBBs: Popular with the Boring But Big 3&#8211;Month Challenge. Swaps the BBB sets with a complementary compound to work muscles twice a week. Squat week will have Deadlift BBB and Bench week will have Overhand Press.
+        \n\nRemove BBB: Removes the BBB lifts from the page. If you\'re just doing 5/3/1, want to do FSL, or want to implement Joker sets without doing BBB, select this option.</string>
     <string name="settings_percent_info">Percents: Boring But Big sets are done through high volume with low to moderate weight. Jim Wendler recommends starting lighter (30&#8211;40%) to gauge the effects on your stamina and fatigue and increase it afterward if desired.</string>
 
     <string name="settings_cycle_header">Week/Cycle Options</string>
@@ -98,9 +102,13 @@
     <string name="settings_bbb_deload_week">Deload Week</string>
     <string name="settings_bbb_swap">Swap BBBs</string>
 
+    <string name="settings_get_more_info_title">You are leaving this app…</string>
+    <string name="settings_get_more_info_message">You\'ve requested more information and will be leaving this app and opening Jim Wendler\'s website on your browser.</string>
+
     <string name="settings_delete_title">Delete All Data</string>
     <string name="settings_delete_message">Warning: If you continue, all of your data will be deleted. Your lift values and Cycle will be reset to 0 and you will be prompted to put in your starting lift values again.\n\nAre you sure you wish to continue?</string>
-    <string name="settings_delete_ok">I Understand</string>
+
+    <string name="settings_understand">I Understand</string>
 
     <string name="table_lift">Lift Name</string>
     <string name="table_completed">Submitted</string>
@@ -146,6 +154,10 @@
     <string name="bbb_65">65%</string>
     <string name="bbb_70">70%</string>
     <string name="bbb_75">75%</string>
+
+    <string name="fsl_reps_option_one">3&#8211;4x5&#8211;8</string>
+    <string name="fsl_or">OR</string>
+    <string name="fsl_reps_option_two">1x1+</string>
 
     <string-array name="format_863_core_week_one">
         <item>1x8</item>
@@ -202,19 +214,5 @@
         <item>1x10</item>
         <item>1x10</item>
     </string-array>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
 
 </resources>

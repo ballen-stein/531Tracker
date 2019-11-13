@@ -12,7 +12,7 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:padding="3dp"
-        android:background="@drawable/fragment_box"
+        android:background="@drawable/amrap_fragment_box"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -25,7 +25,7 @@
             android:padding="@dimen/workout_frame_padding_half"
             android:text="@string/amrap_submit"
             android:textSize="@dimen/text_18"
-            android:textColor="@color/colorBlue"
+            android:textColor="@color/colorBlack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -37,7 +37,7 @@
             android:layout_height="150dp"
             android:layout_weight="1"
             android:elevation="16dp"
-            android:background="@drawable/fragmet_inner_box"
+            android:background="@drawable/amrap_fragment_inner_box"
             app:layout_constraintTop_toBottomOf="@id/fragment_amrap_header"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

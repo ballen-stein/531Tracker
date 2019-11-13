@@ -7,6 +7,7 @@ import androidx.core.content.res.ResourcesCompat;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -36,6 +37,7 @@ public class Settings extends AppCompatActivity {
     private LinearLayout bbbSettings;
     private LinearLayout amrapSettings;
     private LinearLayout deleteAllData;
+    private LinearLayout getMoreInfo;
 
     private TableLayout liftTable;
 
@@ -65,7 +67,6 @@ public class Settings extends AppCompatActivity {
         setButtons();
         setListeners();
         setViews();
-
     }
 
 
@@ -195,6 +196,7 @@ public class Settings extends AppCompatActivity {
         if(!getResources().getBoolean(R.bool.show_amrap_numbers))
             //amrapSettings.setVisibility(View.GONE);
         deleteAllData = findViewById(R.id.delete_settings_frame);
+        getMoreInfo = findViewById(R.id.get_more_information_settings);
         navButtons();
     }
 
@@ -210,6 +212,7 @@ public class Settings extends AppCompatActivity {
         openBBBSettings();
         openAMRAPSettings();
         deleteAllDataOption();
+        getMoreInfoRequest();
         setNav();
     }
 
@@ -272,6 +275,36 @@ public class Settings extends AppCompatActivity {
     }
 
 
+    private void getMoreInfoRequest(){
+        getMoreInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ErrorAlerts newAlert = new ErrorAlerts(mContext);
+                newAlert.setErrorAlertsValues(false, true, getString(R.string.settings_get_more_info_title), getString(R.string.settings_get_more_info_message), "", false);
+                newAlert.blankAlert(mContext).setPositiveButton(getString(R.string.settings_understand), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        openWebsite();
+                    }
+                }).setNegativeButton(getString(R.string.cancel_text), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
+            }
+        });
+    }
+
+
+    private void openWebsite(){
+        String url = "https://jimwendler.com/blogs/jimwendler-com/101077382-boring-but-big";
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+
     private void deleteAllDataOption(){
         deleteAllData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -286,7 +319,7 @@ public class Settings extends AppCompatActivity {
         ErrorAlerts errorAlerts = new ErrorAlerts(mContext);
         String title = getResources().getString(R.string.settings_delete_title);
         errorAlerts.setErrorAlertsValues(true, true, title, getResources().getString(R.string.settings_delete_message), "OK", false);
-        errorAlerts.blankAlert(mContext).setPositiveButton(mContext.getString(R.string.settings_delete_ok), new DialogInterface.OnClickListener() {
+        errorAlerts.blankAlert(mContext).setPositiveButton(mContext.getString(R.string.settings_understand), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 deleteAllDataRequest();

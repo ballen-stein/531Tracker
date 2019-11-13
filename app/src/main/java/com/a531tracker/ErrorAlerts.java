@@ -26,7 +26,7 @@ public class ErrorAlerts extends AlertDialog.Builder {
     public void setErrorAlertsValues(boolean setNeg, boolean cancelable, String title, String message, String extraMessage, boolean failedLift){
         setMessage(message);
         setTitle(title);
-        setCancelable(cancelable);
+        setCancelableStatus(cancelable);
         setNegButton(setNeg);
         setExtraMessageValue(extraMessage);
         setFailedLift(failedLift);
@@ -103,10 +103,9 @@ public class ErrorAlerts extends AlertDialog.Builder {
         return title;
     }
 
-    /*@Override
-    public void setCancelable(boolean cancelable) {
-        this.cancelable = cancelable;
-    }*/
+    private void setCancelableStatus(boolean bool){
+        this.cancelable = bool;
+    }
 
     private boolean isCancelable() {
         return cancelable;

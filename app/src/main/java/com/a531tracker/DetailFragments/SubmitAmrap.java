@@ -1,4 +1,4 @@
-package com.a531tracker;
+package com.a531tracker.DetailFragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.a531tracker.R;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -83,7 +85,10 @@ public class SubmitAmrap extends Fragment {
     @Override
     public void onAttach(@NotNull Context context){
         super.onAttach(context);
-        listener = (AllClicks) context;
+        if(context instanceof AllClicks)
+            listener = (AllClicks) context;
+        else
+            throw new RuntimeException(context.toString());
     }
 
 
