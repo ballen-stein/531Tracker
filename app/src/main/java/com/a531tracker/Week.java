@@ -265,6 +265,9 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
                 fslList.clear();
                 fslList.add(getString(R.string.fsl_reps_option_two));
                 createWeeklyLiftsDisplays(bbbDisplay, fslValue, fslList);
+
+                TextView bbbTitle = findViewById(R.id.bbb_title);
+                bbbTitle.setText(R.string.fsl_header);
             } else {
                 float bbbValue = liftsArrayList.get(0).getBig_but_boring_weight();
                 float[] bbbPercents;
@@ -285,6 +288,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
             }
         }
     }
+
 
     private void createWeeklyLiftsDisplays(LinearLayout layout, float[] liftPercent, ArrayList<String> reps){
         for(int i = 0; i < liftPercent.length; i++){

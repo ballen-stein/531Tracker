@@ -246,172 +246,263 @@
                     android:background="@color/colorDarkGrey"
                     app:layout_constraintTop_toBottomOf="@id/bbb_title" />
 
-                <FrameLayout
-                    android:layout_width="match_parent"
+                <HorizontalScrollView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/workout_frame_padding"
+                    android:layout_marginTop="@dimen/workout_frame_16"
+                    android:layout_marginStart="@dimen/workout_frame_padding"
+                    android:layout_marginEnd="@dimen/workout_frame_padding"
+                    android:fillViewport="true"
+                    android:fadeScrollbars="false"
+                    android:scrollbars="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/divider_bbb">
+                    app:layout_constraintTop_toBottomOf="@id/divider_bbb" >
 
                     <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|top"
-                        android:layout_marginBottom="@dimen/workout_frame_padding_half"
-                        android:orientation="horizontal">
+                        android:layout_height="wrap_content">
 
-                        <TextView
+                        <LinearLayout
+                            android:id="@+id/bbb_percent_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/bbb_percents_margin"
-                            android:text="@string/bbb_40"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="@dimen/text_14" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
 
-                        <TextView
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_30" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_35" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_40" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_45" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_50" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_55" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_60" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_65" />
+
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_70" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_75" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_80" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_85" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_90" />
+
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/radioGroupBBB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/bbb_percents_margin"
-                            android:text="@string/bbb_45"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="@dimen/text_14" />
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toBottomOf="@+id/bbb_percent_text"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/bbb_percents_margin"
-                            android:text="@string/bbb_50"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="@dimen/text_14" />
+                            <RadioButton
+                                android:id="@+id/radio_bbb_30"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/bbb_percents_margin"
-                            android:text="@string/bbb_55"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="@dimen/text_14" />
+                            <RadioButton
+                                android:id="@+id/radio_bbb_35"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/bbb_percents_margin"
-                            android:text="@string/bbb_60"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="@dimen/text_14" />
+                            <RadioButton
+                                android:id="@+id/radio_bbb_40"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/bbb_percents_margin"
-                            android:text="@string/bbb_65"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="@dimen/text_14" />
+                            <RadioButton
+                                android:id="@+id/radio_bbb_45"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/bbb_percents_margin"
-                            android:text="@string/bbb_70"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="@dimen/text_14" />
+                            <RadioButton
+                                android:id="@+id/radio_bbb_50"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/bbb_75"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="@dimen/text_14" />
+                            <RadioButton
+                                android:id="@+id/radio_bbb_55"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_60"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_65"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_70"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_75"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_80"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_85"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_90"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                        </RadioGroup>
 
                     </LinearLayout>
 
-                    <RadioGroup
-                        android:id="@+id/radioGroupBBB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|top"
-                        android:layout_marginTop="@dimen/workout_frame_32"
-                        android:background="@color/transparent"
-                        android:checkedButton="@id/radio_bbb_50"
-                        android:orientation="horizontal"
-                        android:paddingBottom="@dimen/workout_frame_padding">
-
-                        <RadioButton
-                            android:id="@+id/radio_bbb_40"
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="@dimen/radio_button_margin"
-                            android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorWhite" />
-
-                        <RadioButton
-                            android:id="@+id/radio_bbb_45"
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="@dimen/radio_button_margin"
-                            android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorWhite" />
-
-                        <RadioButton
-                            android:id="@+id/radio_bbb_50"
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="@dimen/radio_button_margin"
-                            android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorWhite" />
-
-                        <RadioButton
-                            android:id="@+id/radio_bbb_55"
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="@dimen/radio_button_margin"
-                            android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorWhite" />
-
-                        <RadioButton
-                            android:id="@+id/radio_bbb_60"
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="@dimen/radio_button_margin"
-                            android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorWhite" />
-
-                        <RadioButton
-                            android:id="@+id/radio_bbb_65"
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="@dimen/radio_button_margin"
-                            android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorWhite" />
-
-                        <RadioButton
-
-                            android:id="@+id/radio_bbb_70"
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="@dimen/radio_button_margin"
-                            android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorWhite" />
-
-                        <RadioButton
-                            android:id="@+id/radio_bbb_75"
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="@dimen/radio_button_margin"
-                            android:layout_marginEnd="@dimen/radio_button_margin"
-                            android:buttonTint="@color/colorWhite" />
-
-                    </RadioGroup>
-
-                </FrameLayout>
+                </HorizontalScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 
     </ScrollView>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_frame"

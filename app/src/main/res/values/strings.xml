@@ -127,10 +127,10 @@
     <string name="tm_update">Update</string>
     <string name="tm_update_all">Update All</string>
 
-    <string name="core_set">Core Sets</string>
-    <string name="warmup_set">Warm-Ups Sets</string>
-    <string name="bbb_set">BBB Sets</string>
-    <string name="deload_set">Deload Sets</string>
+    <string name="core_set">Core</string>
+    <string name="warmup_set">Warm-Ups </string>
+    <string name="bbb_set">Boring But Big</string>
+    <string name="deload_set">Deload</string>
 
     <string name="format_531_week_1">5/5/5</string>
     <string name="format_531_week_2">3/3/3</string>
@@ -146,6 +146,8 @@
     <string name="button_squat">View Squat</string>
     <string name="button_increase_tm">Increase Training Max</string>
 
+    <string name="bbb_30">30%</string>
+    <string name="bbb_35">35%</string>
     <string name="bbb_40">40%</string>
     <string name="bbb_45">45%</string>
     <string name="bbb_50">50%</string>
@@ -154,7 +156,11 @@
     <string name="bbb_65">65%</string>
     <string name="bbb_70">70%</string>
     <string name="bbb_75">75%</string>
+    <string name="bbb_80">80%</string>
+    <string name="bbb_85">85%</string>
+    <string name="bbb_90">90%</string>
 
+    <string name="fsl_header">First Set Last</string>
     <string name="fsl_reps_option_one">3&#8211;4x5&#8211;8</string>
     <string name="fsl_or">OR</string>
     <string name="fsl_reps_option_two">1x1+</string>

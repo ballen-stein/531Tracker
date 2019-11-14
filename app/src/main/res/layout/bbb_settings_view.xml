@@ -25,6 +25,7 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/workout_frame_padding"
         android:background="@drawable/rectangle_outline"
+        android:nestedScrollingEnabled="true"
         app:layout_constraintTop_toBottomOf="@id/top_frame_home"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -327,147 +328,257 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/bbb_percent_text"
-                    android:layout_width="wrap_content"
+                <HorizontalScrollView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/workout_frame_16"
+                    android:layout_marginStart="@dimen/workout_frame_padding"
+                    android:layout_marginEnd="@dimen/workout_frame_padding"
+                    android:fillViewport="true"
+                    android:fadeScrollbars="false"
+                    android:scrollbars="horizontal"
                     app:layout_constraintTop_toBottomOf="@id/bbb_percent_header"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
-
-                    <TextView
-                        android:textColor="@color/colorBlue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/bbb_percents_margin"
-                        android:text="@string/bbb_40" />
-
-                    <TextView
-                        android:textColor="@color/colorBlue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/bbb_percents_margin"
-                        android:text="@string/bbb_45" />
-
-                    <TextView
-                        android:textColor="@color/colorBlue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/bbb_percents_margin"
-                        android:text="@string/bbb_50" />
-
-                    <TextView
-                        android:textColor="@color/colorBlue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/bbb_percents_margin"
-                        android:text="@string/bbb_55" />
-
-                    <TextView
-                        android:textColor="@color/colorBlue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/bbb_percents_margin"
-                        android:text="@string/bbb_60" />
-
-                    <TextView
-                        android:textColor="@color/colorBlue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/bbb_percents_margin"
-                        android:text="@string/bbb_65" />
-
-
-                    <TextView
-                        android:textColor="@color/colorBlue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/bbb_percents_margin"
-                        android:text="@string/bbb_70" />
-
-                    <TextView
-                        android:textColor="@color/colorBlue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/bbb_75" />
-
-                </LinearLayout>
-
-                <RadioGroup
-                    android:id="@+id/bbb_radio_group"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/bbb_percent_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <RadioButton
-                        android:id="@+id/radio_bbb_40"
-                        android:buttonTint="@color/colorWhite"
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/radio_button_margin"
-                        android:layout_marginStart="@dimen/radio_button_margin" />
+                        android:layout_height="wrap_content">
 
-                    <RadioButton
-                        android:id="@+id/radio_bbb_45"
-                        android:buttonTint="@color/colorWhite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/radio_button_margin"
-                        android:layout_marginStart="@dimen/radio_button_margin" />
+                        <LinearLayout
+                            android:id="@+id/bbb_percent_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
 
-                    <RadioButton
-                        android:id="@+id/radio_bbb_50"
-                        android:buttonTint="@color/colorWhite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/radio_button_margin"
-                        android:layout_marginStart="@dimen/radio_button_margin" />
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_30" />
 
-                    <RadioButton
-                        android:id="@+id/radio_bbb_55"
-                        android:buttonTint="@color/colorWhite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/radio_button_margin"
-                        android:layout_marginStart="@dimen/radio_button_margin" />
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_35" />
 
-                    <RadioButton
-                        android:id="@+id/radio_bbb_60"
-                        android:buttonTint="@color/colorWhite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/radio_button_margin"
-                        android:layout_marginStart="@dimen/radio_button_margin" />
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_40" />
 
-                    <RadioButton
-                        android:id="@+id/radio_bbb_65"
-                        android:buttonTint="@color/colorWhite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/radio_button_margin"
-                        android:layout_marginStart="@dimen/radio_button_margin" />
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_45" />
 
-                    <RadioButton
-                        android:id="@+id/radio_bbb_70"
-                        android:buttonTint="@color/colorWhite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/radio_button_margin"
-                        android:layout_marginStart="@dimen/radio_button_margin" />
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_50" />
 
-                    <RadioButton
-                        android:id="@+id/radio_bbb_75"
-                        android:buttonTint="@color/colorWhite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/radio_button_margin"
-                        android:layout_marginStart="@dimen/radio_button_margin" />
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_55" />
 
-                </RadioGroup>
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_60" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_65" />
+
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_70" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_75" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_80" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_85" />
+
+                            <TextView
+                                android:textColor="@color/colorBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:text="@string/bbb_90" />
+
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/bbb_radio_group"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toBottomOf="@+id/bbb_percent_text"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_30"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_35"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_40"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_45"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_50"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_55"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_60"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_65"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_70"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_75"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_80"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_85"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                            <RadioButton
+                                android:id="@+id/radio_bbb_90"
+                                android:buttonTint="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/radio_button_margin"
+                                android:layout_marginStart="@dimen/radio_button_margin" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
