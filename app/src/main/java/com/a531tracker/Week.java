@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -47,7 +46,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     private List<CompoundLifts> liftsArrayList = new ArrayList<>();
     private DatabaseHelper db = new DatabaseHelper(this);
 
-    private FrameLayout warmupFrame;
     private FrameLayout bbbFrame;
     private FrameLayout coreFrame;
     private FrameLayout amrapFrame;
@@ -70,7 +68,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     private int[] settingsArray = new int[5];
 
-    private int kgSettingVal;
     private int deloadSettingVal;
     private int jokerSettingVal;
     private int fslSettingVal;
@@ -134,7 +131,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     private void setSettingValues(UserSettings userSettings) {
         String str = String.valueOf(userSettings.getChosenBBBFormat());
-        Log.d("StringVal", str);
         char[] strArray = str.toCharArray();
         for(int i = 1; i < strArray.length; i++){
             settingsArray[i-1] = Integer.parseInt(String.valueOf(strArray[i]));
@@ -381,13 +377,11 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         }
         else
             repPercent = String.valueOf(corePercents[2]);
-        Log.d("AMRAP_WEIGHT", String.valueOf(amrapWeight));
         return db.updateAMRAPTable(compound, cycleValue, repPercent, amrapValue, amrapWeight);
     }
 
 
     private void startRepSubmission(final int value){
-        //final int[] i = new int[1];
         Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
@@ -417,7 +411,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
                 .setPositiveButton(R.string.ok_text, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("Logged", "D");
                     }
                 });
         final AlertDialog alertDialog = builder.create();
@@ -545,7 +538,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
 
     private void setViews(){
-        warmupFrame = findViewById(R.id.warmup_sets_frame);
         coreFrame = findViewById(R.id.core_sets_frame);
         bbbFrame = findViewById(R.id.bbb_sets_frame);
         amrapFrame = findViewById(R.id.amrap_frame);

@@ -391,6 +391,7 @@
                             <RadioButton
                                 android:id="@+id/radio_bbb_30"
                                 android:buttonTint="@color/colorWhite"
+                                android:checked="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="@dimen/radio_button_margin"

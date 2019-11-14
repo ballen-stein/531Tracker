@@ -104,7 +104,6 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
 
 
     private int setChosenBbbPercent(String bbbPercent){
-        Log.d("PercentVal", bbbPercent);
         int bbbVal;
         switch (bbbPercent){
             case "0.30":
@@ -197,7 +196,6 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
                     break;
                 }
         }
-
     }
 
 
@@ -241,7 +239,6 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
             newSettings.setWeekFormat(0);
             selectedFormat = "7 Week cycle.";
         }
-        Log.d("UserSettings", newSettings.getWeekFormat()+"\t1 = 4 Week split \t0 = 7 Week split" + "\tOld setting: " + userSettings.getWeekFormat());
         int i = db.updateWeekSettings(newSettings, userSettings.getWeekFormat());
 
         if(i  == 1){

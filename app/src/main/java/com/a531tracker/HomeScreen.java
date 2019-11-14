@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -72,7 +71,6 @@ public class HomeScreen extends AppCompatActivity {
 
     protected void onStart(){
         super.onStart();
-        Log.d("OnStartCalled", "OnStartFired");
         startCycle();
         resetLifValuesArray();
         checkForLiftValues();
@@ -82,14 +80,9 @@ public class HomeScreen extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == SET_TRAINING_MAX_CODE && resultCode == RESULT_OK){
-            Log.d("OnStartCalled", "ActivityResultFired1");
             resetLifValuesArray();
         } else if (requestCode == UPDATE_TRAINING_MAX_CODE && resultCode == RESULT_OK){
-            Log.d("OnStartCalled", "ActivityResultFired2");
             resetLifValuesArray();
-            //onStart();
-        } else if(resultCode == RESULT_CANCELED){
-            Log.d("RESULT_ACT", "CANCELED");
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -98,8 +91,6 @@ public class HomeScreen extends AppCompatActivity {
     private void checkForLiftValues() {
         try{
             addLiftsToArray();
-        } catch (NullPointerException e){
-            Log.d("Compound_lifts", "No lifts found, force user to make lifts");
         } catch (Exception e){
             alertBuilder(getResources().getString(R.string.alert_no_lifts_found), getResources().getString(R.string.alert_no_lifts_message), "", false, true);
         }
@@ -146,26 +137,13 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
-    public class emptyCheck implements isItEmpty {
-        @Override
-        public boolean emptyChecker(boolean val) {
-            return val;
-        }
-    }
-
-
     private void startCycle(){
         try{
             if(db.startCycle()){
                 cycleValue = db.getCycle();
-                Log.d("Cycle_Value", cycleValue+" from if");
-            } else {
-                Log.d("Cycle_Started", "Cycle has already started");
-                Log.d("Cycle_Val", cycleValue+" from else");
             }
         } catch (Exception e){
             cycleValue = 1;
-            Log.d("Cycle_Value", "Default from catch");
             e.printStackTrace();
         }
         String cycleText = "You are currently on Cycle #" + cycleValue;
@@ -242,7 +220,6 @@ public class HomeScreen extends AppCompatActivity {
         benchText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("WasClicked", "Bench Text");
                 openCompoundWeek("Bench", "Overhand Press");
             }
         });
@@ -269,7 +246,6 @@ public class HomeScreen extends AppCompatActivity {
         deadliftText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("WasClicked", "Deadlift Text");
                 openCompoundWeek("Deadlift", "Squat");
             }
         });
@@ -296,7 +272,6 @@ public class HomeScreen extends AppCompatActivity {
         pressText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("WasClicked", "Press Text");
                 openCompoundWeek("Overhand Press", "Bench");
             }
         });
@@ -323,7 +298,6 @@ public class HomeScreen extends AppCompatActivity {
         squatText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("WasClicked", "Squat Text");
                 openCompoundWeek("Squat", "Deadlift");
             }
         });

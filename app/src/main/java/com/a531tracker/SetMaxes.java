@@ -3,7 +3,6 @@ package com.a531tracker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -51,14 +50,11 @@ public class SetMaxes extends Activity {
                     revision = Objects.requireNonNull(intent.getExtras()).getBoolean("Revision", false);
                     setEditTextViews();
                 } catch (Exception e) {
-                    e.getMessage();
-                    //e.printStackTrace();
-                    Log.d("ERROR_WITH_LIFTS", "Couldn't get lifts from database");
+                    e.printStackTrace();
                 }
             }
         } catch (Exception e){
             e.printStackTrace();
-            Log.d("Has Lifts", "NO LIFTS FOUND");
         }
     }
 
@@ -85,16 +81,12 @@ public class SetMaxes extends Activity {
 
 
     private void startCycle(){
-        if(db.startCycle())
-            Log.d("CycleValue", "Fresh Cycle Started");
-        else
-            Log.d("CycleValue", "Old Cycle Started");
+        db.startCycle();
     }
 
 
     private void startAMRAP(){
         int cycle = db.getCycle();
-        Log.d("CycleValue", cycle+"");
         for(String lift : compoundLifts) {
             db.createAMRAPTable(cycle, lift);
             db.createAMRAPTable(cycle - 1, lift);
@@ -124,7 +116,6 @@ public class SetMaxes extends Activity {
             lifts.setCompound_movement(compoundLifts[i]);
             EditText trainingMaxInput = findViewById(inputIds[i]);
             lifts.setTraining_max((int) (Integer.parseInt(String.valueOf(trainingMaxInput.getText()))*modifier));
-            //lifts.setTraining_max((int)(((String.valueOf(trainingMaxInput.getText())) * modifier));
             lifts.setBig_but_boring_weight(bbbPercent);
             mappedLifts.put(compoundLifts[i], lifts);
         }
@@ -197,11 +188,6 @@ public class SetMaxes extends Activity {
                 startAMRAP();
 
                 if(firstLaunch){
-                    /*Intent returnIntent = getIntent();
-                    returnIntent.putExtra("Submitted", "Values were submitted");
-                    returnIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    setResult(RESULT_OK, returnIntent);
-                    finish();*/
                     Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
                     startActivity(intent);
                 } else if(revision){
