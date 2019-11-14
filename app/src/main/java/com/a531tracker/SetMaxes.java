@@ -40,28 +40,7 @@ public class SetMaxes extends Activity {
 
         setButtons();
         Intent intent = getIntent();
-        /*
-        if(intent.getExtras().getBoolean("Has_Lifts")){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme)
-                    .setTitle(R.string.no_lifts_found)
-                    .setMessage(R.string.no_lifts_set_lifts)
-                    .setPositiveButton(R.string.no_lifts_ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) { }
-                    });
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();
-        } else {
-            try {
-                liftValues = intent.getIntegerArrayListExtra("LIFT_VALUES");
-                setEditTextViews();
-            } catch (Exception e) {
-                Log.e("ERROR_WITH_LIFTS", e.getMessage() + "");
-                Log.d("ERROR_WITH_LIFTS", "Couldn't get lifts from database");
-            }
-        }
 
-         */
         try {
             firstLaunch = Objects.requireNonNull(intent.getExtras()).getBoolean("NewLifts", false);
             if(firstLaunch) {
@@ -154,13 +133,18 @@ public class SetMaxes extends Activity {
 
     private void setBBB(int id){
         switch(id){
+            case R.id.radio_bbb_30:
+                bbbPercent = 0.30f;
+                break;
+            case R.id.radio_bbb_35:
+                bbbPercent = 0.35f;
+                break;
             case R.id.radio_bbb_40:
                 bbbPercent = 0.40f;
                 break;
             case R.id.radio_bbb_45:
                 bbbPercent = 0.45f;
                 break;
-            default:
             case R.id.radio_bbb_50:
                 bbbPercent = 0.50f;
                 break;
@@ -178,6 +162,15 @@ public class SetMaxes extends Activity {
                 break;
             case R.id.radio_bbb_75:
                 bbbPercent = 0.75f;
+                break;
+            case R.id.radio_bbb_80:
+                bbbPercent = 0.80f;
+                break;
+            case R.id.radio_bbb_85:
+                bbbPercent = 0.85f;
+                break;
+            case R.id.radio_bbb_90:
+                bbbPercent = 0.90f;
                 break;
         }
     }

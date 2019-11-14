@@ -62,7 +62,8 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
         db = new DatabaseHelper(this);
 
         radioBbbChoices = new ArrayList<>();
-        Collections.addAll(radioBbbChoices, R.id.radio_bbb_40, R.id.radio_bbb_45, R.id.radio_bbb_50, R.id.radio_bbb_55, R.id.radio_bbb_60, R.id.radio_bbb_65, R.id.radio_bbb_70, R.id.radio_bbb_75);
+        Collections.addAll(radioBbbChoices, R.id.radio_bbb_30, R.id.radio_bbb_35, R.id.radio_bbb_40, R.id.radio_bbb_45, R.id.radio_bbb_50,
+                R.id.radio_bbb_55, R.id.radio_bbb_60, R.id.radio_bbb_65, R.id.radio_bbb_70, R.id.radio_bbb_75, R.id.radio_bbb_80, R.id.radio_bbb_85, R.id.radio_bbb_90);
 
         setButtons();
         setListeners();
@@ -108,40 +109,50 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
         switch (bbbPercent){
             case "0.30":
             case "0.3":
-            case "0.35":
-            case "0.4":
-            case "0.40":
                 bbbVal = radioBbbChoices.get(0);
                 break;
-            case "0.45":
+            case "0.35":
                 bbbVal = radioBbbChoices.get(1);
+                break;
+            case "0.4":
+            case "0.40":
+                bbbVal = radioBbbChoices.get(2);
+                break;
+            case "0.45":
+                bbbVal = radioBbbChoices.get(3);
                 break;
             case "0.5":
             case "0.50":
-                bbbVal = radioBbbChoices.get(2);
+                bbbVal = radioBbbChoices.get(4);
                 break;
             case "0.55":
-                bbbVal = radioBbbChoices.get(3);
+                bbbVal = radioBbbChoices.get(5);
                 break;
             case "0.6":
             case "0.60":
-                bbbVal = radioBbbChoices.get(4);
+                bbbVal = radioBbbChoices.get(6);
                 break;
             case "0.65":
-                bbbVal = radioBbbChoices.get(5);
+                bbbVal = radioBbbChoices.get(7);
                 break;
             case "0.7":
             case "0.70":
-                bbbVal = radioBbbChoices.get(6);
+                bbbVal = radioBbbChoices.get(8);
                 break;
             case "0.75":
-                bbbVal = radioBbbChoices.get(7);
+                bbbVal = radioBbbChoices.get(9);
                 break;
             case "0.80":
             case "0.8":
+                bbbVal = radioBbbChoices.get(10);
+                break;
             case "0.85":
+                bbbVal = radioBbbChoices.get(11);
+                break;
             case "0.90":
             case "0.9":
+                bbbVal = radioBbbChoices.get(12);
+                break;
             default:
                 bbbVal = 0;
                 break;
@@ -332,7 +343,7 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
 
 
     private float checkBBBPercent(int id){
-        float bbbVal = 0.40f;
+        float bbbVal = 0.30f;
         for(int i = 0; i < radioBbbChoices.size(); i++){
             if(id == radioBbbChoices.get(i)){
                 break;
