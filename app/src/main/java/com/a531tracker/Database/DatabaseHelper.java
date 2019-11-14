@@ -182,14 +182,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(WORKOUT_COMPOUND_90_REPS, lifts.getNinety_reps());
             contentValues.put(WORKOUT_COMPOUND_95_REPS, lifts.getNinety_five_reps());
             contentValues.put(WORKOUT_COMPOUND_BBB_WEIGHT, lifts.getBig_but_boring_weight());
-            Log.d("Compound_value", lifts.getCompound_movement());
             try {
                 db.insert(WORKOUT_COMPOUND_TABLE_NAME, null, contentValues);
             } catch (Exception e){
                 e.printStackTrace();
             }
-        } else {
-            Log.e("SQL_DB_ERROR", lifts.getCompound_movement() + " does not exist");
         }
     }
 
@@ -217,7 +214,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(WORKOUT_COMPOUND_90_REPS, lifts.getNinety_reps());
         contentValues.put(WORKOUT_COMPOUND_95_REPS, lifts.getNinety_five_reps());
         int i = db.update(WORKOUT_COMPOUND_TABLE_NAME, contentValues, WORKOUT_COMPOUND_MOVEMENT + " = '" + lifts.getCompound_movement() + "'", null);
-        Log.d("Did_it_Work", ""+i);
         db.close();
         return i;
     }
@@ -256,7 +252,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_CYCLE, cycle);
             try {
                 db.insert(findAMRAPTable(compound), null, contentValues);
-                Log.d("SQ_DB", "Table created for AMRAP!");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -278,14 +273,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public int updateAMRAPTable(String compound, int cycle, String amrapPercent, int reps, int weight){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Log.d("Cycle_value_in_update", cycle+"");
         ContentValues contentValues = new ContentValues();
         String AMRAP = findAMRAP(amrapPercent);
         contentValues.put(AMRAP, String.valueOf(reps));
         contentValues.put("weight", String.valueOf(weight));
 
         int i = db.update(findAMRAPTable(compound), contentValues, WORKOUT_AS_MANY_REPS_AS_POSSIBLE_CYCLE + " = " +cycle, null);
-        Log.d("Did_it_Work", i + "");
         db.close();
         return i;
     }
@@ -357,11 +350,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public AsManyRepsAsPossible checkForMissing(String compound, int cycle, int weight){
         SQLiteDatabase db = this.getReadableDatabase();
         String compoundTable = findAMRAPTable(compound);
-        //String specificRow = repCheck(repCheck);
         Cursor cursor = db.rawQuery("select * from " + compoundTable + " where cycle = '" + cycle + "' and " + WORKOUT_AS_MANY_REPS_AS_POSSIBLE_WEIGHT + " = " + weight, null);
         cursor.moveToFirst();
         AsManyRepsAsPossible amrap = createCheckAMRAP(cursor, compound, cycle, weight);
-        //Log.d("ValueOfCheck", "i is " + i);
         cursor.close();
         db.close();
         return amrap;
@@ -423,7 +414,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int result = cursor.getCount();
             cursor.close();
             db.close();
-            Log.d("CursorValues", result + " ");
             return result > 0;
         } catch (Exception e){
             return false;
@@ -465,15 +455,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(WORKOUT_BBB_SWAPS, 0);
             try{
                 db.insert(WORKOUT_SETTINGS_TABLE, null, contentValues);
-                Log.d("UserSettings", "Fresh settings input!");
                 return false;
             } catch (Exception e){
                 e.printStackTrace();
-                Log.d("UserSettings", "Input failed");
                 return false;
             }
         } else {
-            Log.d("UserSettings", "No settings input!");
             return true;
         }
     }
@@ -509,9 +496,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("select * from " + WORKOUT_SETTINGS_TABLE, null);
         cursor.moveToFirst();
         UserSettings userSettings = new UserSettings();
-        Log.d("CursorValues", "Chosen: " + cursor.getInt(cursor.getColumnIndex(WORKOUT_FORMAT_CHOSEN)));
-        Log.d("CursorValues", "Days: " + cursor.getInt(cursor.getColumnIndex(WORKOUT_BBB_SEVEN_DAY)));
-        Log.d("CursorValues", "Swaps: " + cursor.getInt(cursor.getColumnIndex(WORKOUT_BBB_SWAPS)));
         userSettings.setChosenBBBFormat(cursor.getInt(cursor.getColumnIndex(WORKOUT_FORMAT_CHOSEN)));
         userSettings.setWeekFormat(cursor.getInt(cursor.getColumnIndex(WORKOUT_BBB_SEVEN_DAY)));
         userSettings.setSwapBBBFormat(cursor.getInt(cursor.getColumnIndex(WORKOUT_BBB_SWAPS)));
@@ -557,7 +541,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(WORKOUT_COMPOUND_BBB_WEIGHT, lifts.getBig_but_boring_weight());
         int i = db.update(WORKOUT_COMPOUND_TABLE_NAME, contentValues, WORKOUT_COMPOUND_MOVEMENT + " = '" + lifts.getCompound_movement() + "'", null);
-        Log.d("Did_it_Work", ""+i);
         db.close();
         return i;
     }

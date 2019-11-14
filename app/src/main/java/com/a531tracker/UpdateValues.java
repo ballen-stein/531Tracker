@@ -3,7 +3,6 @@ package com.a531tracker;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -145,7 +144,6 @@ public class UpdateValues extends AppCompatActivity {
                 try {
                     db.updateCycle(cycleValue);
                     cycleValue = db.getCycle();
-                    Log.d("Everything work", "Everything worked");
                     for(String lifts: compoundLifts) {
                         db.createAMRAPTable(cycleValue, lifts);
                         addToTotalMax(lifts);
@@ -197,9 +195,9 @@ public class UpdateValues extends AppCompatActivity {
         CompoundLifts newLifts = new CompoundLifts();
         newLifts.setCompound_movement(compoundName);
         newLifts.setTraining_max(newMax);
-        Log.d("CompoundValues", compoundName + " is adding " + newMax);
+        boolean success;
         if(db.updateCompoundStats(newLifts) == 1)
-            Log.d("Lifts", "Lift "  + compoundName + " updated!");
+            success = true;
     }
 
 

@@ -110,10 +110,7 @@ public class Settings extends AppCompatActivity {
     private void setTableRow(Map liftMap) {
         for(String lift : compoundLifts){
             int compoundWeight = (int)liftMap.get(lift);
-
             AsManyRepsAsPossible amrap = db.checkForMissing(lift, cycleValue, compoundWeight);
-
-            Log.d("LiftValue", "AMRAP Values: " + amrap.getCompound()  + "\n" +  (amrap.getTotalMaxWeight()) + "\n" + amrap.getNinety_five_reps()  + "\n" + amrap.getNinety_reps() + "\n" + amrap.getEighty_five_reps());
             liftTable.addView(createTableRow(amrap));
         }
     }
@@ -157,13 +154,6 @@ public class Settings extends AppCompatActivity {
         tv.setBackground(ResourcesCompat.getDrawable(getResources(), (R.drawable.table_boxes), null));
         int paddingVal = (int) mContext.getResources().getDimension(R.dimen.workout_frame_padding_half);
         tv.setPadding(paddingVal, paddingVal, paddingVal, paddingVal);
-
-        //final float scale = mContext.getResources().getDisplayMetrics().density;
-        //int height = (int)(70 * scale + 0.5f);
-        //int width = (int)(105 * scale + 0.5f);
-        //tv.setHeight(height);
-        //tv.setWidth(width);
-        //params.weight = 0.75f;
         tv.setLayoutParams(params);
         tv.setGravity(Gravity.CENTER);
         return tv;
@@ -194,7 +184,7 @@ public class Settings extends AppCompatActivity {
         amrapSettings = findViewById(R.id.amrap_settings_frame);
         //Hide AMRAP Button until graphing is implemented
         if(!getResources().getBoolean(R.bool.show_amrap_numbers))
-            //amrapSettings.setVisibility(View.GONE);
+            amrapSettings.setVisibility(View.GONE);
         deleteAllData = findViewById(R.id.delete_settings_frame);
         getMoreInfo = findViewById(R.id.get_more_information_settings);
         navButtons();
@@ -257,7 +247,6 @@ public class Settings extends AppCompatActivity {
         bbbSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("LiftSettingsClicked", "Go to BBB settings");
                 Intent intent = new Intent(mContext, BBBSettings.class);
                 startActivity(intent);
             }
