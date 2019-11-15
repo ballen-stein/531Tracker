@@ -25,7 +25,7 @@
             android:padding="@dimen/workout_frame_padding_half"
             android:text="@string/amrap_submit"
             android:textSize="@dimen/text_18"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorPrimaryDark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -107,8 +107,8 @@
                     android:inputType="number"
                     android:textSize="@dimen/text_16"
                     android:text="@string/amrap_placeholder_reps"
-                    android:textColor="@color/colorBlue"
-                    android:backgroundTint="@color/colorBlue"
+                    android:textColor="@color/colorPrimary"
+                    android:backgroundTint="@color/colorPrimary"
                     android:textCursorDrawable="@drawable/cursor_drawable"
                     android:paddingStart="@dimen/workout_frame_padding"
                     android:paddingEnd="@dimen/workout_frame_padding"
@@ -125,7 +125,7 @@
                     android:background="@drawable/update_button"
                     android:text="@string/cancel_text"
                     android:textSize="@dimen/text_14"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorPrimaryDark"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/fragment_amrap_submit_button"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -138,7 +138,7 @@
                     android:background="@drawable/update_button"
                     android:text="@string/submit_text"
                     android:textSize="@dimen/text_14"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorPrimaryDark"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/fragment_amrap_cancel_button"
                     app:layout_constraintEnd_toEndOf="parent" />

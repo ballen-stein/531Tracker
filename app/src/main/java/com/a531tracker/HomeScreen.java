@@ -46,7 +46,6 @@ public class HomeScreen extends AppCompatActivity {
 
     private TextView cycleDisplay;
 
-    private TextView accessoryText;
     private TextView benchText;
     private TextView deadliftText;
     private TextView pressText;
@@ -165,14 +164,6 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
-    public void accessoriesCheck(){
-        if(getResources().getBoolean(R.bool.have_accessories)) {
-            accessoriesButton();
-            accessoryText.setVisibility(View.VISIBLE);
-        }
-    }
-
-
     private void setViews(){
         accessoryView = findViewById(R.id.accessories_hex);
         benchView = findViewById(R.id.bench_numbers);
@@ -194,7 +185,6 @@ public class HomeScreen extends AppCompatActivity {
 
 
     private void setText(){
-        accessoryText = findViewById(R.id.accessories_text);
         updateCycleText = findViewById(R.id.update_cycle_text);
         pressText = findViewById(R.id.press_text);
         deadliftText = findViewById(R.id.deadlift_text);
@@ -211,7 +201,6 @@ public class HomeScreen extends AppCompatActivity {
         pressButton();
         squatButton();
         updateCycleButton();
-        accessoriesCheck();
     }
 
 
@@ -357,16 +346,6 @@ public class HomeScreen extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, Settings.class);
                 startActivity(intent);
-            }
-        });
-    }
-
-
-    public void accessoriesButton (){
-        accessoryView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
             }
         });
     }

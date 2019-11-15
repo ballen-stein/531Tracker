@@ -329,7 +329,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         tv.setText(value);
         tv.setTextSize(25);
-        tv.setTextColor(ContextCompat.getColor(mContext, R.color.colorBlue));
+        tv.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
         params.setMargins(marginValues[0], marginValues[1], 0, 0);
         tv.setLayoutParams(params);
         return tv;
@@ -522,7 +522,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     private void setHeaderText(String headerCompound, int headerWeight){
         TextView headerText = findViewById(R.id.header_text);
-        String displayInfo = headerCompound + " " + headerWeight + "lbs";
+        String displayInfo = headerCompound + ": " + headerWeight + "lbs";
         headerText.setText(displayInfo);
     }
 

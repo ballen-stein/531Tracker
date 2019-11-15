@@ -4,13 +4,13 @@
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorBlack</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorSurface</item>
     </style>
 
     <style name="AlertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <!-- Change Button Text Color -->
-        <item name="colorAccent">@color/colorBlue</item>
+        <item name="colorAccent">@color/colorPrimary</item>
         <!-- Change Title and Message Color -->
         <item name="android:textColorPrimary">@color/colorWhite</item>
         <!-- Change Background Color -->

@@ -22,7 +22,7 @@
             android:layout_marginStart="@dimen/workout_frame_32"
             android:text="@string/settings_bbb_swap"
             android:textSize="@dimen/text_18"
-            android:textColor="@color/colorBlue"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/fragment_cancel_frame"
             app:layout_constraintBottom_toBottomOf="@id/fragment_cancel_frame" />

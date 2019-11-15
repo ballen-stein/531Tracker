@@ -11,17 +11,30 @@
     <include layout="@layout/hexagon_background" />
 
     <FrameLayout
-        android:id="@+id/week_header"
+        android:id="@+id/top_frame_home"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:elevation="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="@color/colorSurface"
-        android:paddingStart="@dimen/workout_frame_16"
-        android:paddingEnd="@dimen/workout_frame_16"
-        android:layout_gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_frame_home">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/navigation" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/week_header"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:elevation="16dp"
+        android:background="@color/colorSurface"
+        android:paddingStart="@dimen/workout_frame_8"
+        android:paddingEnd="@dimen/workout_frame_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/top_frame_home"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/header_text"
@@ -30,9 +43,9 @@
             android:text="@string/app_header"
             android:layout_marginTop="@dimen/workout_frame_padding_half"
             android:layout_marginBottom="@dimen/workout_frame_padding_half"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textColor="@color/colorWhite"
-            android:layout_gravity="center|bottom"
+            android:layout_gravity="left|bottom"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -42,12 +55,12 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_view_days"
-        android:elevation="4dp"
+        android:elevation="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/colorSurface"
-        app:tabIndicatorColor="@color/colorBlue"
+        app:tabIndicatorColor="@color/colorPrimary"
         app:tabTextColor="@drawable/tab_selected"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/workout_frame_padding"
             android:layout_marginEnd="@dimen/workout_frame_padding"
-            android:background="@color/colorBlueDark"
+            android:background="@color/colorBlue"
             android:elevation="4dp"
             android:orientation="vertical">
 
@@ -115,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/workout_frame_padding_half"
                     android:text="@string/warmup_set"
-                    android:textColor="@color/colorBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20"/>
 
@@ -153,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/workout_frame_padding_half"
                     android:text="@string/core_set"
-                    android:textColor="@color/colorBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20"/>
 
@@ -192,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/workout_frame_padding_half"
                     android:text="@string/bbb_set"
-                    android:textColor="@color/colorBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20"/>
 
@@ -223,7 +236,7 @@
     </ScrollView>
 
     <FrameLayout
-        android:elevation="4dp"
+        android:elevation="16dp"
         android:id="@+id/amrap_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -298,8 +311,8 @@
                 android:inputType="number"
                 android:textSize="@dimen/text_16"
                 android:text="@string/amrap_placeholder_reps"
-                android:textColor="@color/colorBlue"
-                android:backgroundTint="@color/colorBlue"
+                android:textColor="@color/colorPrimary"
+                android:backgroundTint="@color/colorPrimary"
                 android:textCursorDrawable="@drawable/cursor_drawable"
                 android:paddingStart="@dimen/workout_frame_padding"
                 android:paddingEnd="@dimen/workout_frame_padding"
@@ -316,7 +329,7 @@
                 android:paddingEnd="@dimen/workout_frame_padding_half"
                 android:layout_marginEnd="@dimen/workout_frame_padding_half"
                 android:text="@string/amrap_submit"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/text_14"
                 android:background="@drawable/update_button"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -333,7 +346,7 @@
                 android:paddingEnd="@dimen/workout_frame_padding_half"
                 android:layout_marginStart="@dimen/workout_frame_padding_half"
                 android:textSize="@dimen/text_14"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorPrimaryDark"
                 android:gravity="start|center"
                 android:background="@drawable/update_button"
                 android:foreground="@drawable/icon_add_circle"
@@ -344,18 +357,6 @@
                 app:layout_constraintEnd_toStartOf="@id/submit_amrap"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:elevation="0dp"
-        android:id="@+id/top_frame_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlack"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <include layout="@layout/navigation" />
 
     </FrameLayout>
 
