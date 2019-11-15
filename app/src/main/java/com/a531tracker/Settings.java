@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -150,7 +149,7 @@ public class Settings extends AppCompatActivity {
     private TextView createView(String text){
         TextView tv = new TextView(mContext);
         tv.setText(text);
-        tv.setTextColor(ContextCompat.getColor(mContext, R.color.colorBlue));
+        tv.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
         tv.setBackground(ResourcesCompat.getDrawable(getResources(), (R.drawable.table_boxes), null));
         int paddingVal = (int) mContext.getResources().getDimension(R.dimen.workout_frame_padding_half);
         tv.setPadding(paddingVal, paddingVal, paddingVal, paddingVal);

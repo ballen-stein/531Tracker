@@ -5,14 +5,14 @@
     android:layout_height="wrap_content"
     android:id="@+id/nav_container"
     android:elevation="16dp"
-    android:background="@color/colorBlueDark"
+    android:background="@color/colorBlue"
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="16dp"
-        android:background="@color/colorBlueDark" >
+        android:background="@color/colorSurface" >
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
                 android:id="@+id/home_button"
                 android:layout_width="58dp"
                 android:layout_height="48dp"
-                android:layout_marginEnd="@dimen/workout_frame_16"
+                android:layout_marginEnd="@dimen/workout_frame_8"
                 android:background="@color/transparent"
                 android:foreground="@drawable/icon_home"
                 android:foregroundGravity="center"
@@ -38,6 +38,7 @@
                 android:id="@+id/settings_button"
                 android:layout_width="58dp"
                 android:layout_height="48dp"
+                android:layout_marginEnd="@dimen/workout_frame_8"
                 android:background="@color/transparent"
                 android:foreground="@drawable/icon_settings"
                 android:foregroundGravity="center"

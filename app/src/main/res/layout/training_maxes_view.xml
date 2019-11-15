@@ -37,7 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/set_max_info"
-                    android:textColor="@color/colorBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/text_16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/training_maxes_input"
-                    android:textColor="@color/colorBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/text_16"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/training_maxes_used"
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|start"
                     android:text="@string/bench"
-                    android:textColor="@color/colorBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="18sp" />
 
                 <EditText
@@ -114,7 +114,7 @@
                     android:gravity="end"
                     android:inputType="numberDecimal"
                     android:text="@string/bench_placeholder"
-                    android:backgroundTint="@color/colorBlue"
+                    android:backgroundTint="@color/colorPrimary"
                     android:textCursorDrawable="@drawable/cursor_drawable"
                     android:textColor="@color/colorWhite" />
 
@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|start"
                     android:text="@string/overhand"
-                    android:textColor="@color/colorBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="18sp" />
 
                 <EditText
@@ -143,7 +143,7 @@
                     android:gravity="end"
                     android:inputType="numberDecimal"
                     android:text="@string/overhand_placeholder"
-                    android:backgroundTint="@color/colorBlue"
+                    android:backgroundTint="@color/colorPrimary"
                     android:textCursorDrawable="@drawable/cursor_drawable"
                     android:textColor="@color/colorWhite" />
 
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|start"
                     android:text="@string/squat"
-                    android:textColor="@color/colorBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="18sp" />
 
                 <EditText
@@ -188,7 +188,7 @@
                     android:gravity="end"
                     android:inputType="numberDecimal"
                     android:text="@string/squat_placeholder"
-                    android:backgroundTint="@color/colorBlue"
+                    android:backgroundTint="@color/colorPrimary"
                     android:textCursorDrawable="@drawable/cursor_drawable"
                     android:textColor="@color/colorWhite" />
             </FrameLayout>
@@ -204,7 +204,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|start"
                     android:text="@string/deadlift"
-                    android:textColor="@color/colorBlue"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="18sp" />
 
                 <EditText
@@ -216,7 +216,7 @@
                     android:gravity="end"
                     android:inputType="numberDecimal"
                     android:text="@string/deadlift_placeholder"
-                    android:backgroundTint="@color/colorBlue"
+                    android:backgroundTint="@color/colorPrimary"
                     android:textCursorDrawable="@drawable/cursor_drawable"
                     android:textColor="@color/colorWhite" />
             </FrameLayout>
@@ -273,7 +273,7 @@
                             app:layout_constraintEnd_toEndOf="parent">
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
@@ -281,7 +281,7 @@
                                 android:text="@string/bbb_30" />
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
@@ -289,7 +289,7 @@
                                 android:text="@string/bbb_35" />
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
@@ -297,7 +297,7 @@
                                 android:text="@string/bbb_40" />
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
@@ -305,7 +305,7 @@
                                 android:text="@string/bbb_45" />
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
@@ -313,7 +313,7 @@
                                 android:text="@string/bbb_50" />
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
@@ -321,7 +321,7 @@
                                 android:text="@string/bbb_55" />
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
@@ -329,7 +329,7 @@
                                 android:text="@string/bbb_60" />
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
@@ -338,7 +338,7 @@
 
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
@@ -346,7 +346,7 @@
                                 android:text="@string/bbb_70" />
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
@@ -354,7 +354,7 @@
                                 android:text="@string/bbb_75" />
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
@@ -362,7 +362,7 @@
                                 android:text="@string/bbb_80" />
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
@@ -370,7 +370,7 @@
                                 android:text="@string/bbb_85" />
 
                             <TextView
-                                android:textColor="@color/colorBlue"
+                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
