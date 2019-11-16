@@ -169,6 +169,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public void onResetLifts(SQLiteDatabase db){
+        db.execSQL("drop table if exists " + WORKOUT_COMPOUND_TABLE_NAME);
+        db.execSQL("drop table if exists " + WORKOUT_ACCESSORY_TABLE_NAME);
+        onCreate(db);
+    }
+
+
     // -------- Compound SQL --------
 
 

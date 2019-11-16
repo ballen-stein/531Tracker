@@ -102,7 +102,8 @@ public class Launcher extends AppCompatActivity {
         ErrorAlerts newAlert = new ErrorAlerts(this);
         newAlert.setErrorAlertsValues(false, false, "New Feature: Settings", "A new feature has been added: Settings. You are now able to customize your program with " +
                 "more Boring But Big percents, Joker Sets, First Sets Last, Swap the accessory lifts or remove them entirely! \n\nAdditionally, there are a few 5/3/1 related settings, such as the 8/6/3 split " +
-                "and 7 week cycle that can be enabled. \n\nDefault settings that are enabled are: 7 Week Cycle and Deload Week. You can find out more about all these options by pressing the icon next to the home button and clicking 'ALL Lift Settings'", "", false);
+                "and 7 week cycle that can be enabled. \n\nDefault settings that are enabled are: 7 Week Cycle and Deload Week. You can find out more about all these options by pressing the icon next to the home button and clicking 'ALL Lift Settings'.\n\n" +
+                "If you've reset your values at all and are NOT on the first cycle, you will need to press the DELETE ALL DATA button first to properly utilize the As Many Reps As Possible graphs.", "", false);
         newAlert.blankAlert(this).setPositiveButton(getString(R.string.ok_text), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

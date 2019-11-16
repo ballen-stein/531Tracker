@@ -78,9 +78,9 @@
     <string name="settings_reset_all">Reset Lift Values</string>
     <string name="settings_delete_data">Delete ALL Data</string>
     <string name="settings_view_lift_options">ALL Lift Settings</string>
-    <string name="settings_amrap_stats">AMRAP Numbers</string>
+    <string name="settings_amrap_stats">AMRAP Number Graphs</string>
     <string name="settings_get_more_info">Get More Information on 5/3/1</string>
-    
+
     <string name="settings_week_info">There are two major formats for 5/3/1: 4 week and 7 week. \n\n4 Week: Jim Wendler\'s original 5/3/1 format. A deload week occurs every 4th week of a 4 week cycle. \n\n7 Week: Jim Wendler\'s revised 5/3/1 format. Two 3 week cycles are combined with a deload week every 7th week.</string>
     <string name="settings_option_info">There are a few options to customize the 5/3/1 program and the Boring But Big exercises.
         \n\n8/6/3: Changes the 5/3/1 format to 8/6/3, dropping the weight by 5% and effectively doubles the volume of minimum sets.
@@ -109,6 +109,9 @@
     <string name="settings_delete_message">Warning: If you continue, all of your data will be deleted. Your lift values and Cycle will be reset to 0 and you will be prompted to put in your starting lift values again.\n\nAre you sure you wish to continue?</string>
 
     <string name="settings_understand">I Understand</string>
+
+    <string name="settings_view_amrap_title">No Lifts from your Cycles Found</string>
+    <string name="settings_view_amrap_message">Your AMRAP values will be displayed here after you finish your first cycle. Please finish your first cycle and return then.</string>
 
     <string name="table_lift">Lift Name</string>
     <string name="table_completed">Submitted</string>

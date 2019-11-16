@@ -34,7 +34,6 @@ public class HomeScreen extends AppCompatActivity {
     private Context mContext;
     private Integer cycleValue;
 
-    private ImageView accessoryView;
     private ImageView benchView;
     private ImageView deadliftView;
     private ImageView pressView;
@@ -165,7 +164,6 @@ public class HomeScreen extends AppCompatActivity {
 
 
     private void setViews(){
-        accessoryView = findViewById(R.id.accessories_hex);
         benchView = findViewById(R.id.bench_numbers);
         deadliftView = findViewById(R.id.deadlift_hex);
         pressView = findViewById(R.id.press_hex);

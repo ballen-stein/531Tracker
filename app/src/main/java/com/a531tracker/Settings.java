@@ -257,7 +257,8 @@ public class Settings extends AppCompatActivity {
         amrapSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(mContext, ViewAmrapStats.class);
+                startActivity(intent);
             }
         });
     }
