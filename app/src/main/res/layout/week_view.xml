@@ -137,17 +137,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp">
 
-                    <LinearLayout
+                    <TableLayout
                         android:id="@+id/warmup_sets_display"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="visible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                    </LinearLayout>
+                    </TableLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -175,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp" >
 
-                    <LinearLayout
+                    <TableLayout
                         android:id="@+id/core_sets_display"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -186,7 +184,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                    </LinearLayout>
+                    </TableLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -214,7 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp">
 
-                    <LinearLayout
+                    <TableLayout
                         android:id="@+id/bbb_sets_display"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -225,7 +223,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                    </LinearLayout>
+                    </TableLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

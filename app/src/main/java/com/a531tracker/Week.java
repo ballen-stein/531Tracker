@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,8 +33,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
-    private FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
-    private LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+    private TableRow.LayoutParams tableParams = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1f);
 
     private SubmitAmrap submitAmrap;
 
@@ -53,9 +54,9 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     private TextView warmupTitle;
     private TextView amrapLastWeek;
 
-    private LinearLayout warmupDisplay;
-    private LinearLayout coreDisplay;
-    private LinearLayout bbbDisplay;
+    private TableLayout warmupDisplay;
+    private TableLayout coreDisplay;
+    private TableLayout bbbDisplay;
 
     private Button amrapButton;
     private Button homeButton;
@@ -73,11 +74,10 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     private int fslSettingVal;
     private int eightFormatSettingVal;
     private int removeSettingVal;
-
     private int amrapWeight;
     private int currentWeek;
-
     private int jokerStartWeight;
+    private int paddingVal;
 
     private boolean swapCheckVal;
 
@@ -113,6 +113,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     @Override
     protected void onStart(){
         super.onStart();
+        paddingVal = (int) mContext.getResources().getDimension(R.dimen.workout_frame_padding);
         getSettings();
         setSettingValues(userSettings);
         swapCheckVal = checkForSwaps(userSettings);
@@ -256,7 +257,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
                 fslList.add(getString(R.string.fsl_reps_option_one));
                 createWeeklyLiftsDisplays(bbbDisplay, fslValue, fslList);
-                bbbDisplay.addView(createTextView(getString(R.string.fsl_or), new int[]{600, 25}));
+                bbbDisplay.addView(createTextView(getString(R.string.fsl_or), paddingVal));
 
                 fslList.clear();
                 fslList.add(getString(R.string.fsl_reps_option_two));
@@ -286,7 +287,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     }
 
 
-    private void createWeeklyLiftsDisplays(LinearLayout layout, float[] liftPercent, ArrayList<String> reps){
+    private void createWeeklyLiftsDisplays(TableLayout layout, float[] liftPercent, ArrayList<String> reps){
         for(int i = 0; i < liftPercent.length; i++){
             if(layout == bbbDisplay){
                 if(swapCheckVal && fslSettingVal != 1){
@@ -305,42 +306,46 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     }
 
 
-    private FrameLayout setWeekLifts(float liftPercent, String reps, int trainingValue) {
-        FrameLayout frameLayout = new FrameLayout(getApplicationContext());
-        layoutParams.height = 200;
-        frameLayout.setLayoutParams(layoutParams);
-        frameLayout.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.transparent, null));
+    private TableRow setWeekLifts(float liftPercent, String reps, int trainingValue) {
+        TableRow tableRow = new TableRow(mContext);
 
         String workoutWeightText = (5*(Math.ceil((trainingValue*liftPercent)/5))) + " lbs";
-        TextView workoutWeight = createTextView(workoutWeightText, new int[]{125, 25});
-        TextView workoutReps = createTextView(reps, new int[]{700, 25});
-        CheckBox checkbox = createCheckBox(new int[]{1100, 35});
+        TextView workoutWeight = createTextView(workoutWeightText, paddingVal);
+        TextView workoutReps = createTextView(reps, paddingVal);
+        CheckBox checkbox = createCheckBox(paddingVal);
 
-        frameLayout.addView(workoutReps);
-        frameLayout.addView(workoutWeight);
-        frameLayout.addView(checkbox);
+        tableRow.addView(workoutWeight);
+        tableRow.addView(workoutReps);
+        tableRow.addView(checkbox);
 
-        return frameLayout;
+        return tableRow;
     }
 
 
-    private TextView createTextView(String value, int[] marginValues){
+    private TextView createTextView(String value, int padding){
         TextView tv = new TextView(mContext);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         tv.setText(value);
         tv.setTextSize(25);
         tv.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
-        params.setMargins(marginValues[0], marginValues[1], 0, 0);
-        tv.setLayoutParams(params);
+        //tv.setBackground(ResourcesCompat.getDrawable(getResources(), (R.drawable.table_boxes), null));
+        tv.setPadding(padding*2, padding, padding, padding);
+        tableParams.weight = 0.45f;
+        tv.setLayoutParams(tableParams);
+        if(value.equals("OR"))
+            tv.setGravity(Gravity.CENTER);
+        else
+            tv.setGravity(Gravity.START);
         return tv;
     }
 
 
-    private CheckBox createCheckBox(int[] marginValues){
+    private CheckBox createCheckBox(int padding){
         CheckBox checkBox = new CheckBox(mContext);
-        params.setMargins(marginValues[0], marginValues[1], 0, 0 );
         checkBox.setButtonTintList(ColorStateList.valueOf(0xFF84C9FB));
-        checkBox.setLayoutParams(params);
+        //checkBox.setBackground(ResourcesCompat.getDrawable(getResources(), (R.drawable.table_boxes), null));
+        checkBox.setPadding(padding, padding, padding, padding);
+        checkBox.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.10f));
+        checkBox.setGravity(Gravity.CENTER_VERTICAL);
         return checkBox;
     }
 
