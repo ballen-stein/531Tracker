@@ -11,5 +11,6 @@
     <color name="colorUnpressedOrange">#FF932A</color>
     <color name="colorBlue">#18242B</color>
     <color name="colorDarkBlue">#2D3A41</color>
+    <color name="colorGreen">#A6CC96</color>
     <color name="transparent">#00000000</color>
 </resources>

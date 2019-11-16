@@ -181,25 +181,21 @@ public class SetMaxes extends Activity {
         findViewById(R.id.submit_compounds).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.onNewUser(db.getReadableDatabase());
+                if(firstLaunch){
+                    db.onNewUser(db.getReadableDatabase());
+                    startAMRAP();
+                } else if (revision){
+                    db.onResetLifts(db.getReadableDatabase());
+                }
+
                 setLifts();
                 inputLifts();
                 startCycle();
-                startAMRAP();
 
-                if(firstLaunch){
-                    Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
-                    startActivity(intent);
-                } else if(revision){
-                    Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
-                    startActivity(intent);
-                    finish();
-                }
+                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
             }
         });
     }
