@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +19,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 
 import com.a531tracker.Database.DatabaseHelper;
 import com.a531tracker.DetailFragments.SubmitAmrap;
@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+
+import timber.log.Timber;
 
 public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     private TableRow.LayoutParams tableParams = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1f);
@@ -69,11 +71,11 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     private int[] settingsArray = new int[5];
 
-    private int deloadSettingVal;
+    private int deloadWeekSettingVal;
     private int jokerSettingVal;
     private int fslSettingVal;
     private int eightFormatSettingVal;
-    private int removeSettingVal;
+    private int removeBbbOptionsSettingsVal;
     private int amrapWeight;
     private int currentWeek;
     private int jokerStartWeight;
@@ -85,6 +87,8 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     private String swapLift;
     private String repsDone;
 
+    private boolean newSettings = true;
+
     private Context mContext;
 
     private AsManyRepsAsPossible lastWeeksReps;
@@ -95,6 +99,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.week_view);
+        Timber.plant(new Timber.DebugTree());
 
         Intent intent = getIntent();
         mContext = this;
@@ -116,12 +121,22 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         paddingVal = (int) mContext.getResources().getDimension(R.dimen.workout_frame_padding);
         getSettings();
         setSettingValues(userSettings);
+        Timber.tag("RemoveSettings").i("Current value: " + removeBbbOptionsSettingsVal + "\tNew Value: " +  settingsArray[0]);
+        if(resumeCheck(settingsArray)){
+            newSettings = true;
+            currentWeek = tabSelected.getSelectedTabPosition();
+        }
+        setAllValues(settingsArray);
         swapCheckVal = checkForSwaps(userSettings);
         setTabText();
-        weekSelected(1);
         setTabViews(userSettings);
         setListeners();
         setJokerButton(jokerSettingVal == 1);
+
+        if(newSettings){
+            weekSelected(currentWeek);
+            newSettings = false;
+        }
     }
 
 
@@ -136,11 +151,29 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         for(int i = 1; i < strArray.length; i++){
             settingsArray[i-1] = Integer.parseInt(String.valueOf(strArray[i]));
         }
-        removeSettingVal = settingsArray[0];
-        deloadSettingVal = settingsArray[1];
-        jokerSettingVal = settingsArray[2];
-        fslSettingVal = settingsArray[3];
-        eightFormatSettingVal = settingsArray[4];
+    }
+
+
+    private boolean resumeCheck(int[] settings){
+        if(settings[0] != removeBbbOptionsSettingsVal
+                || settings[1] != deloadWeekSettingVal
+                || settings[2] != jokerSettingVal
+                || settings[3] != fslSettingVal
+                || settings[4] != eightFormatSettingVal
+                || checkForSwaps(userSettings) != swapCheckVal
+                )
+            return true;
+        else
+            return false;
+    }
+
+
+    private void setAllValues(int[] settings){
+        removeBbbOptionsSettingsVal = settings[0];
+        deloadWeekSettingVal = settings[1];
+        jokerSettingVal = settings[2];
+        fslSettingVal = settings[3];
+        eightFormatSettingVal = settings[4];
     }
 
 
@@ -176,25 +209,25 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         removeDisplayViews();
         switch(day) {
             default:
-            case 1:
+            case 0:
                 setLiftValues(1);
                 setWeeklyLifts(false);
                 setAMRAPDetails();
                 setAmrapFrameVisibility(true);
                 break;
-            case 2:
+            case 1:
                 setLiftValues(2);
                 setWeeklyLifts(false);
                 setAMRAPDetails();
                 setAmrapFrameVisibility(true);
                 break;
-            case 3:
+            case 2:
                 setLiftValues(3);
                 setWeeklyLifts(false);
                 setAMRAPDetails();
                 setAmrapFrameVisibility(true);
                 break;
-            case 4:
+            case 3:
                 setWeeklyLifts(true);
                 setAmrapFrameVisibility(false);
                 break;
@@ -248,9 +281,10 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         if (!deloadWeek) {
             createWeeklyLiftsDisplays(coreDisplay, corePercents, coreReps);
         }
-        if (removeSettingVal == 1 && fslSettingVal != 1) {
+        if (removeBbbOptionsSettingsVal == 1 && fslSettingVal != 1) {
             bbbFrame.setVisibility(View.GONE);
         } else {
+            bbbFrame.setVisibility(View.VISIBLE);
             if(fslSettingVal == 1){
                 float[] fslValue = new float[]{corePercents[0]};
                 ArrayList<String> fslList = new ArrayList<>();
@@ -488,6 +522,14 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         jokerStartWeight *= 1.05f;
     }
 
+
+    private void checkDeloadVisible(){
+        if(deloadWeekSettingVal != 0)
+            bbbFrame.setVisibility(View.VISIBLE);
+        else
+            bbbFrame.setVisibility(View.GONE);
+    }
+
     // ---------- Fragments ----------
 
     private void createAmrapFragment(String lastWeeksReps){
@@ -625,22 +667,19 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         tabSelected.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                currentWeek = setWeekValue(String.valueOf(tab.getText()));
+                currentWeek = tabSelected.getSelectedTabPosition();
                 checkForFragment();
-
+                weekSelected(currentWeek);
                 if(String.valueOf(tab.getText()).equals("DELOAD")){
                     amrapButton.setEnabled(false);
                     warmupTitle.setText(R.string.deload_set);
                     coreFrame.setVisibility(View.GONE);
-                    if(deloadSettingVal == 0)
-                        bbbFrame.setVisibility(View.GONE);
+                    checkDeloadVisible();
                 } else {
                     amrapButton.setEnabled(true);
                     warmupTitle.setText(R.string.warmup_set);
                     coreFrame.setVisibility(View.VISIBLE);
-                    bbbFrame.setVisibility(View.VISIBLE);
                 }
-                weekSelected(currentWeek);
             }
 
             @Override
@@ -653,24 +692,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
             }
         });
-    }
-
-
-    public int setWeekValue(String week){
-        switch (week){
-            default:
-            case "8/8/8":
-            case "5/5/5":
-                return 1;
-            case "6/6/6":
-            case "3/3/3":
-                return 2;
-            case "8/6/3":
-            case "5/3/1":
-                return 3;
-            case "DELOAD":
-                return 4;
-        }
     }
 
 

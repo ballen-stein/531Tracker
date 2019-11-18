@@ -293,7 +293,7 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
                 else
                     message = "You've removed all Boring But Big options.";
                 if(bbbRemove.isChecked())
-                    message += "\n\nYou've selected to remove the Boring But Big option. All prior BBB settings will be ignored.";
+                    message += "\n\nYou've selected to remove the Boring But Big options. All prior Boring But Big settings will be ignored. First Set Last will still appear with this option selected";
                 newAlert(true, message);
             } else {
                 newAlert(false, message);

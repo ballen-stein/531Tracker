@@ -16,7 +16,7 @@
     <string name="upper_body_compounds">Upper Body 1-Rep-Max</string>
     <string name="lower_body_compounds">Lower Body 1-Rep-Max</string>
     <string name="bbb_set_maxes">Boring But Big Values</string>
-    <string name="set_max_info">Enter the values for your 1 Rep Maxes (1RM) below. Round to the nearest 0 or 5 for in-between values. If you do not know your 1RM values, test for them first. \n\nIf you already know your Training Max, check the box below before submitting your values.</string>
+    <string name="set_max_info">Enter the values for your 1 Rep Maxes (1RM) below. We recommend that you round to the nearest 0 or 5 for in-between values. If you do not know your 1RM values, test for them first. \n\nIf you already know your Training Max, check the box below before submitting your values.</string>
     <string name="training_maxes_input">I already know my training maxes</string>
 
     <string name="bench_placeholder">90</string>
@@ -95,7 +95,7 @@
     <string name="settings_cycle_four">4 Week Cycle</string>
     <string name="settings_cycle_seven">7 Week Cycle</string>
 
-    <string name="settings_bbb_options">Boring But Big Options</string>
+    <string name="settings_bbb_options">Program Options</string>
     <string name="settings_bbb_fsl">First Set Last</string>
     <string name="settings_bbb_joker">Joker Sets</string>
     <string name="settings_bbb_eight_split">8/6/3 Split</string>
