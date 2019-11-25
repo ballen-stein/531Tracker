@@ -10,9 +10,9 @@
     <string name="ok_text">OK</string>
 
     <string name="bench">Bench Press</string>
-    <string name="overhand">Overhand Press</string>
+    <string name="overhand">Military Press</string>
     <string name="deadlift">Deadlift</string>
-    <string name="squat">Back Squat</string>
+    <string name="squat">Squat</string>
     <string name="upper_body_compounds">Upper Body 1-Rep-Max</string>
     <string name="lower_body_compounds">Lower Body 1-Rep-Max</string>
     <string name="bbb_set_maxes">Boring But Big Values</string>
@@ -87,7 +87,7 @@
         \n\nFSL: Swaps First Set Last for BBB sets. As the name implies, you will do the first set of your workout last for either 3-4 sets at 5-8 reps or for one set with as many reps as possible.
         \n\nJoker Sets: An extra set mainly done on days you struggle to complete the 5/3/1 sets or want a little extra. Joker sets are 5 reps and start after the last Core set with 5% more weight than the last completed set.
         \n\nDeload Week: Enabled by default. Adds BBB 3 sets at 90% of the selected BBB value to the Deload week.
-        \n\nSwap BBBs: Popular with the Boring But Big 3&#8211;Month Challenge. Swaps the BBB sets with a complementary compound to work muscles twice a week. Squat week will have Deadlift BBB and Bench week will have Overhand Press.
+        \n\nSwap BBBs: Popular with the Boring But Big 3&#8211;Month Challenge. Swaps the BBB sets with a complementary compound to work muscles twice a week. Squat week will have Deadlift BBB and Bench week will have Military Press.
         \n\nRemove BBB: Removes the BBB lifts from the page. If you\'re just doing 5/3/1, want to do FSL, or want to implement Joker sets without doing BBB, select this option.</string>
     <string name="settings_percent_info">Percents: Boring But Big sets are done through high volume with low to moderate weight. Jim Wendler recommends starting lighter (30&#8211;40%) to gauge the effects on your stamina and fatigue and increase it afterward if desired.</string>
 
@@ -145,7 +145,7 @@
 
     <string name="button_bench">View Bench Press</string>
     <string name="button_deadlift">View Deadlift</string>
-    <string name="button_press">View Overhand Press</string>
+    <string name="button_press">View Military Press</string>
     <string name="button_squat">View Squat</string>
     <string name="button_increase_tm">Increase Training Max</string>
 
