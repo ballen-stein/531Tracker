@@ -95,6 +95,10 @@
     <string name="settings_cycle_four">4 Week Cycle</string>
     <string name="settings_cycle_seven">7 Week Cycle</string>
 
+    <string name="settings_weight_option">Display Weight As</string>
+    <string name="settings_weight_lb">Pounds (LBs)</string>
+    <string name="settings_weight_kg">Kilograms (KGs)</string>
+
     <string name="settings_bbb_options">Program Options</string>
     <string name="settings_bbb_fsl">First Set Last</string>
     <string name="settings_bbb_joker">Joker Sets</string>
