@@ -26,8 +26,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import timber.log.Timber;
-
 import static com.a531tracker.HomeScreen.UPDATE_TRAINING_MAX_CODE;
 import static com.a531tracker.HomeScreen.compoundLifts;
 
@@ -66,7 +64,6 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        Timber.plant(new Timber.DebugTree());
 
         mContext = this;
 
@@ -179,7 +176,6 @@ public class Settings extends AppCompatActivity {
 
     private void getSettings(){
         weightCheck = Integer.parseInt( String.valueOf( String.valueOf( db.getUserSettings().getChosenBBBFormat()).charAt(0)));
-        Timber.tag("WeightChecker").i("Weight value %s", weightCheck);
     }
 
 

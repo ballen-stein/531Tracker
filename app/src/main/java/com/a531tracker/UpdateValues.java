@@ -20,8 +20,6 @@ import com.a531tracker.ObjectBuilders.CompoundLifts;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import timber.log.Timber;
-
 import static com.a531tracker.HomeScreen.compoundLifts;
 
 public class UpdateValues extends AppCompatActivity {
@@ -47,7 +45,6 @@ public class UpdateValues extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_cycle);
-        Timber.plant(new Timber.DebugTree());
 
         db = new DatabaseHelper(this);
         cycleValue = db.getCycle();
