@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -27,6 +26,7 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
 
     private InformationFragment informationFragment;
 
+    private Button submitWeight;
     private Button submitWeek;
     private Button submitOptions;
     private Button submitPercents;
@@ -39,6 +39,7 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
 
     private RadioGroup weekGroup;
     private RadioGroup bbbGroup;
+    private RadioGroup weightGroup;
 
     private CheckBox bbbEight;
     private CheckBox bbbFSL;
@@ -87,6 +88,7 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
         weekGroup.check(setChosenWeek(userSettings.getWeekFormat()));
         bbbGroup.check(setChosenBbbPercent(String.valueOf(userSettings.getChosenBBBPercent())));
         setOptions(userSettings.getChosenBBBFormat());
+        setWeightOption(userSettings.getChosenBBBFormat());
         if(userSettings.getSwapBBBFormat() == 1)
             bbbSwaps.setChecked(true);
     }
@@ -168,6 +170,16 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
     }
 
 
+    private void setWeightOption(int weightFormat){
+        String weightVal = String.valueOf(weightFormat);
+        if(weightVal.charAt(0) != '8'){
+            weightGroup.check(R.id.radio_lb);
+        } else {
+            weightGroup.check(R.id.radio_kg);
+        }
+    }
+
+
     private void checkSettings(char c, int i){
         switch(i){
             case 1:
@@ -202,6 +214,7 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
     private void setViews(){
         weekGroup = findViewById(R.id.radio_cycle_type);
         bbbGroup = findViewById(R.id.bbb_radio_group);
+        weightGroup = findViewById(R.id.radio_weight_option);
 
         bbbEight = findViewById(R.id.bbb_eight_split);
         bbbFSL = findViewById(R.id.bbb_fsl);
@@ -216,6 +229,7 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
         submitWeek = findViewById(R.id.submit_week_options);
         submitOptions = findViewById(R.id.submit_bbb_options);
         submitPercents = findViewById(R.id.submit_bbb_percent);
+        submitWeight = findViewById(R.id.submit_weight_choice);
 
         bbbWeekInfoButton = findViewById(R.id.week_options_information);
         bbbFormatInfoButton = findViewById(R.id.bbb_options_information);
@@ -314,7 +328,12 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
 
 
     private int getCheckboxValues(){
-        int i = 900000;
+        int i;
+        if(String.valueOf(userSettings.getChosenBBBFormat()).charAt(0) == '9'){
+            i = 900000;
+        } else {
+            i = 800000;
+        }
         if(bbbEight.isChecked())
             i+=1;
         if(bbbFSL.isChecked())
@@ -336,6 +355,34 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
 
     private int changeFormat(UserSettings userSettings, int oldVal){
         return db.updateBbbFormat(userSettings, oldVal);
+    }
+
+
+    private void updateWeightOption(){
+        String currentWeight = String.valueOf(userSettings.getChosenBBBFormat());
+        String message = "";
+        if(weightGroup.getCheckedRadioButtonId() == R.id.radio_kg){
+            if(currentWeight.charAt(0) == '9') {
+                currentWeight = currentWeight.replace('9', '8');
+                message = "kilograms.";
+            }
+        } else {
+            if(currentWeight.charAt(0) == '8') {
+                currentWeight = currentWeight.replace('8', '9');
+                message = "pounds.";
+            }
+        }
+        newSettings.setChosenBBBFormat(Integer.parseInt(currentWeight));
+        newSettings.setSwapBBBFormat(userSettings.getSwapBBBFormat());
+
+        if(changeSwap(newSettings.getSwapBBBFormat(), userSettings.getSwapBBBFormat())==1){
+            if(changeFormat(newSettings, userSettings.getChosenBBBFormat()) == 1){
+                newAlert(true, "You've changed your weight to " + message);
+                clearSettings();
+                getCurrentSettings();
+            }
+        }
+
     }
 
 
@@ -368,7 +415,6 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
         if(successful){
             clearSettings();
             getCurrentSettings();
-
             message = "You've changed your Boring But Big percents to " + bbbVal*100 + "%.";
             newAlert(true, message);
         } else {
@@ -409,6 +455,7 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
         submitOptionsBBB();
         submitPercentsBBB();
         viewInformation();
+        submitWeightOption();
         setNav();
     }
 
@@ -448,6 +495,15 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
         });
     }
 
+
+    private void submitWeightOption(){
+        submitWeight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateWeightOption();
+            }
+        });
+    }
 
     private void submitWeekOptions(){
         submitWeek.setOnClickListener(new View.OnClickListener() {

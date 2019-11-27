@@ -74,6 +74,35 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/workout_frame_32"
+                android:padding="@dimen/workout_frame_padding_half">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/training_maxes_using_kg"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/inputting_as_kg"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/inputting_as_kg"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:buttonTint="@color/colorWhite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,7 +135,7 @@
 
                 <EditText
                     android:id="@+id/bench_input"
-                    android:layout_width="50dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginStart="200dp"
@@ -136,7 +165,7 @@
 
                 <EditText
                     android:id="@+id/press_input"
-                    android:layout_width="50dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:ems="10"
@@ -181,7 +210,7 @@
 
                 <EditText
                     android:id="@+id/squat_input"
-                    android:layout_width="50dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:ems="10"
@@ -209,7 +238,7 @@
 
                 <EditText
                     android:id="@+id/deadlift_input"
-                    android:layout_width="50dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:ems="10"

@@ -1,6 +1,7 @@
 package com.a531tracker;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,10 @@ import com.a531tracker.Database.DatabaseHelper;
 import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible;
 import com.a531tracker.ObjectBuilders.CompoundLifts;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+
+import timber.log.Timber;
 
 import static com.a531tracker.HomeScreen.compoundLifts;
 
@@ -30,17 +34,20 @@ public class UpdateValues extends AppCompatActivity {
     private Context mContext;
 
     private DatabaseHelper db;
+    private CalculateWeight calculateWeight = new CalculateWeight();
 
     private ArrayList<CompoundLifts> liftValues = new ArrayList<>();
     private TextView[] currentViews;
     private Spinner[] spinnerArray;
 
     private int cycleValue;
+    private int weightCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_cycle);
+        Timber.plant(new Timber.DebugTree());
 
         db = new DatabaseHelper(this);
         cycleValue = db.getCycle();
@@ -51,6 +58,7 @@ public class UpdateValues extends AppCompatActivity {
 
 
     public void startupFunctions(){
+        getSettings();
         setButtons();
         setListeners();
         setTextViews();
@@ -58,6 +66,11 @@ public class UpdateValues extends AppCompatActivity {
         displayCycleValues();
         displayLiftViews();
         navCheck();
+    }
+
+
+    private void getSettings(){
+        weightCheck = Integer.parseInt(String.valueOf(String.valueOf(db.getUserSettings().getChosenBBBFormat()).charAt(0)));
     }
 
 
@@ -102,19 +115,38 @@ public class UpdateValues extends AppCompatActivity {
 
 
     private void displayLiftViews() {
-        int updateVal = 5;
+        float updateVal = 5;
         for(int i=0; i < liftValues.size(); i++){
-            if(i>=2)
-                updateVal = 10;
-            currentViews[i].setText(String.valueOf(liftValues.get(i).getTraining_max()));
-            setSpinnerValues(spinnerArray[i], liftValues.get(i), updateVal);
+
+            if(weightCheck == 9) {
+                if (i >= 2)
+                    updateVal = 10;
+                currentViews[i].setText(String.valueOf(liftValues.get(i).getTraining_max()));
+                setSpinnerValues(spinnerArray[i], liftValues.get(i).getTraining_max(), updateVal);
+            } else {
+                updateVal = Float.parseFloat(calculateWeight.setAsKilograms(5, 1f));
+                if (i >= 2)
+                    updateVal = Float.parseFloat(calculateWeight.setAsKilograms(10, 1f));
+                float passedValAsKg = Float.parseFloat(calculateWeight.setAsKilograms(liftValues.get(i).getTraining_max(), 1f));
+                currentViews[i].setText(String.valueOf(passedValAsKg));
+                setSpinnerValues(spinnerArray[i], passedValAsKg, updateVal);
+            }
         }
     }
 
 
-    private void setSpinnerValues(Spinner currentSpinner, CompoundLifts lifts, int updateVal){
-        Integer[] spinnerValues = new Integer[]{lifts.getTraining_max(), lifts.getTraining_max()+updateVal};
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, R.layout.spinner_item_resource, spinnerValues);
+    private void setSpinnerValues(Spinner currentSpinner, float lifts, float updateVal){
+        String[] spinnerValues;
+
+        if(weightCheck == 9) {
+            spinnerValues = new String[]{String.valueOf(lifts).substring(0, String.valueOf(lifts).length()-2), String.valueOf(lifts+updateVal).substring(0, String.valueOf(lifts).length()-2)};
+        } else {
+            float updatedValue = (lifts+updateVal);
+            BigDecimal bd = new BigDecimal(updatedValue).setScale(1, BigDecimal.ROUND_HALF_DOWN);
+            spinnerValues = new String[]{String.valueOf(lifts), String.valueOf(bd)};
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item_resource, spinnerValues);
         adapter.setDropDownViewResource(R.layout.spinner_item_resource);
 
         currentSpinner.setAdapter(adapter);
@@ -144,9 +176,9 @@ public class UpdateValues extends AppCompatActivity {
                 try {
                     db.updateCycle(cycleValue);
                     cycleValue = db.getCycle();
-                    for(String lifts: compoundLifts) {
-                        db.createAMRAPTable(cycleValue, lifts);
-                        addToTotalMax(lifts);
+                    for(int i = 0; i < compoundLifts.length; i++) {
+                        db.createAMRAPTable(cycleValue, compoundLifts[i]);
+                        addToTotalMax(compoundLifts[i], newAmrapLifts.get(i));
                     }
                     return true;
                 } catch (Exception e) {
@@ -172,32 +204,38 @@ public class UpdateValues extends AppCompatActivity {
     }
 
 
-    private void addToTotalMax(String compoundName){
+    private void addToTotalMax(String compoundName, AsManyRepsAsPossible amrap){
         Spinner spinner;
+        int updateVal = 5;
         switch(compoundName){
             case "Deadlift":
                 spinner = findViewById(R.id.tm_deadlift_update_spinner);
+                updateVal = 10;
                 break;
             case "Overhand Press":
                 spinner = findViewById(R.id.tm_press_update_spinner);
                 break;
             case "Squat":
                 spinner = findViewById(R.id.tm_squat_update_spinner);
+                updateVal = 10;
                 break;
             default:
             case "Bench":
                 spinner = findViewById(R.id.tm_bench_update_spinner);
                 break;
         }
+        int newMax;
 
-        int newMax = Integer.valueOf(spinner.getSelectedItem().toString());
+        if(spinner.getSelectedItemPosition() == 1){
+            newMax = amrap.getTotalMaxWeight() + updateVal;
+        } else {
+            newMax = amrap.getTotalMaxWeight();
+        }
 
         CompoundLifts newLifts = new CompoundLifts();
         newLifts.setCompound_movement(compoundName);
         newLifts.setTraining_max(newMax);
-        boolean success;
-        if(db.updateCompoundStats(newLifts) == 1)
-            success = true;
+        db.updateCompoundStats(newLifts);
     }
 
 
@@ -209,7 +247,6 @@ public class UpdateValues extends AppCompatActivity {
 
     private void setButtons(){
         updateAll = findViewById(R.id.tm_update_all_button);
-
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
     }
@@ -220,12 +257,23 @@ public class UpdateValues extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(checkValues()){
-                    Intent returnIntent = getIntent();
-                    setResult(RESULT_OK);
-                    finish();
+                    finishValueSubmission();
                 }
             }
         });
+    }
+
+
+    private void finishValueSubmission(){
+        ErrorAlerts successAlert = new ErrorAlerts(this);
+        successAlert.setErrorAlertsValues(false, false, getString(R.string.tm_update_title), getString(R.string.tm_update_message), "", false);
+        successAlert.blankAlert(this).setPositiveButton(getString(R.string.ok_text), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                setResult(RESULT_OK);
+                finish();
+            }
+        }).show();
     }
 
 
@@ -233,6 +281,7 @@ public class UpdateValues extends AppCompatActivity {
         homeNav();
         settingsNav();
     }
+
 
     public void homeNav(){
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -254,6 +303,7 @@ public class UpdateValues extends AppCompatActivity {
             }
         });
     }
+
 
     public void navSettings(){
         Intent intent = new Intent(mContext, Settings.class);

@@ -26,11 +26,6 @@ public class AllTests {
         assertEquals("Bench", lifts.getCompound_movement());
     }
     @Test
-    public void testMax(){
-        lifts.setTraining_max((float) 170);
-        assertEquals((float)175, lifts.getTraining_max(), 5);
-    }
-    @Test
     public void testNinetyReps(){
         lifts.setNinety_reps(5);
         lifts.setNinety_five_reps(4);
@@ -54,21 +49,16 @@ public class AllTests {
         accessoryLifts.setAccessory_weight(15);
         assertEquals(15, accessoryLifts.getAccessory_weight(),0);
     }
-
-
     @Test
-    public void createDataBase(){
-        db = new DatabaseHelper(mContext);
-        //DatabaseHelper db = new DatabaseHelper(mContext);
-        lifts.setCompound_movement("Bench");
-        lifts.setTraining_max((float) 170);
-        lifts.setNinety_five_reps(5);
-        lifts.setNinety_reps(8);
-        lifts.setEight_five_reps(12);
-        //assertEquals(lifts, db.createLiftsTest());
-        //db.insertCompoundStats(lifts);
-        //assertTrue(db.getLiftNameTest("Bench"));
+    public void testCalcFunction(){
+        CalculateWeight calculateWeight = new CalculateWeight();
+        assertEquals("2.3", calculateWeight.setAsKilograms(5, 1f));
+        assertEquals("4.5", calculateWeight.setAsKilograms(10, 1f));
+        assertEquals("11.3", calculateWeight.setAsKilograms(25, 1f));
+        assertEquals("15.9", calculateWeight.setAsKilograms(35, 1f));
+        assertEquals("20.4", calculateWeight.setAsKilograms(45, 1f));
     }
+
     @After
     public void finish(){
 
