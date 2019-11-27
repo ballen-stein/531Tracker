@@ -6,8 +6,6 @@ public class UserSettings {
     private float chosenBBBPercent;
     private int swapBBBFormat;
 
-
-
     public int getWeekFormat() {
         return weekFormat;
     }

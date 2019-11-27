@@ -13,11 +13,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
@@ -42,6 +40,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import timber.log.Timber;
+
 import static com.a531tracker.HomeScreen.compoundLifts;
 
 public class ViewAmrapStats extends AppCompatActivity {
@@ -54,13 +54,19 @@ public class ViewAmrapStats extends AppCompatActivity {
 
     private DatabaseHelper db;
     private ArrayList<AsManyRepsAsPossible> amrapValues;
+    private CalculateWeight calculateWeight = new CalculateWeight();
+
     private int cycleValue;
+    private int weightCheck;
+
     private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_amrap_stats);
+
+        Timber.plant(new Timber.DebugTree());
 
         db = new DatabaseHelper(this);
         mContext = this;
@@ -77,7 +83,7 @@ public class ViewAmrapStats extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-
+        getSettings();
         try {
             for (int i = 0; i < compoundLifts.length; i++) {
                 getLift(compoundLifts[i]);
@@ -96,11 +102,19 @@ public class ViewAmrapStats extends AppCompatActivity {
         }
     }
 
+    private void getSettings(){
+        weightCheck = Integer.parseInt( String.valueOf( String.valueOf( db.getUserSettings().getChosenBBBFormat()).charAt(0)));
+        Timber.tag("WeightChecker").i("Weight value %s", weightCheck);
+    }
+
 
     private void setChart(LineChart lineChart){
         List<ILineDataSet> allData = new ArrayList<>();
         for(int i = 0; i < amrapValues.size(); i++){
-            int[] weightPoints = new int[]{(int) (5 * (Math.ceil((amrapValues.get(i).getTotalMaxWeight()*.85) / 5))), (int) (5 * (Math.ceil((amrapValues.get(i).getTotalMaxWeight()*.90) / 5))), (int) (5 * (Math.ceil((amrapValues.get(i).getTotalMaxWeight()*.95) / 5 )))};
+            int[] weightPoints = new int[]{Integer.parseInt(calculateWeight.setAsPounds(amrapValues.get(i).getTotalMaxWeight(), 0.85f)),
+                    Integer.parseInt(calculateWeight.setAsPounds(amrapValues.get(i).getTotalMaxWeight(), 0.90f)),
+                    Integer.parseInt(calculateWeight.setAsPounds(amrapValues.get(i).getTotalMaxWeight(), 0.95f))};
+
             List<Entry> entries = new ArrayList<>();
 
             entries.add(new Entry(weightPoints[0], amrapValues.get(i).getEighty_five_reps()));
@@ -147,14 +161,28 @@ public class ViewAmrapStats extends AppCompatActivity {
         right.setAxisMaximum(maxReps);
         right.setLabelCount((maxReps-minReps+1), true);
 
-
         lineChart.getXAxis().setGridColor(ContextCompat.getColor(mContext, R.color.colorWhite));
         lineChart.getXAxis().setTextColor(ContextCompat.getColor(mContext, R.color.colorOrange));
 
         int lastCompound = amrapValues.size();
-        int weightMin = (int) (5 * (Math.ceil((amrapValues.get(0).getTotalMaxWeight() * 0.85f ) / 5 ))) - 5;
-        int weightMax = (int) (5 * (Math.ceil((float) (amrapValues.get(lastCompound-1).getTotalMaxWeight()) / 5)));
-        int graphBreaks = 1 + ((weightMax - weightMin) / 5);
+        float weightMin;
+        float weightMax;
+
+        if(weightCheck == 9) {
+            weightMin  = Integer.parseInt(calculateWeight.setAsPounds(amrapValues.get(0).getTotalMaxWeight(), 0.85f)) - 5;
+            weightMax = Integer.parseInt(calculateWeight.setAsPounds(amrapValues.get(lastCompound-1).getTotalMaxWeight(), 1f));
+        } else {
+            weightMin  = Integer.parseInt(calculateWeight.setAsPounds(amrapValues.get(0).getTotalMaxWeight(), 0.85f)) - 5;
+            weightMax = Integer.parseInt(calculateWeight.setAsPounds(amrapValues.get(lastCompound-1).getTotalMaxWeight(), 1f));
+        }
+
+        float k = Float.parseFloat((calculateWeight.setAsKilograms(amrapValues.get(0).getTotalMaxWeight(), 0.85f)));
+        float j = Float.parseFloat((calculateWeight.setAsKilograms(amrapValues.get(lastCompound-1).getTotalMaxWeight(), 1f)));
+
+        Timber.tag("KiloValues").i("Min : %s", k);
+        Timber.tag("KiloValues").i("Max : %s", j);
+
+        int graphBreaks = 1 + (((int) weightMax - (int) weightMin) / 5);
 
         lineChart.setBackground(ContextCompat.getDrawable(mContext, R.color.colorBlue));
         lineChart.getLegend().setTextColor(ContextCompat.getColor(mContext, R.color.colorWhite));

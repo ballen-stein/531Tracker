@@ -11,10 +11,14 @@ import android.widget.RadioGroup;
 import com.a531tracker.Database.DatabaseHelper;
 import com.a531tracker.ObjectBuilders.CompoundLifts;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import timber.log.Timber;
 
 import static com.a531tracker.HomeScreen.compoundLifts;
 
@@ -28,8 +32,12 @@ public class SetMaxes extends Activity {
     private Button cancelBtn;
 
     private float bbbPercent;
+
+    private int weightCheck;
+
     private boolean firstLaunch;
     private boolean revision;
+    private boolean usingKilos = false;
 
 
     @Override
@@ -48,7 +56,6 @@ public class SetMaxes extends Activity {
                 try {
                     liftValues = intent.getIntegerArrayListExtra("LIFT_VALUES");
                     revision = Objects.requireNonNull(intent.getExtras()).getBoolean("Revision", false);
-                    setEditTextViews();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -58,11 +65,35 @@ public class SetMaxes extends Activity {
         }
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+        if(!firstLaunch){
+            getSettings();
+            if(weightCheck == 8){
+                CheckBox kiloBox = findViewById(R.id.inputting_as_kg);
+                kiloBox.setChecked(true);
+            }
+            CheckBox checkBox = findViewById(R.id.training_maxes_used);
+            checkBox.setChecked(true);
+            setEditTextViews();
+        }
+
+    }
+
+    private void getSettings(){
+        weightCheck = Integer.parseInt(String.valueOf(String.valueOf(db.getUserSettings().getChosenBBBFormat()).charAt(0)));
+    }
 
     private void setEditTextViews(){
-        for(int i = 0; i < inputIds.length; i++){
+        for(int i = 0; i < inputIds.length; i++) {
             EditText setTrainingMaxesFromDB = findViewById(inputIds[i]);
-            setTrainingMaxesFromDB.setText(String.valueOf(liftValues.get(i)));
+            if (weightCheck == 9) {
+                setTrainingMaxesFromDB.setText(String.valueOf(liftValues.get(i)));
+            } else {
+                BigDecimal bd = new BigDecimal(liftValues.get(i)/2.20452).setScale(1, BigDecimal.ROUND_HALF_UP);
+                setTrainingMaxesFromDB.setText(String.valueOf(bd));
+            }
         }
     }
 
@@ -101,6 +132,11 @@ public class SetMaxes extends Activity {
         RadioGroup radioGroup = findViewById(R.id.radioGroupBBB);
         setBBB(radioGroup.getCheckedRadioButtonId());
 
+        CheckBox kiloBox = findViewById(R.id.inputting_as_kg);
+        if(kiloBox.isChecked()) {
+            usingKilos = true;
+        }
+
         CheckBox checkBox = findViewById(R.id.training_maxes_used);
         if(checkBox.isChecked()){
             setTrainingMaxes(1.0f);
@@ -115,8 +151,17 @@ public class SetMaxes extends Activity {
             CompoundLifts lifts = new CompoundLifts();
             lifts.setCompound_movement(compoundLifts[i]);
             EditText trainingMaxInput = findViewById(inputIds[i]);
-            lifts.setTraining_max((int) (Integer.parseInt(String.valueOf(trainingMaxInput.getText()))*modifier));
             lifts.setBig_but_boring_weight(bbbPercent);
+            int liftValue;
+            if(usingKilos){
+                double temp = ((Double.parseDouble(String.valueOf(trainingMaxInput.getText()))) * 2.20462);
+                BigDecimal bd = new BigDecimal(temp).setScale(0, BigDecimal.ROUND_HALF_UP);
+                liftValue = Integer.parseInt(String.valueOf(bd));
+            } else {
+                liftValue = (int) (Integer.parseInt(String.valueOf(trainingMaxInput.getText()))*modifier);
+            }
+
+            lifts.setTraining_max(liftValue);
             mappedLifts.put(compoundLifts[i], lifts);
         }
     }

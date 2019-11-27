@@ -45,6 +45,81 @@
                 android:layout_marginTop="@dimen/workout_frame_16">
 
                 <TextView
+                    android:id="@+id/weight_options_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/settings_weight_option"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_16"
+                    android:padding="@dimen/workout_frame_padding_half"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <RadioGroup
+                    android:id="@+id/radio_weight_option"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/workout_frame_16"
+                    app:layout_constraintTop_toBottomOf="@id/weight_options_header"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <TextView
+                        android:id="@+id/weight_lb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_weight_lb"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_14" />
+
+                    <RadioButton
+                        android:id="@+id/radio_lb"
+                        android:buttonTint="@color/colorWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/workout_frame_16"/>
+
+                    <TextView
+                        android:id="@+id/weight_kg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_weight_kg"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_14" />
+
+                    <RadioButton
+                        android:id="@+id/radio_kg"
+                        android:buttonTint="@color/colorWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/workout_frame_16"/>
+
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/submit_weight_choice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/update_button"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@string/settings_weight_update"
+                android:textSize="@dimen/text_14"
+                android:layout_marginTop="@dimen/workout_frame_16"
+                android:layout_marginEnd="@dimen/workout_frame_32"
+                android:layout_marginStart="@dimen/workout_frame_32" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/workout_frame_16">
+
+                <TextView
                     android:id="@+id/week_options_header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -28,6 +28,7 @@ import com.a531tracker.ObjectBuilders.UserSettings;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -69,8 +70,9 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     private Integer cycleValue;
 
-    private int[] settingsArray = new int[5];
+    private int[] settingsArray = new int[6];
 
+    private int weightCheck;
     private int deloadWeekSettingVal;
     private int jokerSettingVal;
     private int fslSettingVal;
@@ -86,6 +88,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     private String compound;
     private String swapLift;
     private String repsDone;
+    private String weightSuffix;
 
     private boolean newSettings = true;
 
@@ -93,6 +96,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     private AsManyRepsAsPossible lastWeeksReps;
     private UserSettings userSettings;
+    private CalculateWeight calculateWeight = new CalculateWeight();
 
 
     @Override
@@ -111,7 +115,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         setViews();
         setButtons();
         getDatabaseLifts();
-        setHeaderText(compound, amrapWeight);
     }
 
 
@@ -121,7 +124,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         paddingVal = (int) mContext.getResources().getDimension(R.dimen.workout_frame_padding);
         getSettings();
         setSettingValues(userSettings);
-        Timber.tag("RemoveSettings").i("Current value: " + removeBbbOptionsSettingsVal + "\tNew Value: " +  settingsArray[0]);
+        Timber.tag("RemoveSettings").i("Current value: " + removeBbbOptionsSettingsVal + "\tNew Value: " +  settingsArray[1]);
         if(resumeCheck(settingsArray)){
             newSettings = true;
             currentWeek = tabSelected.getSelectedTabPosition();
@@ -133,8 +136,15 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         setListeners();
         setJokerButton(jokerSettingVal == 1);
 
+        Timber.tag("CheckingArrayValues").i(String.valueOf(weightCheck));
+        if(weightCheck == 9){
+            weightSuffix = " lbs";
+        } else
+            weightSuffix = " kgs";
+
         if(newSettings){
             weekSelected(currentWeek);
+            setHeaderText(compound, amrapWeight);
             newSettings = false;
         }
     }
@@ -148,18 +158,20 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     private void setSettingValues(UserSettings userSettings) {
         String str = String.valueOf(userSettings.getChosenBBBFormat());
         char[] strArray = str.toCharArray();
-        for(int i = 1; i < strArray.length; i++){
-            settingsArray[i-1] = Integer.parseInt(String.valueOf(strArray[i]));
+        Timber.tag("CheckingArrayValues").i("Array Values: %s", Arrays.toString(strArray));
+        for(int i = 0; i < strArray.length; i++){
+            settingsArray[i] = Integer.parseInt(String.valueOf(strArray[i]));
         }
     }
 
 
     private boolean resumeCheck(int[] settings){
-        if(settings[0] != removeBbbOptionsSettingsVal
-                || settings[1] != deloadWeekSettingVal
-                || settings[2] != jokerSettingVal
-                || settings[3] != fslSettingVal
-                || settings[4] != eightFormatSettingVal
+        if(settings[0] != weightCheck
+                || settings[1] != removeBbbOptionsSettingsVal
+                || settings[2] != deloadWeekSettingVal
+                || settings[3] != jokerSettingVal
+                || settings[4] != fslSettingVal
+                || settings[5] != eightFormatSettingVal
                 || checkForSwaps(userSettings) != swapCheckVal
                 )
             return true;
@@ -169,11 +181,12 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
 
     private void setAllValues(int[] settings){
-        removeBbbOptionsSettingsVal = settings[0];
-        deloadWeekSettingVal = settings[1];
-        jokerSettingVal = settings[2];
-        fslSettingVal = settings[3];
-        eightFormatSettingVal = settings[4];
+        weightCheck = settings[0];
+        removeBbbOptionsSettingsVal = settings[1];
+        deloadWeekSettingVal = settings[2];
+        jokerSettingVal = settings[3];
+        fslSettingVal = settings[4];
+        eightFormatSettingVal = settings[5];
     }
 
 
@@ -342,8 +355,13 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     private TableRow setWeekLifts(float liftPercent, String reps, int trainingValue) {
         TableRow tableRow = new TableRow(mContext);
+        String workoutWeightText;
+        if(weightCheck == 9) {
+            workoutWeightText = calculateWeight.setAsPounds(trainingValue, liftPercent) + weightSuffix;
+        } else {
+            workoutWeightText =  calculateWeight.setAsKilograms(trainingValue, liftPercent) + weightSuffix;
+        }
 
-        String workoutWeightText = (5*(Math.ceil((trainingValue*liftPercent)/5))) + " lbs";
         TextView workoutWeight = createTextView(workoutWeightText, paddingVal);
         TextView workoutReps = createTextView(reps, paddingVal);
         CheckBox checkbox = createCheckBox(paddingVal);
@@ -569,7 +587,13 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     private void setHeaderText(String headerCompound, int headerWeight){
         TextView headerText = findViewById(R.id.header_text);
-        String displayInfo = headerCompound + ": " + headerWeight + "lbs";
+        String displayInfo;
+        if(weightCheck == 9){
+            displayInfo = headerCompound + ": " + headerWeight + weightSuffix;
+        } else {
+            displayInfo = headerCompound + ": " + calculateWeight.setAsKilograms(headerWeight, 1.0f) + weightSuffix;
+        }
+
         headerText.setText(displayInfo);
     }
 
