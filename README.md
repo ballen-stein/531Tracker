@@ -1,6 +1,11 @@
 # 531Tracker
+
+5/3/1 Tracker is a pet project of mine that's been published to the playstore; this is the source code for it.
+
+It was created to be a simplistic app purely for 5/3/1 and its variations.
+
 ## About
-5/3/1 Tracker is a pet project of mine that's been published to the playstore. The app tracks the user's stats for the 5/3/1 training program, automatically calculating the required numbers (per the program). Additional options for customization exist, allowing the user to customize their program.
+The app tracks the user's stats for the 5/3/1 training program, automatically calculating the required numbers (per the program). Additional options for customization exist, allowing the user to customize their program.
 
 For more information on the 5/3/1 program, see: https://www.t-nation.com/workouts/531-how-to-build-pure-strength and https://jimwendler.com/blogs/jimwendler-com/101065094-5-3-1-for-a-beginner.
 
