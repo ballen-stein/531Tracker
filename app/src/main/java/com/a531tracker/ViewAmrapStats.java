@@ -40,8 +40,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-import timber.log.Timber;
-
 import static com.a531tracker.HomeScreen.compoundLifts;
 
 public class ViewAmrapStats extends AppCompatActivity {
@@ -66,7 +64,6 @@ public class ViewAmrapStats extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_amrap_stats);
 
-        Timber.plant(new Timber.DebugTree());
 
         db = new DatabaseHelper(this);
         mContext = this;
@@ -104,7 +101,6 @@ public class ViewAmrapStats extends AppCompatActivity {
 
     private void getSettings(){
         weightCheck = Integer.parseInt( String.valueOf( String.valueOf( db.getUserSettings().getChosenBBBFormat()).charAt(0)));
-        Timber.tag("WeightChecker").i("Weight value %s", weightCheck);
     }
 
 
@@ -178,9 +174,6 @@ public class ViewAmrapStats extends AppCompatActivity {
 
         float k = Float.parseFloat((calculateWeight.setAsKilograms(amrapValues.get(0).getTotalMaxWeight(), 0.85f)));
         float j = Float.parseFloat((calculateWeight.setAsKilograms(amrapValues.get(lastCompound-1).getTotalMaxWeight(), 1f)));
-
-        Timber.tag("KiloValues").i("Min : %s", k);
-        Timber.tag("KiloValues").i("Max : %s", j);
 
         int graphBreaks = 1 + (((int) weightMax - (int) weightMin) / 5);
 

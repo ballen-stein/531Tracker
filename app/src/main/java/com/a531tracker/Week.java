@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -32,8 +31,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
-import timber.log.Timber;
 
 public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     private TableRow.LayoutParams tableParams = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1f);
@@ -103,7 +100,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.week_view);
-        Timber.plant(new Timber.DebugTree());
 
         Intent intent = getIntent();
         mContext = this;
@@ -124,7 +120,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         paddingVal = (int) mContext.getResources().getDimension(R.dimen.workout_frame_padding);
         getSettings();
         setSettingValues(userSettings);
-        Timber.tag("RemoveSettings").i("Current value: " + removeBbbOptionsSettingsVal + "\tNew Value: " +  settingsArray[1]);
         if(resumeCheck(settingsArray)){
             newSettings = true;
             currentWeek = tabSelected.getSelectedTabPosition();
@@ -136,7 +131,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         setListeners();
         setJokerButton(jokerSettingVal == 1);
 
-        Timber.tag("CheckingArrayValues").i(String.valueOf(weightCheck));
         if(weightCheck == 9){
             weightSuffix = " lbs";
         } else
@@ -158,7 +152,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     private void setSettingValues(UserSettings userSettings) {
         String str = String.valueOf(userSettings.getChosenBBBFormat());
         char[] strArray = str.toCharArray();
-        Timber.tag("CheckingArrayValues").i("Array Values: %s", Arrays.toString(strArray));
         for(int i = 0; i < strArray.length; i++){
             settingsArray[i] = Integer.parseInt(String.valueOf(strArray[i]));
         }

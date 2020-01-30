@@ -13,12 +13,9 @@ import com.a531tracker.ObjectBuilders.CompoundLifts;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import timber.log.Timber;
 
 import static com.a531tracker.HomeScreen.compoundLifts;
 
