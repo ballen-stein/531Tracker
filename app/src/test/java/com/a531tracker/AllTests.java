@@ -9,6 +9,9 @@ import com.a531tracker.ObjectBuilders.CompoundLifts;
 import org.junit.After;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
@@ -58,7 +61,21 @@ public class AllTests {
         assertEquals("15.9", calculateWeight.setAsKilograms(35, 1f));
         assertEquals("20.4", calculateWeight.setAsKilograms(45, 1f));
     }
-
+    @Test
+    public void testCalculateWeightNewFeature(){
+        CalculateWeight calculateWeight = new CalculateWeight();
+        //int weight = 45;
+        int weight = 290;
+        calculateWeight.weightBreakdown(weight, true);
+        ArrayList testList = calculateWeight.getWeightArray();
+        //assertEquals(45.0, testList.get(0));
+        ArrayList<Double> newList = new ArrayList<>();
+        newList.add(45.0);
+        newList.add(45.0);
+        newList.add(45.0);
+        newList.add(5.0);
+        assertEquals(newList, testList);
+    }
     @After
     public void finish(){
 
