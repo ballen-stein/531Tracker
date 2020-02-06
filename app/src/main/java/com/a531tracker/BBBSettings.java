@@ -365,11 +365,15 @@ public class BBBSettings extends AppCompatActivity implements InformationFragmen
             if(currentWeight.charAt(0) == '9') {
                 currentWeight = currentWeight.replace('9', '8');
                 message = "kilograms.";
+            } else {
+                message = "kilograms";
             }
         } else {
             if(currentWeight.charAt(0) == '8') {
                 currentWeight = currentWeight.replace('8', '9');
                 message = "pounds.";
+            } else {
+                message = "pounds";
             }
         }
         newSettings.setChosenBBBFormat(Integer.parseInt(currentWeight));

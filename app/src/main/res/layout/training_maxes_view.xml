@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDarkGrey">
-
-    <include layout="@layout/hexagon_background" />
+    android:background="@color/colorBlue">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -14,8 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottom_frame"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -25,8 +23,7 @@
             android:background="#18242B"
             android:elevation="10dp"
             android:padding="@dimen/workout_frame_padding"
-            android:orientation="vertical"
-            android:layout_margin="@dimen/workout_frame_padding_half" >
+            android:orientation="vertical" >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
@@ -78,8 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/workout_frame_32"
-                android:padding="@dimen/workout_frame_padding_half">
+                android:layout_marginBottom="@dimen/workout_frame_32">
 
                 <TextView
                     android:layout_width="wrap_content"

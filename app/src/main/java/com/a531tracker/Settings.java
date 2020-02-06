@@ -41,10 +41,7 @@ public class Settings extends AppCompatActivity {
     private TableLayout liftTable;
     private TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.3333f);
 
-    private TextView benchNums;
-    private TextView pressNums;
-    private TextView deadliftNums;
-    private TextView squatNums;
+    private TextView[] newTvArray;
 
     private Button homeButton;
     private Button settingsButton;
@@ -63,7 +60,6 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-
 
         mContext = this;
 
@@ -166,11 +162,7 @@ public class Settings extends AppCompatActivity {
 
     private void setViews(){
         liftTable = findViewById(R.id.lifts_table);
-
-        benchNums = findViewById(R.id.bench_value);
-        pressNums = findViewById(R.id.press_value);
-        deadliftNums = findViewById(R.id.deadlift_value);
-        squatNums = findViewById(R.id.squat_value);
+        newTvArray = new TextView[]{findViewById(R.id.bench_value), findViewById(R.id.press_value), findViewById(R.id.squat_value), findViewById(R.id.deadlift_value)};
     }
 
 
@@ -181,17 +173,24 @@ public class Settings extends AppCompatActivity {
 
     private void setCurrentValues() {
         if(weightCheck == 9){
-            benchNums.setText(String.valueOf(currentValues.get(0).getTraining_max()));
-            pressNums.setText(String.valueOf(currentValues.get(1).getTraining_max()));
-            squatNums.setText(String.valueOf(currentValues.get(2).getTraining_max()));
-            deadliftNums.setText(String.valueOf(currentValues.get(3).getTraining_max()));
+            for(int i=0; i < compoundLifts.length; i++) {
+                newTvArray[i].setText(
+                        String.valueOf(
+                                db.getLifts(compoundLifts[i]).getTraining_max()
+                        )
+                );
+            }
         } else {
-            benchNums.setText(String.valueOf(calculateWeight.setAsKilograms(currentValues.get(0).getTraining_max(), 1.0f)));
-            pressNums.setText(String.valueOf(calculateWeight.setAsKilograms(currentValues.get(1).getTraining_max(), 1.0f)));
-            squatNums.setText(String.valueOf(calculateWeight.setAsKilograms(currentValues.get(2).getTraining_max(), 1.0f)));
-            deadliftNums.setText(String.valueOf(calculateWeight.setAsKilograms(currentValues.get(3).getTraining_max(), 1.0f)));
+            for(int i=0; i < compoundLifts.length; i++) {
+                newTvArray[i].setText(
+                        String.valueOf(
+                                calculateWeight.setAsKilograms(
+                                    db.getLifts(compoundLifts[i]).getTraining_max(), 1.0f
+                                )
+                        )
+                );
+            }
         }
-
     }
 
 
