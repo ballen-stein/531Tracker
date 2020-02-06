@@ -13,7 +13,9 @@
     <dimen name="workout_frame_padding">12dp</dimen>
     <dimen name="workout_frame_padding_half">6dp</dimen>
 
-    <dimen name="radio_button_margin">2dp</dimen>
+    <dimen name="button_size">150dp</dimen>
+
+    <dimen name="radio_button_margin">2.5dp</dimen>
     <dimen name="bbb_percents_margin">10dp</dimen>
 
     <dimen name="text_20">20sp</dimen>

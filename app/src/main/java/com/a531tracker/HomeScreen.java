@@ -3,53 +3,33 @@ package com.a531tracker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a531tracker.Database.DatabaseHelper;
-import com.a531tracker.ObjectBuilders.CompoundLifts;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HomeScreen extends AppCompatActivity {
     static final int SET_TRAINING_MAX_CODE = 1;
     static final int UPDATE_TRAINING_MAX_CODE = 2;
 
     public static String[] compoundLifts = new String[]{"Bench", "Overhand Press", "Squat", "Deadlift"};
-    private List<CompoundLifts> liftsArray = new ArrayList<>();
-    private List<Integer> liftValues = new ArrayList<>();
 
     private DatabaseHelper db;
     private Context mContext;
     private Integer cycleValue;
 
-    private ImageView benchView;
-    private ImageView deadliftView;
-    private ImageView pressView;
-    private ImageView squatView;
-    private ImageView cycleView;
+    private Button benchView, deadliftView, pressView, squatView, cycleView;
+    private Button homeButton, settingsButton;
 
-    private Button homeButton;
-    private Button settingsButton;
-
+    private TextView[] newTvArray;
     private TextView cycleDisplay;
-
-    private TextView benchText;
-    private TextView deadliftText;
-    private TextView pressText;
-    private TextView squatText;
-    private TextView updateCycleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +39,10 @@ public class HomeScreen extends AppCompatActivity {
         db = new DatabaseHelper(this);
         mContext = this;
 
-        cycleDisplay = findViewById(R.id.cycle_display);
+        cycleDisplay = findViewById(R.id.cycleDisplay);
 
         setViews();
-        setText();
+        setNav();
         setListeners();
     }
 
@@ -70,28 +50,29 @@ public class HomeScreen extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         startCycle();
-        resetLifValuesArray();
-        checkForLiftValues();
+        setCurrentTrainingValues();
+    }
+
+
+    private void setCurrentTrainingValues() {
+        for(int i=0; i < compoundLifts.length; i++){
+            newTvArray[i].setText(
+                    String.valueOf(
+                            db.getLifts(compoundLifts[i]).getTraining_max()
+                    )
+            );
+        }
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == SET_TRAINING_MAX_CODE && resultCode == RESULT_OK){
-            resetLifValuesArray();
+            //resetLifValuesArray();
         } else if (requestCode == UPDATE_TRAINING_MAX_CODE && resultCode == RESULT_OK){
-            resetLifValuesArray();
+            //resetLifValuesArray();
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }
-
-
-    private void checkForLiftValues() {
-        try{
-            addLiftsToArray();
-        } catch (Exception e){
-            alertBuilder(getResources().getString(R.string.alert_no_lifts_found), getResources().getString(R.string.alert_no_lifts_message), "", false, true);
-        }
     }
 
 
@@ -149,45 +130,23 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
-    private void addLiftsToArray(){
-        for(String lifts : compoundLifts){
-            liftsArray.add(db.getLifts(lifts));
-            liftValues.add(db.getLifts(lifts).getTraining_max());
-        }
-    }
-
-
-    private void resetLifValuesArray(){
-        liftsArray.clear();
-        liftValues.clear();
-    }
-
-
     private void setViews(){
-        benchView = findViewById(R.id.bench_numbers);
-        deadliftView = findViewById(R.id.deadlift_hex);
-        pressView = findViewById(R.id.press_hex);
-        squatView = findViewById(R.id.squat_hex);
-        cycleView = findViewById(R.id.update_cycle_hex);
+        benchView = findViewById(R.id.bench_btn);
+        deadliftView = findViewById(R.id.deadlift_btn);
+        pressView = findViewById(R.id.press_btn);
+        squatView = findViewById(R.id.squat_btn);
+        cycleView = findViewById(R.id.update_cycle_btn);
 
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
-        setNav();
+
+        newTvArray = new TextView[]{findViewById(R.id.bench_value), findViewById(R.id.press_value), findViewById(R.id.squat_value), findViewById(R.id.deadlift_value)};
     }
 
 
     private void setNav(){
         navHome();
         navSettings();
-    }
-
-
-    private void setText(){
-        updateCycleText = findViewById(R.id.update_cycle_text);
-        pressText = findViewById(R.id.press_text);
-        deadliftText = findViewById(R.id.deadlift_text);
-        benchText = findViewById(R.id.bench_text);
-        squatText = findViewById(R.id.squat_text);
     }
 
 
@@ -202,132 +161,53 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
-    @SuppressLint("ClickableViewAccessibility")
     private void benchButton() {
-        benchText.setOnClickListener(new View.OnClickListener() {
+        benchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openCompoundWeek("Bench", "Overhand Press");
             }
         });
-        benchText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        benchView.setPressed(true);
-                        break;
-                    case MotionEvent.ACTION_CANCEL:
-                    case MotionEvent.ACTION_UP:
-                        benchView.setPressed(false);
-                        break;
-                }
-                return false;
-            }
-        });
     }
 
 
-    @SuppressLint("ClickableViewAccessibility")
     private void deadliftButton(){
-        deadliftText.setOnClickListener(new View.OnClickListener() {
+        deadliftView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openCompoundWeek("Deadlift", "Squat");
             }
         });
-        deadliftText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        deadliftView.setPressed(true);
-                        break;
-                    case MotionEvent.ACTION_CANCEL:
-                    case MotionEvent.ACTION_UP:
-                        deadliftView.setPressed(false);
-                        break;
-                }
-                return false;
-            }
-        });
     }
 
 
-    @SuppressLint("ClickableViewAccessibility")
     private void pressButton(){
-        pressText.setOnClickListener(new View.OnClickListener() {
+        pressView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openCompoundWeek("Overhand Press", "Bench");
             }
         });
-        pressText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        pressView.setPressed(true);
-                        break;
-                    case MotionEvent.ACTION_CANCEL:
-                    case MotionEvent.ACTION_UP:
-                        pressView.setPressed(false);
-                        break;
-                }
-                return false;
-            }
-        });
     }
 
 
-    @SuppressLint("ClickableViewAccessibility")
     private void squatButton(){
-        squatText.setOnClickListener(new View.OnClickListener() {
+        squatView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openCompoundWeek("Squat", "Deadlift");
             }
         });
-        squatText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch(motionEvent.getAction()){
-                    case MotionEvent.ACTION_DOWN:
-                        squatView.setPressed(true);
-                        break;
-                    case MotionEvent.ACTION_CANCEL:
-                    case MotionEvent.ACTION_UP:
-                        squatView.setPressed(false);
-                        break;
-                }
-                return false;
-            }
-        });
     }
 
 
-    @SuppressLint("ClickableViewAccessibility")
+
     private void updateCycleButton(){
-        updateCycleText.setOnClickListener(new View.OnClickListener() {
+        cycleView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, UpdateValues.class);
                 startActivityForResult(intent, UPDATE_TRAINING_MAX_CODE);
-            }
-        });
-        updateCycleText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch(motionEvent.getAction()){
-                    case MotionEvent.ACTION_DOWN:
-                        cycleView.setPressed(true);
-                        break;
-                    case MotionEvent.ACTION_CANCEL:
-                    case MotionEvent.ACTION_UP:
-                        cycleView.setPressed(false);
-                        break;
-                }
-                return false;
             }
         });
     }

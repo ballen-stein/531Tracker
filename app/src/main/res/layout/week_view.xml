@@ -8,8 +8,6 @@
     android:elevation="0dp"
     tools:context=".Week">
 
-    <include layout="@layout/hexagon_background" />
-
     <FrameLayout
         android:id="@+id/top_frame_home"
         android:layout_width="0dp"
@@ -20,7 +18,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <include layout="@layout/navigation" />
-
 
     </FrameLayout>
 
@@ -98,9 +95,8 @@
         android:layout_height="0dp"
         android:elevation="0dp"
         android:background="@color/transparent"
-        app:layout_constraintBottom_toTopOf="@+id/amrap_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tab_view_days"
         app:layout_constraintVertical_bias="0">
@@ -109,16 +105,16 @@
             android:id="@+id/all_sets_display"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/workout_frame_padding"
-            android:layout_marginEnd="@dimen/workout_frame_padding"
-            android:background="@color/colorBlue"
+            android:paddingTop="@dimen/workout_frame_8"
             android:elevation="4dp"
+            android:background="@color/colorBlue"
             android:orientation="vertical">
 
-            <FrameLayout
+            <LinearLayout
                 android:id="@+id/warmup_sets_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:background="@color/transparent"
                 android:visibility="visible">
 
@@ -130,12 +126,11 @@
                     android:text="@string/warmup_set"
                     android:textColor="@color/colorPrimary"
                     android:textAlignment="center"
-                    android:textSize="@dimen/text_20"/>
+                    android:textSize="@dimen/text_20" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp">
+                    android:layout_height="wrap_content">
 
                     <TableLayout
                         android:id="@+id/warmup_sets_display"
@@ -149,12 +144,22 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </FrameLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorSurface"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"/>
 
-            <FrameLayout
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/core_sets_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:background="@color/transparent"
                 android:visibility="visible">
 
@@ -170,8 +175,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp" >
+                    android:layout_height="wrap_content" >
 
                     <TableLayout
                         android:id="@+id/core_sets_display"
@@ -188,12 +192,22 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </FrameLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorSurface"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"/>
 
-            <FrameLayout
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/bbb_sets_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:background="@color/transparent"
                 android:visibility="visible">
 
@@ -210,7 +224,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp">
+                    android:layout_marginBottom="65dp">
 
                     <TableLayout
                         android:id="@+id/bbb_sets_display"
@@ -227,18 +241,19 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </FrameLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
 
-    <FrameLayout
-        android:elevation="16dp"
+    <LinearLayout
         android:id="@+id/amrap_frame"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorSurface"
+        android:elevation="16dp"
         app:layout_constraintBottom_toBottomOf="parent" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -356,13 +371,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </FrameLayout>
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/workout_frame_32"
-        android:layout_marginEnd="@dimen/workout_frame_32"
+        android:layout_marginStart="@dimen/workout_frame_16"
+        android:layout_marginEnd="@dimen/workout_frame_16"
+        android:elevation="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:visibility="gone">
 
@@ -375,5 +391,6 @@
             android:orientation="vertical" />
 
     </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

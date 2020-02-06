@@ -8,32 +8,27 @@
     android:background="@color/colorDarkGrey"
     tools:context=".Settings">
 
-    <include layout="@layout/hexagon_background"
-        android:elevation="0dp" />
-
     <include layout="@layout/navigation"
+        android:id="@+id/top_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:elevation="16dp"
-        android:id="@+id/top_navigation"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:elevation="8dp"
-        android:layout_marginTop="@dimen/workout_frame_8"
-        android:layout_marginStart="@dimen/workout_frame_8"
-        android:layout_marginEnd="@dimen/workout_frame_8"
-        android:background="@drawable/rectangle_outline"
+        android:elevation="0dp"
+        android:background="@color/colorSurface"
         app:layout_constraintTop_toBottomOf="@+id/top_navigation"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="0dp"
-            android:layout_margin="@dimen/workout_frame_8"
-            android:background="@color/colorSurface"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/top_navigation">
+            android:layout_marginStart="@dimen/workout_frame_8"
+            android:layout_marginEnd="@dimen/workout_frame_8"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/table_layout"

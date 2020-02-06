@@ -5,24 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="0dp"
-    android:background="@color/colorDarkGrey">
-
-    <include layout="@layout/hexagon_background" />
+    android:background="@color/colorSurface">
 
     <include layout="@layout/navigation"
-        android:layout_height="wrap_content"
+        android:id="@+id/top_navigation"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:elevation="16dp"
-        android:id="@+id/top_navigation"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        android:layout_margin="@dimen/workout_frame_8"
-        android:elevation="8dp"
-        android:background="@color/transparent"
-        app:layout_constraintTop_toBottomOf="@+id/top_navigation"
+        android:background="@color/colorSurface"
+        android:backgroundTint="#0DFFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/top_navigation"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,7 +54,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:background="@color/colorSurface"
-                    android:elevation="6dp"
+                    android:elevation="2dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/workout_frame_16"
@@ -117,13 +115,13 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/bench_tm_frame"
+                    android:layout_marginEnd="@dimen/workout_frame_16"
+                    android:layout_marginStart="@dimen/workout_frame_16"
+                    android:background="@color/colorSurface"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_marginStart="@dimen/workout_frame_16"
-                    android:layout_marginEnd="@dimen/workout_frame_16"
-                    android:background="@color/colorSurface"
-                    android:backgroundTint="#0DFFFFFF"
-                    android:elevation="6dp">
+                    android:elevation="2dp"
+                    android:backgroundTint="#0DFFFFFF">
 
                     <TextView
                         android:id="@+id/bench_tm_title"
@@ -205,15 +203,13 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/press_tm_frame"
+                    android:layout_marginEnd="@dimen/workout_frame_16"
+                    android:layout_marginStart="@dimen/workout_frame_16"
+                    android:background="@color/colorSurface"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_marginStart="@dimen/workout_frame_16"
-                    android:layout_marginTop="@dimen/workout_frame_8"
-                    android:layout_marginEnd="@dimen/workout_frame_16"
-                    android:clipToPadding="false"
-                    android:background="@color/colorSurface"
-                    android:elevation="6dp"
-                    android:backgroundTint="#0DFFFFFF" >
+                    android:elevation="2dp"
+                    android:backgroundTint="#0DFFFFFF">
 
                     <TextView
                         android:id="@+id/press_tm_title"
@@ -297,24 +293,23 @@
                     android:id="@+id/squat_tm_frame"
                     android:layout_marginEnd="@dimen/workout_frame_16"
                     android:layout_marginStart="@dimen/workout_frame_16"
-                    android:layout_marginTop="@dimen/workout_frame_8"
                     android:background="@color/colorSurface"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:elevation="6dp"
+                    android:elevation="2dp"
                     android:backgroundTint="#0DFFFFFF">
 
                     <TextView
                         android:id="@+id/squat_tm_title"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/workout_frame_8"
+                        android:layout_marginBottom="10dp"
                         android:gravity="center"
                         android:padding="@dimen/workout_frame_padding_half"
                         android:text="@string/tm_squat_title"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginStart="@dimen/workout_frame_8"
-                        android:layout_marginBottom="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -386,24 +381,23 @@
                     android:id="@+id/deadlift_tm_frame"
                     android:layout_marginEnd="@dimen/workout_frame_16"
                     android:layout_marginStart="@dimen/workout_frame_16"
-                    android:layout_marginTop="@dimen/workout_frame_8"
                     android:background="@color/colorSurface"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:elevation="6dp"
+                    android:elevation="2dp"
                     android:backgroundTint="#0DFFFFFF">
 
                     <TextView
                         android:id="@+id/deadlift_tm_title"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/workout_frame_padding_half"
+                        android:layout_marginStart="@dimen/workout_frame_8"
+                        android:layout_marginBottom="10dp"
                         android:gravity="center"
+                        android:padding="@dimen/workout_frame_padding_half"
                         android:text="@string/tm_deadlift_title"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_18"
-                        android:layout_marginStart="@dimen/workout_frame_8"
-                        android:layout_marginBottom="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -475,8 +469,8 @@
 
             <Button
                 android:id="@+id/tm_update_all_button"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
                 android:text="@string/tm_update_all"
                 android:textColor="@color/colorPrimaryDark"
                 android:background="@drawable/update_button"

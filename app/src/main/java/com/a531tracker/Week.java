@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -27,7 +30,6 @@ import com.a531tracker.ObjectBuilders.UserSettings;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -47,21 +49,16 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     private List<CompoundLifts> liftsArrayList = new ArrayList<>();
     private DatabaseHelper db = new DatabaseHelper(this);
 
-    private FrameLayout bbbFrame;
-    private FrameLayout coreFrame;
-    private FrameLayout amrapFrame;
+    private LinearLayout bbbFrame;
+    private LinearLayout coreFrame;
 
-    private TextView warmupTitle;
-    private TextView amrapLastWeek;
+    private LinearLayout amrapFrame;
 
-    private TableLayout warmupDisplay;
-    private TableLayout coreDisplay;
-    private TableLayout bbbDisplay;
+    private TableLayout warmupDisplay, coreDisplay, bbbDisplay;
 
-    private Button amrapButton;
-    private Button homeButton;
-    private Button settingsButton;
-    private Button jokerButton;
+    private TextView warmupTitle, amrapLastWeek;
+
+    private Button amrapButton, homeButton, settingsButton, jokerButton;
 
     private TabLayout tabSelected;
 
@@ -69,23 +66,12 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     private int[] settingsArray = new int[6];
 
-    private int weightCheck;
-    private int deloadWeekSettingVal;
-    private int jokerSettingVal;
-    private int fslSettingVal;
-    private int eightFormatSettingVal;
-    private int removeBbbOptionsSettingsVal;
-    private int amrapWeight;
-    private int currentWeek;
-    private int jokerStartWeight;
+    private int weightCheck, deloadWeekSettingVal, jokerSettingVal, fslSettingVal, eightFormatSettingVal, removeBbbOptionsSettingsVal, amrapWeight, currentWeek, jokerStartWeight;
     private int paddingVal;
 
     private boolean swapCheckVal;
 
-    private String compound;
-    private String swapLift;
-    private String repsDone;
-    private String weightSuffix;
+    private String compound, swapLift, repsDone, weightSuffix;
 
     private boolean newSettings = true;
 
@@ -173,6 +159,11 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     }
 
 
+    private boolean checkForSwaps(UserSettings userSettings){
+        return (userSettings.getSwapBBBFormat() == 1);
+    }
+
+
     private void setAllValues(int[] settings){
         weightCheck = settings[0];
         removeBbbOptionsSettingsVal = settings[1];
@@ -180,22 +171,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         jokerSettingVal = settings[3];
         fslSettingVal = settings[4];
         eightFormatSettingVal = settings[5];
-    }
-
-
-    private boolean checkForSwaps(UserSettings userSettings){
-        return (userSettings.getSwapBBBFormat() == 1);
-    }
-
-
-    private void setTabViews(UserSettings userSettings) {
-        if(tabSelected.getTabCount() < 4)
-            tabSelected.addTab(tabSelected.newTab().setText("DELOAD"));
-        
-        if(userSettings.getWeekFormat() != 1) {
-            if (cycleValue % 2 != 0)
-                tabSelected.removeTab((Objects.requireNonNull(tabSelected.getTabAt(3))));
-        }
     }
 
 
@@ -210,6 +185,18 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
             Objects.requireNonNull(tabSelected.getTabAt(2)).setText(R.string.format_531_week_3);
         }
     }
+
+
+    private void setTabViews(UserSettings userSettings) {
+        if(tabSelected.getTabCount() < 4)
+            tabSelected.addTab(tabSelected.newTab().setText("DELOAD"));
+
+        if(userSettings.getWeekFormat() != 1) {
+            if (cycleValue % 2 != 0)
+                tabSelected.removeTab((Objects.requireNonNull(tabSelected.getTabAt(3))));
+        }
+    }
+
 
     public void weekSelected(int day){
         removeDisplayViews();
@@ -329,15 +316,22 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     private void createWeeklyLiftsDisplays(TableLayout layout, float[] liftPercent, ArrayList<String> reps){
         for(int i = 0; i < liftPercent.length; i++){
+            int trainingValue;
             if(layout == bbbDisplay){
                 if(swapCheckVal && fslSettingVal != 1){
                     CompoundLifts swapLiftValue = db.getLifts(swapLift);
-                    layout.addView(setWeekLifts(swapLiftValue.getBig_but_boring_weight(), reps.get(i), swapLiftValue.getTraining_max()));
+                    trainingValue = swapLiftValue.getTraining_max();
+                    layout.addView(setWeekLifts(swapLiftValue.getBig_but_boring_weight(), reps.get(i), trainingValue));
+                    layout.addView(weightBreakdown());
                 } else {
-                    layout.addView(setWeekLifts(liftPercent[i], reps.get(i), liftsArrayList.get(0).getTraining_max()));
+                    trainingValue = liftsArrayList.get(0).getTraining_max();
+                    layout.addView(setWeekLifts(liftPercent[i], reps.get(i), trainingValue));
+                    layout.addView(weightBreakdown());
                 }
             } else {
-                layout.addView(setWeekLifts(liftPercent[i], reps.get(i), liftsArrayList.get(0).getTraining_max()));
+                trainingValue = liftsArrayList.get(0).getTraining_max();
+                layout.addView(setWeekLifts(liftPercent[i], reps.get(i), trainingValue));
+                layout.addView(weightBreakdown());
             }
         }
         if(layout == coreDisplay && jokerSettingVal == 1){
@@ -345,15 +339,60 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         }
     }
 
+    private double weightDistVal = 0;
+
+    public TableRow weightBreakdown(){
+        calculateWeight.weightBreakdown(weightDistVal, true);
+        ArrayList weightDistArray = calculateWeight.getWeightArray();
+        double barWeight;
+        if(weightCheck == 9){
+             barWeight = (double) weightDistArray.get(0);
+        } else {
+            String str = String.valueOf(weightDistArray.get(0));
+            str = str.substring(0, str.length()-2);
+            barWeight = Double.parseDouble(calculateWeight.setAsKilograms(Integer.parseInt(str), 1.0f));
+        }
+
+        String weightDistDisplayText = "Bar Weight: " + barWeight + "\nPlate Weight to both sides: ";
+        for(int i = 1; i < weightDistArray.size(); i++){
+            if(weightCheck == 9){
+                weightDistDisplayText += (weightDistArray.get(i)) + " | ";
+            } else {
+                String str = String.valueOf(weightDistArray.get(i));
+                str = str.substring(0, str.length()-2);
+                str = calculateWeight.setAsKilograms(Integer.parseInt(str), 1.0f);
+                weightDistDisplayText += str + " | ";
+            }
+        }
+
+        weightDistDisplayText = weightDistDisplayText.substring(0, weightDistDisplayText.length() - 2);
+        System.out.println(weightDistDisplayText);
+        weightDistVal = 0;
+        calculateWeight.resetWeightArray();
+
+        TableRow tableRow = new TableRow(mContext);
+        TextView textView = new TextView(mContext);
+        textView.setText(weightDistDisplayText);
+        textView.setTextSize(12);
+        textView.setTextColor(ContextCompat.getColor(mContext, R.color.colorWhite));
+        tableParams.weight = 1.0f;
+        textView.setLayoutParams(tableParams);
+        textView.setGravity(Gravity.CENTER);
+        tableRow.addView(textView);
+
+        return tableRow;
+    }
 
     private TableRow setWeekLifts(float liftPercent, String reps, int trainingValue) {
         TableRow tableRow = new TableRow(mContext);
         String workoutWeightText;
         if(weightCheck == 9) {
-            workoutWeightText = calculateWeight.setAsPounds(trainingValue, liftPercent) + weightSuffix;
+            workoutWeightText = calculateWeight.setAsPounds(trainingValue, liftPercent);
         } else {
-            workoutWeightText =  calculateWeight.setAsKilograms(trainingValue, liftPercent) + weightSuffix;
+            workoutWeightText =  calculateWeight.setAsKilograms(trainingValue, liftPercent);
         }
+        weightDistVal = Double.parseDouble(calculateWeight.setAsPounds(trainingValue, liftPercent));
+        workoutWeightText+= weightSuffix;
 
         TextView workoutWeight = createTextView(workoutWeightText, paddingVal);
         TextView workoutReps = createTextView(reps, paddingVal);
@@ -389,7 +428,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         checkBox.setButtonTintList(ColorStateList.valueOf(0xFF84C9FB));
         //checkBox.setBackground(ResourcesCompat.getDrawable(getResources(), (R.drawable.table_boxes), null));
         checkBox.setPadding(padding, padding, padding, padding);
-        checkBox.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.10f));
+        checkBox.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.20f));
         checkBox.setGravity(Gravity.CENTER_VERTICAL);
         return checkBox;
     }
@@ -541,6 +580,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
             bbbFrame.setVisibility(View.GONE);
     }
 
+
     // ---------- Fragments ----------
 
     private void createAmrapFragment(String lastWeeksReps){
@@ -596,7 +636,6 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         homeButton = findViewById(R.id.home_button);
         settingsButton = findViewById(R.id.settings_button);
         jokerButton = findViewById(R.id.add_joker);
-
         navButtons();
     }
 

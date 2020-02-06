@@ -22,7 +22,11 @@ class CalculateWeight {
     public int weightBreakdown(double weight, boolean firstRun) {
         double fixedWeight;
         if(firstRun) {
-            fixedWeight = (weight - 45) / 2;
+            if(weight < 45){
+                return 0;
+            } else {
+                fixedWeight = (weight - 45) / 2;
+            }
         } else {
             fixedWeight = weight;
         }
@@ -100,5 +104,10 @@ class CalculateWeight {
 
     public ArrayList getWeightArray(){
         return weightArray;
+    }
+
+    public void resetWeightArray(){
+        weightArray = new ArrayList<>();
+        weightArray.add(45.0);
     }
 }
