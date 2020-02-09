@@ -168,11 +168,15 @@
     <string name="bbb_80">80%</string>
     <string name="bbb_85">85%</string>
     <string name="bbb_90">90%</string>
-    
-    <string name="fsl_header">First Set Last</string>
-    <string name="fsl_reps_option_one">3&#8211;4x5&#8211;8</string>
-    <string name="fsl_or">OR</string>
-    <string name="fsl_reps_option_two">1x1+</string>
+
+    <string name="fsl_header">First Set Last (FSL)</string>
+    <string-array name="fsl_valus">
+        <item>5x5</item>
+        <item>5x5</item>
+        <item>5x5</item>
+        <item>5x5</item>
+        <item>5x5</item>
+    </string-array>
 
     <string-array name="format_863_core_week_one">
         <item>1x8</item>
