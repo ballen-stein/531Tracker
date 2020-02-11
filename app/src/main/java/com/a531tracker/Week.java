@@ -563,6 +563,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     private void addJokerSet(String reps){
         coreDisplay.addView(setWeekLifts(1.05f, reps, jokerStartWeight));
+        coreDisplay.addView(weightBreakdown());
         jokerStartWeight *= 1.05f;
     }
 
