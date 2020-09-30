@@ -171,11 +171,11 @@
 
     <string name="fsl_header">First Set Last (FSL)</string>
     <string-array name="fsl_valus">
-        <item>5x5</item>
-        <item>5x5</item>
-        <item>5x5</item>
-        <item>5x5</item>
-        <item>5x5</item>
+        <item>1x5</item>
+        <item>1x5</item>
+        <item>1x5</item>
+        <item>1x5</item>
+        <item>1x5</item>
     </string-array>
 
     <string-array name="format_863_core_week_one">

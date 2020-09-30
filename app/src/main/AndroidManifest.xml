@@ -50,6 +50,7 @@
 
         <activity android:name=".ViewAmrapStats"
             android:screenOrientation="landscape"/>
+        <activity android:name=".week.WeekActivity" />
     </application>
 
 </manifest>

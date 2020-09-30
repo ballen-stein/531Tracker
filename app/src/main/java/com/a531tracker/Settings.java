@@ -17,7 +17,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.a531tracker.Database.DatabaseHelper;
+import com.a531tracker.database.DatabaseHelper;
 import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible;
 import com.a531tracker.ObjectBuilders.CompoundLifts;
 

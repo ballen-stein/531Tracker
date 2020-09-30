@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.a531tracker.Database.DatabaseHelper;
+import com.a531tracker.database.DatabaseHelper;
 import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible;
 import com.a531tracker.ObjectBuilders.CompoundLifts;
 

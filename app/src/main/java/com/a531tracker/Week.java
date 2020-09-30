@@ -19,7 +19,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.a531tracker.Database.DatabaseHelper;
+import com.a531tracker.database.DatabaseHelper;
 import com.a531tracker.DetailFragments.SubmitAmrap;
 import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible;
 import com.a531tracker.ObjectBuilders.CompoundLifts;
@@ -276,16 +276,19 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         } else {
             bbbFrame.setVisibility(View.VISIBLE);
             if(fslSettingVal == 1){
-                float[] fslValue = new float[]{corePercents[0]};
-                ArrayList<String> fslList = new ArrayList<>();
+                if(swapCheckVal){
 
-                Collections.addAll(fslList, getResources().getStringArray(R.array.fsl_valus));
-                for(int i = 0; i < fslList.size(); i++){
-                    createWeeklyLiftsDisplays(bbbDisplay, fslValue, fslList);
+                } else {
+                    float[] fslValue = new float[]{corePercents[0]};
+                    ArrayList<String> fslList = new ArrayList<>();
+                    Collections.addAll(fslList, getResources().getStringArray(R.array.fsl_valus));
+                    for(int i = 0; i < fslList.size(); i++){
+                        createWeeklyLiftsDisplays(bbbDisplay, fslValue, fslList);
+                    }
+
+                    TextView bbbTitle = findViewById(R.id.bbb_title);
+                    bbbTitle.setText(R.string.fsl_header);
                 }
-
-                TextView bbbTitle = findViewById(R.id.bbb_title);
-                bbbTitle.setText(R.string.fsl_header);
             } else {
                 float bbbValue = liftsArrayList.get(0).getBig_but_boring_weight();
                 float[] bbbPercents;

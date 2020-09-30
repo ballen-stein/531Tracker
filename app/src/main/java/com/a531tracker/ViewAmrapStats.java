@@ -21,7 +21,7 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import com.a531tracker.Database.DatabaseHelper;
+import com.a531tracker.database.DatabaseHelper;
 import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;

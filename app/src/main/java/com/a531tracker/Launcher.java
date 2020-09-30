@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.a531tracker.Database.DatabaseHelper;
+import com.a531tracker.database.DatabaseHelper;
 
 import java.util.ArrayList;
 
