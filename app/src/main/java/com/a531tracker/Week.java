@@ -82,7 +82,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.week_view);
+        setContentView(R.layout.week_old_view);
 
         Intent intent = getIntent();
         mContext = this;
@@ -300,10 +300,10 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
                 TextView bbbTitle = findViewById(R.id.bbb_title);
                 if (swapCheckVal) {
-                    String text = swapLift + " " + getResources().getString(R.string.bbb_set);
+                    String text = swapLift + " " + getResources().getString(R.string.bbb_text);
                     bbbTitle.setText(text);
                 } else {
-                    bbbTitle.setText(getResources().getString(R.string.bbb_set));
+                    bbbTitle.setText(getResources().getString(R.string.bbb_text));
                 }
                 createWeeklyLiftsDisplays(bbbDisplay, bbbPercents, bbbReps);
             }
@@ -726,12 +726,12 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
                 weekSelected(currentWeek);
                 if(String.valueOf(tab.getText()).equals("DELOAD")){
                     amrapButton.setEnabled(false);
-                    warmupTitle.setText(R.string.deload_set);
+                    warmupTitle.setText(R.string.deload_text);
                     coreFrame.setVisibility(View.GONE);
                     checkDeloadVisible();
                 } else {
                     amrapButton.setEnabled(true);
-                    warmupTitle.setText(R.string.warmup_set);
+                    warmupTitle.setText(R.string.warmup_text);
                     coreFrame.setVisibility(View.VISIBLE);
                 }
             }

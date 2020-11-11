@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_view_days"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabTextColor="@drawable/tab_selected"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tab_view_days"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="?attr/actionBarSize"/>
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/week_bottom_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/colorDarkBlue"
+            android:theme="@style/Widget.MaterialComponents.BottomAppBar"
+            app:navigationIcon="@drawable/ic_navigation_icon">
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:backgroundTint="@color/colorOrange"
+            android:padding="0dp"
+            android:scaleType="center"
+            android:src="@android:drawable/ic_menu_mylocation"
+            app:borderWidth="0dp"
+            app:layout_anchor="@id/week_bottom_toolbar"
+            app:useCompatPadding="false" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

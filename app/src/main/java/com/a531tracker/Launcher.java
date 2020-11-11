@@ -10,14 +10,14 @@ import com.a531tracker.database.DatabaseHelper;
 
 import java.util.ArrayList;
 
-import static com.a531tracker.HomeScreen.compoundLifts;
-
 public class Launcher extends AppCompatActivity {
     final int SET_TRAINING_MAX_CODE = 1;
     private boolean cycleStarted;
     private boolean settingsCreated;
 
     private ArrayList<Integer> liftMaxes = new ArrayList<>();
+
+    private final String[] compoundLifts = new String[]{"Bench", "Overhand Press", "Squat", "Deadlift"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

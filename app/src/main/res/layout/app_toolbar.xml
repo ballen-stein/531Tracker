@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="0dp"
+    android:background="@color/colorSurface"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"/>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/colorDarkBlue"
+        android:theme="@style/Widget.MaterialComponents.BottomAppBar"
+        app:navigationIcon="@drawable/ic_navigation_icon">
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:backgroundTint="@color/colorOrange"
+        android:padding="0dp"
+        android:scaleType="center"
+        android:src="@android:drawable/ic_menu_mylocation"
+        app:borderWidth="0dp"
+        app:layout_anchor="@id/bottom_toolbar"
+        app:useCompatPadding="false" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

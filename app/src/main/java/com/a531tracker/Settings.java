@@ -26,9 +26,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.a531tracker.HomeScreen.UPDATE_TRAINING_MAX_CODE;
-import static com.a531tracker.HomeScreen.compoundLifts;
-
 public class Settings extends AppCompatActivity {
     private Context mContext;
 
@@ -55,6 +52,10 @@ public class Settings extends AppCompatActivity {
     private List<Integer> liftValues = new ArrayList<>();
     private List<CompoundLifts> currentValues = new ArrayList<>();
     private Map<String, Integer> liftMap = new HashMap<>();
+
+    private final String[] compoundLifts = new String[]{"Bench", "Overhand Press", "Squat", "Deadlift"};
+
+    private int UPDATE_TRAINING_MAX_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

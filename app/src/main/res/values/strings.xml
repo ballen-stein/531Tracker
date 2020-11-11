@@ -9,6 +9,11 @@
     <string name="nav_upload_week">Submit AMRAP</string>
     <string name="ok_text">OK</string>
 
+    <string name="breakdown_bar_weight">Bar Weight: </string>
+    <string name="breakdown_added_weight_start">Add (L/R): </string>
+    <string name="workout_show_breakdown">Show Breakdown</string>
+    <string name="workout_hide_breakdown">Hide breakdown</string>
+
     <string name="bench">Bench Press</string>
     <string name="overhand">Military Press</string>
     <string name="deadlift">Deadlift</string>
@@ -137,10 +142,10 @@
     <string name="tm_update_title">Values Updated</string>
     <string name="tm_update_message">You\'ve successfully updated your Cycle and lift values.</string>
 
-    <string name="core_set">Core</string>
-    <string name="warmup_set">Warm-Ups </string>
-    <string name="bbb_set">Boring But Big</string>
-    <string name="deload_set">Deload</string>
+    <string name="core_text">Core</string>
+    <string name="warmup_text">Warm-Ups </string>
+    <string name="bbb_text">Boring But Big</string>
+    <string name="deload_text">Deload</string>
 
     <string name="format_531_week_1">5/5/5</string>
     <string name="format_531_week_2">3/3/3</string>

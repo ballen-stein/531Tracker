@@ -7,6 +7,7 @@
     <color name="colorUnpressedWhite">#BFffffff</color>
     <color name="colorSurface">#121212</color>
     <color name="colorDarkGrey">#3D3D3D</color>
+    <color name="colorLightGrey">#5F5F5F</color>
     <color name="colorOrange">#f17800</color>
     <color name="colorUnpressedOrange">#FF932A</color>
     <color name="colorBlue">#18242B</color>

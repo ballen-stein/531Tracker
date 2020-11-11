@@ -123,7 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/workout_frame_padding_half"
-                    android:text="@string/warmup_set"
+                    android:text="@string/warmup_text"
                     android:textColor="@color/colorPrimary"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20" />
@@ -168,7 +168,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/workout_frame_padding_half"
-                    android:text="@string/core_set"
+                    android:text="@string/core_text"
                     android:textColor="@color/colorPrimary"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20"/>
@@ -216,7 +216,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/workout_frame_padding_half"
-                    android:text="@string/bbb_set"
+                    android:text="@string/bbb_text"
                     android:textColor="@color/colorPrimary"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20"/>

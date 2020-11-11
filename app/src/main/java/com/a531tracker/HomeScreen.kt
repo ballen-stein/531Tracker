@@ -1,5 +1,6 @@
 package com.a531tracker
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
@@ -10,8 +11,11 @@ import android.os.Bundle
 import android.view.Gravity
 import android.widget.Button
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 
 import com.a531tracker.database.DatabaseHelper
+import com.a531tracker.tools.AppConstants
+import com.a531tracker.week.WeekActivity
 
 class HomeScreen : AppCompatActivity() {
 
@@ -19,11 +23,11 @@ class HomeScreen : AppCompatActivity() {
     private var mContext: Context? = null
     private var cycleValue: Int? = null
 
-    private var benchView: Button? = null
-    private var deadliftView: Button? = null
-    private var pressView: Button? = null
-    private var squatView: Button? = null
-    private var cycleView: Button? = null
+    private var benchView: CardView? = null
+    private var deadliftView: CardView? = null
+    private var pressView: CardView? = null
+    private var squatView: CardView? = null
+    private var cycleView: CardView? = null
     private var homeButton: Button? = null
     private var settingsButton: Button? = null
 
@@ -70,10 +74,10 @@ class HomeScreen : AppCompatActivity() {
 
 
     fun openCompoundWeek(compound: String, swap: String) {
-        val intent = Intent(applicationContext, Week::class.java)
-        intent.putExtra("Compound", compound)
-        intent.putExtra("Swap", swap)
-        intent.putExtra("Cycle", cycleValue)
+        val intent = Intent(applicationContext, WeekActivity::class.java)
+        intent.putExtra(AppConstants.COMPOUND_STRING, compound)
+        intent.putExtra(AppConstants.SWAP_LIFT, swap)
+        intent.putExtra(AppConstants.CYCLE_NUM, cycleValue)
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
         startActivity(intent)
     }
@@ -195,6 +199,9 @@ class HomeScreen : AppCompatActivity() {
     companion object {
         internal val SET_TRAINING_MAX_CODE = 1
         internal val UPDATE_TRAINING_MAX_CODE = 2
+        private const val COMPOUND_STRING = "compound"
+        private const val CYCLE_NUM = "cycle"
+        private const val SWAP_LIFT = "swap"
 
         var compoundLifts = arrayOf("Bench", "Overhand Press", "Squat", "Deadlift")
     }

@@ -164,7 +164,7 @@
 
             </LinearLayout>
 
-            <Button
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/update_cycle_btn"
                 android:layout_marginBottom="@dimen/workout_frame_16"
                 android:layout_marginEnd="8dp"
@@ -175,12 +175,13 @@
                 android:textSize="@dimen/text_20"
                 android:textColor="@color/colorPrimary"
                 android:clickable="false"
-                android:background="@drawable/homepage_button"
+
+                app:cardElevation="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/deadlift_btn"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <Button
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/press_btn"
                 android:layout_marginBottom="@dimen/workout_frame_16"
                 android:layout_marginEnd="8dp"
@@ -189,14 +190,15 @@
                 android:layout_height="@dimen/button_size"
                 android:text="@string/button_press"
                 android:textSize="@dimen/text_20"
+                app:cardElevation="8dp"
                 android:textColor="@color/colorPrimary"
                 android:clickable="false"
-                android:background="@drawable/homepage_button"
+                android:backgroundTint="@color/colorSurface"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/deadlift_btn"
                 app:layout_constraintBottom_toTopOf="@id/bench_btn"/>
 
-            <Button
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/deadlift_btn"
                 android:layout_marginBottom="@dimen/workout_frame_16"
                 android:layout_marginEnd="8dp"
@@ -207,12 +209,13 @@
                 android:textSize="@dimen/text_20"
                 android:textColor="@color/colorPrimary"
                 android:clickable="false"
-                android:background="@drawable/homepage_button"
+                app:cardElevation="8dp"
+                android:backgroundTint="@color/colorSurface"
                 app:layout_constraintStart_toEndOf="@id/press_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/squat_btn"/>
 
-            <Button
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/bench_btn"
                 android:layout_marginBottom="@dimen/workout_frame_16"
                 android:layout_marginEnd="8dp"
@@ -223,12 +226,13 @@
                 android:textSize="@dimen/text_20"
                 android:textColor="@color/colorPrimary"
                 android:clickable="false"
-                android:background="@drawable/homepage_button"
+                app:cardElevation="8dp"
+                android:backgroundTint="@color/colorSurface"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/squat_btn"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <Button
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/squat_btn"
                 android:layout_marginBottom="@dimen/workout_frame_16"
                 android:layout_marginEnd="8dp"
@@ -239,7 +243,8 @@
                 android:textSize="@dimen/text_20"
                 android:textColor="@color/colorPrimary"
                 android:clickable="false"
-                android:background="@drawable/homepage_button"
+                app:cardElevation="8dp"
+                android:backgroundTint="@color/colorSurface"
                 app:layout_constraintStart_toEndOf="@id/bench_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>

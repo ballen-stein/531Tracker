@@ -20,8 +20,6 @@ import com.a531tracker.ObjectBuilders.CompoundLifts;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import static com.a531tracker.HomeScreen.compoundLifts;
-
 public class UpdateValues extends AppCompatActivity {
     private Button updateAll;
     private Button homeButton;
@@ -40,6 +38,8 @@ public class UpdateValues extends AppCompatActivity {
 
     private int cycleValue;
     private int weightCheck;
+
+    private final String[] compoundLifts = new String[]{"Bench", "Overhand Press", "Squat", "Deadlift"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState){

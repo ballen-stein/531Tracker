@@ -82,12 +82,12 @@ class BBBSettings : AppCompatActivity(), InformationFragment.InformationFragment
         db = DatabaseHelper(this)
 
         radioBbbChoices = ArrayList()
-        Collections.addAll(radioBbbChoices, R.id.radio_bbb_30, R.id.radio_bbb_35, R.id.radio_bbb_40, R.id.radio_bbb_45, R.id.radio_bbb_50,
+        /*Collections.addAll(radioBbbChoices, R.id.radio_bbb_30, R.id.radio_bbb_35, R.id.radio_bbb_40, R.id.radio_bbb_45, R.id.radio_bbb_50,
                 R.id.radio_bbb_55, R.id.radio_bbb_60, R.id.radio_bbb_65, R.id.radio_bbb_70, R.id.radio_bbb_75, R.id.radio_bbb_80, R.id.radio_bbb_85, R.id.radio_bbb_90)
 
         setButtons()
         setListeners()
-        setViews()
+        setViews()*/
     }
 
     override fun onStart() {
@@ -168,70 +168,55 @@ class BBBSettings : AppCompatActivity(), InformationFragment.InformationFragment
             1 -> {
                 if (c == '1') {
                     bbbRemove!!.isChecked = true
-                    break
                 }
                 if (c == '1') {
                     bbbDeload!!.isChecked = true
-                    break
                 }
                 if (c == '1') {
                     bbbJoker!!.isChecked = true
-                    break
                 }
                 if (c == '1') {
                     bbbFSL!!.isChecked = true
-                    break
                 }
                 if (c == '1') {
                     bbbEight!!.isChecked = true
-                    break
                 }
             }
             2 -> {
                 if (c == '1') {
                     bbbDeload!!.isChecked = true
-                    break
                 }
                 if (c == '1') {
                     bbbJoker!!.isChecked = true
-                    break
                 }
                 if (c == '1') {
                     bbbFSL!!.isChecked = true
-                    break
                 }
                 if (c == '1') {
                     bbbEight!!.isChecked = true
-                    break
                 }
             }
             3 -> {
                 if (c == '1') {
                     bbbJoker!!.isChecked = true
-                    break
                 }
                 if (c == '1') {
                     bbbFSL!!.isChecked = true
-                    break
                 }
                 if (c == '1') {
                     bbbEight!!.isChecked = true
-                    break
                 }
             }
             4 -> {
                 if (c == '1') {
                     bbbFSL!!.isChecked = true
-                    break
                 }
                 if (c == '1') {
                     bbbEight!!.isChecked = true
-                    break
                 }
             }
             5 -> if (c == '1') {
                 bbbEight!!.isChecked = true
-                break
             }
         }
     }

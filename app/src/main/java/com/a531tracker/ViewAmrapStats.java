@@ -40,8 +40,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-import static com.a531tracker.HomeScreen.compoundLifts;
-
 public class ViewAmrapStats extends AppCompatActivity {
     private LineChart[] lineCharts;
     private ScrollView allCharts;
@@ -58,6 +56,8 @@ public class ViewAmrapStats extends AppCompatActivity {
     private int weightCheck;
 
     private Context mContext;
+
+    private final String[] compoundLifts = new String[]{"Bench", "Overhand Press", "Squat", "Deadlift"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

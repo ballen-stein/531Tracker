@@ -17,8 +17,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.a531tracker.HomeScreen.compoundLifts;
-
 public class SetMaxes extends Activity {
     private int[] inputIds = new int[]{R.id.bench_input, R.id.press_input, R.id.squat_input, R.id.deadlift_input};
     private Map<String, CompoundLifts> mappedLifts = new HashMap<>();
@@ -36,6 +34,7 @@ public class SetMaxes extends Activity {
     private boolean revision;
     private boolean usingKilos = false;
 
+    private final String[] compoundLifts = new String[]{"Bench", "Overhand Press", "Squat", "Deadlift"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
