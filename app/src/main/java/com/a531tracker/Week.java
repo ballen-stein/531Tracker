@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -290,7 +291,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
                     bbbTitle.setText(R.string.fsl_header);
                 }
             } else {
-                float bbbValue = liftsArrayList.get(0).getBig_but_boring_weight();
+                float bbbValue = liftsArrayList.get(0).getPercent();
                 float[] bbbPercents;
 
                 if (deloadWeek)
@@ -317,22 +318,22 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
             if(layout == bbbDisplay){
                 if(swapCheckVal && fslSettingVal != 1){
                     CompoundLifts swapLiftValue = db.getLifts(swapLift);
-                    trainingValue = swapLiftValue.getTraining_max();
-                    layout.addView(setWeekLifts(swapLiftValue.getBig_but_boring_weight(), reps.get(i), trainingValue));
+                    trainingValue = swapLiftValue.getTrainingMax();
+                    layout.addView(setWeekLifts(swapLiftValue.getPercent(), reps.get(i), trainingValue));
                     layout.addView(weightBreakdown());
                 } else {
-                    trainingValue = liftsArrayList.get(0).getTraining_max();
+                    trainingValue = liftsArrayList.get(0).getTrainingMax();
                     layout.addView(setWeekLifts(liftPercent[i], reps.get(i), trainingValue));
                     layout.addView(weightBreakdown());
                 }
             } else {
-                trainingValue = liftsArrayList.get(0).getTraining_max();
+                trainingValue = liftsArrayList.get(0).getTrainingMax();
                 layout.addView(setWeekLifts(liftPercent[i], reps.get(i), trainingValue));
                 layout.addView(weightBreakdown());
             }
         }
         if(layout == coreDisplay && jokerSettingVal == 1){
-            jokerStartWeight = (int) (5 * (Math.ceil((liftsArrayList.get(0).getTraining_max() * liftPercent[2])/5)));
+            jokerStartWeight = (int) (5 * (Math.ceil((liftsArrayList.get(0).getTrainingMax() * liftPercent[2])/5)));
         }
     }
 
@@ -463,6 +464,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
         }
         else
             repPercent = String.valueOf(corePercents[2]);
+        Log.d("Testing", "data " + compound +", " + cycleValue+", " +  repPercent+", " +  amrapValue+", " +  amrapWeight );
         return db.updateAMRAPTable(compound, cycleValue, repPercent, amrapValue, amrapWeight);
     }
 
@@ -751,7 +753,7 @@ public class Week extends AppCompatActivity implements SubmitAmrap.AllClicks{
 
     public void getDatabaseLifts(){
         liftsArrayList.add(db.getLifts(compound));
-        amrapWeight = liftsArrayList.get(0).getTraining_max();
+        amrapWeight = liftsArrayList.get(0).getTrainingMax();
     }
 
 }

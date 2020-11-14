@@ -1,4 +1,4 @@
-package com.a531tracker.views
+package com.a531tracker.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

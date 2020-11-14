@@ -96,8 +96,8 @@ public class UpdateValues extends AppCompatActivity {
         }
 
         for(int i=0; i < liftValues.size(); i++){
-            System.out.println(liftValues.get(i).getCompound_movement());
-            System.out.println(liftValues.get(i).getTraining_max());
+            System.out.println(liftValues.get(i).getCompound());
+            System.out.println(liftValues.get(i).getTrainingMax());
         }
     }
 
@@ -118,13 +118,13 @@ public class UpdateValues extends AppCompatActivity {
             if(weightCheck == 9) {
                 if (i >= 2)
                     updateVal = 10;
-                currentViews[i].setText(String.valueOf(liftValues.get(i).getTraining_max()));
-                setSpinnerValues(spinnerArray[i], liftValues.get(i).getTraining_max(), updateVal);
+                currentViews[i].setText(String.valueOf(liftValues.get(i).getTrainingMax()));
+                setSpinnerValues(spinnerArray[i], liftValues.get(i).getTrainingMax(), updateVal);
             } else {
                 updateVal = Float.parseFloat(calculateWeight.setAsKilograms(5, 1f));
                 if (i >= 2)
                     updateVal = Float.parseFloat(calculateWeight.setAsKilograms(10, 1f));
-                float passedValAsKg = Float.parseFloat(calculateWeight.setAsKilograms(liftValues.get(i).getTraining_max(), 1f));
+                float passedValAsKg = Float.parseFloat(calculateWeight.setAsKilograms(liftValues.get(i).getTrainingMax(), 1f));
                 currentViews[i].setText(String.valueOf(passedValAsKg));
                 setSpinnerValues(spinnerArray[i], passedValAsKg, updateVal);
             }
@@ -230,8 +230,8 @@ public class UpdateValues extends AppCompatActivity {
         }
 
         CompoundLifts newLifts = new CompoundLifts();
-        newLifts.setCompound_movement(compoundName);
-        newLifts.setTraining_max(newMax);
+        newLifts.setCompound(compoundName);
+        newLifts.setTrainingMax(newMax);
         db.updateCompoundStats(newLifts);
     }
 

@@ -100,7 +100,7 @@ public class Settings extends AppCompatActivity {
         int i = 0;
         for(String lift : compoundLifts){
             currentValues.add(db.getLifts(lift));
-            int trainingMax = currentValues.get(i).getTraining_max();
+            int trainingMax = currentValues.get(i).getTrainingMax();
             liftMap.put(lift, trainingMax);
             liftValues.add(trainingMax);
             i++;
@@ -177,7 +177,7 @@ public class Settings extends AppCompatActivity {
             for(int i=0; i < compoundLifts.length; i++) {
                 newTvArray[i].setText(
                         String.valueOf(
-                                db.getLifts(compoundLifts[i]).getTraining_max()
+                                db.getLifts(compoundLifts[i]).getTrainingMax()
                         )
                 );
             }
@@ -186,7 +186,7 @@ public class Settings extends AppCompatActivity {
                 newTvArray[i].setText(
                         String.valueOf(
                                 calculateWeight.setAsKilograms(
-                                    db.getLifts(compoundLifts[i]).getTraining_max(), 1.0f
+                                    db.getLifts(compoundLifts[i]).getTrainingMax(), 1.0f
                                 )
                         )
                 );

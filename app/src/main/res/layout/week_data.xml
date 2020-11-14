@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<com.google.android.material.card.MaterialCardView
     android:id="@+id/coordinator"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:elevation="4dp"
+    app:cardElevation="4dp"
+    android:layout_margin="8dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
@@ -26,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/colorOrange"
+                android:textColor="@color/colorPrimary"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 tools:text="Header Text" />
@@ -36,7 +37,7 @@
                 android:layout_height="1dp"
                 android:layout_marginEnd="@dimen/workout_frame_96"
                 android:layout_marginStart="@dimen/workout_frame_96"
-                android:background="@color/colorDarkGrey" />
+                android:background="@color/colorPrimary" />
         </LinearLayout>
 
         <LinearLayout
@@ -52,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/colorOrange"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="500lbs"/>
@@ -63,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/colorOrange"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="5x5"/>
@@ -92,7 +93,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorOrange"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="12sp"
                     android:text="@string/workout_show_breakdown"
                     android:layout_marginStart="@dimen/workout_frame_32"
@@ -106,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:background="@drawable/display_info_toggle"
-                    android:backgroundTint="@color/colorOrange"
+                    android:backgroundTint="@color/colorPrimary"
                     android:layout_marginEnd="@dimen/workout_frame_16"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -119,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_margin="@dimen/workout_frame_padding_half"
-                android:background="@color/colorDarkGrey"
+                android:background="@color/colorSecondary"
                 tools:visibility="visible"/>
 
             <LinearLayout
@@ -142,14 +143,14 @@
                         android:layout_height="wrap_content"
                         android:text="@string/breakdown_bar_weight"
                         android:textStyle="bold"
-                        android:textColor="@color/colorOrange"/>
+                        android:textColor="@color/colorSecondary"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/bar_weight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/colorOrange"/>
+                        android:textColor="@color/colorSecondary"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -163,17 +164,17 @@
                         android:layout_height="wrap_content"
                         android:text="@string/breakdown_added_weight_start"
                         android:textStyle="bold"
-                        android:textColor="@color/colorOrange"/>
+                        android:textColor="@color/colorSecondary"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/weight_breakdown"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/colorOrange"/>
+                        android:textColor="@color/colorSecondary"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</com.google.android.material.card.MaterialCardView>

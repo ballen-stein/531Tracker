@@ -50,8 +50,21 @@
 
         <activity android:name=".ViewAmrapStats"
             android:screenOrientation="landscape"/>
+
+        <activity
+            android:name=".homepage.HomePageActivity"
+            android:screenOrientation="portrait" />
+
         <activity android:name=".week.WeekActivity"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".settings.SettingsNew"
+            android:theme="@style/PreferencesStyle"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".lifts.SetLiftsActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

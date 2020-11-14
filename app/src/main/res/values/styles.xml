@@ -1,25 +1,42 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorOrange</item>
-        <item name="colorAccent">@color/colorWhite</item>
-        <item name="android:background">@color/colorWhite</item>
+        <item name="colorPrimaryDark">@color/colorSurface</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <!--<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>-->
+        <!--<item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>-->
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
     </style>
 
     <style name="AlertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <!-- Change Button Text Color -->
         <item name="colorAccent">@color/colorPrimary</item>
         <!-- Change Title and Message Color -->
-        <item name="android:textColorPrimary">@color/colorOrange</item>
+        <item name="android:textColorPrimary">@color/colorSecondary</item>
         <!-- Change Background Color -->
         <item name="android:windowBackground">@color/colorWhite</item>
         <!-- Change Text Size -->
         <item name="android:labelTextSize">@dimen/text_8</item>
     </style>
 
+    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 
+    <style name="PreferencesStyle" parent="AppTheme">
+        <item name="colorPrimary">@color/colorTertiary</item>
+        <item name="colorAccent">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorTertiary</item>
+    </style>
+    
+    <style name="DeleteAllData" parent="AppTheme">
+        <item name="titleTextColor">@color/colorRed</item>
+    </style>
 
 </resources>

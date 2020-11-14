@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.a531tracker.database.DatabaseHelper;
+import com.a531tracker.homepage.HomePageActivity;
+import com.a531tracker.lifts.SetLiftsActivity;
+import com.a531tracker.tools.AppConstants;
 
 import java.util.ArrayList;
 
@@ -62,7 +65,7 @@ public class Launcher extends AppCompatActivity {
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         try{
             for(String lifts : compoundLifts){
-                liftMaxes.add(db.getLifts(lifts).getTraining_max());
+                liftMaxes.add(db.getLifts(lifts).getTrainingMax());
             }
             return (liftMaxes.size() == 4);
         } catch (Exception e){
@@ -81,9 +84,9 @@ public class Launcher extends AppCompatActivity {
 
 
     private void freshLiftsLaunch() {
-        Intent intent = new Intent(getApplicationContext(), SetMaxes.class);
+        Intent intent = new Intent(getApplicationContext(), SetLiftsActivity.class);
         intent.putExtra("NewLifts", true);
-        intent.putExtra("FirstLaunch", true);
+        intent.putExtra(AppConstants.FRESH_LAUNCH, true);
         startActivityForResult(intent, SET_TRAINING_MAX_CODE);
         finish();
     }
@@ -111,7 +114,8 @@ public class Launcher extends AppCompatActivity {
     }
 
     private void launchApp(){
-        Intent intent = new Intent(this, HomeScreen.class);
+        Intent intent = new Intent(this, HomePageActivity.class);
+        //Intent intent = new Intent(this, HomeScreen.class);
         startActivity(intent);
         finish();
     }

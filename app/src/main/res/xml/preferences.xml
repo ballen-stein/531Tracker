@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:allowDividerAbove="true"
+    app:allowDividerBelow="true"
+    app:divider="@drawable/layout_divider">
+
+    <PreferenceCategory
+        app:title="@string/preference_base_options_title" >
+
+        <SwitchPreferenceCompat
+            app:key="@string/preference_kilogram_key"
+            app:title="@string/preference_kilogram"
+            app:defaultValue="false"/>
+
+        <SwitchPreferenceCompat
+            app:key="@string/preference_week_options_key"
+            app:title="@string/preference_week_four_cycle"
+            app:summary="@string/preference_week_four_cycle_desc"
+            app:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="@string/preference_extras_title"
+        app:title="@string/preference_extras_title"
+        app:summary="@string/preference_extras_desc">
+
+        <CheckBoxPreference
+            app:key="@string/preference_split_variant_extra_key"
+            app:title="@string/preference_split_variant_extra"
+            app:summary="@string/preference_split_variant_extra_desc"
+            app:defaultValue="false"/>
+
+        <CheckBoxPreference
+            app:key="@string/preference_fsl_key"
+            app:title="@string/preference_fsl"
+            app:summary="@string/preference_fsl_desc"
+            app:defaultValue="false"
+            app:allowDividerBelow="true"/>
+
+        <CheckBoxPreference
+            app:key="@string/preference_joker_key"
+            app:title="@string/preference_joker"
+            app:summary="@string/preference_joker_desc"
+            app:defaultValue="false"
+            app:allowDividerBelow="true"/>
+
+        <CheckBoxPreference
+            app:key="@string/preference_deload_key"
+            app:title="@string/preference_deload"
+            app:summary="@string/preference_deload_desc"
+            app:defaultValue="false"
+            app:allowDividerBelow="true"/>
+
+        <CheckBoxPreference
+            app:key="@string/preference_swap_extras_key"
+            app:title="@string/preference_swap_extras"
+            app:summary="@string/preference_swap_extras_desc"
+            app:defaultValue="false"
+            app:allowDividerBelow="true"/>
+
+        <CheckBoxPreference
+            app:key="@string/preference_remove_extras_key"
+            app:title="@string/preference_remove_extras"
+            app:summary="@string/preference_remove_extras_desc"
+            app:defaultValue="false"
+            app:allowDividerBelow="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/preference_data_title">
+
+        <Preference
+            app:key="@string/preference_data_deletion_key"
+            app:title="@string/preference_data_deletion"
+            app:summary="@string/preference_data_deletion_desc" />
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

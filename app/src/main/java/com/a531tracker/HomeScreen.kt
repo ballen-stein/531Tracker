@@ -14,8 +14,6 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 
 import com.a531tracker.database.DatabaseHelper
-import com.a531tracker.tools.AppConstants
-import com.a531tracker.week.WeekActivity
 
 class HomeScreen : AppCompatActivity() {
 
@@ -58,7 +56,7 @@ class HomeScreen : AppCompatActivity() {
 
     private fun setCurrentTrainingValues() {
         for (i in compoundLifts.indices) {
-            newTvArray!![i].text = db!!.getLifts(compoundLifts[i]).training_max.toString()
+            newTvArray!![i].text = db!!.getLifts(compoundLifts[i]).trainingMax.toString()
         }
     }
 
@@ -74,10 +72,10 @@ class HomeScreen : AppCompatActivity() {
 
 
     fun openCompoundWeek(compound: String, swap: String) {
-        val intent = Intent(applicationContext, WeekActivity::class.java)
-        intent.putExtra(AppConstants.COMPOUND_STRING, compound)
-        intent.putExtra(AppConstants.SWAP_LIFT, swap)
-        intent.putExtra(AppConstants.CYCLE_NUM, cycleValue)
+        val intent = Intent(applicationContext, Week::class.java)
+        intent.putExtra("Compound", compound)
+        intent.putExtra("Swap", swap)
+        intent.putExtra("Cycle", cycleValue)
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
         startActivity(intent)
     }

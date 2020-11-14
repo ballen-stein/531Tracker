@@ -18,7 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:backgroundTint="@color/colorDarkBlue"
         android:theme="@style/Widget.MaterialComponents.BottomAppBar"
         app:navigationIcon="@drawable/ic_navigation_icon">
 

@@ -1,17 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#84C9FB</color>
+
+    <!--<color name="colorPrimary">#84C9FB</color>
     <color name="colorAccent">#000000</color>
     <color name="colorPrimaryDark">@color/colorAccent</color>
-    <color name="colorWhite">#ffffff</color>
+    <color name="colorWhite">#ffffff</color>-->
     <color name="colorUnpressedWhite">#BFffffff</color>
-    <color name="colorSurface">#121212</color>
     <color name="colorDarkGrey">#3D3D3D</color>
     <color name="colorLightGrey">#5F5F5F</color>
     <color name="colorOrange">#f17800</color>
     <color name="colorUnpressedOrange">#FF932A</color>
     <color name="colorBlue">#18242B</color>
     <color name="colorDarkBlue">#2D3A41</color>
-    <color name="colorGreen">#A6CC96</color>
+    <!--<color name="colorGreen">#A6CC96</color>-->
     <color name="transparent">#00000000</color>
+
+    <color name="colorPrimary">#7e7abc</color>
+    <color name="colorPrimaryDark">#665dae</color>
+    <color name="colorPrimaryDisabled">#332e57 </color>
+    <color name="colorAccent">#9f7abc</color>
+    <color name="colorSecondary">#b8bc7a</color>
+    <color name="colorSecondaryDark">#a9af5f</color>
+    <color name="colorTertiary">#7a97bc</color>
+    <color name="colorInfoText">#bc9f7a</color>
+    <color name="colorBlack">#000000</color>
+
+    <color name="colorSurface">#121212</color>
+    <color name="colorLightSurface">#272727</color>
+
+    <color name="colorDialogButton">#353535</color>
+    <color name="colorMask">#99000000</color>
+    <color name="colorTransParent">#00000000</color>
+
+    <color name="colorRed">#ff1507</color>
+    <color name="error">#ff5436</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGreen">#00ff00</color>
+
 </resources>

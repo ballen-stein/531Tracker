@@ -1,17 +1,23 @@
 package com.a531tracker.week
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.Log
 import com.a531tracker.tools.AppConstants
 import com.a531tracker.ObjectBuilders.CompoundLifts
+import com.a531tracker.R
 import com.a531tracker.database.DatabaseRepository
 import com.a531tracker.mvpbase.DependencyInjectorClass
 import com.a531tracker.tools.AppUtils
+import com.a531tracker.tools.PreferenceUtils
+import java.lang.Exception
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class WeekPresenter (view: WeekContract.View, injector: DependencyInjectorClass, appInjector: AppUtils, private val mContext: Context) : WeekContract.Presenter {
+class WeekPresenter (view: WeekContract.View,
+                     injector: DependencyInjectorClass,
+                     appInjector: AppUtils,
+                     private val prefUtils: PreferenceUtils,
+                     private val mContext: Context) : WeekContract.Presenter {
 
     private var databaseRepository: DatabaseRepository = injector.dataRepo(mContext)
 
@@ -19,19 +25,44 @@ class WeekPresenter (view: WeekContract.View, injector: DependencyInjectorClass,
 
     private var view: WeekContract.View? = view
 
+    private lateinit var liftData: CompoundLifts
+
+    private var usingKG: Boolean = false
+
+    private lateinit var bbbPercentsHolder: ArrayList<Float>
+
     override fun onViewCreated(mContext: Context, liftName: String) {
         databaseRepository.getDataRepo(mContext = mContext)
+        usingKG = prefUtils.getPreference(mContext.getString(R.string.preference_kilogram_key)) == true
 
         getLift(liftName = liftName)
     }
 
-    private fun getLift(liftName: String) {
-        val liftData = databaseRepository.getLift(liftName = liftName)
+    override fun onAmrapReceived(liftName: String, percent: String, repsDone: Int) {
+        Log.d("TestingData", "Values: \nCompound - $liftName\n" +
+                "Cycle - ${databaseRepository.getCycle()}\n" +
+                "Percent - $percent\n" +
+                "Amrap - $repsDone\n" +
+                "Amrap - ${liftData.trainingMax}")
 
-        if (liftData != null) {
+        val success = databaseRepository.setAmrapValue(
+                liftName = liftName,
+                amrapPercent = percent,
+                repsDone = repsDone,
+                weight = liftData.trainingMax!!
+        )
+
+        view?.amrapSnackbar(success == 1)
+    }
+
+    private fun getLift(liftName: String) {
+        try {
+            liftData = databaseRepository.getLift(liftName = liftName)!!
+            bbbPercentsHolder = databaseRepository.getUserPercentList(liftName)
+            percentHolder[2]?.replaceAll { bbbPercentsHolder }
             saveWeekData(liftData)
-        } else {
-            view?.error(Resources.NotFoundException())
+        } catch (e: Exception) {
+            view?.error(e)
         }
     }
 
@@ -45,7 +76,7 @@ class WeekPresenter (view: WeekContract.View, injector: DependencyInjectorClass,
     }
 
     private fun saveWeekData(liftData: CompoundLifts) {
-        val liftMax = liftData.training_max
+        val liftMax = liftData.trainingMax!!
         val tempHolder = ArrayList<String>()
 
         for (i in 0 until headersText.size) {
@@ -107,6 +138,7 @@ class WeekPresenter (view: WeekContract.View, injector: DependencyInjectorClass,
         }
         databaseRepository.setRepData(tempHolder)
 
+        view?.setLastWeek(0)
         view?.updateWeekFragment()
     }
 
@@ -151,7 +183,7 @@ class WeekPresenter (view: WeekContract.View, injector: DependencyInjectorClass,
     private fun getWeekPercents(liftMax: Int, weekPercents: ArrayList<Float>): ArrayList<String> {
         val liftsAsStrings = ArrayList<String>()
         for (percent in weekPercents) {
-            liftsAsStrings.add(appUtils.getWeight(0, liftMax, percent))
+            liftsAsStrings.add(appUtils.getWeight(usingKG, liftMax, percent))
         }
         return liftsAsStrings
     }

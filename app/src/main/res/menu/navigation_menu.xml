@@ -4,12 +4,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/app_bar_search"
-        android:title="Search"
-        app:showAsAction="ifRoom"/>
+        android:id="@+id/app_bar_home"
+        android:title="@string/nav_home"
+        android:icon="@drawable/ic_home"
+        app:showAsAction="never"/>
 
     <item
-        android:id="@+id/app_bar_contact"
-        android:title="Contact"
+        android:id="@+id/app_bar_settings"
+        android:title="@string/nav_settings"
+        android:icon="@drawable/ic_settings"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/app_bar_update"
+        android:title="@string/nav_update"
+        android:icon="@drawable/ic_update"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/app_bar_help"
+        android:title="@string/nav_help"
+        android:icon="@drawable/ic_help"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/app_bar_info"
+        android:title="@string/nav_info"
+        android:icon="@drawable/ic_info"
         app:showAsAction="never"/>
 </menu>

@@ -10,13 +10,21 @@ class AppUtils {
         return AppUtils()
     }
 
-    fun getWeight(value: Int, trainingValue: Int, liftPercent: Float): String {
+    fun getWeight(trainingValue: Double): Double {
+        return trainingValue * 2.20462
+    }
+
+    fun getWeight(calculateKG: Boolean, trainingValue: Int, liftPercent: Float): String {
         // Pounds == 0 | Kilograms == 1
-        return if (value == 0) {
+        return if (!calculateKG) {
             ((5 * ceil(trainingValue * liftPercent / 5.toDouble())).toInt()).toString()
         } else {
             BigDecimal(trainingValue * liftPercent / 2.20462).setScale(1, BigDecimal.ROUND_HALF_UP).toString()
         }
+    }
+
+    fun normalizePercent(percent: Float): Float {
+        return (5 * ceil(percent / 5F))
     }
 
     private var weightArray = ArrayList<Double>()

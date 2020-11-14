@@ -9,10 +9,10 @@
         android:id="@+id/tab_view_days"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
         app:tabIndicatorColor="@color/colorPrimary"
         app:tabTextColor="@drawable/tab_selected"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="16dp">
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -33,21 +33,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:backgroundTint="@color/colorDarkBlue"
             android:theme="@style/Widget.MaterialComponents.BottomAppBar"
             app:navigationIcon="@drawable/ic_navigation_icon">
 
         </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/week_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
             android:backgroundTint="@color/colorOrange"
             android:padding="0dp"
             android:scaleType="center"
-            android:src="@android:drawable/ic_menu_mylocation"
+            android:src="@drawable/update_week"
             app:borderWidth="0dp"
             app:layout_anchor="@id/week_bottom_toolbar"
             app:useCompatPadding="false" />

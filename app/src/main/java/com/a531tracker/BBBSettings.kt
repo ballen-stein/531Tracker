@@ -16,7 +16,6 @@ import com.a531tracker.ObjectBuilders.UserSettings
 
 import java.math.BigDecimal
 import java.util.ArrayList
-import java.util.Collections
 
 import com.a531tracker.HomeScreen.Companion.compoundLifts
 
@@ -397,8 +396,8 @@ class BBBSettings : AppCompatActivity(), InformationFragment.InformationFragment
         var successful = false
         for (lifts in compoundLifts) {
             val newLifts = CompoundLifts()
-            newLifts.big_but_boring_weight = bbbVal
-            newLifts.compound_movement = lifts
+            newLifts.percent = bbbVal
+            newLifts.compound = lifts
             val i = db!!.updateBBBPercent(newLifts)
             if (i == 1) {
                 successful = true

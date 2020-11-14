@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible;
 import com.a531tracker.ObjectBuilders.CompoundLifts;
@@ -53,15 +54,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String WORKOUT_SETTINGS_TABLE = "settings";
     private static final String WORKOUT_BBB_SEVEN_DAY = "seven_day";
     private static final String WORKOUT_FORMAT_CHOSEN = "chosen_format";
-
-    //  ----    Accessories Tables  ----
-
-    //  Accessories
-    private static final String WORKOUT_ACCESSORY_TABLE_NAME = "accessory_exercise_list";
-    private static final String WORKOUT_ACCESSORY_ROW_ID = "id";
-    private static final String WORKOUT_ACCESSORY_NAME = "accessory_name";
-    private static final String WORKOUT_ACCESSORY_REPS_AND_SETS = "accessory_reps_and_sets";
-    private static final String WORKOUT_ACCESSORY_WEIGHT = "accessory_weight";
 
 
     public DatabaseHelper(Context context){
@@ -128,14 +120,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 WORKOUT_FORMAT_CHOSEN + " integer default 0, "+
                 WORKOUT_BBB_SEVEN_DAY + " integer default 0)"
         );
-
-        // Accessory Table
-        db.execSQL("create table if not exists " + WORKOUT_ACCESSORY_TABLE_NAME + " (" +
-                WORKOUT_ACCESSORY_ROW_ID + " integer primary key, " +
-                WORKOUT_ACCESSORY_NAME + " text, " +
-                WORKOUT_ACCESSORY_REPS_AND_SETS + " text, " +
-                WORKOUT_ACCESSORY_WEIGHT + " float)"
-        );
     }
 
 
@@ -143,7 +127,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVer, int newVer) {
         if(DATABASE_VERSION > db.getVersion()) {
             db.execSQL("drop table if exists " + WORKOUT_COMPOUND_TABLE_NAME);
-            db.execSQL("drop table if exists " + WORKOUT_ACCESSORY_TABLE_NAME);
             onCreate(db);
         }
     }
@@ -159,7 +142,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void onNewUser(SQLiteDatabase db){
         db.execSQL("drop table if exists " + WORKOUT_COMPOUND_TABLE_NAME);
-        db.execSQL("drop table if exists " + WORKOUT_ACCESSORY_TABLE_NAME);
         db.execSQL("drop table if exists " + WORKOUT_COMPOUND_SQUAT);
         db.execSQL("drop table if exists " + WORKOUT_COMPOUND_BENCH);
         db.execSQL("drop table if exists " + WORKOUT_COMPOUND_DEADLIFT);
@@ -170,7 +152,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void onResetLifts(SQLiteDatabase db){
         db.execSQL("drop table if exists " + WORKOUT_COMPOUND_TABLE_NAME);
-        db.execSQL("drop table if exists " + WORKOUT_ACCESSORY_TABLE_NAME);
         onCreate(db);
     }
 
@@ -179,18 +160,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public void insertCompoundStats(CompoundLifts lifts){
-        if(!checkLiftExists(lifts.getCompound_movement())){
+        if(!checkLiftExists(lifts.getCompound())){
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
-            contentValues.put(WORKOUT_COMPOUND_MOVEMENT, lifts.getCompound_movement());
-            contentValues.put(WORKOUT_COMPOUND_MAX, lifts.getTraining_max());
-            contentValues.put(WORKOUT_COMPOUND_85_REPS, lifts.getEight_five_reps());
-            contentValues.put(WORKOUT_COMPOUND_90_REPS, lifts.getNinety_reps());
-            contentValues.put(WORKOUT_COMPOUND_95_REPS, lifts.getNinety_five_reps());
-            contentValues.put(WORKOUT_COMPOUND_BBB_WEIGHT, lifts.getBig_but_boring_weight());
+            contentValues.put(WORKOUT_COMPOUND_MOVEMENT, lifts.getCompound());
+            contentValues.put(WORKOUT_COMPOUND_MAX, lifts.getTrainingMax());
+            contentValues.put(WORKOUT_COMPOUND_85_REPS, lifts.getEightFiveReps());
+            contentValues.put(WORKOUT_COMPOUND_90_REPS, lifts.getNinetyReps());
+            contentValues.put(WORKOUT_COMPOUND_95_REPS, lifts.getNinetyFiveReps());
+            contentValues.put(WORKOUT_COMPOUND_BBB_WEIGHT, lifts.getPercent());
             try {
                 db.insert(WORKOUT_COMPOUND_TABLE_NAME, null, contentValues);
             } catch (Exception e){
+                Log.d("ErrorTracing", "Error is " + e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -215,11 +197,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public int updateCompoundStats(CompoundLifts lifts){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(WORKOUT_COMPOUND_MAX, lifts.getTraining_max());
-        contentValues.put(WORKOUT_COMPOUND_85_REPS, lifts.getEight_five_reps());
-        contentValues.put(WORKOUT_COMPOUND_90_REPS, lifts.getNinety_reps());
-        contentValues.put(WORKOUT_COMPOUND_95_REPS, lifts.getNinety_five_reps());
-        int i = db.update(WORKOUT_COMPOUND_TABLE_NAME, contentValues, WORKOUT_COMPOUND_MOVEMENT + " = '" + lifts.getCompound_movement() + "'", null);
+        contentValues.put(WORKOUT_COMPOUND_MAX, lifts.getTrainingMax());
+        contentValues.put(WORKOUT_COMPOUND_85_REPS, lifts.getEightFiveReps());
+        contentValues.put(WORKOUT_COMPOUND_90_REPS, lifts.getNinetyReps());
+        contentValues.put(WORKOUT_COMPOUND_95_REPS, lifts.getNinetyFiveReps());
+        int i = db.update(WORKOUT_COMPOUND_TABLE_NAME, contentValues, WORKOUT_COMPOUND_MOVEMENT + " = '" + lifts.getCompound() + "'", null);
         db.close();
         return i;
     }
@@ -238,12 +220,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private CompoundLifts buildLift(Cursor cursor){
         CompoundLifts lifts = new CompoundLifts();
-        lifts.setCompound_movement(cursor.getString(cursor.getColumnIndex(WORKOUT_COMPOUND_MOVEMENT)));
-        lifts.setTraining_max(cursor.getInt(cursor.getColumnIndex(WORKOUT_COMPOUND_MAX)));
-        lifts.setEight_five_reps(cursor.getInt(cursor.getColumnIndex(WORKOUT_COMPOUND_85_REPS)));
-        lifts.setNinety_reps(cursor.getInt(cursor.getColumnIndex(WORKOUT_COMPOUND_90_REPS)));
-        lifts.setNinety_five_reps(cursor.getInt(cursor.getColumnIndex(WORKOUT_COMPOUND_95_REPS)));
-        lifts.setBig_but_boring_weight(cursor.getFloat(cursor.getColumnIndex(WORKOUT_COMPOUND_BBB_WEIGHT)));
+        lifts.setCompound(cursor.getString(cursor.getColumnIndex(WORKOUT_COMPOUND_MOVEMENT)));
+        lifts.setTrainingMax(cursor.getInt(cursor.getColumnIndex(WORKOUT_COMPOUND_MAX)));
+        lifts.setEightFiveReps(cursor.getInt(cursor.getColumnIndex(WORKOUT_COMPOUND_85_REPS)));
+        lifts.setNinetyReps(cursor.getInt(cursor.getColumnIndex(WORKOUT_COMPOUND_90_REPS)));
+        lifts.setNinetyFiveReps(cursor.getInt(cursor.getColumnIndex(WORKOUT_COMPOUND_95_REPS)));
+        lifts.setPercent(cursor.getFloat(cursor.getColumnIndex(WORKOUT_COMPOUND_BBB_WEIGHT)));
         return lifts;
     }
 
@@ -345,10 +327,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         AsManyRepsAsPossible asManyRepsAsPossible = new AsManyRepsAsPossible();
         asManyRepsAsPossible.setCompound(compound);
         asManyRepsAsPossible.setCycle(cycle);
-        asManyRepsAsPossible.setEighty_five_reps(Integer.parseInt(cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_85))));
-        asManyRepsAsPossible.setNinety_reps(Integer.parseInt(cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_90))));
-        asManyRepsAsPossible.setNinety_five_reps(Integer.parseInt(cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_95))));
-        asManyRepsAsPossible.setTotalMaxWeight(Integer.parseInt(cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_WEIGHT))));
+        asManyRepsAsPossible.setEighty_five_reps((cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_85)) != null) ? Integer.parseInt(cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_85))) : -1);
+        asManyRepsAsPossible.setNinety_reps((cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_90)) != null) ? Integer.parseInt(cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_90))) : -1);
+        asManyRepsAsPossible.setNinety_five_reps((cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_95)) != null) ? Integer.parseInt(cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_95))) : -1);
+        asManyRepsAsPossible.setTotalMaxWeight((cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_WEIGHT)) != null) ? Integer.parseInt(cursor.getString(cursor.getColumnIndex(WORKOUT_AS_MANY_REPS_AS_POSSIBLE_WEIGHT))) : 100);
         return asManyRepsAsPossible;
     }
 
@@ -545,8 +527,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public int updateBBBPercent(CompoundLifts lifts){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(WORKOUT_COMPOUND_BBB_WEIGHT, lifts.getBig_but_boring_weight());
-        int i = db.update(WORKOUT_COMPOUND_TABLE_NAME, contentValues, WORKOUT_COMPOUND_MOVEMENT + " = '" + lifts.getCompound_movement() + "'", null);
+        contentValues.put(WORKOUT_COMPOUND_BBB_WEIGHT, lifts.getPercent());
+        int i = db.update(WORKOUT_COMPOUND_TABLE_NAME, contentValues, WORKOUT_COMPOUND_MOVEMENT + " = '" + lifts.getCompound() + "'", null);
         db.close();
         return i;
     }

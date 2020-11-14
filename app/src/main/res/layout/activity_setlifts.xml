@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="0dp">
+
+    <LinearLayout
+        android:id="@+id/lift_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="8dp">
+
+        <LinearLayout
+            android:id="@+id/back_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_back"
+                android:visibility="visible"/>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/workout_frame_32"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/lift_header"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_20"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lift_one_rep_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/workout_frame_padding"
+                android:layout_margin="@dimen/workout_frame_16"
+                android:text="@string/lift_one_rep_max"
+                android:textSize="@dimen/text_18"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/workout_frame_8"
+                android:layout_marginEnd="@dimen/workout_frame_8"
+                android:padding="@dimen/workout_frame_padding"
+                android:text="@string/lift_one_rep_max_explanation"
+                android:textSize="@dimen/text_16"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/workout_frame_16"
+                android:layout_marginStart="@dimen/workout_frame_16"
+                android:layout_marginEnd="@dimen/workout_frame_16"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/bench_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/lift_bench"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/workout_frame_padding"
+                        android:gravity="center"
+                        android:text="@string/lift_bench_text"
+                        android:textSize="@dimen/text_14"
+                        android:textColor="@color/colorWhite"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/lift_bench_input"
+                        android:layout_width="50dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:inputType="numberDecimal"
+                        tools:text="100" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/squat_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/bench_layout"
+                    app:layout_constraintEnd_toStartOf="@+id/ohp_layout">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/lift_squat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/workout_frame_padding"
+                        android:gravity="center"
+                        android:text="@string/lift_squat_text"
+                        android:textSize="@dimen/text_14"
+                        android:textColor="@color/colorWhite"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/lift_squat_input"
+                        android:layout_width="50dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:inputType="numberDecimal"
+                        tools:text="100" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ohp_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/squat_layout"
+                    app:layout_constraintEnd_toEndOf="@+id/dl_layout">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/lift_ohp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/workout_frame_padding"
+                        android:gravity="center"
+                        android:text="@string/lift_ohp_text"
+                        android:textSize="@dimen/text_14"
+                        android:textColor="@color/colorWhite"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/lift_ohp_input"
+                        android:layout_width="50dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:inputType="numberDecimal"
+                        tools:text="100" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/dl_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ohp_layout"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/lift_dl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/workout_frame_padding"
+                        android:gravity="center"
+                        android:text="@string/lift_dl_text"
+                        android:textSize="@dimen/text_14"
+                        android:textColor="@color/colorWhite"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/lift_dl_input"
+                        android:layout_width="50dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:inputType="numberDecimal"
+                        tools:text="100" />
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/workout_frame_32"
+                android:layout_gravity="center">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/lift_lb"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/workout_frame_padding"
+                    android:gravity="center"
+                    android:text="@string/lift_lbs"
+                    android:textSize="@dimen/text_18"
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/base_button"/>
+
+                <View
+                    android:id="@+id/lift_selector_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:padding="16dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/lift_kg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/workout_frame_padding"
+                    android:gravity="center"
+                    android:text="@string/lift_kg"
+                    android:textSize="@dimen/text_18"
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/base_button"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lift_bbb_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/lift_bbb_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/workout_frame_32"
+                    android:padding="@dimen/workout_frame_padding"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="@string/lift_bbb_text"
+                    android:textSize="@dimen/text_18"
+                    android:textColor="@color/colorWhite"/>
+
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/lift_bbb_seekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/workout_frame_32"
+                    android:layout_marginEnd="@dimen/workout_frame_32"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/lift_bbb_seekbar_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/lift_bbb_seekbar_header"
+                        android:textSize="@dimen/text_16"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/lift_bbb_seekbar_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/workout_frame_4"
+                        android:gravity="start"
+                        android:text="@string/lift_bbb_seek_value"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="@dimen/text_16"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/lift_bbb_seekbar_footer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="start"
+                        android:text="@string/lift_bbb_seek_footer"
+                        android:textSize="@dimen/text_16"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/workout_frame_16"
+                android:layout_marginBottom="@dimen/workout_frame_16"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/lift_hide_bbb"
+                    android:textSize="@dimen/text_16"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"/>
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/lift_hide_bbb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorSecondary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/workout_frame_16"
+                android:layout_marginBottom="@dimen/workout_frame_16"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/lift_known_maxes"
+                    android:textSize="@dimen/text_16"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"/>
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/training_max_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorSecondary" />
+
+            </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lift_submit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/workout_frame_64"
+                android:layout_marginEnd="@dimen/workout_frame_64"
+                android:layout_marginTop="@dimen/workout_frame_24"
+                android:layout_marginBottom="@dimen/workout_frame_16"
+                android:padding="@dimen/text_16"
+                android:gravity="center"
+                android:text="@string/lift_submit"
+                android:textSize="@dimen/text_16"
+                android:textStyle="bold"
+                android:textColor="@color/colorSurface"
+                android:background="@drawable/base_button"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

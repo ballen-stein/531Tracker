@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import androidx.cardview.widget.CardView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -16,10 +17,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import androidx.viewbinding.ViewBinding
+import com.a531tracker.R
+import com.a531tracker.adapters.FragmentCommunicator
 import com.a531tracker.database.DatabaseRepository
 import com.a531tracker.databinding.FragmentWeekInformationBinding
 import com.a531tracker.databinding.WeekDataBinding
 import com.a531tracker.tools.AppConstants
+import com.a531tracker.tools.Snack
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_homepage_toolbar.view.*
+import kotlinx.android.synthetic.main.fragment_week_toolbar.view.*
 import kotlinx.android.synthetic.main.week_data.view.*
 
 class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
@@ -34,10 +41,6 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
 
     fun newInstance(position: Int) : WeekFragment {
         return WeekFragment(weekToShow = position)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -125,14 +128,15 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val liftData = liftDataset[position]
 
+            /*
             val params: CoordinatorLayout.LayoutParams = CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.WRAP_CONTENT)
             when(position) {
-                0,4,8 -> params.setMargins(24,32,24,0)
+                0,4,8 -> params.setMargins(24,48,24,0)
                 3,7 -> params.setMargins(24,0,24,32)
                 13 -> params.setMargins(24, 0, 24, 48)
                 else -> params.setMargins(24,0,24,0)
             }
-            holder.itemView.coordinator.layoutParams = params
+            holder.itemView.coordinator.layoutParams = params*/
 
             holder.bind(liftData)
             if (liftData == AppConstants.SET_WARMUP
@@ -144,6 +148,13 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
 
                 holder.itemView.header_text.apply {
                     text = if (deload) "Deload Sets" else liftData
+                }
+                val params: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                params.setMargins(0,0,0,0)
+                holder.itemView.coordinator.apply {
+                    layoutParams = params
+                    cardElevation = 0f
+                    setBackgroundColor(resources.getColor(R.color.colorSurface, null))
                 }
             } else {
                 holder.itemView.header_layout.visibility = View.GONE

@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import com.a531tracker.database.DatabaseHelper;
 import com.a531tracker.ObjectBuilders.CompoundLifts;
+import com.a531tracker.homepage.HomePageActivity;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -116,9 +117,10 @@ public class SetMaxes extends Activity {
         int cycle = db.getCycle();
         for(String lift : compoundLifts) {
             db.createAMRAPTable(cycle, lift);
+            db.createAMRAPTable(cycle, lift);
             db.createAMRAPTable(cycle - 1, lift);
             db.updateAMRAPTable(lift, cycle-1, "0.85", 5, 100);
-            db.updateAMRAPTable(lift, cycle-1, "0.9", 3, 100);
+            db.updateAMRAPTable(lift, cycle-1, "0.90", 3, 100);
             db.updateAMRAPTable(lift, cycle-1, "0.95", 1, 100);
         }
     }
@@ -145,9 +147,9 @@ public class SetMaxes extends Activity {
     private void setTrainingMaxes(double modifier){
         for (int i = 0; i < compoundLifts.length; i++) {
             CompoundLifts lifts = new CompoundLifts();
-            lifts.setCompound_movement(compoundLifts[i]);
+            lifts.setCompound(compoundLifts[i]);
             EditText trainingMaxInput = findViewById(inputIds[i]);
-            lifts.setBig_but_boring_weight(bbbPercent);
+            lifts.setPercent(bbbPercent);
             int liftValue;
             if(usingKilos){
                 double temp = ((Double.parseDouble(String.valueOf(trainingMaxInput.getText()))) * 2.20462);
@@ -157,7 +159,7 @@ public class SetMaxes extends Activity {
                 liftValue = (int) (Integer.parseInt(String.valueOf(trainingMaxInput.getText()))*modifier);
             }
 
-            lifts.setTraining_max(liftValue);
+            lifts.setTrainingMax(liftValue);
             mappedLifts.put(compoundLifts[i], lifts);
         }
     }
@@ -233,7 +235,7 @@ public class SetMaxes extends Activity {
                 inputLifts();
                 startCycle();
 
-                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();

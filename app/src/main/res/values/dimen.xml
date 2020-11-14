@@ -6,8 +6,12 @@
     <dimen name="workout_frame_56">56dp</dimen>
     <dimen name="workout_frame_48">48dp</dimen>
     <dimen name="workout_frame_32">32dp</dimen>
+    <dimen name="workout_frame_24">24dp</dimen>
     <dimen name="workout_frame_16">16dp</dimen>
+    <dimen name="workout_frame_12">12dp</dimen>
     <dimen name="workout_frame_8">8dp</dimen>
+    <dimen name="workout_frame_6">6dp</dimen>
+    <dimen name="workout_frame_4">4dp</dimen>
 
     <dimen name="workout_frame_top">10dp</dimen>
     <dimen name="workout_frame_padding">12dp</dimen>

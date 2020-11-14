@@ -12,22 +12,22 @@ class AllTests {
     var accessoryLifts = AccessoryLifts()
     @Test
     fun createLifts() {
-        lifts.compound_movement = "Bench"
-        Assert.assertEquals("Bench", lifts.compound_movement)
+        lifts.compound = "Bench"
+        Assert.assertEquals("Bench", lifts.compound)
     }
 
     @Test
     fun testNinetyReps() {
-        lifts.ninety_reps = 5
-        lifts.ninety_five_reps = 4
-        Assert.assertEquals(5f, lifts.ninety_reps.toFloat(), 0f)
-        Assert.assertEquals(4f, lifts.ninety_five_reps.toFloat(), 0f)
+        lifts.ninetyReps = 5
+        lifts.ninetyFiveReps = 4
+        Assert.assertEquals(5f, lifts.ninetyReps.toFloat(), 0f)
+        Assert.assertEquals(4f, lifts.ninetyFiveReps.toFloat(), 0f)
     }
 
     @Test
     fun testEightyReps() {
-        lifts.eight_five_reps = 10
-        Assert.assertEquals(10f, lifts.eight_five_reps.toFloat(), 0f)
+        lifts.eightFiveReps = 10
+        Assert.assertEquals(10f, lifts.eightFiveReps.toFloat(), 0f)
     }
 
     @Test

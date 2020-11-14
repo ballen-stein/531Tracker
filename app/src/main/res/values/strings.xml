@@ -1,18 +1,104 @@
 <resources>
     <string name="app_name">5&#8211;3&#8211;1 Tracker</string>
+    <string name="app_package">com.example.a531tracker</string>
 
     <string name="app_header">5/3/1 BBB Tracker</string>
     <string name="nav_home">Home</string>
-    <string name="nav_settings">Settings</string>
+    <string name="nav_settings">Account Settings</string>
     <string name="nav_upload">Upload Lifts</string>
     <string name="nav_upload_home">Reset Lifts</string>
     <string name="nav_upload_week">Submit AMRAP</string>
+    <string name="nav_update">Update to next cycle</string>
+    <string name="nav_info">More Info</string>
+    <string name="nav_help">Contact Us</string>
     <string name="ok_text">OK</string>
 
     <string name="breakdown_bar_weight">Bar Weight: </string>
     <string name="breakdown_added_weight_start">Add (L/R): </string>
     <string name="workout_show_breakdown">Show Breakdown</string>
     <string name="workout_hide_breakdown">Hide breakdown</string>
+    
+    <string name="amrap_reps_completed">Reps completed on the last set</string>
+    <string name="amrap_last_week">Last week\'s reps: </string>
+    <string name="amrap_this_week">This week\'s reps: </string>
+    <string name="amrap_no_value_error">You must submit a number</string>
+    <string name="amrap_success">You have successfully submitted your rep value</string>
+    <string name="amrap_error">An error has occurred; please try again later</string>
+
+    <string name="home_page_tab">HOME</string>
+    <string name="update_cycle_tag">LIFT TOOLS</string>
+    <string name="homepage_go_to_week">View this Week</string>
+
+    <string name="lift_header">Set Lift Data</string>
+    <string name="lift_one_rep_max">What are your one rep maxes?</string>
+    <string name="lift_one_rep_max_explanation">Enter your one rep maxes (ORM). If you already know your training max, check the box below before submitting. These values can always be adjusted later.</string>
+    <string name="lift_lbs">LB</string>
+    <string name="lift_kg">KG</string>
+    <string name="lift_bench_text">BENCH</string>
+    <string name="lift_squat_text">SQUAT</string>
+    <string name="lift_dl_text">DEADLIFT</string>
+    <string name="lift_ohp_text">Overhand Press</string>
+    <string name="lift_bbb_text">Boring But Big Percents (30%-90%)</string>
+    <string name="lift_bbb_seekbar_header">Currently at </string>
+    <string name="lift_bbb_seek_value">30.0</string>
+    <string name="lift_bbb_seek_footer">% of the training max</string>
+    <string name="lift_hide_bbb">Hide Boring But Big inputs and displays</string>
+    <string name="lift_known_maxes">I know my training maxes</string>
+    <string name="lift_submit">Submit</string>
+
+    <!--/////////////Preferences///////////// -->
+    <string name="preference_base_options_title">Base Options</string>
+
+    <string name="preference_kilogram">Display weight in Kilograms (KG)</string>
+    <string name="preference_kilogram_key">user_pref_kilo_key</string>
+
+    <string name="preference_week_options">Deload Options</string>
+    <string name="preference_week_four_cycle">7 Week Cycle</string>
+    <string name="preference_week_four_cycle_desc">Two cycles are combined.\nEvery 7th week is a deload Week. Disable to have a deload week every 4th week.</string>
+    <string name="preference_week_options_key">user_pref_week_key</string>
+
+    <string name="preference_split_variant_extra">Change to the 8/6/3 format</string>
+    <string name="preference_split_variant_extra_desc">The 8/6/3 format lowers the percents down to 80%/85%/90%, respectively, for that week.</string>
+    <string name="preference_split_variant_extra_key">user_pref_split_key</string>
+
+    <string name="preference_extras_title">Extra Set Modifiers</string>
+    <string name="preference_extras_desc">Pick and choose how you want your workout!</string>
+
+    <string name="preference_fsl">First Set Last (FSL)</string>
+    <string name="preference_fsl_desc">Do the first set of the day again for as many reps as possible or for 3&#8211;4 sets at a set amount. Overrides and replaces current extra sets.</string>
+    <string name="preference_fsl_key">user_pref_fsl_key</string>
+
+    <string name="preference_joker">Add Joker Sets</string>
+    <string name="preference_joker_desc">If you feel like you can continue going after your core sets, try Joker Sets. Add an extra 5% to your last core set for another 5, 3, or 1 reps, and continue until you feel satisfied!</string>
+    <string name="preference_joker_key">user_pref_joker_key</string>
+
+    <string name="preference_deload">Deload Week Sets</string>
+    <string name="preference_deload_desc">Add extra sets (that are lighter) during Deload Week</string>
+    <string name="preference_deload_key">user_pref_deload_key</string>
+
+    <string name="preference_swap_extras">Swap Extra Sets</string>
+    <string name="preference_swap_extras_desc">During your extra sets (BBB or FSL), swap to a complimentary compound workout.</string>
+    <string name="preference_swap_extras_key">user_pref_swap_extras_key</string>
+
+    <string name="preference_remove_extras">Remove All Extras</string>
+    <string name="preference_remove_extras_desc">Removes all FSL &amp; BBB other variants; Joker Sets and 8/6/3 will function normally.</string>
+    <string name="preference_remove_extras_key">user_pref_remove_extras_key</string>
+
+    <string name="preference_bbb_title">Boring But Big Percents</string>
+    <string name="preference_bbb_desc"> </string>
+    <string name="preference_bbb_key">user_pref_bbb_percent_key</string>
+
+    <string name="preference_data_title">Data Deletion</string>
+    <string name="preference_data_deletion">Data Deletion</string>
+    <string name="preference_data_deletion_desc">Below, you can delete all your current data.\nThis will reset the cycle to 0 and remove all your saved data.\nThis is permanent and cannot be undone. </string>
+    <string name="preference_data_deletion_key">user_pref_data_delete_key</string>
+
+    <string name="pref_delete_alert_warning">This is the only warning: pressing yes will delete all of your saved data and restart the app.\n\nAre you sure you want to delete all of your data?</string>
+    <string name="pref_delete_alert_title">Delete All Data</string>
+    <string name="pref_delete_alert_ok">@android:string/ok</string>
+    <string name="pref_delete_alert_cancel">@android:string/cancel</string>
+
+    <!-- ============================================================================================================================ -->
 
     <string name="bench">Bench Press</string>
     <string name="overhand">Military Press</string>
@@ -21,7 +107,9 @@
     <string name="upper_body_compounds">Upper Body 1-Rep-Max</string>
     <string name="lower_body_compounds">Lower Body 1-Rep-Max</string>
     <string name="bbb_set_maxes">Boring But Big Values</string>
-    <string name="set_max_info">Enter the values for your 1 Rep Maxes (1RM) below. We recommend that you round to the nearest 0 or 5 for in-between values. If you do not know your 1RM values, test for them first. \n\nIf you already know your Training Max, check the box below before submitting your values.</string>
+    <string name="set_max_info">Enter the values for your 1 Rep Maxes (1RM) below. We recommend that you round to the nearest 0 or 5 for
+        in-between values. If you do not know your 1RM values, test for them first. \n\nIf you already know your Training Max,
+        check the box below before submitting your values.</string>
     <string name="training_maxes_input">I already know my training maxes</string>
     <string name="training_maxes_using_kg">Check here if you are using Kilograms</string>
 
@@ -49,8 +137,6 @@
     <string name="amrap_submit">Submit AMRAP</string>
     <string name="amrap_text">Reps completed:</string>
     <string name="amrap_placeholder_reps">1</string>
-    <string name="amrap_last_week">Last Week</string>
-    <string name="amrap_this_week">This Week</string>
 
     <string name="joker_create">Add Joker Set</string>
     <string name="joker_message">How many reps? (Note: Start with 5 and work down to 3, then 1, when you cannot complete the 5 or 3 reps. Stop when you can\'t do or barely do the 1x1)\n\nTouch anywhere else on the screen to exit.</string>
