@@ -1,11 +1,10 @@
 package com.a531tracker.database
 
 import android.content.Context
+import android.util.Log
 import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible
 import com.a531tracker.ObjectBuilders.CompoundLifts
 import com.a531tracker.tools.AppConstants
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 class DatabaseRepository(mContext: Context) {
 
@@ -27,6 +26,10 @@ class DatabaseRepository(mContext: Context) {
         return weeklyData[key]
     }
 
+    fun resetRepData() {
+        repData.clear()
+    }
+
     fun setRepData(value: ArrayList<String>) {
         repData.addAll(value)
     }
@@ -43,6 +46,19 @@ class DatabaseRepository(mContext: Context) {
         return breakdownData[key] ?: ArrayList()
     }
 
+    fun getCycle(): Int {
+        return db.cycle
+    }
+
+    fun updateCycle() {
+        db.updateCycle(getCycle())
+    }
+
+    fun updateAll(compound: CompoundLifts): Int {
+        db.createAMRAPTable(getCycle(), compound.compound)
+        return db.updateCompoundStats(compound)
+    }
+
     fun getTrainingMaxes(): HashMap<String, Int> {
         for (liftName in AppConstants.LIFT_ACCESS_LIST) {
             val mapName = AppConstants.LIFT_ACCESS_MAP[liftName] ?: liftName
@@ -51,8 +67,8 @@ class DatabaseRepository(mContext: Context) {
         return trainingMaxes
     }
 
-    fun getCycle(): Int {
-        return db.cycle
+    fun updatePercent(compound: CompoundLifts): Int {
+        return db.updateBBBPercent(compound)
     }
 
     fun getUserPercentList(liftName: String): ArrayList<Float> {
@@ -80,6 +96,23 @@ class DatabaseRepository(mContext: Context) {
         }
     }
 
+    fun checkCurrentAmrap(liftName: String, weekNum: Int): Int {
+        var amrapValues: AsManyRepsAsPossible? = null
+        try {
+            amrapValues = db.getAMRAPValues(liftName, getCycle())
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        Log.d("TestingDara", "Current data : $amrapValues")
+
+        return when (weekNum) {
+            0 -> amrapValues?.eighty_five_reps ?: 5
+            1 -> amrapValues?.ninety_reps ?: 3
+            2 -> amrapValues?.ninety_five_reps ?: 1
+            else -> -1
+        }
+    }
+
     fun setCompletedLifts(liftWeight: Int) {
         val cycle = getCycle()
         for (liftName in AppConstants.LIFT_ACCESS_LIST) {
@@ -103,9 +136,9 @@ class DatabaseRepository(mContext: Context) {
             db.onNewUser(db.readableDatabase)
             for (liftName in AppConstants.LIFT_ACCESS_LIST) {
                 db.createAMRAPTable(getCycle(), liftName)
-                db.createAMRAPTable(getCycle()-1, liftName)
+                db.createAMRAPTable(getCycle() - 1, liftName)
                 for (value in amrapPercents) {
-                    newUserAmrap(liftName, getCycle()-1, value, -1, 100)
+                    newUserAmrap(liftName, getCycle() - 1, value, -1, 100)
                 }
             }
         } else {

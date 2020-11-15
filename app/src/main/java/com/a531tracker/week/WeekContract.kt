@@ -8,12 +8,14 @@ class WeekContract {
     interface Presenter : BasePresenter {
         fun onViewCreated(mContext: Context, liftName: String)
         fun onAmrapReceived(liftName: String, percent: String, repsDone: Int)
+        fun onPrefUpdate(mContext: Context, liftName: String, preferences: MutableMap<String, *>)
     }
 
     interface View : BaseView<Presenter> {
         fun updateWeekFragment()
         fun setLastWeek(int: Int)
         fun amrapSnackbar(success: Boolean)
+        fun refresh(refresh: Boolean)
         fun error(throwable: Throwable)
     }
 }

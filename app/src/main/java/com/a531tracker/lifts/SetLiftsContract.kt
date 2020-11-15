@@ -12,7 +12,7 @@ class SetLiftsContract {
     }
 
     interface View : BaseView<Presenter> {
-        fun setCurrentLifts(tmHolder: HashMap<String, String>)
+        fun setCurrentLifts(tmHolder: HashMap<String, String>, currentPercent: Int)
         fun finished(freshLaunch: Boolean)
         fun error(throwable: Throwable)
     }

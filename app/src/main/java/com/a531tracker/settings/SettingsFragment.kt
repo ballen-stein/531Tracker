@@ -29,6 +29,7 @@ class SettingsFragment(private val mActivity: Activity, dependencyInjectorClass:
             Log.d("TestingData", "Current Prefs : ${currentPrefs.all}")
         }
 
+        updateSettings(prefUtils.getPreference(getString(R.string.preference_remove_extras_key))!!)
         setPrefListeners()
     }
 
@@ -104,7 +105,6 @@ class SettingsFragment(private val mActivity: Activity, dependencyInjectorClass:
     private fun updateSettings(disableAll: Boolean) {
         mActivity.runOnUiThread {
             findPreference<CheckBoxPreference>(getString(R.string.preference_fsl_key))!!.isEnabled = !disableAll
-            findPreference<CheckBoxPreference>(getString(R.string.preference_deload_key))!!.isEnabled = !disableAll
             findPreference<CheckBoxPreference>(getString(R.string.preference_swap_extras_key))!!.isEnabled = !disableAll
         }
     }

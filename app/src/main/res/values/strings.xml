@@ -28,15 +28,34 @@
     <string name="home_page_tab">HOME</string>
     <string name="update_cycle_tag">LIFT TOOLS</string>
     <string name="homepage_go_to_week">View this Week</string>
+    <string name="extras_disabled">Uncheck the "Remove All Extras" setting to use this tool.</string>
+
+    <string name="bottom_dialog_tools_cycle_header">Update the Cycle</string>
+    <string name="bottom_dialog_tools_cycle_cycle_text">Cycle</string>
+    <string name="bottom_dialog_tools_current_values">Current Max</string>
+    <string name="bottom_dialog_tools_update_values">After Updating</string>
+    <string name="bottom_dialog_tools_confirm_update">Confirm and Update</string>
+    <string name="bottom_dialog_tools_error">You must submit "As Many Reps As Possible" using the orange button on the week screen for each week before updating the cycle.</string>
+
+    <string name="lift_tools_fragment_header">All Tools</string>
+    <string name="lift_tools_fragment_current_cycle_header">Current Cycle:</string>
+    <string name="lift_tools_fragment_update_cycle">Update the Cycle</string>
+    <string name="lift_tools_fragment_change_lift_percent">Update "Boring But Big" Percents</string>
+    <string name="lift_tools_fragment_update_lift_percent">Update "Boring But Big" Percent</string>
+    <string name="lift_tools_fragment_update_lift_tms">Update Training Maxes</string>
+    <string name="lift_tools_fragment_current">Current Max</string>
+    <string name="lift_tools_fragment_updated">After Updating</string>
+    <string name="lift_tools_update_percent_success">Boring But Big percents updated</string>
+    <string name="lift_tools_update_all_success">You\'ve moved onto the next cycle. Good job!</string>
 
     <string name="lift_header">Set Lift Data</string>
     <string name="lift_one_rep_max">What are your one rep maxes?</string>
     <string name="lift_one_rep_max_explanation">Enter your one rep maxes (ORM). If you already know your training max, check the box below before submitting. These values can always be adjusted later.</string>
     <string name="lift_lbs">LB</string>
     <string name="lift_kg">KG</string>
-    <string name="lift_bench_text">BENCH</string>
-    <string name="lift_squat_text">SQUAT</string>
-    <string name="lift_dl_text">DEADLIFT</string>
+    <string name="lift_bench_text">Bench</string>
+    <string name="lift_squat_text">Squat</string>
+    <string name="lift_dl_text">Deadlift</string>
     <string name="lift_ohp_text">Overhand Press</string>
     <string name="lift_bbb_text">Boring But Big Percents (30%-90%)</string>
     <string name="lift_bbb_seekbar_header">Currently at </string>

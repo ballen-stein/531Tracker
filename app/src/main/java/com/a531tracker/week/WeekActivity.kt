@@ -19,10 +19,8 @@ import com.a531tracker.adapters.WorkoutPagerAdapter
 import com.a531tracker.homepage.HomePageActivity
 import com.a531tracker.tools.PreferenceUtils
 import com.a531tracker.tools.Snack
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_homepage.view.*
 import kotlinx.android.synthetic.main.fragment_week_toolbar.view.*
 
 class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialog.BottomDialogClicks {
@@ -39,8 +37,13 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
 
     private lateinit var prefUtils: PreferenceUtils
 
+    private lateinit var userPreferences: MutableMap<String, *>
+
     private lateinit var compound: String
     private lateinit var swapLift: String
+
+    private var altFormat: Boolean = true
+    private var sevenWeek: Boolean = true
     private var cycleNum: Int = 0
     private var currentFrag = 0
 
@@ -64,6 +67,9 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
 
         depInjector = DependencyInjectorClass()
         prefUtils = PreferenceUtils.getInstance(mContext = this)
+        userPreferences = prefUtils.userPreferences()!!.all
+        altFormat = userPreferences[getString(R.string.preference_split_variant_extra_key)] as Boolean
+        sevenWeek = prefUtils.userPreferences()?.all?.get(getString(R.string.preference_week_options_key)) as Boolean
 
         setPresenter(WeekPresenter(this, depInjector, AppUtils(), prefUtils, this))
         presenter.onViewCreated(this, compound)
@@ -92,7 +98,27 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
                     hashMapOf(AppConstants.NAVIGATION_MENU to 1, AppConstants.NAVIGATION_WEEK to currentFrag, AppConstants.NAVIGATION_AMRAP to getLastWeekAmrap())
             ).show(supportFragmentManager, "input")
         }
+
+        for (fragment in supportFragmentManager.fragments) {
+            if (fragment.isVisible && fragment.tag == "f3") {
+                root.week_fab.visibility = View.GONE
+            } else {
+                root.week_fab.visibility = View.VISIBLE
+            }
+        }
+
         //Snackbar.make(binding.snackHolder,  getString(R.string.amrap_success), Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (userPreferences != prefUtils.userPreferences()?.all) {
+            userPreferences = prefUtils.userPreferences()?.all!!
+            altFormat = prefUtils.userPreferences()?.all?.get(getString(R.string.preference_split_variant_extra_key)) as Boolean
+            sevenWeek = prefUtils.userPreferences()?.all?.get(getString(R.string.preference_week_options_key)) as Boolean
+            presenter.onPrefUpdate(this, compound, userPreferences)
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -101,28 +127,7 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
     }
 
     private fun createViewAdapter(): WorkoutPagerAdapter {
-        return WorkoutPagerAdapter(this)
-    }
-
-    private fun setFragments() {
-        pager.adapter = createViewAdapter()
-        TabLayoutMediator(tabLayout, pager) { tab, position ->
-            tab.text = when (position) {
-                0 -> {
-                    getString(R.string.format_531_week_1)
-                }
-                1 -> {
-                    getString(R.string.format_531_week_2)
-                }
-                2 -> {
-                    getString(R.string.format_531_week_3)
-                }
-                else -> {
-                    getString(R.string.deload_text)
-                }
-            }
-        }.attach()
-
+        return WorkoutPagerAdapter(this, sevenWeek, cycleNum)
     }
 
     private fun getLastWeekAmrap(): Int {
@@ -134,7 +139,28 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
     }
 
     override fun updateWeekFragment() {
-        setFragments()
+        pager.adapter = createViewAdapter()
+        TabLayoutMediator(tabLayout, pager) { tab, position ->
+            tab.text = when (position) {
+                0 -> {
+                    if (!altFormat) getString(R.string.format_531_week_1) else getString(R.string.format_863_week_1)
+                }
+                1 -> {
+                    if (!altFormat) getString(R.string.format_531_week_2) else getString(R.string.format_863_week_2)
+                }
+                2 -> {
+                    if (!altFormat) getString(R.string.format_531_week_3) else getString(R.string.format_863_week_3)
+                }
+                else -> {
+                    getString(R.string.deload_text)
+                }
+            }
+        }.attach()
+
+    }
+
+    override fun refresh(refresh: Boolean) {
+
     }
 
     override fun setLastWeek(int: Int) {
@@ -157,7 +183,7 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
     }
 
     override fun error(throwable: Throwable) {
-        TODO("Not yet implemented")
+
     }
 
     override fun setPresenter(presenter: WeekContract.Presenter) {

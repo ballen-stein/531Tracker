@@ -1,10 +1,10 @@
 package com.a531tracker.adapters
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.a531tracker.homepage.HomePageFragment
+import com.a531tracker.homepage.ToolsPageFragment
 
 class HomepagePagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity)  {
 
@@ -13,11 +13,10 @@ class HomepagePagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAd
     }
 
     override fun createFragment(position: Int): Fragment {
-        Log.d("TestingData", "Position on homepage : $position")
         return if (position == 0) {
             HomePageFragment().newInstance()
         } else {
-            HomePageFragment().newInstance()
+            ToolsPageFragment().newInstance()
         }
     }
 }

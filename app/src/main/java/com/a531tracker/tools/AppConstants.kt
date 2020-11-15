@@ -12,12 +12,23 @@ class AppConstants {
         internal const val NAVIGATION_MENU = 201
         internal const val NAVIGATION_WEEK = 202
         internal const val NAVIGATION_AMRAP = 203
+        internal const val NAVIGATION_TOOL_CYCLE = 204
+        internal const val NAVIGATION_TOOL_PERCENT = 205
+        internal const val NAVIGATION_TOOL_TM = 206
 
         internal const val JW_URL = "https://jimwendler.com/blogs/jimwendler-com/101077382-boring-but-big"
 
         internal const val AMRAP_LAST_WEEK = "last_week_amrap"
         internal const val CURRENT_WEEK_DISPLAYED = "current_week"
         internal const val DIALOG_MENU = "view_menu"
+
+        //  For BottomDialogTool
+        internal const val DIALOG_BENCH = "bench_value"
+        internal const val DIALOG_SQUAT = "squat_value"
+        internal const val DIALOG_DL = "dl_value"
+        internal const val DIALOG_OHP = "ohp_value"
+        internal const val DIALOG_CYCLE = "cycle_value"
+        //
 
         internal const val WEEK_BENCH = "bench_press"
         internal const val WEEK_SQUAT = "back_squat"
@@ -86,5 +97,6 @@ class AppConstants {
         internal const val SET_CORE = "Core Sets"
         internal const val SET_BBB = "\"Boring But Big\" Sets"
         internal const val SET_DELOAD = "Deload Sets"
+        internal const val SET_FSL = "First Set Last (FSL)"
     }
 }

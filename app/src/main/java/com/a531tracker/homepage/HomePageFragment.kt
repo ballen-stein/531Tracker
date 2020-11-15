@@ -16,6 +16,8 @@ import com.a531tracker.databinding.FragmentHomepageInformationBinding
 import com.a531tracker.databinding.HomepageCompletedWeekDataBinding
 import com.a531tracker.databinding.HomepageDataBinding
 import com.a531tracker.tools.AppConstants
+import com.a531tracker.tools.AppUtils
+import com.a531tracker.tools.PreferenceUtils
 import kotlinx.android.synthetic.main.homepage_completed_week_data.view.*
 import kotlinx.android.synthetic.main.homepage_data.view.*
 
@@ -27,7 +29,11 @@ class HomePageFragment : Fragment(), ViewBinding {
 
     private lateinit var databaseRepository: DatabaseRepository
 
+    private lateinit var prefUtils: PreferenceUtils
+
     private var thisWeek: Int = 0
+
+    private var usingKg = false
 
     fun newInstance(): HomePageFragment {
         return HomePageFragment()
@@ -35,7 +41,9 @@ class HomePageFragment : Fragment(), ViewBinding {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomepageInformationBinding.inflate(layoutInflater)
-        databaseRepository = DatabaseRepository(binding.root.context)
+        databaseRepository = DatabaseRepository(mContext = binding.root.context)
+        prefUtils = PreferenceUtils.getInstance(mContext = binding.root.context)
+        usingKg = prefUtils.getPreference(binding.root.context.getString(R.string.preference_kilogram_key)) ?: false
 
         homeRecyclerView = HomePageRecycler(root.context, binding, this)
         homeRecyclerView.setHomeData()
@@ -71,6 +79,10 @@ class HomePageFragment : Fragment(), ViewBinding {
         (root.context as HomePageActivity).startWeekActivity(hashMapOf(AppConstants.MAIN_LIFT to liftName, AppConstants.SWAP_LIFT to swapLift))
     }
 
+    fun usingKg(): Boolean {
+        return usingKg
+    }
+
     fun setThisWeek(currentWeek: Int) {
         thisWeek = currentWeek
     }
@@ -89,6 +101,8 @@ class HomePageFragment : Fragment(), ViewBinding {
 
         private lateinit var liftDataMap: HashMap<String, Int>
 
+        private var usingKg = false
+
         fun setHomeData() {
             recyclerView = binding.homepageRecycler
             liftDataMap = fragment.getTrainingMax()
@@ -97,12 +111,14 @@ class HomePageFragment : Fragment(), ViewBinding {
             } else {
                 fragment.getLifts(true)
             }
+            usingKg = fragment.usingKg()
 
             homePageAdapter = HomePageAdapter(
                     liftDataset = liftNamesList,
                     trainingMaxMap = liftDataMap,
                     fragment = fragment,
-                    context = mContext
+                    context = mContext,
+                    usingKg = usingKg
             )
             recyclerView.apply {
                 setHasFixedSize(true)
@@ -115,7 +131,7 @@ class HomePageFragment : Fragment(), ViewBinding {
         }
     }
 
-    class HomePageAdapter(private val liftDataset: MutableList<String>, private val trainingMaxMap: HashMap<String, Int>, private val fragment: HomePageFragment, private val context: Context) : RecyclerView.Adapter<HomePageAdapter.ViewHolder>(), ViewBinding {
+    class HomePageAdapter(private val liftDataset: MutableList<String>, private val trainingMaxMap: HashMap<String, Int>, private val fragment: HomePageFragment, private val context: Context, private val usingKg: Boolean) : RecyclerView.Adapter<HomePageAdapter.ViewHolder>(), ViewBinding {
 
         lateinit var binding: HomepageDataBinding
 
@@ -137,8 +153,11 @@ class HomePageFragment : Fragment(), ViewBinding {
             holder.itemView.homepage_lift_name.text = liftName
 
             val trainingMax = trainingMaxMap[liftData]!!
-
-            holder.itemView.homepage_lift_current_weight.text = trainingMax.toString()
+            holder.itemView.homepage_lift_current_weight.text = if (usingKg) {
+                "${String.format(" % .2f", AppUtils().getInstance().getKilo(trainingMax))} kgs"
+            } else {
+                "$trainingMax lbs"
+            }
 
             val completedWeeksRecycler = CompletedWeeksRecycler(fragment, context, holder.itemView.homepage_completed_week)
             completedWeeksRecycler.setCompletedData(trainingMax, liftData)

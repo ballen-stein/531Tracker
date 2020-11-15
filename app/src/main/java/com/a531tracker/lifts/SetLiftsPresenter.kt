@@ -10,6 +10,7 @@ import com.a531tracker.mvpbase.DependencyInjectorClass
 import com.a531tracker.tools.AppConstants
 import com.a531tracker.tools.AppUtils
 import com.a531tracker.tools.PreferenceUtils
+import java.lang.Exception
 
 
 class SetLiftsPresenter(view: SetLiftsContract.View,
@@ -30,7 +31,7 @@ class SetLiftsPresenter(view: SetLiftsContract.View,
         databaseRepository.getDataRepo(mContext = mContext)
         getCurrentTM(freshLaunch)
 
-        view?.setCurrentLifts(tmHolder)
+        view?.setCurrentLifts(tmHolder, getCurrentPercent())
     }
 
     private fun getCurrentTM(freshLaunch: Boolean) {
@@ -45,6 +46,14 @@ class SetLiftsPresenter(view: SetLiftsContract.View,
             } else {
                 tmHolder[liftName] = "100"
             }
+        }
+    }
+
+    private fun getCurrentPercent(): Int {
+        return try {
+            (databaseRepository.getUserPercentList("Bench")[0] * 100).toInt()
+        } catch (e: Exception) {
+            30
         }
     }
 

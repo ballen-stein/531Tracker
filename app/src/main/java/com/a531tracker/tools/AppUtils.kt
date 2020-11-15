@@ -14,6 +14,10 @@ class AppUtils {
         return trainingValue * 2.20462
     }
 
+    fun getKilo(trainingValue: Int): Double {
+        return trainingValue / 2.20462
+    }
+
     fun getWeight(calculateKG: Boolean, trainingValue: Int, liftPercent: Float): String {
         // Pounds == 0 | Kilograms == 1
         return if (!calculateKG) {

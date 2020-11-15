@@ -1,32 +1,22 @@
 package com.a531tracker.week
 
 import android.content.Context
-import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import androidx.cardview.widget.CardView
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import androidx.viewbinding.ViewBinding
 import com.a531tracker.R
-import com.a531tracker.adapters.FragmentCommunicator
 import com.a531tracker.database.DatabaseRepository
 import com.a531tracker.databinding.FragmentWeekInformationBinding
 import com.a531tracker.databinding.WeekDataBinding
 import com.a531tracker.tools.AppConstants
-import com.a531tracker.tools.Snack
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_homepage_toolbar.view.*
-import kotlinx.android.synthetic.main.fragment_week_toolbar.view.*
+import com.a531tracker.tools.PreferenceUtils
 import kotlinx.android.synthetic.main.week_data.view.*
 
 class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
@@ -37,7 +27,11 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
 
     private lateinit var databaseRepository: DatabaseRepository
 
-    private var usingPounds: Boolean = true
+    private lateinit var prefUtils: PreferenceUtils
+
+    private var extraDeload: Boolean = false
+
+    private var hideExtras: Boolean = false
 
     fun newInstance(position: Int) : WeekFragment {
         return WeekFragment(weekToShow = position)
@@ -46,9 +40,18 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentWeekInformationBinding.inflate(inflater)
         databaseRepository = DatabaseRepository(binding.root.context)
+        prefUtils = PreferenceUtils.getInstance(binding.root.context)
+        extraDeload = prefUtils.getPreference(binding.root.context.getString(R.string.preference_deload_key)) ?: false
+        hideExtras = prefUtils.getPreference(binding.root.context.getString(R.string.preference_remove_extras_key)) ?: false
 
         weekRecyclerView = WeekRecyclerView(binding.root.context, binding, this)
-        weekRecyclerView.setWeekData(weekToShow)
+        weekRecyclerView.setData(weekToShow)
+
+        for (i in 0 until 4) {
+
+            Log.d("Fragnent", "Fragment seeing data ${databaseRepository.getWeekData(i)}")
+        }
+
 
         return root
     }
@@ -60,11 +63,20 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
     fun getWeeklyData(weekToShow: Int): ArrayList<String> {
         return ArrayList<String>().apply {
             addAll(databaseRepository.getWeekData(weekToShow)!![0]!!)
+            if (weekToShow == 3 && extraDeload) {
+                addAll(databaseRepository.getWeekData(weekToShow)!![1]!!)
+            }
             if (weekToShow != 3) {
                 addAll(databaseRepository.getWeekData(weekToShow)!![1]!!)
-                addAll(databaseRepository.getWeekData(weekToShow)!![2]!!)
+                if (!hideExtras) {
+                    addAll(databaseRepository.getWeekData(weekToShow)!![2]!!)
+                }
             }
         }
+    }
+
+    fun hideExtras(): Boolean {
+        return hideExtras
     }
 
     fun getWeeklyReps(): ArrayList<String> {
@@ -73,10 +85,6 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
 
     fun getWeightBreakdown(weekToShow: Int): ArrayList<ArrayList<Double>> {
         return databaseRepository.getWeightBreakdown(weekToShow)
-    }
-
-    fun getWeightMetric(): Boolean {
-        return usingPounds
     }
 
     class WeekRecyclerView(private val mContext: Context, private val binding: FragmentWeekInformationBinding, private val fragment: WeekFragment) {
@@ -91,15 +99,18 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
 
         private lateinit var breakdownData: ArrayList<ArrayList<Double>>
 
-        fun setWeekData(weekToShow: Int) {
+        fun setData(weekToShow: Int) {
             recyclerView = binding.weekRecycler
             weekData = fragment.getWeeklyData(weekToShow)
+            Log.d("TestingData", "Fragment weekly data : $weekData")
             repData = fragment.getWeeklyReps()
+            Log.d("TestingData", "Fragment rep data : $repData")
             breakdownData = fragment.getWeightBreakdown(weekToShow)
             weekAdapter = WeekAdapter(liftDataset = weekData,
                     repData = repData,
                     breakdown = breakdownData,
-                    deload = weekToShow == 3
+                    deload = weekToShow == 3,
+                    hideExtras = fragment.hideExtras()
             )
             recyclerView.apply {
                 setHasFixedSize(true)
@@ -116,9 +127,12 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
             private val liftDataset: ArrayList<String>,
             private val repData: ArrayList<String>,
             private val breakdown: ArrayList<ArrayList<Double>>,
-            private val deload: Boolean) : RecyclerView.Adapter<WeekAdapter.ViewHolder>(), ViewBinding {
+            private val deload: Boolean,
+            private val hideExtras: Boolean) : RecyclerView.Adapter<WeekAdapter.ViewHolder>(), ViewBinding {
 
         lateinit var binding: WeekDataBinding
+
+        private var hideExtrasNow: Boolean = false
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             binding = WeekDataBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -137,17 +151,26 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
                 else -> params.setMargins(24,0,24,0)
             }
             holder.itemView.coordinator.layoutParams = params*/
-
             holder.bind(liftData)
             if (liftData == AppConstants.SET_WARMUP
                     || liftData == AppConstants.SET_CORE
                     || liftData == AppConstants.SET_BBB
-                    || liftData == AppConstants.SET_DELOAD) {
+                    || liftData == AppConstants.SET_DELOAD
+                    || liftData == AppConstants.SET_FSL) {
                 holder.itemView.weight_layout.visibility = View.GONE
                 holder.itemView.weight_breakdown_layout.visibility = View.GONE
 
                 holder.itemView.header_text.apply {
-                    text = if (deload) "Deload Sets" else liftData
+                    text = if (deload) {
+                        "Deload Sets"
+                    } else {
+                        liftData
+                    }
+                    visibility = if(deload && position > 3) {
+                        View.GONE
+                    } else {
+                        View.VISIBLE
+                    }
                 }
                 val params: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                 params.setMargins(0,0,0,0)
@@ -155,6 +178,9 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
                     layoutParams = params
                     cardElevation = 0f
                     setBackgroundColor(resources.getColor(R.color.colorSurface, null))
+                }
+                if (liftData == AppConstants.SET_DELOAD || liftData == AppConstants.SET_FSL && hideExtras) {
+                    hideExtrasNow = true
                 }
             } else {
                 holder.itemView.header_layout.visibility = View.GONE

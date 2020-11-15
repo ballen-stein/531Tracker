@@ -31,4 +31,8 @@ data class LiftBuilder (val benchTm: Int,
     fun getFixedPercent() : Float {
         return AppUtils().normalizePercent(percent)/100F
     }
+
+    fun isFilled(): Boolean {
+        return benchTm > 0 && squatTm > 0 && dlTm > 0 && ohpTm > 0
+    }
 }

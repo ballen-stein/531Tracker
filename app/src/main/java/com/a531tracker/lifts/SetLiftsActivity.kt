@@ -87,6 +87,11 @@ class SetLiftsActivity : BaseActivity(), SetLiftsContract.View {
             finalizeData()
         }
 
+        /*val seekProgress = (.getUserPercentList("Bench")[0] * 100).toInt()
+        binding.liftBbbSeekbar.apply {
+            progress = seekProgress
+        }*/
+
         binding.liftBbbSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 setSeekbarText(progress)
@@ -147,10 +152,14 @@ class SetLiftsActivity : BaseActivity(), SetLiftsContract.View {
         presenter.saveLiftValues(freshLaunch, tempBuilder)
     }
 
-    override fun setCurrentLifts(tmHolder: HashMap<String, String>) {
+    override fun setCurrentLifts(tmHolder: HashMap<String, String>, currentPercent: Int) {
         for (liftName in AppConstants.LIFT_ACCESS_LIST) {
             inputHolder[liftName]?.setText(tmHolder[liftName])
         }
+        binding.liftBbbSeekbar.apply {
+            progress = currentPercent
+        }
+        setSeekbarText(currentPercent)
     }
 
     override fun error(throwable: Throwable) {

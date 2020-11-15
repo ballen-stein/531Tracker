@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorSurface"
+    android:elevation="0dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lift_tools_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/workout_frame_16"
+        android:layout_marginTop="@dimen/workout_frame_16"
+        android:text="@string/lift_tools_fragment_header"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/workout_frame_48"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/base_tools_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/workout_frame_padding"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/cycle_tools_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/lift_tools_cycle_header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/lift_tools_fragment_current_cycle_header"
+                            android:textColor="@color/colorWhite"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/homepage_lift_current_weight"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/lift_tools_cycle_value"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/workout_frame_8"
+                            tools:text="1"
+                            android:textColor="@color/colorWhite"
+                            app:layout_constraintStart_toEndOf="@id/homepage_lift_tm_header"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/lift_tools_update_cycle_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="2dp"
+                        android:layout_marginTop="@dimen/workout_frame_16"
+                        android:layout_marginBottom="@dimen/workout_frame_8"
+                        android:padding="@dimen/workout_frame_padding"
+                        android:background="@drawable/base_button"
+                        android:gravity="center"
+                        android:text="@string/lift_tools_fragment_update_cycle"
+                        android:textSize="@dimen/text_16"
+                        android:textColor="@color/colorSurface"
+                        app:layout_constraintTop_toBottomOf="@id/homepage_lift_current_weight"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/homepage_top_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/workout_frame_16"
+                    android:background="@color/colorPrimaryDark"
+                    app:layout_constraintTop_toBottomOf="@id/cycle_tools_layout"/>
+
+                <LinearLayout
+                    android:id="@+id/homepage_layout_required_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/workout_frame_16"
+                    app:layout_constraintTop_toBottomOf="@id/homepage_top_divider">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/lift_tools_update_percent_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/lift_tools_fragment_change_lift_percent"
+                        android:textColor="@color/colorWhite"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@+id/lift_tools_percent_seekbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/workout_frame_16"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/lift_tools_percent_bar_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/lift_bbb_seek_value"
+                        android:textColor="@color/colorWhite"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/lift_tools_update_percent_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="2dp"
+                        android:layout_marginTop="@dimen/workout_frame_16"
+                        android:layout_marginBottom="@dimen/workout_frame_8"
+                        android:padding="@dimen/workout_frame_padding"
+                        android:background="@drawable/base_button"
+                        android:gravity="center"
+                        android:text="@string/lift_tools_fragment_update_lift_percent"
+                        android:textSize="@dimen/text_16"
+                        android:textColor="@color/colorSurface"
+                        app:layout_constraintTop_toBottomOf="@id/homepage_bot_divider"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/homepage_bot_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/workout_frame_16"
+                    android:background="@color/colorPrimaryDark"
+                    app:layout_constraintTop_toBottomOf="@id/homepage_layout_required_holder"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/lift_tools_update_lifts_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="2dp"
+                    android:layout_marginTop="@dimen/workout_frame_24"
+                    android:layout_marginBottom="@dimen/workout_frame_16"
+                    android:padding="@dimen/workout_frame_padding"
+                    android:background="@drawable/base_button"
+                    android:gravity="center"
+                    android:text="@string/lift_tools_fragment_update_lift_tms"
+                    android:textSize="@dimen/text_16"
+                    android:textColor="@color/colorSurface"
+                    app:layout_constraintTop_toBottomOf="@id/homepage_bot_divider"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/homepage_recycler"
+            android:elevation="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/base_tools_view"/>
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

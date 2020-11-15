@@ -1,7 +1,5 @@
 package com.a531tracker.ObjectBuilders
 
-import android.util.Log
-
 class CompoundLifts {
     var compound: String? = null
     var trainingMax: Int? = 0
@@ -14,15 +12,14 @@ class CompoundLifts {
         compound = liftName
         trainingMax = liftBuilder.getMappedValue(liftName = liftName)
         percent = liftBuilder.getFixedPercent()
-
     }
 
     override fun toString(): String {
         return "Compound $compound, " +
-                "Training Max $trainingMax," +
-                "Eighty Five Reps $eightFiveReps," +
-                "Ninety Reps $ninetyReps," +
-                "Ninety Five Reps $ninetyFiveReps," +
+                "Training Max $trainingMax, " +
+                "Eighty Five Reps $eightFiveReps, " +
+                "Ninety Reps $ninetyReps, " +
+                "Ninety Five Reps $ninetyFiveReps, " +
                 "Boring Percent $percent"
     }
 }

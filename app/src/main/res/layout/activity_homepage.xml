@@ -7,4 +7,11 @@
     <include layout="@layout/fragment_homepage_toolbar"
         android:id="@+id/bottom_bar_snack_finder"/>
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/snack_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="?attr/actionBarSize" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

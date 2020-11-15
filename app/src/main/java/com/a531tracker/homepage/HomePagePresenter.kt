@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible
 import com.a531tracker.ObjectBuilders.CompoundLifts
+import com.a531tracker.ObjectBuilders.LiftBuilder
 import com.a531tracker.database.DatabaseRepository
 import com.a531tracker.mvpbase.DependencyInjectorClass
 import com.a531tracker.tools.AppConstants
@@ -20,8 +21,6 @@ class HomePagePresenter(view: HomePageContract.View, injector: DependencyInjecto
 
     override fun onViewCreated(mContext: Context) {
         databaseRepository.getDataRepo(mContext = mContext)
-        Log.d("TestingData", "View Created!")
-
         getHashObserverValues()
 
         view?.setCycle(databaseRepository.getCycle().toString())
@@ -30,13 +29,39 @@ class HomePagePresenter(view: HomePageContract.View, injector: DependencyInjecto
     }
 
     override fun checkForUpdatedLifts(hashHolder: HashMap<String, AsManyRepsAsPossible>) {
-        //onViewCreated(mContext)
         if (hashHolder.isNotEmpty()) {
             getHashObserverValues()
             compareMaps(hashHolder, this.hashHolder)
         } else {
             onViewCreated(mContext)
         }
+    }
+
+    override fun getDataForUpdate(): LiftBuilder {
+        val localHolder = ArrayList<Int>()
+        for (liftName in AppConstants.LIFT_ACCESS_LIST) {
+            val compound = databaseRepository.getLift(liftName)
+            localHolder.add(compound?.trainingMax ?: 100)
+        }
+        return LiftBuilder(
+                benchTm = localHolder[0],
+                squatTm = localHolder[1],
+                ohpTm = localHolder[2],
+                dlTm = localHolder[3],
+                percent = 1.0F,
+                usingTm = true
+        )
+    }
+
+    override fun updatePercent(percent: Float) {
+        val normalizedPercent = appUtils.normalizePercent(percent) / 100
+        var success = 0
+        for (liftName in AppConstants.LIFT_ACCESS_LIST) {
+            val compound = databaseRepository.getLift(liftName)!!
+            compound.percent = normalizedPercent
+            success = databaseRepository.updatePercent(compound)
+        }
+        view?.showSnack(success==1)
     }
 
     private fun getHashObserverValues() {

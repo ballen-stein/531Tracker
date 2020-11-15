@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/player_fragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBlack"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:text="@string/bottom_dialog_tools_cycle_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/workout_frame_16"
+        android:padding="8dp"
+        android:orientation="horizontal" >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:text=""/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:text="@string/bottom_dialog_tools_current_values"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:text="@string/bottom_dialog_tools_update_values"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="@dimen/workout_frame_16"
+        android:layout_marginEnd="@dimen/workout_frame_16"
+        android:background="@color/colorPrimary"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal" >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:text="@string/lift_bench_text"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/bench_current"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            tools:text="100"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/bench_update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:inputType="numberDecimal"
+            tools:text="100"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal" >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:text="@string/lift_squat_text"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/squat_current"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            tools:text="100"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/squat_update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:inputType="numberDecimal"
+            tools:text="100"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal" >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:text="@string/lift_ohp_text"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ohp_current"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:inputType="numberDecimal"
+            tools:text="100"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/ohp_update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            tools:text="100"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal" >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:text="@string/lift_dl_text"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dl_current"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:inputType="numberDecimal"
+            tools:text="100"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/dlupdate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            tools:text="100"/>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/update_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/workout_frame_16"
+        android:layout_marginStart="@dimen/workout_frame_16"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/colorRed"
+        android:textSize="@dimen/text_14"
+        android:visibility="gone"
+        android:text="@string/bottom_dialog_tools_error"
+        tools:visibility="visible"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="@dimen/workout_frame_16"
+        android:layout_marginEnd="@dimen/workout_frame_16"
+        android:background="@color/colorPrimary"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal" >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:text="@string/bottom_dialog_tools_cycle_cycle_text"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cycle_current"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            tools:text="1"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cycle_update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            tools:text="2"/>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/workout_frame_16"
+        android:padding="@dimen/workout_frame_padding_half"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:text="@string/bottom_dialog_tools_confirm_update"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/base_button" />
+
+</LinearLayout>
