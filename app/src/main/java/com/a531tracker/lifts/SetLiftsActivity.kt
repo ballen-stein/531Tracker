@@ -169,6 +169,7 @@ class SetLiftsActivity : BaseActivity(), SetLiftsContract.View {
     override fun finished(freshLaunch: Boolean) {
         if (freshLaunch) {
             startActivity(Intent(this, HomePageActivity::class.java))
+            overridePendingTransition(R.anim.enter_right,R.anim.exit_left)
         }
         finish()
     }

@@ -3,6 +3,7 @@ package com.a531tracker.tools
 import java.math.BigDecimal
 import java.util.*
 import kotlin.math.ceil
+import kotlin.math.floor
 
 class AppUtils {
 
@@ -16,6 +17,15 @@ class AppUtils {
 
     fun getKilo(trainingValue: Int): Double {
         return trainingValue / 2.20462
+    }
+
+    fun getJokerWeight(calculateKG: Boolean, trainingValue: Double): String {
+        return if (!calculateKG) {
+            (5 * floor(trainingValue / 5.0)).toInt().toString()
+        } else {
+            BigDecimal(trainingValue / 2.20462).setScale(1, BigDecimal.ROUND_HALF_UP).toString()
+            //(5 * floor(trainingValue / 5.0)).toInt().toString()
+        }
     }
 
     fun getWeight(calculateKG: Boolean, trainingValue: Int, liftPercent: Float): String {

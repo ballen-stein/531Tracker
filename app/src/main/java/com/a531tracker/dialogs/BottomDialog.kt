@@ -84,6 +84,8 @@ class BottomDialog(private val mContext: Context): BottomSheetDialogFragment(), 
                 binding.inputLastWeekAmrap.text = arguments?.getString(AppConstants.AMRAP_LAST_WEEK) ?: "N/A"
 
                 setInputButtons()
+            } else {
+                binding.inputView.visibility = View.GONE
             }
         }
         return binding.root
@@ -112,28 +114,6 @@ class BottomDialog(private val mContext: Context): BottomSheetDialogFragment(), 
                     startActivity(Intent(mContext, SetLiftsActivity::class.java).apply{
                         putExtra(AppConstants.FRESH_LAUNCH, false)
                     })
-                    dismiss()
-                }
-                R.id.app_bar_help -> {
-                    val msgIntent = Intent(Intent.ACTION_SENDTO).apply {
-                        type = "text/plain"
-                        data = Uri.parse("mailto:")
-                        putExtra(Intent.EXTRA_EMAIL, "ballenstein20@gmail.com")
-                        putExtra(Intent.EXTRA_SUBJECT, "5/3/1 Fitness: Question about the app")
-                    }
-
-                    if (msgIntent.resolveActivity(mContext.packageManager) != null) {
-                        startActivity(msgIntent)
-                    }
-                    dismiss()
-                }
-                R.id.app_bar_info -> {
-                    val builder: CustomTabsIntent.Builder = CustomTabsIntent.Builder().apply {
-                        setToolbarColor(ContextCompat.getColor(mContext, R.color.colorPrimaryDark))
-                        addDefaultShareMenuItem()
-                        setShowTitle(true)
-                    }
-                    builder.build().launchUrl(mContext, Uri.parse(AppConstants.JW_URL))
                     dismiss()
                 }
             }

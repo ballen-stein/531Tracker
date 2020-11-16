@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.a531tracker.database.DatabaseHelper;
 import com.a531tracker.homepage.HomePageActivity;
 import com.a531tracker.lifts.SetLiftsActivity;
 import com.a531tracker.tools.AppConstants;
+import com.a531tracker.tools.PreferenceUtils;
 
 import java.util.ArrayList;
 
@@ -84,6 +86,12 @@ public class Launcher extends AppCompatActivity {
 
 
     private void freshLiftsLaunch() {
+        PreferenceUtils preferenceUtils = new PreferenceUtils(this);
+
+        if (preferenceUtils.createNewUserPreferences()) {
+            Log.d("Preferences","Successfully instantiated new preferences!");
+        }
+
         Intent intent = new Intent(getApplicationContext(), SetLiftsActivity.class);
         intent.putExtra("NewLifts", true);
         intent.putExtra(AppConstants.FRESH_LAUNCH, true);

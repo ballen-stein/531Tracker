@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="0dp">
+
+
+    <FrameLayout
+        android:id="@+id/fragment_new_user_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lift_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <View
+            android:id="@+id/progress_line"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginStart="@dimen/workout_frame_64"
+            android:layout_marginEnd="@dimen/workout_frame_64"
+            android:background="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/progress_part_one"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/new_user_tracker"
+            android:layout_marginStart="@dimen/workout_frame_64"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/progress_line"/>
+
+        <View
+            android:id="@+id/progress_line_right"
+            android:layout_width="135dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="@dimen/workout_frame_64"
+            android:layout_marginEnd="@dimen/workout_frame_64"
+            android:background="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/progress_part_two"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/new_user_tracker"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/progress_part_three"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/new_user_tracker"
+            android:layout_marginEnd="@dimen/workout_frame_64"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/progress_line"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/new_user_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/workout_frame_64"
+            android:layout_marginEnd="@dimen/workout_frame_64"
+            android:layout_marginTop="@dimen/workout_frame_24"
+            android:layout_marginBottom="@dimen/workout_frame_64"
+            android:padding="@dimen/text_16"
+            android:gravity="center"
+            android:text="@string/new_user_continue"
+            android:textSize="@dimen/text_16"
+            android:textStyle="bold"
+            android:textColor="@color/colorSurface"
+            android:background="@drawable/base_button"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

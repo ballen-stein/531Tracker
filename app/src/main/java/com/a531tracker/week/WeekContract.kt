@@ -6,9 +6,9 @@ import com.a531tracker.mvpbase.BaseView
 
 class WeekContract {
     interface Presenter : BasePresenter {
-        fun onViewCreated(mContext: Context, liftName: String)
+        fun onViewCreated(mContext: Context, liftName: String, swapLift: String)
         fun onAmrapReceived(liftName: String, percent: String, repsDone: Int)
-        fun onPrefUpdate(mContext: Context, liftName: String, preferences: MutableMap<String, *>)
+        fun onPrefUpdate(mContext: Context, liftName: String, preferences: MutableMap<String, *>, swapLift: String)
     }
 
     interface View : BaseView<Presenter> {

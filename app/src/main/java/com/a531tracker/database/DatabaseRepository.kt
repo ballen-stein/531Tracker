@@ -14,6 +14,10 @@ class DatabaseRepository(mContext: Context) {
         return DatabaseRepository(mContext)
     }
 
+    fun checkCycle(): Boolean {
+        return db.startCycle()
+    }
+
     fun getLift(liftName: String): CompoundLifts? {
         return db.getLifts(liftName)
     }

@@ -11,6 +11,7 @@
     <string name="nav_update">Update to next cycle</string>
     <string name="nav_info">More Info</string>
     <string name="nav_help">Contact Us</string>
+    <string name="nav_joker">Add Joker Set</string>
     <string name="ok_text">OK</string>
 
     <string name="breakdown_bar_weight">Bar Weight: </string>
@@ -29,6 +30,16 @@
     <string name="update_cycle_tag">LIFT TOOLS</string>
     <string name="homepage_go_to_week">View this Week</string>
     <string name="extras_disabled">Uncheck the "Remove All Extras" setting to use this tool.</string>
+    <string name="joker_set">Joker Set</string>
+    <string name="new_user_explanation_opening">Thanks for downloading 531-Fitness! Before you get started, here\'s a quick overview of the 5/3/1 program so you can utilize this app to fit your needs.</string>
+    <string name="new_user_explanation_bulk_one">5/3/1 is a strength training program that takes your 1RM (one-rep max), or the maximum weight you can move for one repetition, for the four compound lifts (Bench press, Overhand Press,
+        and a Squat and Deadlift variant) and uses a percentage of it as your training max. </string>
+    <string name="new_user_explanation_bulk_two">Each week involves a percentage of that training max and is broken down into three parts: 3 Warm–Up sets, 3 "Core" sets, and an optional 3&#8211;5 Extra sets.
+        The last set of each core block requires you to do "as many reps as possible" (AMRAP) at that weight until you feel close to failure, but not failing.</string>
+    <string name="new_user_explanation_button">To progress using this app, you must press this button to the left for each week and record your AMRAP for that week.</string>
+    <string name="new_user_explanation_closing">When you are ready, press the button below to continue to enter your 1RM or training max for the program.</string>
+    <string name="new_user_continue">Continue</string>
+    <string name="new_user_submit_lifts">Enter your lifts</string>
 
     <string name="bottom_dialog_tools_cycle_header">Update the Cycle</string>
     <string name="bottom_dialog_tools_cycle_cycle_text">Cycle</string>
@@ -36,6 +47,18 @@
     <string name="bottom_dialog_tools_update_values">After Updating</string>
     <string name="bottom_dialog_tools_confirm_update">Confirm and Update</string>
     <string name="bottom_dialog_tools_error">You must submit "As Many Reps As Possible" using the orange button on the week screen for each week before updating the cycle.</string>
+
+    <string name="bottom_dialog_joker_header">Add a Joker set</string>
+    <string name="bottom_dialog_joker_one">Add a 1x1 set</string>
+    <string name="bottom_dialog_joker_three">Add a 1x3 set</string>
+    <string name="bottom_dialog_joker_five">Add a 1x5 set</string>
+    <string name="bottom_dialog_joker_alt_three">Add a 1x3 set</string>
+    <string name="bottom_dialog_joker_alt_six">Add a 1x6 set</string>
+    <string name="bottom_dialog_joker_alt_eight">Add a 1x8 set</string>
+
+    <!--     Graph strings     -->
+    <string name="dash">-</string>
+    <string name="lift_graph_header">Compound Graphs</string>
 
     <string name="lift_tools_fragment_header">All Tools</string>
     <string name="lift_tools_fragment_current_cycle_header">Current Cycle:</string>

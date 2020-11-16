@@ -24,16 +24,15 @@
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/week_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
         android:backgroundTint="@color/colorOrange"
         android:padding="0dp"
         android:scaleType="center"
-        android:src="@android:drawable/ic_menu_mylocation"
+        android:src="@drawable/update_week"
         app:borderWidth="0dp"
-        app:layout_anchor="@id/bottom_toolbar"
+        app:layout_anchor="@id/week_bottom_toolbar"
         app:useCompatPadding="false" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

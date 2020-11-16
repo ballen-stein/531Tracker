@@ -12,4 +12,10 @@
         android:id="@+id/info"
         android:title="@string/nav_info"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/joker"
+        android:icon="@drawable/icon_add_circle"
+        android:title="@string/nav_joker"
+        app:showAsAction="ifRoom"/>
 </menu>

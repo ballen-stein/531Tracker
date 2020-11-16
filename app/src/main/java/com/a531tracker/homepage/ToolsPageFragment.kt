@@ -49,6 +49,10 @@ class ToolsPageFragment : Fragment(), ViewBinding {
         val seekProgress = (dr.getUserPercentList("Bench")[0] * 100).toInt()
         binding.liftToolsPercentSeekbar.apply {
             progress = seekProgress
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                min = 30
+                max = 90
+            }
         }
     }
 

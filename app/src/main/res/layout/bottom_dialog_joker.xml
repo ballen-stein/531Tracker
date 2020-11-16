@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/dialog_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorTransParent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/input_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/workout_frame_padding"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/joker_set_icon" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_header_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/workout_frame_padding_half"
+                android:text="@string/bottom_dialog_joker_header"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textSize="16sp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/joker_set_icon" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/joker_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/workout_frame_8"
+            android:layout_marginTop="@dimen/workout_frame_24"
+            android:layout_marginBottom="@dimen/workout_frame_8"
+            android:layout_weight="1"
+            android:background="@drawable/base_button"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/bottom_dialog_joker_one"
+            android:textColor="@color/colorSurface"
+            android:gravity="center"
+            android:textSize="14sp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/joker_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/workout_frame_8"
+            android:layout_marginTop="@dimen/workout_frame_8"
+            android:layout_marginBottom="@dimen/workout_frame_8"
+            android:layout_weight="1"
+            android:background="@drawable/base_button"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/bottom_dialog_joker_three"
+            android:textColor="@color/colorSurface"
+            android:gravity="center"
+            android:textSize="14sp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/joker_five"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/workout_frame_8"
+            android:layout_marginTop="@dimen/workout_frame_8"
+            android:layout_marginBottom="@dimen/workout_frame_8"
+            android:layout_weight="1"
+            android:background="@drawable/base_button"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/bottom_dialog_joker_five"
+            android:textColor="@color/colorSurface"
+            android:gravity="center"
+            android:textSize="14sp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/input_cancel_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/workout_frame_8"
+            android:layout_marginTop="@dimen/workout_frame_8"
+            android:layout_weight="1"
+            android:background="@drawable/base_button"
+            android:backgroundTint="@color/colorRed"
+            android:text="@string/cancel_text"
+            android:textColor="@color/colorSurface"
+            android:gravity="center"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -73,7 +73,7 @@
                 android:id="@+id/weight_check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/colorOrange"/>
+                android:buttonTint="@color/colorSecondary"/>
         </LinearLayout>
 
         <LinearLayout
@@ -120,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_margin="@dimen/workout_frame_padding_half"
-                android:background="@color/colorSecondary"
+                android:background="@color/colorPrimaryDark"
                 tools:visibility="visible"/>
 
             <LinearLayout
@@ -143,14 +143,14 @@
                         android:layout_height="wrap_content"
                         android:text="@string/breakdown_bar_weight"
                         android:textStyle="bold"
-                        android:textColor="@color/colorSecondary"/>
+                        android:textColor="@color/colorPrimaryDark"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/bar_weight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/colorSecondary"/>
+                        android:textColor="@color/colorPrimaryDark"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -164,17 +164,66 @@
                         android:layout_height="wrap_content"
                         android:text="@string/breakdown_added_weight_start"
                         android:textStyle="bold"
-                        android:textColor="@color/colorSecondary"/>
+                        android:textColor="@color/colorPrimaryDark"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/weight_breakdown"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/colorSecondary"/>
+                        android:textColor="@color/colorPrimaryDark"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/joker_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:padding="@dimen/workout_frame_padding_half"
+            android:orientation="horizontal"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/joker_set" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/joker_amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="500lbs"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/joker_reps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="5x5"/>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/joker_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorSecondary"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

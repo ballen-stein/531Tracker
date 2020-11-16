@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,10 +17,11 @@ import com.a531tracker.database.DatabaseRepository
 import com.a531tracker.databinding.FragmentWeekInformationBinding
 import com.a531tracker.databinding.WeekDataBinding
 import com.a531tracker.tools.AppConstants
+import com.a531tracker.tools.AppUtils
 import com.a531tracker.tools.PreferenceUtils
 import kotlinx.android.synthetic.main.week_data.view.*
 
-class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
+class WeekFragment(private val weekToShow: Int,  private val liftName: String, private val swapLiftName: String) : Fragment(), ViewBinding {
 
     private lateinit var binding: FragmentWeekInformationBinding
 
@@ -29,12 +31,20 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
 
     private lateinit var prefUtils: PreferenceUtils
 
+    private val appUtils = AppUtils().getInstance()
+
     private var extraDeload: Boolean = false
 
     private var hideExtras: Boolean = false
 
+    private var coreSwap: Boolean = false
+
+    private var usingKgs: Boolean = false
+
+    private var altFormat: Boolean = false
+
     fun newInstance(position: Int) : WeekFragment {
-        return WeekFragment(weekToShow = position)
+        return WeekFragment(weekToShow = position, liftName = liftName, swapLiftName = swapLiftName)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -43,15 +53,12 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
         prefUtils = PreferenceUtils.getInstance(binding.root.context)
         extraDeload = prefUtils.getPreference(binding.root.context.getString(R.string.preference_deload_key)) ?: false
         hideExtras = prefUtils.getPreference(binding.root.context.getString(R.string.preference_remove_extras_key)) ?: false
+        coreSwap = prefUtils.getPreference(binding.root.context.getString(R.string.preference_swap_extras_key)) ?: false
+        usingKgs = prefUtils.getPreference(binding.root.context.getString(R.string.preference_kilogram_key)) ?: false
+        altFormat = prefUtils.getPreference(binding.root.context.getString(R.string.preference_split_variant_extra_key)) ?: false
 
         weekRecyclerView = WeekRecyclerView(binding.root.context, binding, this)
         weekRecyclerView.setData(weekToShow)
-
-        for (i in 0 until 4) {
-
-            Log.d("Fragnent", "Fragment seeing data ${databaseRepository.getWeekData(i)}")
-        }
-
 
         return root
     }
@@ -75,8 +82,59 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
         }
     }
 
+    private var jokerWeight = 0.0
+
+    private lateinit var jokerReferenceLocation: View
+
+    fun putArguments(bundle: Bundle) {
+        val addedReps = bundle[AppConstants.JOKER_REPS]
+        jokerReferenceLocation.joker_layout.visibility = View.VISIBLE
+        jokerWeight *= 1.05
+        val text = if (usingKgs) {
+            val jokerFromKg = appUtils.getWeight(jokerWeight)
+            String.format("%.2f", appUtils.getJokerWeight(true, jokerFromKg).toFloat())
+        } else {
+            appUtils.getJokerWeight(false, jokerWeight)
+        }
+        jokerReferenceLocation.joker_amount.text = text
+
+        val reps = getReps(addedReps as Int)
+        jokerReferenceLocation.joker_reps.text = reps
+        jokerReferenceLocation.joker_check.isChecked = false
+    }
+
+    private fun getReps(reps: Int): String {
+        return when (reps) {
+            1 -> {
+                if (altFormat) "1x3" else "1x1"
+            }
+            3 -> {
+                if (altFormat) "1x6" else "1x3"
+            }
+            5 -> {
+                if (altFormat) "1x8" else "1x5"
+            }
+            else -> {
+                "1x1+"
+            }
+        }
+    }
+
     fun hideExtras(): Boolean {
         return hideExtras
+    }
+
+    fun swapExtras(): Boolean {
+        return coreSwap
+    }
+
+    fun setJokerReferenceLocation(itemView: View, weight: String) {
+        jokerReferenceLocation = itemView
+        jokerWeight = weight.toDouble()
+    }
+
+    fun getSwapName(): String {
+        return swapLiftName
     }
 
     fun getWeeklyReps(): ArrayList<String> {
@@ -102,15 +160,17 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
         fun setData(weekToShow: Int) {
             recyclerView = binding.weekRecycler
             weekData = fragment.getWeeklyData(weekToShow)
-            Log.d("TestingData", "Fragment weekly data : $weekData")
             repData = fragment.getWeeklyReps()
-            Log.d("TestingData", "Fragment rep data : $repData")
             breakdownData = fragment.getWeightBreakdown(weekToShow)
             weekAdapter = WeekAdapter(liftDataset = weekData,
                     repData = repData,
                     breakdown = breakdownData,
                     deload = weekToShow == 3,
-                    hideExtras = fragment.hideExtras()
+                    liftName = fragment.liftName,
+                    hideExtras = fragment.hideExtras(),
+                    swapExtras = fragment.swapExtras(),
+                    swapLiftName = fragment.swapLiftName,
+                    fragment = fragment
             )
             recyclerView.apply {
                 setHasFixedSize(true)
@@ -128,7 +188,12 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
             private val repData: ArrayList<String>,
             private val breakdown: ArrayList<ArrayList<Double>>,
             private val deload: Boolean,
-            private val hideExtras: Boolean) : RecyclerView.Adapter<WeekAdapter.ViewHolder>(), ViewBinding {
+            private val liftName: String,
+            private val hideExtras: Boolean,
+            private val swapExtras: Boolean,
+            private val swapLiftName: String,
+            private val fragment: WeekFragment
+    ) : RecyclerView.Adapter<WeekAdapter.ViewHolder>(), ViewBinding {
 
         lateinit var binding: WeekDataBinding
 
@@ -163,8 +228,12 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
                 holder.itemView.header_text.apply {
                     text = if (deload) {
                         "Deload Sets"
+                    } else if (swapExtras && liftData == AppConstants.SET_BBB || liftData == AppConstants.SET_FSL) {
+                        val text = "$swapLiftName $liftData"
+                        text
                     } else {
-                        liftData
+                        val text = "$liftName $liftData"
+                        text
                     }
                     visibility = if(deload && position > 3) {
                         View.GONE
@@ -189,6 +258,10 @@ class WeekFragment(private val weekToShow: Int) : Fragment(), ViewBinding {
                 val weightBreakdown = breakdown[position]
                 holder.itemView.bar_weight.text = weightBreakdown[0].toString()
                 holder.itemView.weight_breakdown.text = formatBreakdownText(weightBreakdown)
+            }
+
+            if (position == 7) {
+                fragment.setJokerReferenceLocation(holder.itemView, liftData)
             }
 
             holder.itemView.weight_breakdown_layout.setOnClickListener{

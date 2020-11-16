@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <LinearLayout
+        android:id="@+id/new_user_diagram"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/workout_frame_32"
+        android:layout_marginTop="196dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/week_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorOrange"
+            android:scaleType="center"
+            android:layout_gravity="center"
+            android:src="@drawable/update_week"
+            app:borderWidth="0dp"
+            app:layout_anchor="@id/week_bottom_toolbar"
+            app:useCompatPadding="false" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/workout_frame_8"
+            android:layout_marginEnd="@dimen/workout_frame_8"
+            android:padding="@dimen/workout_frame_padding"
+            android:text="@string/new_user_explanation_button"
+            android:textSize="@dimen/text_16"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/workout_frame_8"
+        android:layout_marginEnd="@dimen/workout_frame_8"
+        android:layout_marginBottom="@dimen/workout_frame_96"
+        android:padding="@dimen/workout_frame_padding"
+        android:text="@string/new_user_explanation_closing"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintTop_toBottomOf="@+id/new_user_diagram"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.Menu
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.ViewPager2
 import com.a531tracker.tools.AppConstants
@@ -16,14 +17,16 @@ import com.a531tracker.databinding.ActivityWeekBinding
 import com.a531tracker.mvpbase.DependencyInjectorClass
 import com.a531tracker.tools.AppUtils
 import com.a531tracker.adapters.WorkoutPagerAdapter
+import com.a531tracker.dialogs.BottomDialogJoker
 import com.a531tracker.homepage.HomePageActivity
 import com.a531tracker.tools.PreferenceUtils
 import com.a531tracker.tools.Snack
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_week_toolbar.view.*
+import kotlinx.android.synthetic.main.settings.*
 
-class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialog.BottomDialogClicks {
+class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialog.BottomDialogClicks, BottomDialogJoker.BottomDialogJokerClick {
 
     private lateinit var presenter: WeekContract.Presenter
 
@@ -41,9 +44,11 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
 
     private lateinit var compound: String
     private lateinit var swapLift: String
+    private lateinit var currentMenu: Menu
 
     private var altFormat: Boolean = true
     private var sevenWeek: Boolean = true
+    private var showJoker: Boolean = false
     private var cycleNum: Int = 0
     private var currentFrag = 0
 
@@ -70,9 +75,10 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
         userPreferences = prefUtils.userPreferences()!!.all
         altFormat = userPreferences[getString(R.string.preference_split_variant_extra_key)] as Boolean
         sevenWeek = prefUtils.userPreferences()?.all?.get(getString(R.string.preference_week_options_key)) as Boolean
+        showJoker = userPreferences[getString(R.string.preference_joker_key)] as Boolean
 
         setPresenter(WeekPresenter(this, depInjector, AppUtils(), prefUtils, this))
-        presenter.onViewCreated(this, compound)
+        presenter.onViewCreated(this, compound, swapLift)
 
         setSupportActionBar(binding.root.week_bottom_toolbar)
 
@@ -99,14 +105,6 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
             ).show(supportFragmentManager, "input")
         }
 
-        for (fragment in supportFragmentManager.fragments) {
-            if (fragment.isVisible && fragment.tag == "f3") {
-                root.week_fab.visibility = View.GONE
-            } else {
-                root.week_fab.visibility = View.VISIBLE
-            }
-        }
-
         //Snackbar.make(binding.snackHolder,  getString(R.string.amrap_success), Snackbar.LENGTH_LONG).show()
     }
 
@@ -116,18 +114,28 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
             userPreferences = prefUtils.userPreferences()?.all!!
             altFormat = prefUtils.userPreferences()?.all?.get(getString(R.string.preference_split_variant_extra_key)) as Boolean
             sevenWeek = prefUtils.userPreferences()?.all?.get(getString(R.string.preference_week_options_key)) as Boolean
-            presenter.onPrefUpdate(this, compound, userPreferences)
+            showJoker = userPreferences[getString(R.string.preference_joker_key)] as Boolean
 
+            if (showJoker) {
+                invalidateOptionsMenu()
+                onCreateOptionsMenu(currentMenu)
+            }
+            presenter.onPrefUpdate(this, compound, userPreferences, swapLift)
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.week_menu, menu)
+        if (showJoker) {
+            menuInflater.inflate(R.menu.week_joker_menu, menu)
+        } else {
+            menuInflater.inflate(R.menu.week_menu, menu)
+        }
+        this.currentMenu = menu!!
         return true
     }
 
     private fun createViewAdapter(): WorkoutPagerAdapter {
-        return WorkoutPagerAdapter(this, sevenWeek, cycleNum)
+        return WorkoutPagerAdapter(this, liftName = compound, sevenWeek = sevenWeek, cycleNum = cycleNum, swapLiftName = swapLift)
     }
 
     private fun getLastWeekAmrap(): Int {
@@ -157,6 +165,27 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
             }
         }.attach()
 
+        tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                val currentPosition = tab?.position ?: 0
+                if (currentPosition == 3) {
+                    root.week_fab.visibility = View.GONE
+                } else {
+                    root.week_fab.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                root.week_fab.visibility = View.VISIBLE
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                if (supportFragmentManager.findFragmentByTag("f2")?.isVisible == true) {
+                    root.week_fab.visibility = View.VISIBLE
+                }
+            }
+
+        })
     }
 
     override fun refresh(refresh: Boolean) {
@@ -188,6 +217,21 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
 
     override fun setPresenter(presenter: WeekContract.Presenter) {
         this.presenter = presenter
+    }
+
+    // Bottom Joker Click
+    override fun confirmNewSet(addedReps: Int) {
+        val fragList = supportFragmentManager.fragments
+        var fragment: WeekFragment ?= null
+        for (frag in fragList) {
+            if (frag.isVisible) {
+                fragment = frag as WeekFragment
+                break
+            }
+        }
+        val bundle = Bundle()
+        bundle.putInt(AppConstants.JOKER_REPS, addedReps)
+        fragment?.putArguments(bundle)
     }
 
     // Bottom Dialog Click

@@ -26,6 +26,7 @@ class WeekPresenter (view: WeekContract.View,
     private var view: WeekContract.View? = view
 
     private lateinit var liftData: CompoundLifts
+    private lateinit var swapdata: CompoundLifts
 
     private var usingKG: Boolean = false
     private var sevenWeek: Boolean = false
@@ -74,7 +75,7 @@ class WeekPresenter (view: WeekContract.View,
 
     private val percentHolder = HashMap<Int, ArrayList<ArrayList<Float>>>()
 
-    override fun onViewCreated(mContext: Context, liftName: String) {
+    override fun onViewCreated(mContext: Context, liftName: String, swapLift: String) {
         databaseRepository.getDataRepo(mContext = mContext)
         userPrefs = prefUtils.userPreferences()!!.all
         usingKG = prefUtils.getPreference(mContext.getString(R.string.preference_kilogram_key)) == true
@@ -94,7 +95,7 @@ class WeekPresenter (view: WeekContract.View,
                 "CoreSwap:$coreSwap, " +
                 "ExtraDeload:$extraDeload")
 
-        getLift(liftName = liftName)
+        getLift(liftName = liftName, swapLift = swapLift)
     }
 
     override fun onAmrapReceived(liftName: String, percent: String, repsDone: Int) {
@@ -114,9 +115,10 @@ class WeekPresenter (view: WeekContract.View,
         view?.amrapSnackbar(success == 1)
     }
 
-    private fun getLift(liftName: String) {
+    private fun getLift(liftName: String, swapLift: String) {
         try {
             liftData = databaseRepository.getLift(liftName = liftName)!!
+            swapdata = databaseRepository.getLift(liftName = swapLift)!!
             bbbPercentsHolder = databaseRepository.getUserPercentList(liftName)
             percentHolder.apply {
                 put(0, warmupPercents)
@@ -144,6 +146,7 @@ class WeekPresenter (view: WeekContract.View,
 
     private fun saveWeekData(liftData: CompoundLifts) {
         val liftMax = liftData.trainingMax!!
+        val swapMax = swapdata.trainingMax!!
         val tempHolder = ArrayList<String>()
         val repTextHolder = getRepText()
         Log.d("TestingData", "Rep holder (with $altFormat) $repTextHolder")
@@ -174,12 +177,26 @@ class WeekPresenter (view: WeekContract.View,
 
                 // BBB
                 weekListHolder3.apply {
-                    if (fslSwap) add(AppConstants.SET_FSL) else add(headersText[2])
                     if (fslSwap) {
-                        addAll(getFslPercents(liftMax, percentHolder[1]!![0]))
+                        add(AppConstants.SET_FSL)
                     } else {
-                        addAll(getWeekPercents(liftMax, percentHolder[2]!![0]))
+                        add(headersText[2])
                     }
+
+                    if (coreSwap) {
+                        if (fslSwap) {
+                            addAll(getFslPercents(swapMax, percentHolder[1]!![0]))
+                        } else {
+                            addAll(getWeekPercents(swapMax, percentHolder[2]!![0]))
+                        }
+                    } else {
+                        if (fslSwap) {
+                            addAll(getFslPercents(liftMax, percentHolder[1]!![0]))
+                        } else {
+                            addAll(getWeekPercents(liftMax, percentHolder[2]!![0]))
+                        }
+                    }
+
                 }
                 weekData[2] = weekListHolder3
 
@@ -222,7 +239,6 @@ class WeekPresenter (view: WeekContract.View,
 
         databaseRepository.resetRepData()
         databaseRepository.setRepData(tempHolder)
-        Log.d("TestingData", "Rep data ${databaseRepository.getRepData()}")
 
         view?.setLastWeek(0)
         view?.updateWeekFragment()
@@ -307,10 +323,10 @@ class WeekPresenter (view: WeekContract.View,
         return liftsAsStrings
     }
 
-    override fun onPrefUpdate(mContext: Context, liftName: String, preferences: MutableMap<String, *>) {
+    override fun onPrefUpdate(mContext: Context, liftName: String, preferences: MutableMap<String, *>, swapLift: String) {
         resetFragmentValues()
         refresh = true
-        onViewCreated(mContext, liftName)
+        onViewCreated(mContext, liftName, swapLift)
     }
 
     private fun resetFragmentValues() {

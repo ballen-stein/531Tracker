@@ -21,6 +21,8 @@ class AppConstants {
         internal const val AMRAP_LAST_WEEK = "last_week_amrap"
         internal const val CURRENT_WEEK_DISPLAYED = "current_week"
         internal const val DIALOG_MENU = "view_menu"
+        internal const val JOKER_REPS = "added_joker"
+        internal const val NEW_USER_ONBOARD = "new_user_onboarding_step"
 
         //  For BottomDialogTool
         internal const val DIALOG_BENCH = "bench_value"
