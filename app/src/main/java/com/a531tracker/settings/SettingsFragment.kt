@@ -94,7 +94,7 @@ class SettingsFragment(private val mActivity: Activity, dependencyInjectorClass:
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
                 }
-                setNegativeButton(getString(R.string.pref_delete_alert_cancel), null)
+                setNeutralButton(getString(R.string.pref_delete_alert_cancel), null)
                 setIcon(R.drawable.ic_delete_forever)
             }.show()
 
