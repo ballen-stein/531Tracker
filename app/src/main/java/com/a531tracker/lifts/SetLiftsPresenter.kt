@@ -75,9 +75,7 @@ class SetLiftsPresenter(view: SetLiftsContract.View,
                 databaseRepository.inputLifts(compound)
             }
         }
-        if (setHidePref) {
-            preferenceUtils.savePreference(setHidePref, mContext.getString(R.string.preference_remove_extras_key))
-        }
+        preferenceUtils.savePreference(setHidePref, mContext.getString(R.string.preference_remove_extras_key))
         view?.finished(freshLaunch)
     }
 

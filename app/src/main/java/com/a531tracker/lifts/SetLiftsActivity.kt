@@ -58,6 +58,11 @@ class SetLiftsActivity : BaseActivity(), SetLiftsContract.View {
             }
         }
 
+        if (preferenceUtils.getPreference(getString(R.string.preference_remove_extras_key)) == true) {
+            binding.liftHideBbb.isChecked = true
+            binding.liftBbbSeekbar.isEnabled = false
+        }
+
         for (liftName in AppConstants.LIFT_ACCESS_LIST) {
             inputHolder[liftName] = when(liftName) {
                 "Bench" -> binding.liftBenchInput
@@ -92,13 +97,8 @@ class SetLiftsActivity : BaseActivity(), SetLiftsContract.View {
         }
 
         binding.liftHideBbb.setOnCheckedChangeListener { _, isChecked ->
-            binding.liftBbbSeekbarValue.isEnabled = !isChecked
+            binding.liftBbbSeekbar.isEnabled = !isChecked
         }
-
-        /*val seekProgress = (.getUserPercentList("Bench")[0] * 100).toInt()
-        binding.liftBbbSeekbar.apply {
-            progress = seekProgress
-        }*/
 
         binding.liftBbbSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {

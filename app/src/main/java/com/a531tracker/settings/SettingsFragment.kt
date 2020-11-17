@@ -106,6 +106,7 @@ class SettingsFragment(private val mActivity: Activity, dependencyInjectorClass:
         mActivity.runOnUiThread {
             findPreference<CheckBoxPreference>(getString(R.string.preference_fsl_key))!!.isEnabled = !disableAll
             findPreference<CheckBoxPreference>(getString(R.string.preference_swap_extras_key))!!.isEnabled = !disableAll
+            findPreference<CheckBoxPreference>(getString(R.string.preference_remove_extras_key))!!.isChecked = disableAll
         }
     }
 
