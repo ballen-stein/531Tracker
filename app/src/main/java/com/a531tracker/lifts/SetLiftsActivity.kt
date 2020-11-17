@@ -49,9 +49,13 @@ class SetLiftsActivity : BaseActivity(), SetLiftsContract.View {
         }
 
         if (preferenceUtils.getPreference(getString(R.string.preference_kilogram_key)) == true) {
-            binding.liftKg.isEnabled = false
+            binding.liftKg.apply{
+                isEnabled = false
+            }
         } else {
-            binding.liftLb.isEnabled = false
+            binding.liftLb.apply {
+                isEnabled = false
+            }
         }
 
         for (liftName in AppConstants.LIFT_ACCESS_LIST) {

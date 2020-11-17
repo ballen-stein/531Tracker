@@ -125,6 +125,7 @@ class BottomDialogTool(private val mContext: Context, private val dr: DatabaseRe
             setUpdateListener()
         } else {
             binding.confirmButton.isEnabled = false
+            binding.confirmButton.setTextColor(ContextCompat.getColor(binding.root.context, R.color.disabledWhite))
             binding.updateError.visibility = View.VISIBLE
         }
     }

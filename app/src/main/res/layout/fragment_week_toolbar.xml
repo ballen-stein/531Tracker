@@ -42,7 +42,7 @@
             android:id="@+id/week_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorOrange"
+            android:backgroundTint="@color/colorSecondaryDark"
             android:padding="0dp"
             android:scaleType="center"
             android:src="@drawable/update_week"

@@ -143,9 +143,9 @@ public class ViewAmrapStats extends AppCompatActivity {
         int maxReps = getGraphMinMax(true)+1;
         int minReps = getGraphMinMax(false)-1;
 
-        left.setAxisLineColor((ContextCompat.getColor(mContext, R.color.colorWhite)));
         left.setTextColor(ContextCompat.getColor(mContext, R.color.colorWhite));
         left.setGridColor(ContextCompat.getColor(mContext, R.color.colorWhite));
+        left.setAxisLineColor((ContextCompat.getColor(mContext, R.color.colorWhite)));
         left.setAxisMinimum(minReps);
         left.setAxisMaximum(maxReps);
         left.setLabelCount((maxReps-minReps+1), true);

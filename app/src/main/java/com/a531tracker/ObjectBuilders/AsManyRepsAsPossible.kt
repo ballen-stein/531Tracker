@@ -1,7 +1,5 @@
 package com.a531tracker.ObjectBuilders
 
-import android.util.Log
-
 class AsManyRepsAsPossible {
     var compound: String? = null
     var cycle = 0
@@ -19,13 +17,7 @@ class AsManyRepsAsPossible {
                 || this.ninety_five_reps != amrapCompareObject.ninety_five_reps)
     }
 
-    fun print() {
-        Log.d("TestingData", "Data is as follows:\n" +
-                "Compound : $compound\n" +
-                "Cycle : $cycle\n" +
-                "TotalMax : $totalMaxWeight\n" +
-                "Eighty-Five : $eighty_five_reps\n" +
-                "Ninety : $ninety_reps\n" +
-                "Ninety-Five : $ninety_five_reps")
+    fun print(): String {
+        return "Compound : $compound, Cycle : $cycle, TotalMax : $totalMaxWeight, Eighty-Five : $eighty_five_reps, Ninety : $ninety_reps, Ninety-Five : $ninety_five_reps"
     }
 }

@@ -3,12 +3,13 @@ package com.a531tracker.homepage
 import android.content.Context
 import android.util.Log
 import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible
-import com.a531tracker.ObjectBuilders.CompoundLifts
 import com.a531tracker.ObjectBuilders.LiftBuilder
+import com.a531tracker.R
 import com.a531tracker.database.DatabaseRepository
 import com.a531tracker.mvpbase.DependencyInjectorClass
 import com.a531tracker.tools.AppConstants
 import com.a531tracker.tools.AppUtils
+import com.a531tracker.tools.PreferenceUtils
 
 class HomePagePresenter(view: HomePageContract.View, injector: DependencyInjectorClass, appInjector: AppUtils, private val mContext: Context) : HomePageContract.Presenter {
     private var databaseRepository: DatabaseRepository = injector.dataRepo(mContext)
@@ -19,9 +20,13 @@ class HomePagePresenter(view: HomePageContract.View, injector: DependencyInjecto
 
     private val hashHolder: HashMap<String, AsManyRepsAsPossible> = HashMap()
 
+    private var altFormat: Boolean = false
+
     override fun onViewCreated(mContext: Context) {
         databaseRepository.getDataRepo(mContext = mContext)
+        altFormat = PreferenceUtils.getInstance(mContext = mContext).getPreference(mContext.getString(R.string.preference_split_variant_extra_key)) ?: false
         getHashObserverValues()
+        getAmrapNumbers()
 
         view?.setCycle(databaseRepository.getCycle().toString())
         view?.showHomeFragments()
@@ -31,6 +36,7 @@ class HomePagePresenter(view: HomePageContract.View, injector: DependencyInjecto
     override fun checkForUpdatedLifts(hashHolder: HashMap<String, AsManyRepsAsPossible>) {
         if (hashHolder.isNotEmpty()) {
             getHashObserverValues()
+            getAmrapNumbers()
             compareMaps(hashHolder, this.hashHolder)
         } else {
             onViewCreated(mContext)
@@ -68,6 +74,17 @@ class HomePagePresenter(view: HomePageContract.View, injector: DependencyInjecto
         for (liftName in AppConstants.LIFT_ACCESS_LIST) {
             val tempLift = databaseRepository.getAllAmrapValues(liftName)!!
             hashHolder[liftName] = tempLift
+        }
+    }
+
+    private fun getAmrapNumbers() {
+        val cycle = databaseRepository.getCycle()
+        for (compound in AppConstants.LIFT_ACCESS_LIST) {
+            val dataList = ArrayList<AsManyRepsAsPossible>()
+            for (i in 1 until cycle) {
+                databaseRepository.amrapGraphValue(compound, i)?.let { dataList.add(it) }
+            }
+            databaseRepository.saveAmrapGraph(compound, dataList, altFormat = altFormat)
         }
     }
 

@@ -3,20 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorBlack"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/colorWhite"
-        android:visibility="gone"
-        android:textSize="16sp"
-        android:text="@string/bottom_dialog_tools_cycle_header" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             android:text=""/>
 
@@ -39,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             android:text="@string/bottom_dialog_tools_current_values"/>
 
@@ -48,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             android:text="@string/bottom_dialog_tools_update_values"/>
 
@@ -72,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             android:text="@string/lift_bench_text"/>
 
@@ -82,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             tools:text="100"/>
 
@@ -92,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorSecondary"
             android:textSize="15sp"
             android:inputType="numberDecimal"
             tools:text="100"/>
@@ -110,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             android:text="@string/lift_squat_text"/>
 
@@ -120,7 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             tools:text="100"/>
 
@@ -130,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorSecondary"
             android:textSize="15sp"
             android:inputType="numberDecimal"
             tools:text="100"/>
@@ -148,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             android:text="@string/lift_ohp_text"/>
 
@@ -158,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             android:inputType="numberDecimal"
             tools:text="100"/>
@@ -169,7 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorSecondary"
             android:textSize="15sp"
             tools:text="100"/>
 
@@ -186,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             android:text="@string/lift_dl_text"/>
 
@@ -196,7 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             android:inputType="numberDecimal"
             tools:text="100"/>
@@ -207,7 +195,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorSecondary"
             android:textSize="15sp"
             tools:text="100"/>
 
@@ -245,7 +233,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             android:text="@string/bottom_dialog_tools_cycle_cycle_text"/>
 
@@ -255,7 +243,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             tools:text="1"/>
 
@@ -265,7 +253,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/highWhite"
             android:textSize="15sp"
             tools:text="2"/>
 
@@ -276,11 +264,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/workout_frame_16"
-        android:padding="@dimen/workout_frame_padding_half"
+        android:padding="@dimen/workout_frame_padding"
         android:gravity="center"
         android:textSize="15sp"
         android:text="@string/bottom_dialog_tools_confirm_update"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/highWhite"
         android:background="@drawable/base_button" />
 
 </LinearLayout>

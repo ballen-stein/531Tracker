@@ -1,7 +1,6 @@
 package com.a531tracker
 
 import com.a531tracker.ObjectBuilders.CompoundLifts
-import com.a531tracker.ObjectBuilders.AccessoryLifts
 import com.a531tracker.tools.AppUtils
 import org.junit.Assert
 import org.junit.Test
@@ -9,7 +8,6 @@ import java.util.ArrayList
 
 class AllTests {
     var lifts = CompoundLifts()
-    var accessoryLifts = AccessoryLifts()
     @Test
     fun createLifts() {
         lifts.compound = "Bench"
@@ -20,28 +18,14 @@ class AllTests {
     fun testNinetyReps() {
         lifts.ninetyReps = 5
         lifts.ninetyFiveReps = 4
-        Assert.assertEquals(5f, lifts.ninetyReps.toFloat(), 0f)
-        Assert.assertEquals(4f, lifts.ninetyFiveReps.toFloat(), 0f)
+        Assert.assertEquals(5f, lifts.ninetyReps!!.toFloat(), 0f)
+        Assert.assertEquals(4f, lifts.ninetyFiveReps!!.toFloat(), 0f)
     }
 
     @Test
     fun testEightyReps() {
         lifts.eightFiveReps = 10
-        Assert.assertEquals(10f, lifts.eightFiveReps.toFloat(), 0f)
-    }
-
-    @Test
-    fun createAccessory() {
-        accessoryLifts.accessory_name = "Face-Pulls"
-        Assert.assertEquals("Face-Pulls", accessoryLifts.accessory_name)
-    }
-
-    @Test
-    fun checkAllAccessories() {
-        accessoryLifts.accessory_reps_and_sets = "5x20"
-        Assert.assertEquals("5x20", accessoryLifts.accessory_reps_and_sets)
-        accessoryLifts.accessory_weight = 15f
-        Assert.assertEquals(15f, accessoryLifts.accessory_weight, 0f)
+        Assert.assertEquals(10f, lifts.eightFiveReps!!.toFloat(), 0f)
     }
 
     @Test

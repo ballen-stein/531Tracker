@@ -9,7 +9,7 @@
         android:id="@+id/tab_view_homepage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorColor="@color/colorOrange"
+        app:tabIndicatorColor="@color/colorPrimaryDark"
         app:tabTextColor="@drawable/tab_selected"
         app:layout_constraintTop_toTopOf="parent"
         android:elevation="16dp">

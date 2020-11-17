@@ -25,7 +25,7 @@
                 android:layout_marginStart="@dimen/workout_frame_16"
                 android:layout_marginTop="@dimen/workout_frame_16"
                 android:text="@string/lift_tools_fragment_header"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/highWhite"
                 android:textSize="@dimen/text_18"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -72,7 +72,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="@string/lift_tools_fragment_current_cycle_header"
-                                    android:textColor="@color/colorWhite"
+                                    android:textColor="@color/highWhite"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintEnd_toStartOf="@id/homepage_lift_current_weight"/>
@@ -84,7 +84,7 @@
                                     android:layout_weight="1"
                                     android:layout_marginStart="@dimen/workout_frame_8"
                                     tools:text="1"
-                                    android:textColor="@color/colorWhite"
+                                    android:textColor="@color/highWhite"
                                     app:layout_constraintStart_toEndOf="@id/homepage_lift_tm_header"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"/>
@@ -100,6 +100,7 @@
                                 android:layout_marginBottom="@dimen/workout_frame_8"
                                 android:padding="@dimen/workout_frame_padding"
                                 android:background="@drawable/base_button"
+                                android:foreground="?attr/selectableItemBackground"
                                 android:gravity="center"
                                 android:text="@string/lift_tools_fragment_update_cycle"
                                 android:textSize="@dimen/text_16"
@@ -131,7 +132,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:text="@string/lift_tools_fragment_change_lift_percent"
-                                android:textColor="@color/colorWhite"
+                                android:textColor="@color/highWhite"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -139,6 +140,8 @@
                                 android:id="@+id/lift_tools_percent_seekbar"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:thumbTint="@color/colorSecondary"
+                                android:progressTint="@color/colorSecondaryDark"
                                 android:layout_marginTop="@dimen/workout_frame_16"/>
 
                             <com.google.android.material.textview.MaterialTextView
@@ -147,7 +150,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:text="@string/lift_bbb_seek_value"
-                                android:textColor="@color/colorWhite"
+                                android:textColor="@color/highWhite"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -160,6 +163,7 @@
                                 android:layout_marginBottom="@dimen/workout_frame_8"
                                 android:padding="@dimen/workout_frame_padding"
                                 android:background="@drawable/base_button"
+                                android:foreground="?attr/selectableItemBackground"
                                 android:gravity="center"
                                 android:text="@string/lift_tools_fragment_update_lift_percent"
                                 android:textSize="@dimen/text_16"
@@ -186,6 +190,7 @@
                             android:layout_marginBottom="@dimen/workout_frame_16"
                             android:padding="@dimen/workout_frame_padding"
                             android:background="@drawable/base_button"
+                            android:foreground="?attr/selectableItemBackground"
                             android:gravity="center"
                             android:text="@string/lift_tools_fragment_update_lift_tms"
                             android:textSize="@dimen/text_16"
@@ -204,7 +209,7 @@
                     android:layout_marginStart="@dimen/workout_frame_16"
                     android:layout_marginTop="@dimen/workout_frame_32"
                     android:text="@string/lift_graph_header"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/highWhite"
                     android:textSize="@dimen/text_18"
                     app:layout_constraintTop_toBottomOf="@id/base_tools_view"
                     app:layout_constraintStart_toStartOf="parent"/>
@@ -218,18 +223,27 @@
                     app:cardElevation="4dp"
                     app:layout_constraintTop_toBottomOf="@id/lift_graphs_header">
 
-                    <include layout="@layout/compound_graphs" />
+                    <androidx.core.widget.NestedScrollView
+                        android:layout_margin="@dimen/workout_frame_12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/graph_recycler"
+                            android:elevation="0dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/base_tools_view"/>
+
+                    </androidx.core.widget.NestedScrollView>
+
 
                 </com.google.android.material.card.MaterialCardView>
-                <!--
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/homepage_recycler"
-                    android:elevation="0dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/base_tools_view"/>
-                    -->
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/compound_graphs" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

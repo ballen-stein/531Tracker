@@ -8,7 +8,7 @@
     <string name="nav_upload">Upload Lifts</string>
     <string name="nav_upload_home">Reset Lifts</string>
     <string name="nav_upload_week">Submit AMRAP</string>
-    <string name="nav_update">Update to next cycle</string>
+    <string name="nav_update">Update your training max</string>
     <string name="nav_info">More Info</string>
     <string name="nav_help">Contact Us</string>
     <string name="nav_joker">Add Joker Set</string>
@@ -31,6 +31,9 @@
     <string name="homepage_go_to_week">View this Week</string>
     <string name="extras_disabled">Uncheck the "Remove All Extras" setting to use this tool.</string>
     <string name="joker_set">Joker Set</string>
+    <string name="completed_weeks">Completed Weeks</string>
+    <string name="current_tm">Current training max: </string>
+
     <string name="new_user_explanation_opening">Thanks for downloading 531-Fitness! Before you get started, here\'s a quick overview of the 5/3/1 program so you can utilize this app to fit your needs.</string>
     <string name="new_user_explanation_bulk_one">5/3/1 is a strength training program that takes your 1RM (one-rep max), or the maximum weight you can move for one repetition, for the four compound lifts (Bench press, Overhand Press,
         and a Squat and Deadlift variant) and uses a percentage of it as your training max. </string>
@@ -57,9 +60,10 @@
     <string name="bottom_dialog_joker_alt_eight">Add a 1x8 set</string>
 
     <!--     Graph strings     -->
-    <string name="dash">-</string>
     <string name="lift_graph_header">Compound Graphs</string>
+    <string name="lift_graph_empty_state">You can track your cycle stats here after you\'ve finished your first cycle.</string>
 
+    <!--     Tool Fragment strings     -->
     <string name="lift_tools_fragment_header">All Tools</string>
     <string name="lift_tools_fragment_current_cycle_header">Current Cycle:</string>
     <string name="lift_tools_fragment_update_cycle">Update the Cycle</string>
@@ -84,7 +88,7 @@
     <string name="lift_bbb_seekbar_header">Currently at </string>
     <string name="lift_bbb_seek_value">30.0</string>
     <string name="lift_bbb_seek_footer">% of the training max</string>
-    <string name="lift_hide_bbb">Hide Boring But Big inputs and displays</string>
+    <string name="lift_hide_bbb">Disable Boring But Big inputs and extra lifts.\nThis can always be changed on the Settings page.</string>
     <string name="lift_known_maxes">I know my training maxes</string>
     <string name="lift_submit">Submit</string>
 
@@ -196,7 +200,7 @@
 
     <string name="cycle_title">Current Cycle</string>
     <string name="cycle_placeholder">Cycle 0</string>
-    <string name="cycle_update">Update to next Cycle</string>
+    <string name="cycle_update">Update to the next Cycle</string>
 
     <string name="settings_update_bbb">Update BBB Format</string>
     <string name="settings_update_cycle">Update Cycle Format</string>
@@ -256,7 +260,6 @@
     <string name="table_completed">Submitted</string>
     <string name="table_missing">Missing</string>
 
-    <string name="current_tm">Current Training Maxes</string>
     <string name="tm_current_placeholder">100</string>
     <string name="tm_update_placeholder">115</string>
     <string name="tm_bench_title">Bench</string>

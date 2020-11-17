@@ -35,7 +35,7 @@
                 android:text="@string/bottom_dialog_joker_header"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:textSize="16sp"/>
+                android:textSize="@dimen/text_18"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="50dp"
@@ -53,6 +53,7 @@
             android:layout_marginBottom="@dimen/workout_frame_8"
             android:layout_weight="1"
             android:background="@drawable/base_button"
+            android:foreground="?attr/selectableItemBackground"
             android:backgroundTint="@color/colorPrimary"
             android:text="@string/bottom_dialog_joker_one"
             android:textColor="@color/colorSurface"
@@ -68,6 +69,7 @@
             android:layout_marginBottom="@dimen/workout_frame_8"
             android:layout_weight="1"
             android:background="@drawable/base_button"
+            android:foreground="?attr/selectableItemBackground"
             android:backgroundTint="@color/colorPrimary"
             android:text="@string/bottom_dialog_joker_three"
             android:textColor="@color/colorSurface"
@@ -83,6 +85,7 @@
             android:layout_marginBottom="@dimen/workout_frame_8"
             android:layout_weight="1"
             android:background="@drawable/base_button"
+            android:foreground="?attr/selectableItemBackground"
             android:backgroundTint="@color/colorPrimary"
             android:text="@string/bottom_dialog_joker_five"
             android:textColor="@color/colorSurface"
@@ -97,6 +100,7 @@
             android:layout_marginTop="@dimen/workout_frame_8"
             android:layout_weight="1"
             android:background="@drawable/base_button"
+            android:foreground="?attr/selectableItemBackground"
             android:backgroundTint="@color/colorRed"
             android:text="@string/cancel_text"
             android:textColor="@color/colorSurface"

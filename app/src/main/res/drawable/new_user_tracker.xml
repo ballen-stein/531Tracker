@@ -3,18 +3,18 @@
     <item android:state_enabled="false">
         <shape android:shape="oval" >
             <stroke android:width="2dp"
-                android:color="@color/colorPrimaryDark">
+                android:color="@color/colorSecondaryDark">
             </stroke>
-            <solid android:color="@color/colorPrimary"/>
+            <solid android:color="@color/colorSecondary"/>
         </shape>
     </item>
 
     <item>
         <shape android:shape="oval" >
             <stroke android:width="2dp"
-                android:color="@color/colorSecondaryDark">
+                android:color="@color/colorPrimaryDark">
             </stroke>
-            <solid android:color="@color/colorSecondary"/>
+            <solid android:color="@color/colorPrimary"/>
         </shape>
     </item>
 </selector>

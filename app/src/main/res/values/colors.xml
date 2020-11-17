@@ -15,12 +15,14 @@
     <!--<color name="colorGreen">#A6CC96</color>-->
     <color name="transparent">#00000000</color>
 
-    <color name="colorPrimary">#7e7abc</color>
-    <color name="colorPrimaryDark">#665dae</color>
-    <color name="colorPrimaryDisabled">#332e57 </color>
-    <color name="colorAccent">#9f7abc</color>
-    <color name="colorSecondary">#b8bc7a</color>
+    <color name="colorPrimary">#f4b440</color>
+    <color name="colorPrimaryDark">#f3a409</color>
+    <color name="colorPrimaryDisabled">#f7ca78</color>
+    -<color name="colorSecondary">#b8bc7a</color>
     <color name="colorSecondaryDark">#a9af5f</color>
+    <color name="colorAccent">#36e0f3</color>
+    <!--<color name="colorPrimary">#36e0f3</color>
+    <color name="colorPrimaryDark">#00d8ee</color>-->
     <color name="colorTertiary">#7a97bc</color>
     <color name="colorInfoText">#bc9f7a</color>
     <color name="colorBlack">#000000</color>
@@ -32,9 +34,13 @@
     <color name="colorMask">#99000000</color>
     <color name="colorTransParent">#00000000</color>
 
-    <color name="colorRed">#ff1507</color>
+    <color name="colorRed">#CF6679</color>
     <color name="error">#ff5436</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="highWhite">#DEFFFFFF</color>
+    <color name="medWhite">#99FFFFFF</color>
+    <color name="disabledWhite">#61FFFFFF</color>
+    <color name="disabledFill">#1FFFFFFF</color>
     <color name="colorGreen">#00ff00</color>
 
 </resources>

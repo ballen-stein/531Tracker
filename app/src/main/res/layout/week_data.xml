@@ -186,6 +186,7 @@
             tools:visibility="visible">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/joker_set_num"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

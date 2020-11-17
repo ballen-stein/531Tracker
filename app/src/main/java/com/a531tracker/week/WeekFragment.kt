@@ -84,11 +84,16 @@ class WeekFragment(private val weekToShow: Int,  private val liftName: String, p
 
     private var jokerWeight = 0.0
 
+    private var jokerSetNum = 1
+
     private lateinit var jokerReferenceLocation: View
 
     fun putArguments(bundle: Bundle) {
         val addedReps = bundle[AppConstants.JOKER_REPS]
         jokerReferenceLocation.joker_layout.visibility = View.VISIBLE
+        val jokerText = "${getString(R.string.joker_set)} $jokerSetNum"
+        jokerReferenceLocation.joker_set_num.text = jokerText
+        jokerSetNum++
         jokerWeight *= 1.05
         val text = if (usingKgs) {
             val jokerFromKg = appUtils.getWeight(jokerWeight)

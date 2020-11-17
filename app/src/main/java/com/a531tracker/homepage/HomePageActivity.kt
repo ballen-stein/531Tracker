@@ -2,10 +2,8 @@ package com.a531tracker.homepage
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.ViewPager2
 import com.a531tracker.BaseActivity
@@ -25,13 +23,9 @@ import com.a531tracker.tools.Snack
 import com.a531tracker.week.WeekActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_homepage.view.*
-import kotlinx.android.synthetic.main.activity_week.view.*
-import kotlinx.android.synthetic.main.app_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_homepage_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_homepage_toolbar.view.bottom_toolbar
 import kotlinx.android.synthetic.main.fragment_toolspage.view.*
-import kotlinx.android.synthetic.main.fragment_week_toolbar.view.*
 
 class HomePageActivity : BaseActivity(), ViewBinding, FragmentCommunicator, HomePageContract.View, BottomDialogTool.BottomDialogToolsClick {
 
@@ -74,9 +68,6 @@ class HomePageActivity : BaseActivity(), ViewBinding, FragmentCommunicator, Home
                     hashMapOf(AppConstants.NAVIGATION_MENU to 0)
             ).show(supportFragmentManager, "navigation")
         }
-
-
-        //Snackbar.make(binding.snackHolder,  getString(R.string.amrap_success), Snackbar.LENGTH_LONG).show()
     }
 
     override fun setHashObserver(hashHolder: HashMap<String, AsManyRepsAsPossible>) {

@@ -23,6 +23,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:background="@drawable/ic_back"
+                android:backgroundTint="@color/colorSurface"
                 android:visibility="visible" />
 
         </LinearLayout>
@@ -35,7 +36,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:text="@string/nav_settings"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorSurface"
             android:textSize="20sp" />
 
     </LinearLayout>

@@ -19,6 +19,14 @@ class AppUtils {
         return trainingValue / 2.20462
     }
 
+    fun getGraphWeight(trainingValue: Int, percent: Float, altFormat: Boolean): Float {
+        return if (altFormat) {
+            ((5 * ceil(trainingValue * percent / 5.toDouble())).toInt()).toFloat()
+        } else {
+            ((5 * ceil(trainingValue * percent / 5.toDouble())).toInt()).toFloat()
+        }
+    }
+
     fun getJokerWeight(calculateKG: Boolean, trainingValue: Double): String {
         return if (!calculateKG) {
             (5 * floor(trainingValue / 5.0)).toInt().toString()

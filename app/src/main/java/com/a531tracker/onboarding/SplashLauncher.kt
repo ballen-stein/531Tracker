@@ -23,7 +23,7 @@ class SplashLauncher : AppCompatActivity() {
 
     private lateinit var dr: DatabaseRepository
 
-    private val timeCountInMilliSeconds = 5000L
+    private val timeCountInMilliSeconds = 3000L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

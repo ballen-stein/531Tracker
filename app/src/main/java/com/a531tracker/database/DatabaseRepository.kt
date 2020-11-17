@@ -1,9 +1,9 @@
 package com.a531tracker.database
 
 import android.content.Context
-import android.util.Log
 import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible
 import com.a531tracker.ObjectBuilders.CompoundLifts
+import com.a531tracker.ObjectBuilders.GraphDataHolder
 import com.a531tracker.tools.AppConstants
 
 class DatabaseRepository(mContext: Context) {
@@ -84,6 +84,31 @@ class DatabaseRepository(mContext: Context) {
         return db.updateAMRAPTable(liftName, getCycle(), amrapPercent, repsDone, weight)
     }
 
+    fun amrapGraphValue(liftName: String, cycle: Int): AsManyRepsAsPossible? {
+        var amrapVal = AsManyRepsAsPossible()
+        try {
+            amrapVal = db.getAMRAPValues(liftName, cycle)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return amrapVal
+    }
+
+    fun saveAmrapGraph(key: String, value: ArrayList<AsManyRepsAsPossible>, altFormat: Boolean) {
+        val graphValList = ArrayList<GraphDataHolder>()
+        for (amrap in value) {
+            val graphVal = GraphDataHolder(0F,0F,0F,0F,"")
+            graphVal.getFromAmrap(amrap = amrap, altFormat = altFormat)
+
+            graphValList.add(graphVal)
+        }
+        amrapGraphMap[key] = graphValList
+    }
+
+    fun getAmrapGraph(key: String): ArrayList<GraphDataHolder>? {
+        return amrapGraphMap[key]
+    }
+
     fun getAmrapValue(liftName: String, weekNum: Int): Int {
         var amrapValues: AsManyRepsAsPossible? = null
         try {
@@ -107,7 +132,6 @@ class DatabaseRepository(mContext: Context) {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        Log.d("TestingDara", "Current data : $amrapValues")
 
         return when (weekNum) {
             0 -> amrapValues?.eighty_five_reps ?: 5
@@ -184,5 +208,7 @@ class DatabaseRepository(mContext: Context) {
         internal val completedLifts: HashMap<String, HashMap<Int, Int>> = HashMap()
 
         internal val amrapPercents = arrayListOf<String>("0.85", "0.90", "0.95")
+
+        internal val amrapGraphMap: HashMap<String, ArrayList<GraphDataHolder>> = HashMap()
     }
 }

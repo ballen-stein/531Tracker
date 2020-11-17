@@ -86,6 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:textColor="@color/colorSecondary"
                     tools:text="1"
                     android:gravity="center"
                     android:textSize="14sp"/>
@@ -99,7 +100,7 @@
                 android:padding="@dimen/workout_frame_padding_half"
                 android:gravity="center"
                 android:text="@string/amrap_no_value_error"
-                android:textColor="@color/colorOrange"
+                android:textColor="@color/colorRed"
                 android:textStyle="bold"
                 android:visibility="invisible"/>
 
@@ -112,6 +113,7 @@
                 android:layout_marginBottom="@dimen/workout_frame_8"
                 android:layout_weight="1"
                 android:background="@drawable/base_button"
+                android:foreground="?attr/selectableItemBackground"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/submit_text"
                 android:textColor="@color/colorSurface"
@@ -126,6 +128,7 @@
                 android:layout_marginTop="@dimen/workout_frame_8"
                 android:layout_weight="1"
                 android:background="@drawable/base_button"
+                android:foreground="?attr/selectableItemBackground"
                 android:text="@string/cancel_text"
                 android:textColor="@color/colorSurface"
                 android:gravity="center"
