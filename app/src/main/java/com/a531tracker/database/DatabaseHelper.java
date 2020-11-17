@@ -10,7 +10,6 @@ import android.util.Log;
 
 import com.a531tracker.ObjectBuilders.AsManyRepsAsPossible;
 import com.a531tracker.ObjectBuilders.CompoundLifts;
-import com.a531tracker.ObjectBuilders.UserSettings;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "531.db";
@@ -429,100 +428,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return cycle;
     }
-
-
-    // -------- User BBBSettings SQL --------
-
-
-    public boolean createUserSettings(){
-        if(!checkForSettings()){
-            SQLiteDatabase db = this.getWritableDatabase();
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(WORKOUT_FORMAT_CHOSEN, 901000);
-            contentValues.put(WORKOUT_BBB_SEVEN_DAY, 0);
-            contentValues.put(WORKOUT_BBB_SWAPS, 0);
-            try{
-                db.insert(WORKOUT_SETTINGS_TABLE, null, contentValues);
-                return false;
-            } catch (Exception e){
-                e.printStackTrace();
-                return false;
-            }
-        } else {
-            return true;
-        }
-    }
-
-
-    private boolean checkForSettings(){
-        try{
-            SQLiteDatabase db = this.getReadableDatabase();
-            Cursor cursor = db.rawQuery("select * from " + WORKOUT_SETTINGS_TABLE, null);
-            cursor.moveToFirst();
-            int result = cursor.getCount();
-            cursor.close();
-            db.close();
-            return result > 0;
-        } catch (Exception e){
-            return false;
-        }
-    }
-
-
-    public int swapBBBWorkouts(int oldVal, int newVal){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(WORKOUT_BBB_SWAPS, newVal);
-        int i = db.update(WORKOUT_SETTINGS_TABLE, contentValues, WORKOUT_BBB_SWAPS + " = '" + oldVal + "'", null);
-        db.close();
-        return i;
-    }
-
-
-    public UserSettings getUserSettings(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from " + WORKOUT_SETTINGS_TABLE, null);
-        cursor.moveToFirst();
-        UserSettings userSettings = new UserSettings();
-        userSettings.setChosenBBBFormat(cursor.getInt(cursor.getColumnIndex(WORKOUT_FORMAT_CHOSEN)));
-        userSettings.setWeekFormat(cursor.getInt(cursor.getColumnIndex(WORKOUT_BBB_SEVEN_DAY)));
-        userSettings.setSwapBBBFormat(cursor.getInt(cursor.getColumnIndex(WORKOUT_BBB_SWAPS)));
-        cursor.close();
-        db.close();
-        userSettings.setChosenBBBPercent(getBBBPercent());
-        return userSettings;
-    }
-
-
-    private float getBBBPercent(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select " + WORKOUT_COMPOUND_BBB_WEIGHT + " from " + WORKOUT_COMPOUND_TABLE_NAME, null);
-        cursor.moveToFirst();
-        float bbbVal = cursor.getFloat(cursor.getColumnIndex(WORKOUT_COMPOUND_BBB_WEIGHT));
-        cursor.close();
-        db.close();
-        return bbbVal;
-    }
-
-
-    public int updateWeekSettings(UserSettings userSettings, int oldVal){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(WORKOUT_BBB_SEVEN_DAY, userSettings.getWeekFormat());
-        int i = db.update(WORKOUT_SETTINGS_TABLE, contentValues, WORKOUT_BBB_SEVEN_DAY + " = " + oldVal, null);
-        db.close();
-        return i;
-    }
-
-
-    public int updateBbbFormat(UserSettings userSettings, int oldVal){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(WORKOUT_FORMAT_CHOSEN, userSettings.getChosenBBBFormat());
-        int i = db.update(WORKOUT_SETTINGS_TABLE, contentValues, WORKOUT_FORMAT_CHOSEN + " = " + oldVal, null);
-        return i;
-    }
-
 
     public int updateBBBPercent(CompoundLifts lifts){
         SQLiteDatabase db = this.getWritableDatabase();
