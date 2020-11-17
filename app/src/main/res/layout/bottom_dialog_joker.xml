@@ -102,7 +102,7 @@
             android:background="@drawable/base_button"
             android:foreground="?attr/selectableItemBackground"
             android:backgroundTint="@color/colorRed"
-            android:text="@string/cancel_text"
+            android:text="@string/pref_delete_alert_cancel"
             android:textColor="@color/colorSurface"
             android:gravity="center"
             android:textSize="14sp"/>

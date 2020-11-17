@@ -57,7 +57,7 @@ class SetLiftsPresenter(view: SetLiftsContract.View,
         }
     }
 
-    override fun saveLiftValues(freshLaunch: Boolean, tempBuilder: LiftBuilder) {
+    override fun saveLiftValues(freshLaunch: Boolean, tempBuilder: LiftBuilder, setHidePref: Boolean) {
         if (freshLaunch) {
             databaseRepository.resetLifts(true)
             for (liftName in AppConstants.LIFT_ACCESS_LIST) {
@@ -74,6 +74,9 @@ class SetLiftsPresenter(view: SetLiftsContract.View,
                 Log.d("TestingData", "Compound is $compound and Stale")
                 databaseRepository.inputLifts(compound)
             }
+        }
+        if (setHidePref) {
+            preferenceUtils.savePreference(setHidePref, mContext.getString(R.string.preference_remove_extras_key))
         }
         view?.finished(freshLaunch)
     }

@@ -23,25 +23,22 @@ class PreferenceUtils (private val mContext: Context) {
     }
 
     fun createNewUserPreferences(): Boolean {
-        var success = false
         // Use Kilogram
-        success = savePreference(false, mContext.getString(R.string.preference_kilogram_key))
+        savePreference(false, mContext.getString(R.string.preference_kilogram_key))
         // Week Format (show 7)
-        success = savePreference(true, mContext.getString(R.string.preference_week_options_key))
+        savePreference(true, mContext.getString(R.string.preference_week_options_key))
         // Use 8/6/3 variant
-        success = savePreference(false, mContext.getString(R.string.preference_split_variant_extra_key))
+        savePreference(false, mContext.getString(R.string.preference_split_variant_extra_key))
         // FSL
-        success = savePreference(false, mContext.getString(R.string.preference_fsl_key))
+        savePreference(false, mContext.getString(R.string.preference_fsl_key))
         // Joker
-        success = savePreference(false, mContext.getString(R.string.preference_joker_key))
+        savePreference(false, mContext.getString(R.string.preference_joker_key))
         // Extra sets on Deload
-        success = savePreference(false, mContext.getString(R.string.preference_deload_key))
+        savePreference(false, mContext.getString(R.string.preference_deload_key))
         // Swap Extra sets
-        success = savePreference(false, mContext.getString(R.string.preference_swap_extras_key))
+        savePreference(false, mContext.getString(R.string.preference_swap_extras_key))
         // Remove all extras
-        success = savePreference(false, mContext.getString(R.string.preference_remove_extras_key))
-
-        return success
+        return savePreference(false, mContext.getString(R.string.preference_remove_extras_key))
     }
 
     companion object {

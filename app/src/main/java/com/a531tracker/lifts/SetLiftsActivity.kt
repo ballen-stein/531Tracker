@@ -91,6 +91,10 @@ class SetLiftsActivity : BaseActivity(), SetLiftsContract.View {
             finalizeData()
         }
 
+        binding.liftHideBbb.setOnCheckedChangeListener { _, isChecked ->
+            binding.liftBbbSeekbarValue.isEnabled = !isChecked
+        }
+
         /*val seekProgress = (.getUserPercentList("Bench")[0] * 100).toInt()
         binding.liftBbbSeekbar.apply {
             progress = seekProgress
@@ -124,10 +128,10 @@ class SetLiftsActivity : BaseActivity(), SetLiftsContract.View {
 
     private fun finalizeData() {
         val usingTM = binding.trainingMaxCheckbox.isChecked
-        var benchVal: Int = 0
-        var squatVal: Int = 0
-        var ohpVal: Int = 0
-        var dlVal: Int = 0
+        val benchVal: Int
+        val squatVal: Int
+        val ohpVal: Int
+        val dlVal: Int
 
         if(usingKg) {
             benchVal = AppUtils().getWeight(binding.liftBenchInput.text.toString().toDouble()).toInt()
@@ -143,7 +147,7 @@ class SetLiftsActivity : BaseActivity(), SetLiftsContract.View {
 
         val bbbPercent = binding.liftBbbSeekbar.progress.toFloat()
 
-        Log.d("TestingData", "TM:$usingTM, B:$benchVal, S:$squatVal, O:$ohpVal, D:$dlVal, BBB:$bbbPercent")
+        val hideBbbStuff = binding.liftHideBbb.isChecked
 
         val tempBuilder = LiftBuilder(benchTm = benchVal,
                 squatTm = squatVal,
@@ -152,8 +156,7 @@ class SetLiftsActivity : BaseActivity(), SetLiftsContract.View {
                 percent = bbbPercent,
                 usingTm = usingTM
         )
-        Log.d("TestingData", "Percent : ${tempBuilder.getFixedPercent()}")
-        presenter.saveLiftValues(freshLaunch, tempBuilder)
+        presenter.saveLiftValues(freshLaunch, tempBuilder, hideBbbStuff)
     }
 
     override fun setCurrentLifts(tmHolder: HashMap<String, String>, currentPercent: Int) {

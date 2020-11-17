@@ -3,10 +3,8 @@ package com.a531tracker.week
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.Menu
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.ViewPager2
 import com.a531tracker.tools.AppConstants
@@ -24,7 +22,6 @@ import com.a531tracker.tools.Snack
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_week_toolbar.view.*
-import kotlinx.android.synthetic.main.settings.*
 
 class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialog.BottomDialogClicks, BottomDialogJoker.BottomDialogJokerClick {
 
@@ -160,7 +157,7 @@ class WeekActivity : BaseActivity(), ViewBinding, WeekContract.View, BottomDialo
                     if (!altFormat) getString(R.string.format_531_week_3) else getString(R.string.format_863_week_3)
                 }
                 else -> {
-                    getString(R.string.deload_text)
+                    getString(R.string.lift_deload_text)
                 }
             }
         }.attach()

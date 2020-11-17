@@ -86,25 +86,10 @@ class WeekPresenter (view: WeekContract.View,
         extraDeload = prefUtils.getPreference(mContext.getString(R.string.preference_deload_key)) ?: false
         hideExtras = prefUtils.getPreference(mContext.getString(R.string.preference_remove_extras_key)) ?: false
 
-
-        Log.d("TestingData", "Last prefs : SevenWeek : $sevenWeek and CoreSwap : $coreSwap")
-
-        Log.d("TestingData", "Values: KG:$usingKG, SevenWeek:$sevenWeek, " +
-                "BaseFormat:$altFormat, " +
-                "FslSwap:$fslSwap, " +
-                "CoreSwap:$coreSwap, " +
-                "ExtraDeload:$extraDeload")
-
         getLift(liftName = liftName, swapLift = swapLift)
     }
 
     override fun onAmrapReceived(liftName: String, percent: String, repsDone: Int) {
-        Log.d("TestingData", "Values: \nCompound - $liftName\n" +
-                "Cycle - ${databaseRepository.getCycle()}\n" +
-                "Percent - $percent\n" +
-                "Amrap - $repsDone\n" +
-                "Amrap - ${liftData.trainingMax}")
-
         val success = databaseRepository.setAmrapValue(
                 liftName = liftName,
                 amrapPercent = percent,
@@ -135,21 +120,11 @@ class WeekPresenter (view: WeekContract.View,
         }
     }
 
-    private fun setHeaderText(mContext: Context) {
-        headersText.apply {
-            add(AppConstants.SET_WARMUP)
-            add(AppConstants.SET_CORE)
-            add(AppConstants.SET_BBB)
-            add(AppConstants.SET_DELOAD)
-        }
-    }
-
     private fun saveWeekData(liftData: CompoundLifts) {
         val liftMax = liftData.trainingMax!!
         val swapMax = swapdata.trainingMax!!
         val tempHolder = ArrayList<String>()
         val repTextHolder = getRepText()
-        Log.d("TestingData", "Rep holder (with $altFormat) $repTextHolder")
 
         for (i in 0 until headersText.size) {
             val weekData = HashMap<Int, ArrayList<String>>()

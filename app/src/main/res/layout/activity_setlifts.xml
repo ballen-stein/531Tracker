@@ -332,7 +332,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/workout_frame_padding"
+                android:layout_marginStart="@dimen/workout_frame_8"
                 android:orientation="horizontal"
                 android:layout_gravity="center">
 
@@ -341,7 +341,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/lift_hide_bbb"
-                    android:paddingBottom="@dimen/workout_frame_12"
                     android:textSize="@dimen/text_16"
                     android:textColor="@color/highWhite"/>
 

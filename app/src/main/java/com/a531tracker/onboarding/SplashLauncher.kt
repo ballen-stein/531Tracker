@@ -81,6 +81,7 @@ class SplashLauncher : AppCompatActivity() {
                 overridePendingTransition(R.anim.enter_right, R.anim.exit_left)
                 finish()
             }
-        }.start()
+        }
+        countDownTimer.start()
     }
 }

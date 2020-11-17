@@ -29,34 +29,6 @@ class AllTests {
     }
 
     @Test
-    fun testCalcFunction() {
-        val calculateWeight = CalculateWeight()
-        Assert.assertEquals("2.3", calculateWeight.setAsKilograms(5, 1f))
-        Assert.assertEquals("4.5", calculateWeight.setAsKilograms(10, 1f))
-        Assert.assertEquals("11.3", calculateWeight.setAsKilograms(25, 1f))
-        Assert.assertEquals("15.9", calculateWeight.setAsKilograms(35, 1f))
-        Assert.assertEquals("20.4", calculateWeight.setAsKilograms(45, 1f))
-    }
-
-    @Test
-    fun testCalculateWeightNewFeature() {
-        val calculateWeight = CalculateWeight()
-        //int weight = 45;
-        val weight = 295
-        val weight2 = 0
-        calculateWeight.weightBreakdown(weight.toDouble(), true)
-        val testList = calculateWeight.weightArray
-        //assertEquals(45.0, testList.get(0));
-        val newList = ArrayList<Double>()
-        newList.add(45.0)
-        newList.add(45.0)
-        newList.add(45.0)
-        newList.add(5.0)
-        //assertEquals(newList, testList);
-        Assert.assertEquals(2, calculateWeight.weightBreakdown(weight2.toDouble(), true).toLong())
-    }
-
-    @Test
     fun `get list of weights to put on the bar` () {
         val weight1 = 395.00
         val weight2 = 100.00

@@ -9,10 +9,10 @@ import androidx.preference.CheckBoxPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
-import com.a531tracker.Launcher
 import com.a531tracker.R
 import com.a531tracker.database.DatabaseRepository
 import com.a531tracker.mvpbase.DependencyInjectorClass
+import com.a531tracker.onboarding.SplashLauncher
 import com.a531tracker.tools.PreferenceUtils
 
 class SettingsFragment(private val mActivity: Activity, dependencyInjectorClass: DependencyInjectorClass) : PreferenceFragmentCompat() {
@@ -87,9 +87,9 @@ class SettingsFragment(private val mActivity: Activity, dependencyInjectorClass:
             AlertDialog.Builder(mActivity, R.style.DeleteAllData).apply {
                 setTitle(getString(R.string.pref_delete_alert_title))
                 setMessage(getString(R.string.pref_delete_alert_warning))
-                setPositiveButton(getString(R.string.pref_delete_alert_ok)) { dialog, which ->
+                setPositiveButton(getString(R.string.pref_delete_alert_ok)) { _, _ ->
                     db.delete()
-                    val intent = Intent(mActivity, Launcher::class.java)
+                    val intent = Intent(mActivity, SplashLauncher::class.java)
                     intent.putExtra("Deletion", "true")
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)

@@ -8,7 +8,7 @@ import com.a531tracker.mvpbase.BaseView
 class SetLiftsContract {
     interface Presenter : BasePresenter {
         fun onViewCreated(mContext: Context, freshLaunch: Boolean)
-        fun saveLiftValues(freshLaunch: Boolean, tempBuilder: LiftBuilder)
+        fun saveLiftValues(freshLaunch: Boolean, tempBuilder: LiftBuilder, setHidePref: Boolean)
     }
 
     interface View : BaseView<Presenter> {
