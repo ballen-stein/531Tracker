@@ -1,26 +1,18 @@
 package com.a531tracker.dialogs
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.viewbinding.ViewBinding
 import com.a531tracker.ObjectBuilders.LiftBuilder
 import com.a531tracker.R
 import com.a531tracker.database.DatabaseRepository
 import com.a531tracker.databinding.BottomDialogToolLayoutBinding
-import com.a531tracker.homepage.HomePageActivity
-import com.a531tracker.lifts.SetLiftsActivity
-import com.a531tracker.settings.SettingsNew
 import com.a531tracker.tools.AppConstants
 import com.a531tracker.tools.AppUtils
 import com.a531tracker.tools.PreferenceUtils
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.bottom_dialog_layout.*
 
 class BottomDialogTool(private val mContext: Context, private val dr: DatabaseRepository): BottomSheetDialogFragment(), ViewBinding {
 
@@ -157,7 +149,7 @@ class BottomDialogTool(private val mContext: Context, private val dr: DatabaseRe
             for ((i,liftName) in AppConstants.LIFT_ACCESS_LIST.withIndex()) {
                 val liftTwo = dr.getLift(liftName)!!
                 liftTwo.apply {
-                    trainingMax = if (usingKg) appUtils.getWeight(updatedTm[i].toDouble()).toInt() else updatedTm[i].toInt()
+                    trainingMax = if (usingKg) appUtils.getPound(updatedTm[i].toDouble()).toInt() else updatedTm[i].toInt()
                     eightFiveReps = null
                     ninetyReps = null
                     ninetyFiveReps = null

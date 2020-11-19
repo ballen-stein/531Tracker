@@ -134,10 +134,10 @@ class SetLiftsActivity : BaseActivity(), SetLiftsContract.View {
         val dlVal: Int
 
         if(usingKg) {
-            benchVal = AppUtils().getWeight(binding.liftBenchInput.text.toString().toDouble()).toInt()
-            squatVal = AppUtils().getWeight(binding.liftSquatInput.text.toString().toDouble()).toInt()
-            ohpVal = AppUtils().getWeight(binding.liftOhpInput.text.toString().toDouble()).toInt()
-            dlVal = AppUtils().getWeight(binding.liftDlInput.text.toString().toDouble()).toInt()
+            benchVal = AppUtils().getPound(binding.liftBenchInput.text.toString().toDouble()).toInt()
+            squatVal = AppUtils().getPound(binding.liftSquatInput.text.toString().toDouble()).toInt()
+            ohpVal = AppUtils().getPound(binding.liftOhpInput.text.toString().toDouble()).toInt()
+            dlVal = AppUtils().getPound(binding.liftDlInput.text.toString().toDouble()).toInt()
         } else {
             benchVal = binding.liftBenchInput.text.toString().toInt()
             squatVal = binding.liftSquatInput.text.toString().toInt()

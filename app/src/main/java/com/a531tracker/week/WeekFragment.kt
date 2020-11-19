@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -96,7 +95,7 @@ class WeekFragment(private val weekToShow: Int,  private val liftName: String, p
         jokerSetNum++
         jokerWeight *= 1.05
         val text = if (usingKgs) {
-            val jokerFromKg = appUtils.getWeight(jokerWeight)
+            val jokerFromKg = appUtils.getPound(jokerWeight)
             String.format("%.2f", appUtils.getJokerWeight(true, jokerFromKg).toFloat())
         } else {
             appUtils.getJokerWeight(false, jokerWeight)
@@ -131,6 +130,15 @@ class WeekFragment(private val weekToShow: Int,  private val liftName: String, p
 
     fun swapExtras(): Boolean {
         return coreSwap
+    }
+
+    fun showKilos(): Boolean {
+        return usingKgs
+    }
+
+    fun getFslSwapWeight() {
+        val swapTm = databaseRepository.getLift(getSwapName())?.trainingMax
+
     }
 
     fun setJokerReferenceLocation(itemView: View, weight: String) {
@@ -174,7 +182,10 @@ class WeekFragment(private val weekToShow: Int,  private val liftName: String, p
                     liftName = fragment.liftName,
                     hideExtras = fragment.hideExtras(),
                     swapExtras = fragment.swapExtras(),
-                    swapLiftName = fragment.swapLiftName,
+                    swapLiftName = fragment.getSwapName(),
+                    usingKgs = fragment.showKilos(),
+                    apputils = fragment.appUtils,
+                    weekToShow = weekToShow,
                     fragment = fragment
             )
             recyclerView.apply {
@@ -197,6 +208,9 @@ class WeekFragment(private val weekToShow: Int,  private val liftName: String, p
             private val hideExtras: Boolean,
             private val swapExtras: Boolean,
             private val swapLiftName: String,
+            private val usingKgs: Boolean,
+            private val apputils: AppUtils,
+            private val weekToShow: Int,
             private val fragment: WeekFragment
     ) : RecyclerView.Adapter<WeekAdapter.ViewHolder>(), ViewBinding {
 
@@ -258,11 +272,51 @@ class WeekFragment(private val weekToShow: Int,  private val liftName: String, p
                 }
             } else {
                 holder.itemView.header_layout.visibility = View.GONE
-                holder.itemView.weight_reps.text = repData[position]
+                holder.itemView.weight_reps.text = when (weekToShow) {
+                    0 -> {
+                        repData[5]
+                    }
+                    1 -> {
+                        "${repData[5]}+"
+                    }
+                    2 -> {
+                        "${repData[5]}+"
+                    }
+                    else -> {
+                        repData[position]
+                    }
+                }
+
+                holder.itemView.weight_reps.text = when (position) {
+                    5 -> {
+                        if (weekToShow != 2) {
+                            repData[5+weekToShow]
+                        } else {
+                            repData[5]
+                        }
+                    }
+                    6 -> {
+                        if (weekToShow != 2) {
+                            repData[5+weekToShow]
+                        } else {
+                            repData[6]
+                        }
+                    }
+                    7 -> {
+                        "${repData[5+weekToShow]}+"
+                    }
+                    else -> {
+                        repData[position]
+                    }
+                }
                 holder.itemView.weight_amount.text = liftData
                 val weightBreakdown = breakdown[position]
-                holder.itemView.bar_weight.text = weightBreakdown[0].toString()
-                holder.itemView.weight_breakdown.text = formatBreakdownText(weightBreakdown)
+                holder.itemView.bar_weight.text = if (usingKgs) {
+                    "${apputils.getJokerWeight(usingKgs, weightBreakdown[0])} kgs"
+                } else {
+                    "${weightBreakdown[0]} lbs"
+                }
+                holder.itemView.weight_breakdown.text = formatBreakdownText(weightBreakdown, usingKgs)
             }
 
             if (position == 7) {
@@ -289,15 +343,19 @@ class WeekFragment(private val weekToShow: Int,  private val liftName: String, p
             }
         }
 
-        private fun formatBreakdownText(weightBreakdown: ArrayList<Double>): String {
+        private fun formatBreakdownText(weightBreakdown: ArrayList<Double>, usingKgs: Boolean): String {
             var bdString = ""
 
             for (value in 1 until weightBreakdown.size) {
-                bdString += "${weightBreakdown[value]} "
+                bdString += if (usingKgs) {
+                    "${apputils.getJokerWeight(usingKgs, weightBreakdown[value])} "
+                } else {
+                    "${weightBreakdown[value]} "
+                }
                 bdString += " | "
             }
             bdString += "&"
-            return bdString.replace("| &", " lbs")
+            return bdString.replace("| &", if (usingKgs) "kgs" else "lbs")
         }
 
         class ViewHolder(binding: WeekDataBinding) : RecyclerView.ViewHolder(binding.root) {

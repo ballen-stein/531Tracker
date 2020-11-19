@@ -160,13 +160,13 @@ class WeekPresenter (view: WeekContract.View,
 
                     if (coreSwap) {
                         if (fslSwap) {
-                            addAll(getFslPercents(swapMax, percentHolder[1]!![0]))
+                            addAll(getFslPercents(swapMax, percentHolder[1]!![0], i))
                         } else {
-                            addAll(getWeekPercents(swapMax, percentHolder[2]!![0]))
+                            addAll(getWeekPercents(liftMax, percentHolder[2]!![0]))
                         }
                     } else {
                         if (fslSwap) {
-                            addAll(getFslPercents(liftMax, percentHolder[1]!![0]))
+                            addAll(getFslPercents(swapMax, percentHolder[1]!![0], i))
                         } else {
                             addAll(getWeekPercents(liftMax, percentHolder[2]!![0]))
                         }
@@ -223,9 +223,9 @@ class WeekPresenter (view: WeekContract.View,
         return arrayListOf(
                 arrayListOf("1x5", "1x5", "1x3"),
                 if (altFormat) {
-                    arrayListOf("1x8", "1x6", "1x3+")
+                    arrayListOf("1x8", "1x6", "1x3")
                 } else {
-                    arrayListOf("1x5", "1x3", "1x1+")
+                    arrayListOf("1x5", "1x3", "1x1")
                 },
                 if (fslSwap) {
                     if (altFormat) {
@@ -256,9 +256,13 @@ class WeekPresenter (view: WeekContract.View,
                 val numSize = weights[i]?.size ?: 1
 
                 while (iterator < numSize) {
-                    val data = weights[i]?.get(iterator)
+                    val data = if (usingKG) {
+                        appUtils.normalizePercent(appUtils.getPound(weights[i]?.get(iterator)!!.toDouble()).toFloat()).toDouble()
+                    } else {
+                        weights[i]?.get(iterator)?.toDouble()
+                    }
                     if (data != null) {
-                        weightListHolder.add(data.toDouble())
+                        weightListHolder.add(data)
                     }
                     iterator++
                 }
@@ -290,10 +294,10 @@ class WeekPresenter (view: WeekContract.View,
         return liftsAsStrings
     }
 
-    private fun getFslPercents(liftMax: Int, weekPercents: ArrayList<Float>): ArrayList<String> {
+    private fun getFslPercents(liftMax: Int, weekPercents: ArrayList<Float>, week: Int): ArrayList<String> {
         val liftsAsStrings = ArrayList<String>()
         for (i in 0..3) {
-            liftsAsStrings.add(appUtils.getWeight(usingKG, liftMax, weekPercents[0]))
+            liftsAsStrings.add(appUtils.getWeight(usingKG, liftMax, weekPercents[week]))
         }
         return liftsAsStrings
     }

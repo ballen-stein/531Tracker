@@ -11,7 +11,7 @@ class AppUtils {
         return AppUtils()
     }
 
-    fun getWeight(trainingValue: Double): Double {
+    fun getPound(trainingValue: Double): Double {
         return trainingValue * 2.20462
     }
 
@@ -31,17 +31,15 @@ class AppUtils {
         return if (!calculateKG) {
             (5 * floor(trainingValue / 5.0)).toInt().toString()
         } else {
-            BigDecimal(trainingValue / 2.20462).setScale(1, BigDecimal.ROUND_HALF_UP).toString()
-            //(5 * floor(trainingValue / 5.0)).toInt().toString()
+            BigDecimal(trainingValue / 2.20462).setScale(2, BigDecimal.ROUND_HALF_UP).toString()
         }
     }
 
     fun getWeight(calculateKG: Boolean, trainingValue: Int, liftPercent: Float): String {
-        // Pounds == 0 | Kilograms == 1
         return if (!calculateKG) {
             ((5 * ceil(trainingValue * liftPercent / 5.toDouble())).toInt()).toString()
         } else {
-            BigDecimal(trainingValue * liftPercent / 2.20462).setScale(1, BigDecimal.ROUND_HALF_UP).toString()
+            BigDecimal(trainingValue * liftPercent / 2.20462).setScale(2, BigDecimal.ROUND_HALF_UP).toString()
         }
     }
 
